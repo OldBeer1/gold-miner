@@ -1,0 +1,13 @@
+{
+  "phase": "release-v1.0.0",
+  "method": "extracted player archive, file open, original game rules and real keyboard/button input; controlled browser clock; contact explosion uses an explicit four-object fixture",
+  "checks": [
+    "玩家包包含全部运行文件与中文说明",
+    "文件直开、随机关卡开始、键盘出钩、暂停冻结及继续无跳变",
+    "玩家包火药桶接触即原地爆炸，近物销毁、远物保留、空钩返回，不扣时间或消耗库存/护符",
+    "资源均本地加载，无远程素材请求、无未处理浏览器错误"
+  ],
+  "errors": [],
+  "browser": "154.0.8037.58",
+  "result": "passed"
+}

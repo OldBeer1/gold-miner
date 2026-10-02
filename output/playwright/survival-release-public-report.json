@@ -1,0 +1,161 @@
+{
+  "result": "passed-with-rendering-warning",
+  "phase": "v1.0.0-public-delivery",
+  "method": "unauthenticated GitHub API and public web/raw/download requests; first release commit Git blob comparison; independent extraction and runtime file SHA-256 comparison",
+  "repository": "https://github.com/OldBeer1/gold-miner",
+  "public": true,
+  "defaultBranch": "main",
+  "description": "原生 HTML、CSS 和 JavaScript 实现的像素风黄金矿工无限生存游戏，包含随机关卡、冒险物品、爆炸火药桶和四槽商店，下载解压后即可游玩，无需安装依赖。",
+  "sourceCommit": "d8ff8b6186e3a924bda4fc8c3064794c88fa18e8",
+  "sourceFileCount": 134,
+  "allSourceBlobsMatch": true,
+  "markdownContentAccessible": 18,
+  "releaseUrl": "https://github.com/OldBeer1/gold-miner/releases/tag/v1.0.0",
+  "tag": "v1.0.0",
+  "releaseDraft": false,
+  "prerelease": false,
+  "downloadUrl": "https://github.com/OldBeer1/gold-miner/releases/download/v1.0.0/Gold-survival-v1.0.0.zip",
+  "downloadBytes": 27073,
+  "downloadSha256": "e829af706ad4b373c43d68e8c5ba0dde91f37eb60d8618c316c8a167db5e10ea",
+  "playerFiles": 9,
+  "runtimeFiles": [
+    {
+      "sha256": "f4dc8d7170655ebcdc3ef1814b718570e8facadd1d3889be315a6ce896cb1454",
+      "path": "index.html",
+      "matchesSource": true
+    },
+    {
+      "sha256": "5a84d4b6c3bfdeda33cdc55921594cc2765295dee2abcd23f7d84897aa3b34f8",
+      "path": "styles.css",
+      "matchesSource": true
+    },
+    {
+      "sha256": "e4710d47d8b68207a7c998e630598e6c13a9899e10acbdd68e079af57aa5218c",
+      "path": "js/config.js",
+      "matchesSource": true
+    },
+    {
+      "sha256": "f5f46b44bbb19fe98bc6e8c0f8bfe83fae5265583dbb1f7f6b21c2991288894b",
+      "path": "js/rules.js",
+      "matchesSource": true
+    },
+    {
+      "sha256": "db10b2e5ef299e68b801a4d64679243f195a6900e1cfebff684aea4543a0c200",
+      "path": "js/game.js",
+      "matchesSource": true
+    },
+    {
+      "sha256": "19bf283092a4f83e90541d13f0c1707fc0f86297fc89c412fec57cc0237bb79f",
+      "path": "js/storage.js",
+      "matchesSource": true
+    },
+    {
+      "sha256": "4993c3134ba7865971728d7d8e1df6480d0151c80f0538b835b0685ab5d7aed8",
+      "path": "js/effects.js",
+      "matchesSource": true
+    },
+    {
+      "sha256": "b79f5086bf79f6bed41be1354702f9e5299ac488c8fc77b5d56888ab215b2930",
+      "path": "js/audio.js",
+      "matchesSource": true
+    }
+  ],
+  "publicLinks": [
+    {
+      "status": 200,
+      "url": "https://github.com/OldBeer1/gold-miner?tab=readme-ov-file"
+    },
+    {
+      "status": 200,
+      "url": "https://github.com/OldBeer1/gold-miner/releases/tag/v1.0.0"
+    },
+    {
+      "status": 503,
+      "url": "https://github.com/OldBeer1/gold-miner/blob/main/README.md?release=v1.0.0"
+    },
+    {
+      "status": 200,
+      "url": "https://raw.githubusercontent.com/OldBeer1/gold-miner/main/output/playwright/survival-scene-1280x720.png"
+    },
+    {
+      "status": 200,
+      "url": "https://raw.githubusercontent.com/OldBeer1/gold-miner/d8ff8b6186e3a924bda4fc8c3064794c88fa18e8/AGENTS.md"
+    },
+    {
+      "status": 200,
+      "url": "https://raw.githubusercontent.com/OldBeer1/gold-miner/d8ff8b6186e3a924bda4fc8c3064794c88fa18e8/ENDLESS_SPEC.md"
+    },
+    {
+      "status": 200,
+      "url": "https://raw.githubusercontent.com/OldBeer1/gold-miner/d8ff8b6186e3a924bda4fc8c3064794c88fa18e8/GAME_SPEC.md"
+    },
+    {
+      "status": 200,
+      "url": "https://raw.githubusercontent.com/OldBeer1/gold-miner/d8ff8b6186e3a924bda4fc8c3064794c88fa18e8/IMPLEMENTATION_PLAN.md"
+    },
+    {
+      "status": 200,
+      "url": "https://raw.githubusercontent.com/OldBeer1/gold-miner/d8ff8b6186e3a924bda4fc8c3064794c88fa18e8/README.md"
+    },
+    {
+      "status": 200,
+      "url": "https://raw.githubusercontent.com/OldBeer1/gold-miner/d8ff8b6186e3a924bda4fc8c3064794c88fa18e8/steps/01-project-shell.md"
+    },
+    {
+      "status": 200,
+      "url": "https://raw.githubusercontent.com/OldBeer1/gold-miner/d8ff8b6186e3a924bda4fc8c3064794c88fa18e8/steps/02-single-level.md"
+    },
+    {
+      "status": 200,
+      "url": "https://raw.githubusercontent.com/OldBeer1/gold-miner/d8ff8b6186e3a924bda4fc8c3064794c88fa18e8/steps/03-levels-and-retry.md"
+    },
+    {
+      "status": 200,
+      "url": "https://raw.githubusercontent.com/OldBeer1/gold-miner/d8ff8b6186e3a924bda4fc8c3064794c88fa18e8/steps/04-shop-and-items.md"
+    },
+    {
+      "status": 200,
+      "url": "https://raw.githubusercontent.com/OldBeer1/gold-miner/d8ff8b6186e3a924bda4fc8c3064794c88fa18e8/steps/05-pause-and-save.md"
+    },
+    {
+      "status": 200,
+      "url": "https://raw.githubusercontent.com/OldBeer1/gold-miner/d8ff8b6186e3a924bda4fc8c3064794c88fa18e8/steps/06-visuals-and-audio.md"
+    },
+    {
+      "status": 200,
+      "url": "https://raw.githubusercontent.com/OldBeer1/gold-miner/d8ff8b6186e3a924bda4fc8c3064794c88fa18e8/steps/07-validation-and-delivery.md"
+    },
+    {
+      "status": 200,
+      "url": "https://raw.githubusercontent.com/OldBeer1/gold-miner/d8ff8b6186e3a924bda4fc8c3064794c88fa18e8/steps/08-survival-levels.md"
+    },
+    {
+      "status": 200,
+      "url": "https://raw.githubusercontent.com/OldBeer1/gold-miner/d8ff8b6186e3a924bda4fc8c3064794c88fa18e8/steps/09-adventure-objects.md"
+    },
+    {
+      "status": 200,
+      "url": "https://raw.githubusercontent.com/OldBeer1/gold-miner/d8ff8b6186e3a924bda4fc8c3064794c88fa18e8/steps/10-four-slot-shop.md"
+    },
+    {
+      "status": 200,
+      "url": "https://raw.githubusercontent.com/OldBeer1/gold-miner/d8ff8b6186e3a924bda4fc8c3064794c88fa18e8/steps/11-survival-interface.md"
+    },
+    {
+      "status": 200,
+      "url": "https://raw.githubusercontent.com/OldBeer1/gold-miner/d8ff8b6186e3a924bda4fc8c3064794c88fa18e8/steps/12-survival-validation.md"
+    },
+    {
+      "status": 200,
+      "url": "https://raw.githubusercontent.com/OldBeer1/gold-miner/d8ff8b6186e3a924bda4fc8c3064794c88fa18e8/VALIDATION.md"
+    }
+  ],
+  "renderingWarnings": [
+    {
+      "status": 503,
+      "url": "https://github.com/OldBeer1/gold-miner/blob/main/README.md?release=v1.0.0"
+    }
+  ],
+  "renderingWarningDetails": "GitHub blob HTML pages returned HTTP 503 on repeated public requests, including an independent web reader; repository API, all Markdown raw content, screenshot and release asset are publicly accessible. Browser-facing Markdown rendering could not be confirmed during this verification.",
+  "browserReport": "survival-release-download-report.json"
+}
