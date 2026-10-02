@@ -1,0 +1,17 @@
+- main:
+  - paragraph: 黄金矿工
+  - paragraph: 一钩一掷，满载而归
+  - button "音效：开" [pressed]
+  - region "黄金矿工场景":
+    - img "矿区预览，点击矿区或按空格可查看输入反馈": 当前浏览器不支持 Canvas，请使用现代桌面浏览器。
+    - paragraph: 地底深处，藏着好东西
+    - heading "黄金矿工" [level=1]
+    - paragraph: 瞄准金光，放下钩子。 下一次收获，也许就是一颗钻石。
+    - paragraph: 空格 或点击矿区出钩
+    - paragraph: ↓ / S 使用炸药，摆脱慢速拖拽
+    - paragraph: Esc 暂停或继续游戏
+    - button "进入矿区"
+    - paragraph: 当前为场景预览，采矿玩法待接入
+    - text: 最高记录 待接入
+    - strong: ¥ 0
+  - text: 3 个关卡 · 每关 60 秒 · 关间商店 复古像素，简单快乐

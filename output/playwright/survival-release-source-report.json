@@ -1,0 +1,40 @@
+{
+  "result": "passed",
+  "phase": "github-v1.0.0",
+  "method": "actual staged Git manifest, referenced Markdown assets, script syntax and credential-pattern check; browser profiles excluded without reading them",
+  "stagedFiles": 134,
+  "stagedBytes": 10759127,
+  "javascriptSyntaxFiles": 22,
+  "markdownFiles": 18,
+  "localLinks": 98,
+  "originalSpecHash": "C6B717987F92D34E883DAD7B04E83D49D17081F24739B12B19476A728F74AF66",
+  "profilesCachesLogsAndArchivesExcluded": true,
+  "playerPackage": {
+    "version": "1.0.0",
+    "filename": "Gold-survival-v1.0.0.zip",
+    "size": 27073,
+    "sha256": "e829af706ad4b373c43d68e8c5ba0dde91f37eb60d8618c316c8a167db5e10ea",
+    "runtimeFiles": [
+      "index.html",
+      "styles.css",
+      "js/config.js",
+      "js/rules.js",
+      "js/game.js",
+      "js/storage.js",
+      "js/effects.js",
+      "js/audio.js"
+    ],
+    "entries": [
+      "index.html",
+      "styles.css",
+      "js/config.js",
+      "js/rules.js",
+      "js/game.js",
+      "js/storage.js",
+      "js/effects.js",
+      "js/audio.js",
+      "README.md"
+    ]
+  },
+  "preflightBrowserReport": "survival-release-preflight-report.json"
+}

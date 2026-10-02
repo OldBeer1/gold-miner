@@ -1,0 +1,29 @@
+{
+  "phase": "03",
+  "method": "controlled state + browser clock",
+  "checks": [
+    {
+      "name": "第 1 关成功→商店等待 5 分钟→第 2 关",
+      "result": "passed"
+    },
+    {
+      "name": "第 2 关连续失败重试三次恢复金额、库存、矿物和计时，不刷钱",
+      "result": "passed"
+    },
+    {
+      "name": "第二次商店→第 3 关→失败重试→直接通关，无第三次商店",
+      "result": "passed"
+    },
+    {
+      "name": "重新开始与返回主页清理状态，每次最多一个动画帧",
+      "result": "passed"
+    },
+    {
+      "name": "两种桌面视口比例与坐标转换、正在运行的 HTTP 服务",
+      "result": "passed"
+    }
+  ],
+  "errors": [],
+  "browser": "154.0.8037.58",
+  "result": "passed"
+}

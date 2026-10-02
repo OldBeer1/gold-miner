@@ -1,0 +1,197 @@
+{
+  "phase": "12",
+  "method": "original game and random seed, real elapsed time and real keyboard/mouse; no clock, level, income or outcome overrides",
+  "levels": [
+    {
+      "levelId": 1,
+      "target": 650,
+      "income": 650,
+      "qualifiedAt": 6.146030499999999,
+      "settledAt": 60.0320712,
+      "totalIncome": 650,
+      "trace": [
+        {
+          "id": "l1-safe4",
+          "type": "largeGold",
+          "income": 300,
+          "realSeconds": 2.7860097
+        },
+        {
+          "id": "l1-safe3",
+          "type": "diamond",
+          "income": 550,
+          "realSeconds": 4.3598173000000005
+        },
+        {
+          "id": "l1-safe2",
+          "type": "smallGold",
+          "income": 650,
+          "realSeconds": 6.1460265
+        }
+      ]
+    },
+    {
+      "levelId": 2,
+      "target": 800,
+      "income": 900,
+      "qualifiedAt": 8.291251899999995,
+      "settledAt": 60.1849806,
+      "totalIncome": 1550,
+      "trace": [
+        {
+          "id": "l2-safe4",
+          "type": "largeGold",
+          "income": 300,
+          "realSeconds": 3.042395700000001
+        },
+        {
+          "id": "l2-safe5",
+          "type": "diamond",
+          "income": 550,
+          "realSeconds": 4.856530200000001
+        },
+        {
+          "id": "l2-safe6",
+          "type": "smallGold",
+          "income": 650,
+          "realSeconds": 6.659786199999995
+        },
+        {
+          "id": "l2-safe7",
+          "type": "diamond",
+          "income": 900,
+          "realSeconds": 8.291249000000004
+        }
+      ]
+    },
+    {
+      "levelId": 3,
+      "target": 950,
+      "income": 1200,
+      "qualifiedAt": 11.474050100000008,
+      "settledAt": 60.0395714,
+      "totalIncome": 2750,
+      "trace": [
+        {
+          "id": "l3-safe4",
+          "type": "largeGold",
+          "income": 300,
+          "realSeconds": 3.1504211000000066
+        },
+        {
+          "id": "l3-safe5",
+          "type": "diamond",
+          "income": 550,
+          "realSeconds": 4.80956670000001
+        },
+        {
+          "id": "l3-safe6",
+          "type": "smallGold",
+          "income": 650,
+          "realSeconds": 6.6589494000000125
+        },
+        {
+          "id": "l3-safe7",
+          "type": "diamond",
+          "income": 900,
+          "realSeconds": 8.48248520000001
+        },
+        {
+          "id": "l3-safe8",
+          "type": "largeGold",
+          "income": 1200,
+          "realSeconds": 11.474047000000006
+        }
+      ]
+    },
+    {
+      "levelId": 4,
+      "target": 1100,
+      "income": 1200,
+      "qualifiedAt": 11.454939100000018,
+      "settledAt": 60.07255780000001,
+      "totalIncome": 3950,
+      "trace": [
+        {
+          "id": "l4-safe4",
+          "type": "largeGold",
+          "income": 300,
+          "realSeconds": 3.258090700000001
+        },
+        {
+          "id": "l4-safe5",
+          "type": "diamond",
+          "income": 550,
+          "realSeconds": 4.905266100000008
+        },
+        {
+          "id": "l4-safe6",
+          "type": "smallGold",
+          "income": 650,
+          "realSeconds": 6.732893400000001
+        },
+        {
+          "id": "l4-safe7",
+          "type": "diamond",
+          "income": 900,
+          "realSeconds": 8.357155599999999
+        },
+        {
+          "id": "l4-safe8",
+          "type": "largeGold",
+          "income": 1200,
+          "realSeconds": 11.454935599999997
+        }
+      ]
+    }
+  ],
+  "shops": [
+    {
+      "afterLevel": 1,
+      "offers": [
+        "dynamite",
+        "timeCoupon",
+        "protectionCharm",
+        "strength"
+      ]
+    },
+    {
+      "afterLevel": 2,
+      "offers": [
+        "dynamite",
+        "protectionCharm",
+        "strength",
+        "luckyCharm"
+      ]
+    },
+    {
+      "afterLevel": 3,
+      "offers": [
+        "dynamite",
+        "goldBoost",
+        "diamondBoost",
+        "protectionCharm"
+      ]
+    },
+    {
+      "afterLevel": 4,
+      "offers": [
+        "dynamite",
+        "luckyCharm",
+        "protectionCharm",
+        "diamondBoost"
+      ]
+    }
+  ],
+  "errors": [],
+  "browser": "154.0.8037.58",
+  "runSeed": 2645056525,
+  "enteredLevel5": true,
+  "failure": {
+    "levelId": 5,
+    "realSeconds": 60.17165350000001,
+    "totalIncome": 3950
+  },
+  "mouseUsed": true,
+  "result": "passed"
+}

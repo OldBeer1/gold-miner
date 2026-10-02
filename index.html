@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#111b23">
+    <title>黄金矿工 · 无限生存</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="styles.css">
+    <script src="js/config.js" defer></script>
+    <script src="js/rules.js" defer></script>
+    <script src="js/storage.js" defer></script>
+    <script src="js/effects.js" defer></script>
+    <script src="js/audio.js" defer></script>
+    <script src="js/game.js" defer></script>
+  </head>
+  <body>
+    <main class="app">
+      <header class="app-header">
+        <div class="brand">
+          <svg class="brand-icon" viewBox="0 0 32 32" aria-hidden="true">
+            <path d="M4 12h4V8h16v4h4v12h-4v4H8v-4H4z" fill="#efb94f"/>
+            <path d="M8 12h4v-2h8v4H8zm12 6h4v6H12v-4h8z" fill="#ffe3a0"/>
+          </svg>
+          <div>
+            <p class="brand-name">黄金矿工</p>
+            <p class="brand-caption">一钩一掷，满载而归</p>
+          </div>
+        </div>
+        <button id="sound-button" class="button button-quiet sound-button" type="button"
+          aria-pressed="true" title="开启或关闭全部音效，设置会自动保存">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 9h4l5-4v14l-5-4H4zM17 8l3 4-3 4"/>
+          </svg>
+          <span id="sound-label">音效：开</span>
+        </button>
+      </header>
+
+      <section class="scene-shell" aria-label="黄金矿工场景">
+        <section id="game-hud" class="hud" aria-label="游戏信息" hidden>
+          <div class="hud-cell"><span>关卡</span><strong id="hud-level">第 1 关</strong></div>
+          <div class="hud-cell"><span>本关收入 / 目标</span><strong><span id="hud-income">0</span><i> / </i><span id="hud-target">650</span></strong></div>
+          <div class="hud-cell"><span>剩余时间</span><strong><span id="hud-time">60</span><small> 秒</small></strong></div>
+          <div class="hud-cell"><span>钱包</span><strong id="hud-wallet">¥ 0</strong></div>
+          <div class="hud-cell"><span>炸药</span><strong id="hud-bombs">1 枚</strong></div>
+          <div class="hud-cell"><span>本关增益</span><strong id="hud-effects">无</strong></div>
+        </section>
+        <canvas id="game-canvas" width="960" height="640" tabindex="0"
+          role="img" aria-label="黄金矿区，钩子自动摆动，点击矿区或按空格出钩">
+          当前浏览器不支持 Canvas，请使用现代桌面浏览器。
+        </canvas>
+
+        <div id="home-screen" class="home-screen">
+          <div class="welcome-panel">
+            <p class="eyebrow"><span></span> 地底深处，藏着好东西</p>
+            <h1>黄金<span>矿工</span></h1>
+            <p class="welcome-description">矿区每次不同，冒险没有终点。<br>火药桶一碰就炸，周围宝物会消失。</p>
+            <div class="instructions" aria-label="游戏操作说明">
+              <p><kbd>空格</kbd><span>或点击矿区出钩</span></p>
+              <p><kbd>↓ / S</kbd><span>使用炸药，摆脱慢速拖拽</span></p>
+              <p><kbd>Esc</kbd><span>暂停或继续游戏</span></p>
+            </div>
+            <button id="start-button" class="button button-primary" type="button">
+              开始挑战 <span aria-hidden="true">→</span>
+            </button>
+            <p class="preview-note">无限生存 · 每关 60 秒 · 失败后从第一关重新挑战</p>
+            <div class="record-row">
+              <span title="历史最高的本轮已过关总收入，购物支出不扣除">最高记录 <small>本轮已过关总收入</small></span>
+              <strong id="high-score">¥ 0</strong>
+            </div>
+            <div class="record-row"><span>最高已通过关数</span><strong id="best-cleared-level">0 关</strong></div>
+          </div>
+        </div>
+
+        <p id="scene-label" class="scene-label" hidden>瞄准目标，按空格或点击矿区出钩</p>
+        <section id="result-screen" class="result-screen" aria-labelledby="result-title" hidden>
+          <div class="welcome-panel result-panel">
+            <p id="result-eyebrow" class="eyebrow">采矿报告 · 第 01 关</p>
+            <h2 id="result-title">本关达标！</h2>
+            <p id="result-description" class="welcome-description"></p>
+            <dl class="result-stats">
+              <div><dt>本次采矿收入</dt><dd id="result-income">¥ 0</dd></div>
+              <div><dt>目标收入</dt><dd id="result-target">¥ 650</dd></div>
+              <div><dt>本轮已过关总收入</dt><dd id="result-total">¥ 0</dd></div>
+            </dl>
+            <p class="result-deadline">时间到，未收回的矿物不计分</p>
+            <button id="restart-button" class="button button-primary" type="button">再玩一次 <span aria-hidden="true">↻</span></button>
+            <button id="result-home-button" class="button button-quiet result-home" type="button">返回开始界面</button>
+          </div>
+        </section>
+        <section id="pause-screen" class="pause-screen" aria-labelledby="pause-title" hidden>
+          <div class="welcome-panel pause-panel">
+            <p class="eyebrow">稍作休息，金光还在</p>
+            <h2 id="pause-title">已暂停</h2>
+            <p id="pause-description" class="welcome-description">时间和矿物已冻结，准备好后继续。</p>
+            <button id="resume-button" class="button button-primary" type="button">继续采矿 →</button>
+            <button id="pause-home-button" class="button button-quiet result-home" type="button">返回开始界面</button>
+          </div>
+        </section>
+        <section id="shop-screen" class="shop-screen" aria-labelledby="shop-title" hidden>
+          <div class="welcome-panel shop-panel">
+            <p class="eyebrow">关间休息 · 计时尚未开始</p>
+            <h2 id="shop-title">矿工补给站</h2>
+            <p id="shop-destination" class="welcome-description">下一站：第 2 关</p>
+            <p class="shop-wallet">钱包 <strong id="shop-wallet">¥ 0</strong></p>
+            <p id="shop-purchase-count" class="preview-note" role="status">已购买 0 / 4 件</p>
+            <div id="shop-products" class="shop-products" aria-label="道具商店"></div>
+            <p class="preview-note">每次最多买 4 件 · 增益仅下一关生效 · 购买可选</p>
+            <div class="shop-actions"><button id="shop-home-button" class="button button-quiet" type="button">返回开始界面</button><button id="next-level-button" class="button button-primary" type="button">开始下一关 →</button></div>
+          </div>
+        </section>
+      </section>
+
+      <footer class="app-footer">
+        <div id="home-footer" class="home-footer">
+          <span class="footer-rule">随机关卡 <b>·</b> 随机宝物 <b>·</b> 四槽商店</span>
+          <span class="footer-hint">复古像素，简单快乐</span>
+        </div>
+        <div id="game-toolbar" class="game-toolbar" hidden>
+          <button id="home-button" class="button button-quiet" type="button">← 返回开始</button>
+          <p id="input-feedback" class="input-feedback" role="status">瞄准目标，按空格或点击矿区出钩</p>
+          <button id="pause-button" class="button button-quiet" type="button">暂停</button>
+          <button id="dynamite-button" class="button button-quiet" type="button" disabled
+            title="携带矿物时按 ↓ / S 或点击使用">炸药 · 1 枚</button>
+        </div>
+      </footer>
+      <noscript><p class="noscript-note">请启用 JavaScript，以显示矿区场景和操作界面。</p></noscript>
+    </main>
+  </body>
+</html>

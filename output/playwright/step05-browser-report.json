@@ -1,0 +1,41 @@
+{
+  "phase": "05",
+  "method": "real browser input + controlled settlement and clock; visibility event simulation",
+  "checks": [
+    {
+      "name": "带物时 Esc 暂停，长按不重复切换；暂停 120 秒完全冻结、输入无效，继续无时间跳变或物体瞬移",
+      "result": "passed"
+    },
+    {
+      "name": "隐藏事件自动暂停，隐藏时拒绝继续；可见事件不自动恢复，玩家主动继续后才运行",
+      "result": "passed"
+    },
+    {
+      "name": "成功记录从 650 累计到 1650；购物不扣记录，第 3 关失败收入不计入，存储只有两项",
+      "result": "passed"
+    },
+    {
+      "name": "刷新仅保留音效与记录，其他状态重置；连续开始、暂停、恢复、失败重试和返回保持唯一循环",
+      "result": "passed"
+    },
+    {
+      "name": "损坏 JSON、字段类型错误、存储访问禁止和写入失败均可启动、出钩并完成结算，无未处理错误",
+      "result": "passed"
+    },
+    {
+      "name": "1280×720、1920×1080 暂停页可见，画布比例保持，暂停恢复不改变尺寸",
+      "result": "passed"
+    }
+  ],
+  "errors": [],
+  "browser": "154.0.8037.58",
+  "visibility": {
+    "method": "document.hidden override + visibilitychange event",
+    "limitation": "headless and offscreen headed Chrome tab switching both kept document.hidden=false; native tab switch remains for final manual verification"
+  },
+  "loop": {
+    "maximum": 1,
+    "pending": 0
+  },
+  "result": "passed"
+}

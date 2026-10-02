@@ -1,0 +1,21 @@
+# Local delivery archives, browser profiles, caches and temporary output.
+/output/*
+!/output/playwright/
+/output/playwright/*
+!/output/playwright/*.cjs
+!/output/playwright/*.json
+!/output/playwright/*.png
+!/output/playwright/*.aria.txt
+/output/playwright/survival-carry-powderKeg.png
+
+node_modules/
+.cache/
+playwright-report/
+test-results/
+*.log
+*.tmp
+*.zip
+.env
+.env.*
+Thumbs.db
+Desktop.ini

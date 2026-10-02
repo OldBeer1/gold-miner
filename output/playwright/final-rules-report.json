@@ -1,0 +1,325 @@
+{
+  "phase": "07",
+  "result": "passed",
+  "count": 54,
+  "checks": [
+    {
+      "name": "第 1 关固定布局数量、可达性、边界与非重叠",
+      "result": "passed"
+    },
+    {
+      "name": "第 2 关固定布局数量、可达性、边界与非重叠",
+      "result": "passed"
+    },
+    {
+      "name": "第 3 关固定布局数量、可达性、边界与非重叠",
+      "result": "passed"
+    },
+    {
+      "name": "重新创建运行状态使用独立矿物和道具数据",
+      "result": "passed"
+    },
+    {
+      "name": "线段碰撞选择最早交点而不是数组首项",
+      "result": "passed"
+    },
+    {
+      "name": "圆形与矩形碰撞覆盖穿越、内部起点和未命中",
+      "result": "passed"
+    },
+    {
+      "name": "一秒长帧仍先抓近物，远物保持可抓取",
+      "result": "passed"
+    },
+    {
+      "name": "出钩锁定方向，忙碌时拒绝重复出钩",
+      "result": "passed"
+    },
+    {
+      "name": "空钩到边界回收，返回后恢复摆动",
+      "result": "passed"
+    },
+    {
+      "name": "摆动长时间推进仍处于规定角度范围",
+      "result": "passed"
+    },
+    {
+      "name": "小金块只在收回时按基础价值入账",
+      "result": "passed"
+    },
+    {
+      "name": "大金块只在收回时按基础价值入账",
+      "result": "passed"
+    },
+    {
+      "name": "石头只在收回时按基础价值入账",
+      "result": "passed"
+    },
+    {
+      "name": "钻石只在收回时按基础价值入账",
+      "result": "passed"
+    },
+    {
+      "name": "已入账矿物无法重复入账",
+      "result": "passed"
+    },
+    {
+      "name": "长帧完整消耗时间，达标不提前结算",
+      "result": "passed"
+    },
+    {
+      "name": "成功结算只累计一次，本轮收入不受钱包支出影响",
+      "result": "passed"
+    },
+    {
+      "name": "失败展示尝试收入但不累计成功总收入",
+      "result": "passed"
+    },
+    {
+      "name": "截止时刻的在途矿物丢失，不因长帧多余时间入账",
+      "result": "passed"
+    },
+    {
+      "name": "同时到达锚点与截止时刻优先结算",
+      "result": "passed"
+    },
+    {
+      "name": "截止之前已回到锚点的矿物计入成绩",
+      "result": "passed"
+    },
+    {
+      "name": "入关快照独立且不可变，游玩消耗不能改写快照",
+      "result": "passed"
+    },
+    {
+      "name": "连续失败重试恢复全部入关字段，不能刷钱",
+      "result": "passed"
+    },
+    {
+      "name": "三关成功收入正确跨关累计，重试不重复提交",
+      "result": "passed"
+    },
+    {
+      "name": "第 1 关无药水、无炸药路线模拟在 60 秒内达标",
+      "result": "passed"
+    },
+    {
+      "name": "第 2 关无药水、无炸药路线模拟在 60 秒内达标",
+      "result": "passed"
+    },
+    {
+      "name": "第 3 关无药水、无炸药路线模拟在 60 秒内达标",
+      "result": "passed"
+    },
+    {
+      "name": "购买仅扣钱包，药水等待下一关生效",
+      "result": "passed"
+    },
+    {
+      "name": "缺钱时所有商品拒绝交易，钱包不会变成负数",
+      "result": "passed"
+    },
+    {
+      "name": "每次商店同种药水只能购买一次，两种可同时购买",
+      "result": "passed"
+    },
+    {
+      "name": "炸药可重复购买至上限，超限交易不扣钱",
+      "result": "passed"
+    },
+    {
+      "name": "小金块力量回收倍率正确，钻石药水只改变钻石收入",
+      "result": "passed"
+    },
+    {
+      "name": "炸药可以销毁小金块，不入账并以空钩速度收回",
+      "result": "passed"
+    },
+    {
+      "name": "大金块力量回收倍率正确，钻石药水只改变钻石收入",
+      "result": "passed"
+    },
+    {
+      "name": "炸药可以销毁大金块，不入账并以空钩速度收回",
+      "result": "passed"
+    },
+    {
+      "name": "石头力量回收倍率正确，钻石药水只改变钻石收入",
+      "result": "passed"
+    },
+    {
+      "name": "炸药可以销毁石头，不入账并以空钩速度收回",
+      "result": "passed"
+    },
+    {
+      "name": "钻石力量回收倍率正确，钻石药水只改变钻石收入",
+      "result": "passed"
+    },
+    {
+      "name": "炸药可以销毁钻石，不入账并以空钩速度收回",
+      "result": "passed"
+    },
+    {
+      "name": "力量药水不改变摆动、伸出或空钩回收",
+      "result": "passed"
+    },
+    {
+      "name": "空钩、无库存和已结算时炸药无效",
+      "result": "passed"
+    },
+    {
+      "name": "购买后失败重试保留付款后钱包、药水与入关炸药",
+      "result": "passed"
+    },
+    {
+      "name": "药水在结算后到期，下次商店可重新购买且默认无药水",
+      "result": "passed"
+    },
+    {
+      "name": "首次读取与非对象内容回退为音效开、记录 0",
+      "result": "passed"
+    },
+    {
+      "name": "保存字段独立校验，合法音效设置不受损坏记录影响",
+      "result": "passed"
+    },
+    {
+      "name": "正常读写只保存两项偏好，不保存关卡、钱包或库存",
+      "result": "passed"
+    },
+    {
+      "name": "损坏 JSON 与读存储异常均安全回退",
+      "result": "passed"
+    },
+    {
+      "name": "写存储失败或获取存储失败不会抛出异常",
+      "result": "passed"
+    },
+    {
+      "name": "最高记录只在成功结算时使用已过关总收入",
+      "result": "passed"
+    },
+    {
+      "name": "失败收入不提高记录，新一轮低成绩不会降低历史记录",
+      "result": "passed"
+    },
+    {
+      "name": "非法累计金额不能写入最高记录",
+      "result": "passed"
+    },
+    {
+      "name": "收获效果独立于收入，包含金币粒子和正确金额浮字",
+      "result": "passed"
+    },
+    {
+      "name": "效果按传入游戏时间推进、自然清理且不会无限积累",
+      "result": "passed"
+    },
+    {
+      "name": "爆炸效果发生在钩尖，短促清理且不生成收入浮字",
+      "result": "passed"
+    }
+  ],
+  "routes": [
+    {
+      "levelId": 1,
+      "target": 650,
+      "income": 700,
+      "simulatedSeconds": 12.82,
+      "potions": false,
+      "dynamite": false,
+      "trace": [
+        {
+          "id": "l1-big1",
+          "value": 300,
+          "seconds": 4.63
+        },
+        {
+          "id": "l1-big3",
+          "value": 300,
+          "seconds": 10.73
+        },
+        {
+          "id": "l1-g5",
+          "value": 100,
+          "seconds": 12.82
+        }
+      ]
+    },
+    {
+      "levelId": 2,
+      "target": 1000,
+      "income": 1150,
+      "simulatedSeconds": 18.85,
+      "potions": false,
+      "dynamite": false,
+      "trace": [
+        {
+          "id": "l2-d1",
+          "value": 250,
+          "seconds": 1.84
+        },
+        {
+          "id": "l2-big1",
+          "value": 300,
+          "seconds": 6.58
+        },
+        {
+          "id": "l2-big2",
+          "value": 300,
+          "seconds": 12.22
+        },
+        {
+          "id": "l2-big3",
+          "value": 300,
+          "seconds": 18.85
+        }
+      ]
+    },
+    {
+      "levelId": 3,
+      "target": 1400,
+      "income": 1520,
+      "simulatedSeconds": 23.84,
+      "potions": false,
+      "dynamite": false,
+      "trace": [
+        {
+          "id": "l3-d1",
+          "value": 250,
+          "seconds": 1.83
+        },
+        {
+          "id": "l3-d3",
+          "value": 250,
+          "seconds": 4.33
+        },
+        {
+          "id": "l3-g3",
+          "value": 100,
+          "seconds": 6.31
+        },
+        {
+          "id": "l3-big1",
+          "value": 300,
+          "seconds": 11.01
+        },
+        {
+          "id": "l3-big2",
+          "value": 300,
+          "seconds": 15.51
+        },
+        {
+          "id": "l3-r1",
+          "value": 20,
+          "seconds": 19.14
+        },
+        {
+          "id": "l3-big3",
+          "value": 300,
+          "seconds": 23.84
+        }
+      ]
+    }
+  ]
+}

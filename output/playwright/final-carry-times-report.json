@@ -1,0 +1,29 @@
+{
+  "phase": "07",
+  "method": "real input and elapsed time; no clock overrides",
+  "errors": [],
+  "carrySeconds": 5.17,
+  "geometry": {
+    "point": {
+      "x": 645.0109654570479,
+      "y": 462.55497654142636
+    },
+    "ropePixel": [
+      239,
+      224,
+      175,
+      255
+    ],
+    "carriedPixel": [
+      123,
+      137,
+      137,
+      255
+    ]
+  },
+  "result": "passed",
+  "checks": [
+    "深处石头实际回收约 5～7 秒，抓住时不入账",
+    "绳索中点像素及钩尖携带物像素匹配，物体随钩子绘制"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "phase": "12",
+  "result": "passed",
+  "syntaxFiles": 21,
+  "markdownFiles": 17,
+  "localLinks": 88,
+  "originalSpecHash": "C6B717987F92D34E883DAD7B04E83D49D17081F24739B12B19476A728F74AF66",
+  "noRuntimeDependencies": true,
+  "browserReports": [
+    "survival-real-run-report.json",
+    "survival-ui-report.json",
+    "survival-native-pause-report.json",
+    "survival-smoke-report.json"
+  ],
+  "latestChange": "powder-keg-contact-explosion",
+  "refreshedReports": [
+    "survival-rules-report.json",
+    "survival-ui-report.json",
+    "survival-smoke-report.json"
+  ]
+}

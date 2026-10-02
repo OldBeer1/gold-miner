@@ -1,0 +1,81 @@
+{
+  "phase": "06",
+  "method": "actual UI, browser clock and controlled settlement; real Web Audio and offline waveform rendering",
+  "checks": [
+    "收获粒子/金额、爆炸、游戏时间动作、暂停冻结与清理通过",
+    "七类实际 Web Audio 事件、首次手势初始化、全部静音、暂停停止声音通过",
+    "七类音效实际离线渲染均有非零波形、无削波、节点自然释放",
+    "两种桌面尺寸、缩放输入、短屏滚动、文件直开且无远程素材通过",
+    "音频不可用时可正常启动与出钩，无未处理异常"
+  ],
+  "errors": [],
+  "browser": "154.0.8037.58",
+  "audioEvents": {
+    "button": 4,
+    "launch": 2,
+    "grab": 2,
+    "explode": 1,
+    "harvest": 1,
+    "success": 1,
+    "failure": 1
+  },
+  "waveforms": [
+    {
+      "name": "button",
+      "accepted": true,
+      "peak": 0.04143639653921127,
+      "rms": 0.0027874746402016355,
+      "nonzero": 3076,
+      "activeAfterEnd": 0
+    },
+    {
+      "name": "launch",
+      "accepted": true,
+      "peak": 0.04120476543903351,
+      "rms": 0.002484762099581594,
+      "nonzero": 7322,
+      "activeAfterEnd": 0
+    },
+    {
+      "name": "grab",
+      "accepted": true,
+      "peak": 0.039033494889736176,
+      "rms": 0.0022020408310445636,
+      "nonzero": 3983,
+      "activeAfterEnd": 0
+    },
+    {
+      "name": "harvest",
+      "accepted": true,
+      "peak": 0.04363415017724037,
+      "rms": 0.005697717285830858,
+      "nonzero": 13600,
+      "activeAfterEnd": 0
+    },
+    {
+      "name": "explode",
+      "accepted": true,
+      "peak": 0.04904616251587868,
+      "rms": 0.005200409474298424,
+      "nonzero": 13545,
+      "activeAfterEnd": 0
+    },
+    {
+      "name": "success",
+      "accepted": true,
+      "peak": 0.0429222546517849,
+      "rms": 0.007678368201840893,
+      "nonzero": 26714,
+      "activeAfterEnd": 0
+    },
+    {
+      "name": "failure",
+      "accepted": true,
+      "peak": 0.042622845619916916,
+      "rms": 0.005435726996802374,
+      "nonzero": 22602,
+      "activeAfterEnd": 0
+    }
+  ],
+  "result": "passed"
+}

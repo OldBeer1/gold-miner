@@ -1,0 +1,261 @@
+{
+  "phase": "07",
+  "method": "real elapsed time, original game rules, real keyboard and mouse input; no clock or outcome overrides",
+  "levels": [
+    {
+      "levelId": 1,
+      "income": 700,
+      "target": 650,
+      "qualifiedAt": 12.84,
+      "settledAt": 60.12,
+      "totalIncome": 700,
+      "mouseUsed": true,
+      "deadlineChecked": true,
+      "trace": [
+        {
+          "event": "grabbed",
+          "id": "l1-big1",
+          "type": "largeGold",
+          "seconds": 2.96,
+          "income": 0
+        },
+        {
+          "event": "banked",
+          "id": "l1-big1",
+          "type": "largeGold",
+          "seconds": 4.66,
+          "carrySeconds": 1.7,
+          "income": 300
+        },
+        {
+          "event": "grabbed",
+          "id": "l1-big3",
+          "type": "largeGold",
+          "seconds": 6.9,
+          "income": 300
+        },
+        {
+          "event": "banked",
+          "id": "l1-big3",
+          "type": "largeGold",
+          "seconds": 10.74,
+          "carrySeconds": 3.84,
+          "income": 600
+        },
+        {
+          "event": "grabbed",
+          "id": "l1-g5",
+          "type": "smallGold",
+          "seconds": 11.42,
+          "income": 600
+        },
+        {
+          "event": "banked",
+          "id": "l1-g5",
+          "type": "smallGold",
+          "seconds": 12.84,
+          "carrySeconds": 1.42,
+          "income": 700
+        }
+      ]
+    },
+    {
+      "levelId": 2,
+      "income": 1150,
+      "target": 1000,
+      "qualifiedAt": 18.84,
+      "settledAt": 60.01,
+      "totalIncome": 1850,
+      "mouseUsed": true,
+      "deadlineChecked": true,
+      "trace": [
+        {
+          "event": "grabbed",
+          "id": "l2-d1",
+          "type": "diamond",
+          "seconds": 1.1,
+          "income": 0
+        },
+        {
+          "event": "banked",
+          "id": "l2-d1",
+          "type": "diamond",
+          "seconds": 1.85,
+          "carrySeconds": 0.75,
+          "income": 250
+        },
+        {
+          "event": "grabbed",
+          "id": "l2-big1",
+          "type": "largeGold",
+          "seconds": 4.2,
+          "income": 250
+        },
+        {
+          "event": "banked",
+          "id": "l2-big1",
+          "type": "largeGold",
+          "seconds": 6.6,
+          "carrySeconds": 2.39,
+          "income": 550
+        },
+        {
+          "event": "grabbed",
+          "id": "l2-big2",
+          "type": "largeGold",
+          "seconds": 9.26,
+          "income": 550
+        },
+        {
+          "event": "banked",
+          "id": "l2-big2",
+          "type": "largeGold",
+          "seconds": 12.23,
+          "carrySeconds": 2.96,
+          "income": 850
+        },
+        {
+          "event": "grabbed",
+          "id": "l2-big3",
+          "type": "largeGold",
+          "seconds": 15.07,
+          "income": 850
+        },
+        {
+          "event": "banked",
+          "id": "l2-big3",
+          "type": "largeGold",
+          "seconds": 18.84,
+          "carrySeconds": 3.77,
+          "income": 1150
+        }
+      ]
+    },
+    {
+      "levelId": 3,
+      "income": 1520,
+      "target": 1400,
+      "qualifiedAt": 23.84,
+      "settledAt": 60.26,
+      "totalIncome": 3370,
+      "mouseUsed": true,
+      "deadlineChecked": true,
+      "trace": [
+        {
+          "event": "grabbed",
+          "id": "l3-d1",
+          "type": "diamond",
+          "seconds": 1.1,
+          "income": 0
+        },
+        {
+          "event": "banked",
+          "id": "l3-d1",
+          "type": "diamond",
+          "seconds": 1.85,
+          "carrySeconds": 0.75,
+          "income": 250
+        },
+        {
+          "event": "grabbed",
+          "id": "l3-d3",
+          "type": "diamond",
+          "seconds": 3.46,
+          "income": 250
+        },
+        {
+          "event": "banked",
+          "id": "l3-d3",
+          "type": "diamond",
+          "seconds": 4.32,
+          "carrySeconds": 0.86,
+          "income": 500
+        },
+        {
+          "event": "grabbed",
+          "id": "l3-g3",
+          "type": "smallGold",
+          "seconds": 5.34,
+          "income": 500
+        },
+        {
+          "event": "banked",
+          "id": "l3-g3",
+          "type": "smallGold",
+          "seconds": 6.3,
+          "carrySeconds": 0.96,
+          "income": 600
+        },
+        {
+          "event": "grabbed",
+          "id": "l3-big1",
+          "type": "largeGold",
+          "seconds": 8.11,
+          "income": 600
+        },
+        {
+          "event": "banked",
+          "id": "l3-big1",
+          "type": "largeGold",
+          "seconds": 11.01,
+          "carrySeconds": 2.9,
+          "income": 900
+        },
+        {
+          "event": "grabbed",
+          "id": "l3-big2",
+          "type": "largeGold",
+          "seconds": 12.4,
+          "income": 900
+        },
+        {
+          "event": "banked",
+          "id": "l3-big2",
+          "type": "largeGold",
+          "seconds": 15.5,
+          "carrySeconds": 3.11,
+          "income": 1200
+        },
+        {
+          "event": "grabbed",
+          "id": "l3-r1",
+          "type": "stone",
+          "seconds": 17.59,
+          "income": 1200
+        },
+        {
+          "event": "banked",
+          "id": "l3-r1",
+          "type": "stone",
+          "seconds": 19.14,
+          "carrySeconds": 1.55,
+          "income": 1220
+        },
+        {
+          "event": "grabbed",
+          "id": "l3-big3",
+          "type": "largeGold",
+          "seconds": 19.92,
+          "income": 1220
+        },
+        {
+          "event": "banked",
+          "id": "l3-big3",
+          "type": "largeGold",
+          "seconds": 23.84,
+          "carrySeconds": 3.91,
+          "income": 1520
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "potions": false,
+  "dynamite": false,
+  "browser": "154.0.8037.58",
+  "failure": {
+    "realSeconds": 60.17,
+    "income": 0
+  },
+  "result": "passed"
+}

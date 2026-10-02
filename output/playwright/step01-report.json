@@ -1,0 +1,66 @@
+{
+  "phase": "01",
+  "browser": "154.0.8037.58",
+  "checks": [
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "geometry": {
+        "width": 812,
+        "height": 541.328125,
+        "bottom": 620.328125,
+        "startBottom": 493.75,
+        "pageHeight": 720,
+        "pageWidth": 1280,
+        "smoothing": false,
+        "center": {
+          "x": 480,
+          "y": 320
+        }
+      },
+      "result": "passed",
+      "transitions": 8,
+      "maximumPendingFrames": 1
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "geometry": {
+        "width": 956,
+        "height": 637.328125,
+        "bottom": 716.328125,
+        "startBottom": 541.75,
+        "pageHeight": 1080,
+        "pageWidth": 1920,
+        "smoothing": false,
+        "center": {
+          "x": 480,
+          "y": 320
+        }
+      },
+      "result": "passed",
+      "transitions": 8,
+      "maximumPendingFrames": 1
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 480
+      },
+      "result": "passed",
+      "behavior": "允许垂直滚动，无横向溢出，按钮可操作"
+    },
+    {
+      "mode": "HTTP",
+      "result": "passed",
+      "missingFile": 404,
+      "outsideRoot": 403
+    }
+  ],
+  "errors": [],
+  "result": "passed"
+}

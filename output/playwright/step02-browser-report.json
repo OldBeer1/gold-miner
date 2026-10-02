@@ -1,0 +1,50 @@
+{
+  "phase": "02",
+  "checks": [
+    {
+      "action": "actual-grab",
+      "id": "l1-big1",
+      "before": 0,
+      "after": 300,
+      "grabbedWithoutBanking": true
+    },
+    {
+      "action": "actual-grab",
+      "id": "l1-big3",
+      "before": 300,
+      "after": 600,
+      "grabbedWithoutBanking": true
+    },
+    {
+      "action": "actual-grab",
+      "id": "l1-g5",
+      "before": 600,
+      "after": 700,
+      "grabbedWithoutBanking": true
+    },
+    {
+      "action": "actual-grab",
+      "id": "l1-g1",
+      "before": 700,
+      "after": 800,
+      "grabbedWithoutBanking": true
+    },
+    {
+      "action": "real-time-success",
+      "realElapsedSeconds": 60.02,
+      "income": 800,
+      "result": "passed"
+    },
+    {
+      "action": "clock-assisted-failure-and-restart",
+      "result": "passed"
+    },
+    {
+      "action": "1920x1080-layout",
+      "result": "passed"
+    }
+  ],
+  "errors": [],
+  "browser": "154.0.8037.58",
+  "result": "passed"
+}

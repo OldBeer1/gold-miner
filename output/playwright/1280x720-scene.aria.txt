@@ -1,0 +1,23 @@
+- main:
+  - paragraph: 黄金矿工
+  - paragraph: 一钩一掷，满载而归
+  - button "音效：开" [pressed]
+  - region "黄金矿工场景":
+    - region "游戏信息":
+      - text: 关卡
+      - strong: 01 / 03
+      - text: 本关收入 / 目标
+      - strong: 0 / 650
+      - text: 剩余时间
+      - strong: 60 秒
+      - text: 钱包
+      - strong: ¥ 0
+      - text: 炸药
+      - strong: 1 枚
+      - text: 本关药水
+      - strong: 无
+    - img "矿区预览，点击矿区或按空格可查看输入反馈": 当前浏览器不支持 Canvas，请使用现代桌面浏览器。
+    - paragraph: 矿区预览 · 计时尚未开始
+  - button "← 返回开始"
+  - status: 点击矿区或按空格，查看输入反馈
+  - button "炸药 · 待接入" [disabled]

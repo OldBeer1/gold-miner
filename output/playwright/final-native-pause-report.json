@@ -1,0 +1,12 @@
+{
+  "phase": "07",
+  "method": "native Chrome tabs via CDP with noDefaults, no document visibility overrides",
+  "errors": [],
+  "result": "passed",
+  "hiddenSeconds": 2.2,
+  "checks": [
+    "真实切标签触发隐藏事件并自动暂停",
+    "隐藏期间游戏和动画冻结且音频停止",
+    "回到标签仍暂停，主动继续无计时跳变"
+  ]
+}

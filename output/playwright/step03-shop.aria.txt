@@ -1,0 +1,22 @@
+- main:
+  - paragraph: 黄金矿工
+  - paragraph: 一钩一掷，满载而归
+  - button "音效：开" [pressed]
+  - region "黄金矿工场景":
+    - img "黄金矿区，钩子自动摆动，点击矿区或按空格出钩": 当前浏览器不支持 Canvas，请使用现代桌面浏览器。
+    - region "矿工补给站":
+      - paragraph: 关间休息 · 计时尚未开始
+      - heading "矿工补给站" [level=2]
+      - paragraph: 下一站：第 2 关 · 目标 ¥1000
+      - paragraph:
+        - text: 钱包
+        - strong: ¥ 650
+      - strong: 炸药
+      - text: ¥100 / 枚
+      - strong: 力量药水
+      - text: ¥200
+      - strong: 钻石增值剂
+      - text: ¥200
+      - paragraph: 商品购买将在后续开放，本次可直接前往下一关
+      - button "开始下一关 →"
+      - button "返回开始界面"

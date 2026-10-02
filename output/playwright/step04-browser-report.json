@@ -1,0 +1,25 @@
+{
+  "phase": "04",
+  "method": "controlled settlement + browser clock + real UI input",
+  "checks": [
+    {
+      "name": "购买仅扣钱包、药水每种一份、炸药上限 5、商店按键无效、按钮可见",
+      "result": "passed"
+    },
+    {
+      "name": "实际抓住石头后 S/按钮/↓ 均可炸掉，无收入、无重复消耗、失败恢复购买后的快照",
+      "result": "passed"
+    },
+    {
+      "name": "下一关钻石实抓计入 375，两种药水仅指定关卡生效，下一商店可重新购买",
+      "result": "passed"
+    },
+    {
+      "name": "缺钱禁购，强制重复点击也不能扣成负数",
+      "result": "passed"
+    }
+  ],
+  "errors": [],
+  "browser": "154.0.8037.58",
+  "result": "passed"
+}
