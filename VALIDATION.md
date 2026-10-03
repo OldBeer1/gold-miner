@@ -1,8 +1,8 @@
 # 黄金矿工：最终验收记录
 
-## v1.1.0 关间存档与阶梯难度（2026-10-03，本地验收完成）
+## v1.1.0 关间存档与阶梯难度（2026-10-03，实现、验收与正式发布完成）
 
-当前源码和本地玩家包是 v1.1.0，第13～16步全部完成。Windows、Chrome **154.0.8037.97**；无新增运行依赖。以下为本次实际执行结果，旧章节继续作为对应旧版本证据。v1.1.0 玩家包尚未发布新 Release，已有 v1.0.0 保留。
+当前源码和正式玩家包是 v1.1.0，第13～16步全部完成。Windows、Chrome **154.0.8037.97**；无新增运行依赖。以下为本次实际执行结果，旧章节继续作为对应旧版本证据。[v1.1.0 Release](https://github.com/OldBeer1/gold-miner/releases/tag/v1.1.0) 与下载包已公开发布，已有 v1.0.0 保留。
 
 ### 规则、布局与预算
 
@@ -48,7 +48,14 @@ SHA-256：`1a2c6d184009f251b13d667c6cf09f3654e4ab3dfa5762c9938485ab7c48b055`。
 
 独立解压到 `output/release/verify-v1.1.0-final`，八个运行文件与源码SHA-256逐项一致。`verify-survival-release.cjs` 五项通过：文件/资源完整、开始/出钩、暂停冻结、刷新继续同关入口、接触爆炸与近物销毁，无远程资源或未处理错误。爆炸使用明确四物体布局、受控时钟；开始与继续使用原生成地图。[玩家包报告](output/playwright/survival-v110-release-preflight-report.json)。
 
-包仅包含运行文件与中文说明，开发依赖、浏览器配置、缓存、日志与测试脚本均未打包，output/release 被Git忽略。所有改动JavaScript语法、本地文档引用和工作区检查完成。无已知阻断问题；后期主观难度及四策略之外的捷径仍可继续试玩。远程v1.1.0发布属于后续授权范围。
+包仅包含运行文件与中文说明，开发依赖、浏览器配置、缓存、日志与测试脚本均未打包，output/release 被Git忽略。所有改动JavaScript语法、本地文档引用和工作区检查完成。无已知阻断问题；后期主观难度及四策略之外的捷径仍可继续试玩。后续用户授权“全部发送过去”，正式发布检查如下。
+
+### GitHub 正式玩家交付 v1.1.0
+
+- [正式 Release](https://github.com/OldBeer1/gold-miner/releases/tag/v1.1.0) 为最新稳定版本，非草稿、非预发布；标签对应验收源码提交 `89168a1dbd8383f8ee3f3b8060e25c1fe3adb8a2`。v1.0.0 Release 与原标签保留。发布后的文档和证据另行补交至 main，发行标签保持对应玩家包源码。
+- 发布说明包含主要功能、运行方法、存档行为、源码提交及 SHA-256；[Gold-survival-v1.1.0.zip](https://github.com/OldBeer1/gold-miner/releases/download/v1.1.0/Gold-survival-v1.1.0.zip) 已上传，GitHub 返回的资产摘要与本地验收包一致。
+- 从公开下载入口匿名下载至独立文件并解压到 `output/release/github-player-v1.1.0`：31,512 字节、9 个文件、SHA-256 与上方值一致，八个运行文件与验收源码逐项匹配；无开发依赖、配置、缓存或日志。[公开发布与文件核对报告](output/playwright/survival-v110-published-release-report.json)。
+- 对这份实际下载的玩家包执行 `verify-survival-release.cjs`，五项浏览器检查通过：文件/资源完整、文件直开/开始/出钩/暂停、刷新继续同关入口、火药桶接触爆炸及范围销毁、本地资源且无未处理错误。使用受控时钟，爆炸使用明确四物体布局；开始与继续使用原生成地图，不计作额外真实计时连续试玩。[下载包浏览器报告](output/playwright/survival-v110-release-download-report.json)、[下载包爆炸截图](output/playwright/survival-v110-release-download-explosion.png)。
 
 ## GitHub 玩家交付 v1.0.0（2026-10-02 发布，2026-10-03 收尾复核）
 

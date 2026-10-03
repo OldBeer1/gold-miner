@@ -20,7 +20,7 @@
 
 ## 关间存档与阶梯难度扩展进度
 
-2026-10-03 新需求见 [SAVE_DIFFICULTY_SPEC.md](SAVE_DIFFICULTY_SPEC.md)：关间自动保存、失败清档、策略难度、第 20/30/40……关升档、动态商店价格和新版独立记录。第13～16步全部完成实际实现、验证与本地v1.1.0交付；原01～12步完成记录保留。新证据以 survival-v110-* 为准，v1.1.0 玩家包尚未发布 Release。
+2026-10-03 新需求见 [SAVE_DIFFICULTY_SPEC.md](SAVE_DIFFICULTY_SPEC.md)：关间自动保存、失败清档、策略难度、第 20/30/40……关升档、动态商店价格和新版独立记录。第13～16步全部完成实际实现与验证，v1.1.0 源码、文档和玩家包已正式发布；原01～12步完成记录保留。新证据以 survival-v110-* 为准，[Release](https://github.com/OldBeer1/gold-miner/releases/tag/v1.1.0) 提供 [玩家下载包](https://github.com/OldBeer1/gold-miner/releases/download/v1.1.0/Gold-survival-v1.1.0.zip)。
 
 | 分步 | 任务文件 | 状态 |
 | --- | --- | --- |
@@ -295,3 +295,15 @@ verifyRoute 新增 strategy 参数：steady / value / efficiency / safe，均使
 用户在本地交付后明确授权“推送”。目标为 https://github.com/OldBeer1/gold-miner 的 main 分支；提交包括第13～16步源码、当前需求和交接、开发检查脚本、survival-v110报告与截图。保留旧证据和旧Release。玩家ZIP、浏览器配置、缓存与日志继续排除。
 
 推送准备核实：origin属于OldBeer1/gold-miner，本地main与远端main基点均为70bd839bcd6a62795774086bc3429471da96b300；已有10份新版验收报告全部passed且浏览器errors为空，修改检查通过。此次仅更新源码仓库，v1.1.0玩家ZIP仍在本地，未创建新标签或Release。远端最终提交一致性由推送后核对确认，并在本次任务回复中报告。
+
+## v1.1.0 正式发布与完整推送交接 · 2026-10-04
+
+用户随后明确要求“全部发送过去”，授权发布玩家包并补交文档。源码提交 `89168a1dbd8383f8ee3f3b8060e25c1fe3adb8a2` 已推送至 [OldBeer1/gold-miner](https://github.com/OldBeer1/gold-miner)；[v1.1.0 正式 Release](https://github.com/OldBeer1/gold-miner/releases/tag/v1.1.0) 已发布并设为最新稳定版本，非草稿、非预发布。标签对应上述实际验收源码，后续只补交发布文档和验收证据至 main；保留 v1.0.0 Release 与原标签。
+
+玩家包：[Gold-survival-v1.1.0.zip](https://github.com/OldBeer1/gold-miner/releases/download/v1.1.0/Gold-survival-v1.1.0.zip)，31,512 字节，根目录共 9 个文件，含八个运行文件与中文使用说明。SHA-256：`1a2c6d184009f251b13d667c6cf09f3654e4ab3dfa5762c9938485ab7c48b055`。包含当前存档、阶梯难度、动态报价和火药桶接触爆炸规则，解压后直接打开 index.html 游玩。
+
+发布执行：Chrome 浏览器连接失败，内置浏览器请求超时；改用本机现有 Git 登录访问官方 GitHub 发布接口，先建草稿、上传并核对资产摘要，再正式发布。凭据仅在内存中使用，未写入仓库、报告或玩家包。临时发布工具、本地 ZIP、解压目录仍由 output/release 忽略规则排除。
+
+实际验证：匿名访问官方 Release 接口确认公开稳定状态、最新版本及旧版保留；从正式下载入口重新下载到独立文件，SHA-256、大小、9 文件清单和八个运行文件的源码一致性全部通过。对下载后独立解压的玩家包执行五项真实浏览器交互检查，开始/出钩/暂停、刷新继续、火药桶接触爆炸与范围销毁、资源完整均通过，未处理错误为空；计时受控、爆炸使用明确四物体布局，不作为新增真实计时连续试玩。证据：[发布与文件核对报告](output/playwright/survival-v110-published-release-report.json)、[下载包浏览器报告](output/playwright/survival-v110-release-download-report.json)、[爆炸截图](output/playwright/survival-v110-release-download-explosion.png)。
+
+README、SAVE_DIFFICULTY_SPEC、计划顶部和 VALIDATION 已同步正式下载入口及发布状态，旧交接保留历史事实。本次没有玩法参数或运行接口变化，因此不重复完整关卡试玩或重新制作玩家包。文档和证据推送后核对 main 提交一致性、发行标签及公开页面，并在本次回复报告最终结果。无已知发布阻断问题；浏览器存储被拒绝和主观难度的既有边界继续见 VALIDATION。

@@ -1,6 +1,6 @@
 # 黄金矿工 · 无限生存
 
-原生 HTML、CSS、JavaScript 和 Canvas 2D 实现的像素风单机游戏，无构建步骤、运行依赖或远程素材。当前源码为 **v1.1.0：关间存档与阶梯难度扩展**。第 13～16 步已完成，本地玩家包通过验收；GitHub 已发布的 v1.0.0 保留为历史版本，v1.1.0 玩家包尚未发布 Release。
+原生 HTML、CSS、JavaScript 和 Canvas 2D 实现的像素风单机游戏，无构建步骤、运行依赖或远程素材。当前正式版本为 **v1.1.0：关间存档与阶梯难度扩展**。第 13～16 步已完成，源码、文档和玩家下载包均已发布；v1.0.0 保留为历史版本。
 
 ![新版采矿画面](output/playwright/survival-v110-scene-1280x720.png)
 
@@ -8,9 +8,11 @@
 
 双击 `index.html`，使用 Chrome、Edge 等现代桌面浏览器打开。点击“新挑战”；已有存档时点击“继续游戏”。玩家包解压整个目录后同样直接打开，无需 Node.js 或联网。
 
-**已发布旧版：** [下载 v1.0.0](https://github.com/OldBeer1/gold-miner/releases/download/v1.0.0/Gold-survival-v1.0.0.zip) · [旧版本说明](https://github.com/OldBeer1/gold-miner/releases/tag/v1.0.0) · [源码仓库](https://github.com/OldBeer1/gold-miner)。旧包不包含新版存档和阶梯难度。
+**下载最新版：** [Gold-survival-v1.1.0.zip](https://github.com/OldBeer1/gold-miner/releases/download/v1.1.0/Gold-survival-v1.1.0.zip) · [v1.1.0 版本说明](https://github.com/OldBeer1/gold-miner/releases/tag/v1.1.0) · [源码仓库](https://github.com/OldBeer1/gold-miner)。
 
-新版本地交付包：`output/release/Gold-survival-v1.1.0.zip`，9 个文件，包含完整运行文件和中文说明。正式新 Release 发布后再添加在线下载入口。
+玩家包含完整运行文件和中文说明，共 9 个文件、31,512 字节。从正式 Release 下载、核对校验值并解压后的浏览器复验已通过。SHA-256：`1a2c6d184009f251b13d667c6cf09f3654e4ab3dfa5762c9938485ab7c48b055`。
+
+历史版本：[v1.0.0](https://github.com/OldBeer1/gold-miner/releases/tag/v1.0.0)，不包含新版存档和阶梯难度。
 
 可选本地服务，在项目根目录的 **PowerShell** 执行：
 
