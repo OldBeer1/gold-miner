@@ -1,8 +1,10 @@
+> 历史归档，整理日期 2026-10-04。原文件：`ENDLESS_SPEC.md`。保留当时的规则、任务状态、交接与证据；仅调整历史引用位置。当前实现以 [现行规格](../../GAME_SPEC.md) 为准，后续任务看 [实施计划](../../IMPLEMENTATION_PLAN.md)。本页命令与执行提示词仅为历史记录。
+
 # 黄金矿工：无限生存与随机冒险扩展规格
 
-日期：2026-10-02。适用于第 08～12 步。实现与验证状态以 [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md) 和 [VALIDATION.md](VALIDATION.md) 为准。
+日期：2026-10-02。适用于第 08～12 步。实现与验证状态以 [IMPLEMENTATION_PLAN.md](implementation-log-2026-10-04.md) 和 [VALIDATION.md](validation-through-v1.1.0.md) 为准。
 
-2026-10-03：v1.1.0 第 13～16 步扩展已完成。存档、阶梯难度、收入倍率、动态报价与新版记录以 [SAVE_DIFFICULTY_SPEC.md](SAVE_DIFFICULTY_SPEC.md) 为准；本文件同步这些衔接点，保留其他无限生存规则。第 08～12 步与旧证据作为 v1.0.0 历史记录。
+2026-10-03：v1.1.0 第 13～16 步扩展已完成。存档、阶梯难度、收入倍率、动态报价与新版记录以 [SAVE_DIFFICULTY_SPEC.md](save-difficulty-expansion-spec.md) 为准；本文件同步这些衔接点，保留其他无限生存规则。第 08～12 步与旧证据作为 v1.0.0 历史记录。
 
 ## 1. 已确认目标
 
@@ -17,7 +19,7 @@
 
 沿用原生 HTML、CSS、JavaScript、Canvas 2D 和 Web Audio，无新增运行依赖，保留文件直开。保留出钩、碰撞、拖回、炸药、暂停和像素画面。
 
-本规格优先于 [GAME_SPEC.md](GAME_SPEC.md) 中三关终点、固定布局、失败重试和旧保存规则；其余规则沿用。旧固定关卡保留为历史数据，不提供经典模式入口。
+本规格优先于 [GAME_SPEC.md](three-level-spec.md) 中三关终点、固定布局、失败重试和旧保存规则；其余规则沿用。旧固定关卡保留为历史数据，不提供经典模式入口。
 
 ## 2. 无限流程与生成
 
@@ -113,11 +115,11 @@ v1.1.0 使用 `gold-miner.survival.preferences.v2` 保存 `soundEnabled`、`high
 
 | 步骤 | 文件 | 产物 |
 | --- | --- | --- |
-| 08 | [无限生存基础](steps/08-survival-levels.md) | 随机布局、难度封顶、无限推进、失败重开 |
-| 09 | [随机冒险物体](steps/09-adventure-objects.md) | 四种新回收物、火药桶碰撞爆炸、随机奖励、时间风险、像素反馈 |
-| 10 | [四槽商店](steps/10-four-slot-shop.md) | 七种商品、固定四槽、四件限购、全部增益 |
-| 11 | [界面与记录](steps/11-survival-interface.md) | 中文流程、独立记录、暂停兼容 |
-| 12 | [验收与交付](steps/12-survival-validation.md) | 规则、真实试玩、浏览器检查、文档、交付包 |
+| 08 | [无限生存基础](completed-steps-01-16.md#step-08) | 随机布局、难度封顶、无限推进、失败重开 |
+| 09 | [随机冒险物体](completed-steps-01-16.md#step-09) | 四种新回收物、火药桶碰撞爆炸、随机奖励、时间风险、像素反馈 |
+| 10 | [四槽商店](completed-steps-01-16.md#step-10) | 七种商品、固定四槽、四件限购、全部增益 |
+| 11 | [界面与记录](completed-steps-01-16.md#step-11) | 中文流程、独立记录、暂停兼容 |
+| 12 | [验收与交付](completed-steps-01-16.md#step-12) | 规则、真实试玩、浏览器检查、文档、交付包 |
 
 每步完成实际代码与验证才标记完成，并更新进度与交接。旧 01～07 步为历史首版记录。
 
