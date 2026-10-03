@@ -1,11 +1,12 @@
 # 黄金矿工：最终验收记录
 
-## GitHub 玩家交付 v1.0.0（2026-10-02）
+## GitHub 玩家交付 v1.0.0（2026-10-02 发布，2026-10-03 收尾复核）
 
-- 仓库：[OldBeer1/gold-miner](https://github.com/OldBeer1/gold-miner)，公开、main 分支；[Release](https://github.com/OldBeer1/gold-miner/releases/tag/v1.0.0) 与 [玩家下载包](https://github.com/OldBeer1/gold-miner/releases/download/v1.0.0/Gold-survival-v1.0.0.zip)。当前本地预检通过，发布及公开下载复验状态见 IMPLEMENTATION_PLAN.md 最新交接。
+- 仓库：[OldBeer1/gold-miner](https://github.com/OldBeer1/gold-miner)，公开、main 分支；[Release](https://github.com/OldBeer1/gold-miner/releases/tag/v1.0.0) 与 [玩家下载包](https://github.com/OldBeer1/gold-miner/releases/download/v1.0.0/Gold-survival-v1.0.0.zip) 均已正式发布。v1.0.0 标签指向首个提交 d8ff8b6186e3a924bda4fc8c3064794c88fa18e8，后续补交验证证据和交接文档。
 - 玩家 ZIP 为 27073 字节、9 个文件；8 个运行文件与工作区逐项一致，另含中文使用说明。SHA-256：e829af706ad4b373c43d68e8c5ba0dde91f37eb60d8618c316c8a167db5e10ea。
-- 重新运行 42 项规则检查，含 1000 份布局，全部通过。解压后的玩家包通过 4 项浏览器检查：完整运行文件、文件直开/随机开始/键盘出钩/暂停恢复、火药桶原地爆炸及范围销毁、本地资源及无错误。碰撞爆炸使用明确四物体布局，时间使用浏览器受控时钟，不将其计为原始随机关卡真实完整试玩。
-- 证据：[玩家包预检报告](output/playwright/survival-release-preflight-report.json)、[预检爆炸截图](output/playwright/survival-release-preflight-explosion.png)、[源码提交清单检查](output/playwright/survival-release-source-report.json)。浏览器配置、缓存、日志、临时文件和本地 ZIP 由 .gitignore 排除；历史开发交付包继续保留在本机。
+- 发布前重新运行 42 项规则检查，含 1000 份布局，全部通过。本地玩家包预检和从正式 Release 下载后独立解压的复验各通过 4 项浏览器检查：完整运行文件、文件直开/随机开始/键盘出钩/暂停恢复、火药桶原地爆炸及范围销毁、本地资源及无错误。碰撞爆炸使用明确四物体布局，时间使用浏览器受控时钟，不将其计为原始随机关卡真实完整试玩。
+- 公开下载无需登录；下载后 SHA-256、大小、9 个文件及 8 个运行文件与源码的一致性均通过。2026-10-03 复核本地与远程 main 一致，已上传的 137 个文件逐项匹配；仓库、Release、五份主要文档和截图共 8 个公开链接均为 HTTP 200。初次文档详情页 HTTP 503 为临时响应，复核已恢复；全部 18 份 Markdown 原始内容可公开读取。
+- 证据：[玩家包预检报告](output/playwright/survival-release-preflight-report.json)、[预检爆炸截图](output/playwright/survival-release-preflight-explosion.png)、[源码提交清单检查](output/playwright/survival-release-source-report.json)、[公开下载复验报告](output/playwright/survival-release-download-report.json)、[下载包爆炸截图](output/playwright/survival-release-download-explosion.png)、[公开交付检查与页面恢复记录](output/playwright/survival-release-public-report.json)。浏览器配置、缓存、日志、临时文件和本地 ZIP 由 .gitignore 排除；历史开发交付包继续保留在本机。
 
 ## 无限生存新版验收（2026-10-02）
 

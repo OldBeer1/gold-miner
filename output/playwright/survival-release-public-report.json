@@ -1,5 +1,5 @@
 {
-  "result": "passed-with-rendering-warning",
+  "result": "passed",
   "phase": "v1.0.0-public-delivery",
   "method": "unauthenticated GitHub API and public web/raw/download requests; first release commit Git blob comparison; independent extraction and runtime file SHA-256 comparison",
   "repository": "https://github.com/OldBeer1/gold-miner",
@@ -150,12 +150,54 @@
       "url": "https://raw.githubusercontent.com/OldBeer1/gold-miner/d8ff8b6186e3a924bda4fc8c3064794c88fa18e8/VALIDATION.md"
     }
   ],
-  "renderingWarnings": [
+  "renderingWarnings": [],
+  "renderingWarningDetails": "Initial HTTP 503 responses were transient. On 2026-10-03, the repository, release, README, AGENTS, IMPLEMENTATION_PLAN, ENDLESS_SPEC, VALIDATION and screenshot all returned HTTP 200; the current local and public remote trees matched.",
+  "browserReport": "survival-release-download-report.json",
+  "initialRenderingWarnings": [
     {
       "status": 503,
       "url": "https://github.com/OldBeer1/gold-miner/blob/main/README.md?release=v1.0.0"
     }
   ],
-  "renderingWarningDetails": "GitHub blob HTML pages returned HTTP 503 on repeated public requests, including an independent web reader; repository API, all Markdown raw content, screenshot and release asset are publicly accessible. Browser-facing Markdown rendering could not be confirmed during this verification.",
-  "browserReport": "survival-release-download-report.json"
+  "completionRecheck": {
+    "publicPages": [
+      {
+        "status": 200,
+        "url": "https://github.com/OldBeer1/gold-miner"
+      },
+      {
+        "status": 200,
+        "url": "https://github.com/OldBeer1/gold-miner/releases/tag/v1.0.0"
+      },
+      {
+        "status": 200,
+        "url": "https://github.com/OldBeer1/gold-miner/blob/main/README.md"
+      },
+      {
+        "status": 200,
+        "url": "https://github.com/OldBeer1/gold-miner/blob/main/AGENTS.md"
+      },
+      {
+        "status": 200,
+        "url": "https://github.com/OldBeer1/gold-miner/blob/main/IMPLEMENTATION_PLAN.md"
+      },
+      {
+        "status": 200,
+        "url": "https://github.com/OldBeer1/gold-miner/blob/main/ENDLESS_SPEC.md"
+      },
+      {
+        "status": 200,
+        "url": "https://github.com/OldBeer1/gold-miner/blob/main/VALIDATION.md"
+      },
+      {
+        "status": 200,
+        "url": "https://raw.githubusercontent.com/OldBeer1/gold-miner/main/output/playwright/survival-scene-1280x720.png"
+      }
+    ],
+    "allSourceBlobsMatch": true,
+    "sourceFileCount": 137,
+    "sourceCommit": "54a3e59195f078e4142367a130de2ec2803dc8c6",
+    "renderingRecovered": true,
+    "date": "2026-10-03"
+  }
 }

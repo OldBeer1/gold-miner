@@ -222,11 +222,14 @@
 
 ### GitHub 首次公开交付：v1.0.0
 
-- 状态：发布进行中，2026-10-02。本地准备和玩家包验证已通过，远程上传及下载复验完成后更新状态。
-- 仓库：用户指定的 [OldBeer1/gold-miner](https://github.com/OldBeer1/gold-miner)，公开空仓库，默认分支 main；保留用户填写的 Description。
+- 状态：已完成。2026-10-02 发布，2026-10-03 完成公开页面复核与交接收尾。
+- 仓库：用户指定的 [OldBeer1/gold-miner](https://github.com/OldBeer1/gold-miner)，公开，默认分支 main；接手时为空仓库，保留用户填写的 Description。
 - 实现：初始化本地 Git，新增 .gitignore，保留源码、全部需求/分步/交接文档、AGENTS.md 和浏览器验证脚本及引用证据；排除浏览器配置、缓存、日志、临时文件与本地 ZIP。README 增加游戏截图、下载入口、开发说明和玩家包制作方式。
 - 玩家包：Gold-survival-v1.0.0.zip，27073 字节、9 个文件，包含 index.html、styles.css、六个 JavaScript 文件和中文使用说明；无需 Node.js、安装依赖或构建。新增 scripts/package-release.ps1 可重新制作版本化玩家包。
 - 本地验证：42 项规则检查（含 1000 份布局）通过；8 个运行文件逐项比对工作区与 ZIP 内容；解压后的文件直开、随机开始、真实输入、受控时钟暂停及火药桶碰撞爆炸等 4 项浏览器检查通过，无未处理错误。报告为 [玩家包预检](output/playwright/survival-release-preflight-report.json) 与 [源码清单检查](output/playwright/survival-release-source-report.json)。
 - 玩家包 SHA-256：e829af706ad4b373c43d68e8c5ba0dde91f37eb60d8618c316c8a167db5e10ea。
 - 接口与数值：游戏代码、规则和参数未变；新增交付脚本及玩家包浏览器验证脚本。原 GAME_SPEC.md 字节内容保留。
-- 待完成：源码推送、v1.0.0 标签和正式 Release；公开下载后核对 SHA-256、解压试玩及远程文件/链接检查。
+- 发布：源码已推送；v1.0.0 标签指向首个提交 d8ff8b6186e3a924bda4fc8c3064794c88fa18e8，发布为正式版本，非草稿、非预发布。[Release](https://github.com/OldBeer1/gold-miner/releases/tag/v1.0.0) 提供 [Gold-survival-v1.0.0.zip](https://github.com/OldBeer1/gold-miner/releases/download/v1.0.0/Gold-survival-v1.0.0.zip)，发布说明含运行方法与 SHA-256。后续仅补交验证证据和交接文档，保留首发标签。
+- 公开下载复验：无需登录即可下载，文件大小和 SHA-256 与本地玩家包一致；解压到独立目录后，8 个运行文件逐项匹配源码，文件直开、出钩、暂停及火药桶接触爆炸等 4 项浏览器检查通过，未出现未处理错误。见 [下载复验报告](output/playwright/survival-release-download-report.json)、[爆炸截图](output/playwright/survival-release-download-explosion.png) 与 [公开交付检查](output/playwright/survival-release-public-report.json)。
+- 收尾复核：2026-10-03，本地与远程 main 一致，复核时已上传的 137 个文件逐项匹配 Git 对象；仓库、Release、五份主要文档与截图共 8 个公开链接均返回 HTTP 200。首次检查中 GitHub 文档详情页的临时 HTTP 503 已恢复，保留前后结果供追溯。全部 18 份 Markdown 原始内容此前也已确认可公开读取。
+- 未完成或未验证：无本次交付的已知阻断问题；本次没有重复五分钟连续关卡和原生标签隐藏试玩，保留此前证据。未增加在线试玩部署、许可证或任务看板。
