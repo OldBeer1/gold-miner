@@ -2,6 +2,7 @@
   "use strict";
 
   const config = {
+    version: "1.1.0",
     canvas: { width: 960, height: 640 },
     mine: { x: 24, y: 160, width: 912, height: 456 },
     miner: { anchor: { x: 480, y: 112 } },
@@ -96,7 +97,7 @@
     shop: {
       dynamite: { label: "炸药", description: "毁掉拖拽物，快速收钩", price: 100, maxInventory: 5 },
       strength: { label: "力量药水", description: "下一关带物回收速度 ×1.5", price: 200, multiplier: 1.5, maxPerVisit: 1 },
-      diamondBoost: { label: "钻石增值剂", description: "下一关钻石 ¥250 → ¥375", price: 200, multiplier: 1.5, maxPerVisit: 1 },
+      diamondBoost: { label: "钻石增值剂", description: "下一关钻石价值 ×1.5", price: 200, multiplier: 1.5, maxPerVisit: 1 },
       timeCoupon: { label: "延时券", description: "下一关初始时间 +10 秒", price: 300, seconds: 10, maxPerVisit: 1 },
       goldBoost: { label: "黄金增值剂", description: "下一关大小金块价值 ×1.5", price: 250, multiplier: 1.5, maxPerVisit: 1 },
       protectionCharm: { label: "护身符", description: "下一关抵消一次扣时间效果", price: 180, maxPerVisit: 1 },
@@ -105,6 +106,11 @@
     survival: {
       maxDifficulty: 9, baseTarget: 650, targetStep: 150,
       baseCount: 15, maxAttempts: 30, placementAttempts: 100,
+      targets: [650, 800, 950, 1200, 1400, 1600, 1800, 1950, 2050, 2100],
+      stageIncomeGrowth: .25, stageTargetBonus: 80, stageDepthBonus: 24,
+      warmupPriceGrowth: .14, stagePriceGrowth: .22,
+      routeAngles: [-60, -45, -30, -15, 0, 15, 30, 45, 60],
+      obstacleIndices: [3, 5, 1, 7, 4],
       maxTimeBonus: 20, shopSlots: 4, maxPurchases: 4,
       newTypes: ["ruby", "mysteryBag", "treasureChest", "cursedRelic", "powderKeg"],
       bagRewards: [

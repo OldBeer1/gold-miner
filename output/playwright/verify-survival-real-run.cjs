@@ -4,7 +4,7 @@ const fs = require("node:fs/promises");
 const path = require("node:path");
 const { pathToFileURL } = require("node:url");
 const { chromium } = require(process.env.GOLD_PLAYWRIGHT_MODULE || "playwright");
-const report = { phase: "12", method: "original game and random seed, real elapsed time and real keyboard/mouse; no clock, level, income or outcome overrides", levels: [], shops: [], errors: [] };
+const report = { phase: "16", version: "1.1.0", method: "original game and random seed, real elapsed time and real keyboard/mouse; no clock, level, income or outcome overrides", levels: [], shops: [], errors: [] };
 const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
 const diag = page => page.evaluate(() => GoldMiner.getDiagnostics());
 (async () => {
@@ -15,7 +15,7 @@ const diag = page => page.evaluate(() => GoldMiner.getDiagnostics());
     page.on("pageerror", e => report.errors.push(e.message));
     page.on("console", m => { if (m.type() === "error") report.errors.push(m.text()); });
     await page.goto(pathToFileURL(path.resolve(__dirname, "../../index.html")).href);
-    await page.screenshot({ path: path.join(__dirname, "survival-home.png"), fullPage: true });
+    await page.screenshot({ path: path.join(__dirname, "survival-v110-home.png"), fullPage: true });
     await page.locator("#start-button").click();
     report.runSeed = (await diag(page)).run.runSeed;
     let mouseUsed = false;
@@ -40,7 +40,7 @@ const diag = page => page.evaluate(() => GoldMiner.getDiagnostics());
           const settledAt = (performance.now() - started) / 1000;
           assert.ok(settledAt >= 59.5 && settledAt < 64); assert.ok(qualifiedAt < 45);
           report.levels.push({ levelId, target: run.level.target, income: run.levelIncome, qualifiedAt, settledAt, totalIncome: run.totalIncome, trace });
-          await page.screenshot({ path: path.join(__dirname, `survival-level${levelId}-result.png`), fullPage: true });
+          await page.screenshot({ path: path.join(__dirname, `survival-v110-level${levelId}-result.png`), fullPage: true });
           break;
         }
         assert.equal(state.screen, "playing");
@@ -61,7 +61,7 @@ const diag = page => page.evaluate(() => GoldMiner.getDiagnostics());
       const shop = await diag(page);
       assert.equal(shop.screen, "shop"); assert.equal(shop.shop.offers.length, 4); assert.equal(shop.shop.purchaseCount, 0);
       report.shops.push({ afterLevel: levelId, offers: shop.shop.offers });
-      await page.screenshot({ path: path.join(__dirname, `survival-shop${levelId}.png`), fullPage: true });
+      await page.screenshot({ path: path.join(__dirname, `survival-v110-shop${levelId}.png`), fullPage: true });
       await page.locator("#next-level-button").click();
     }
     const fifth = await diag(page);
@@ -87,6 +87,6 @@ const diag = page => page.evaluate(() => GoldMiner.getDiagnostics());
     console.log("真实连续四关、四次商店、进入第五关、失败重开与刷新记录通过。");
   } finally {
     await browser.close();
-    await fs.writeFile(path.join(__dirname, "survival-real-run-report.json"), JSON.stringify(report, null, 2) + "\n");
+    await fs.writeFile(path.join(__dirname, "survival-v110-real-run-report.json"), JSON.stringify(report, null, 2) + "\n");
   }
 })().catch(e => { console.error(e); process.exitCode = 1; });

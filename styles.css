@@ -90,6 +90,12 @@ kbd { display: inline-block; flex: 0 0 55px; padding: 3px 5px; border: 1px solid
 #home-screen .welcome-description { margin: 10px 0 14px; }
 #home-screen .preview-note { margin: 8px 0 10px; }
 #home-screen .record-row { padding-top: 10px; }
+.home-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+.home-actions.single-action { grid-template-columns: 1fr; }
+.home-actions .button { margin: 0; min-height: 42px; font-size: 14px; letter-spacing: 0; }
+.save-status { margin: 0 0 6px; color: var(--muted); font-size: 11px; text-align: center; }
+.save-status.is-error { color: #ffb29d; }
+.save-status:empty { display: none; }
 
 .hud { display: grid; grid-template-columns: .8fr 1.8fr 1fr 1fr .9fr 1.2fr; padding: 12px 14px; border-bottom: 2px solid #3d4c51; background: #142028; pointer-events: none; }
 .hud-cell { min-width: 0; padding: 0 10px; border-right: 1px solid #42515a; }

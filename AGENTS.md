@@ -7,12 +7,12 @@
 接手项目、恢复工作或修改功能前，按顺序读取：
 
 1. [README.md](README.md)：运行方式、玩法、文件职责与验证入口。
-2. [ENDLESS_SPEC.md](ENDLESS_SPEC.md)：当前无限生存需求。
+2. [SAVE_DIFFICULTY_SPEC.md](SAVE_DIFFICULTY_SPEC.md)：当前存档、阶梯难度和报价规则；[ENDLESS_SPEC.md](ENDLESS_SPEC.md) 保留其余无限生存玩法。
 3. [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md)：顶部进度与文末最新交接，确认已完成内容和剩余事项。
 4. [VALIDATION.md](VALIDATION.md)：新版验收、检查方法及限制。
 5. 若任务对应已有分步，再读取 `steps/` 中相应文档和相关实现。
 
-截至 2026-10-02，第 01～12 步已经完成。第 01～07 步与 [GAME_SPEC.md](GAME_SPEC.md) 是原三关版历史记录；第 08～12 步是当前无限生存版本。当前需求以 `ENDLESS_SPEC.md` 和后续交接为准，旧三关终点、当前关重试与旧保存规则已经被替换。结合实际代码核实状态，再继续用户的新任务。
+第 01～07 步与 [GAME_SPEC.md](GAME_SPEC.md) 是原三关版历史记录；第 08～12 步是 v1.0.0 无限生存版；第 13～16 步为 v1.1.0 存档与难度扩展。当前进度查阅 `IMPLEMENTATION_PLAN.md` 顶部与文末交接，新规则以 `SAVE_DIFFICULTY_SPEC.md` 为准。接手时结合实际代码核实状态，再继续用户的新任务。
 
 最新玩法变更：火药桶在钩尖碰到时立即原地爆炸，销毁周围未回收物体，抓钩空钩返回。它不被拖回、不扣时间、不消耗炸药或护身符。范围与边界规则查阅 `ENDLESS_SPEC.md`，实现查阅 `js/config.js`、`js/rules.js` 和 `js/game.js`。
 

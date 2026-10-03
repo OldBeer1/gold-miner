@@ -1,0 +1,9 @@
+{
+  "version": "1.1.0",
+  "method": "original level, browser-controlled clock; only storage deletion is rejected",
+  "checks": [
+    "保存状态可见；失败清档被拒绝时准确提示磁盘旧进度仍可能恢复"
+  ],
+  "errors": [],
+  "result": "passed"
+}

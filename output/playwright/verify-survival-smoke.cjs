@@ -4,13 +4,14 @@ const fs = require("node:fs/promises");
 const path = require("node:path");
 const { pathToFileURL } = require("node:url");
 const { chromium } = require(process.env.GOLD_PLAYWRIGHT_MODULE || "playwright");
-const report = { phase: "12", method: "original game, layout/input checks and actual offline audio rendering", checks: [], errors: [], viewports: [] };
+const report = { phase: "16", version: "1.1.0", method: "original game, layout/input checks and actual offline audio rendering", checks: [], errors: [], viewports: [] };
 (async () => {
   const browser = await chromium.launch({ executablePath: "C:/Program Files/Google/Chrome/Application/chrome.exe", headless: true });
   try {
     const page = await browser.newPage();
     const requests = [];
     page.on("request", request => requests.push(request.url()));
+    page.on("dialog", dialog => dialog.accept());
     page.on("pageerror", error => report.errors.push(error.message));
     await page.goto(pathToFileURL(path.resolve(__dirname, "../../index.html")).href);
     for (const size of [{ width: 1280, height: 720 }, { width: 1920, height: 1080 }, { width: 1280, height: 480 }]) {
@@ -21,7 +22,7 @@ const report = { phase: "12", method: "original game, layout/input checks and ac
         return { panel: { top: panel.top, bottom: panel.bottom }, scene: { top: scene.top, bottom: scene.bottom }, overflow: document.documentElement.scrollWidth > innerWidth };
       });
       assert.equal(bounds.overflow, false); assert.ok(bounds.panel.top >= bounds.scene.top && bounds.panel.bottom <= bounds.scene.bottom, "开始页面板必须完整显示");
-      await page.screenshot({ path: path.join(__dirname, `survival-home-${size.width}x${size.height}.png`), fullPage: true });
+      await page.screenshot({ path: path.join(__dirname, `survival-v110-home-${size.width}x${size.height}.png`), fullPage: true });
       await page.locator("#start-button").click();
       const box = await page.locator("#game-canvas").boundingBox(); assert.ok(Math.abs(box.width / box.height - 1.5) < .005);
       if (size.height >= 720) for (const selector of ["#game-canvas", "#home-button", "#pause-button", "#dynamite-button"]) {
@@ -30,7 +31,7 @@ const report = { phase: "12", method: "original game, layout/input checks and ac
       await page.locator("#game-canvas").click({ position: { x: box.width * .6, y: box.height * .6 } });
       const input = await page.evaluate(() => GoldMiner.getDiagnostics().run.input);
       assert.ok(Math.abs(input.lastPoint.x - 576) < 2 && Math.abs(input.lastPoint.y - 384) < 2);
-      await page.screenshot({ path: path.join(__dirname, `survival-scene-${size.width}x${size.height}.png`), fullPage: true });
+      await page.screenshot({ path: path.join(__dirname, `survival-v110-scene-${size.width}x${size.height}.png`), fullPage: true });
       await page.locator("#home-button").click();
       assert.equal(await page.evaluate(() => GoldMiner.getDiagnostics().loopRunning), false);
       report.viewports.push({ ...size, result: "passed" });
@@ -58,5 +59,5 @@ const report = { phase: "12", method: "original game, layout/input checks and ac
     report.checks.push("本地服务启动、音频初始化与静音释放");
     assert.deepEqual(report.errors, []); report.result = "passed";
     console.log("最终布局、缩放输入、离线素材和七类音效检查通过。");
-  } finally { await browser.close(); await fs.writeFile(path.join(__dirname, "survival-smoke-report.json"), JSON.stringify(report, null, 2) + "\n"); }
+  } finally { await browser.close(); await fs.writeFile(path.join(__dirname, "survival-v110-smoke-report.json"), JSON.stringify(report, null, 2) + "\n"); }
 })().catch(error => { console.error(error); process.exitCode = 1; });

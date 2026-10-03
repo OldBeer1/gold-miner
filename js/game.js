@@ -7,6 +7,7 @@
   const effects = window.GoldMinerEffects;
   const audio = window.GoldMinerAudio.createPlayer();
   const savedPreferences = preferencesStore.loadPreferences(() => window.localStorage);
+  const savedCheckpoint = preferencesStore.loadCheckpoint(() => window.localStorage, config);
   const canvas = document.getElementById("game-canvas");
   const context = canvas.getContext("2d");
   const elements = {
@@ -16,6 +17,9 @@
     homeFooter: document.getElementById("home-footer"),
     toolbar: document.getElementById("game-toolbar"),
     start: document.getElementById("start-button"),
+    continue: document.getElementById("continue-button"),
+    checkpointDescription: document.getElementById("checkpoint-description"),
+    saveStatus: document.getElementById("save-status"),
     returnHome: document.getElementById("home-button"),
     sound: document.getElementById("sound-button"),
     soundLabel: document.getElementById("sound-label"),
@@ -65,6 +69,11 @@
     shop: null,
     pauseReason: null,
     visuals: effects.createState(),
+    checkpoint: savedCheckpoint.checkpoint,
+    hasCheckpointData: savedCheckpoint.hasData,
+    saveMessage: savedCheckpoint.message,
+    saveError: Boolean(savedCheckpoint.message),
+    preferencesError: false,
   };
   audio.setEnabled(state.settings.soundEnabled);
   let frameId = null;
@@ -108,7 +117,19 @@
     elements.soundLabel.textContent = `音效：${state.settings.soundEnabled ? "开" : "关"}`;
     elements.highScore.textContent = `¥ ${state.highScore}`;
     elements.bestClearedLevel.textContent = `${state.bestClearedLevel} 关`;
+    elements.continue.hidden = !state.checkpoint;
+    elements.checkpointDescription.hidden = !state.checkpoint;
+    document.querySelector(".home-actions").classList.toggle("single-action", !state.checkpoint);
+    elements.start.classList.toggle("button-primary", !state.checkpoint);
+    elements.start.classList.toggle("button-quiet", Boolean(state.checkpoint));
+    if (state.checkpoint) setText(elements.checkpointDescription, state.checkpoint.kind === "shop"
+      ? `已保存：第 ${state.checkpoint.run.levelId} 关后的商店`
+      : `已保存：第 ${state.checkpoint.run.levelId} 关起点 · 关内退出会从本关重开`);
+    setText(elements.saveStatus, state.saveMessage + (state.preferencesError ? " · 音效或最高记录保存失败" : ""));
+    elements.saveStatus.classList.toggle("is-error", state.saveError || state.preferencesError);
     elements.level.textContent = `第 ${state.run.levelId} 关`;
+    setText(document.getElementById("hud-stage"), level.stage ? `关卡 · 进阶 ${level.stage}` : "关卡 · 基础");
+    elements.level.title = `矿物收入 ×${(level.rewardScale || 1).toFixed(2)}，石头阻挡 ${level.obstacleCount || 0} 条路线`;
     elements.income.textContent = String(state.run.levelIncome);
     elements.target.textContent = String(level.target);
     setText(elements.time, String(Math.ceil(state.run.remainingTime)));
@@ -157,7 +178,7 @@
     }
     if (state.shop) {
       const next = rules.levelParameters(config, state.shop.nextLevelId);
-      setText(elements.shopDestination, `下一站：第 ${next.id} 关 · 目标 ¥${next.target}`);
+      setText(elements.shopDestination, `下一站：第 ${next.id} 关 · 目标 ¥${next.target} · ${next.stage ? `进阶 ${next.stage}` : "基础档"}`);
       setText(elements.shopWallet, `¥ ${state.run.wallet}`);
       setText(elements.shopPurchaseCount, `已购买 ${state.shop.purchaseCount} / ${config.survival.maxPurchases} 件`);
       for (const button of elements.shopProducts.querySelectorAll("button[data-item]")) {
@@ -170,6 +191,15 @@
     }
   }
 
+  function persistCheckpoint(kind) {
+    state.checkpoint = rules.captureCheckpoint(state.run, kind, config);
+    const saved = preferencesStore.saveCheckpoint(() => window.localStorage, state.checkpoint, config);
+    state.hasCheckpointData = true;
+    state.saveError = !saved;
+    state.saveMessage = saved ? (kind === "shop" ? "商店进度已保存" : "已保存本关起点，退出后可继续")
+      : "保存失败：本次进度仅在当前页面保留，关闭后无法保证恢复。";
+  }
+
   function beginLevel(run, snapshot = rules.captureEntrySnapshot(run)) {
     stopLoop();
     audio.stopAll();
@@ -180,6 +210,7 @@
     state.notice = { text: "", seconds: 0 };
     state.visuals = effects.createState();
     state.screen = "playing";
+    persistCheckpoint("level");
     updateInterface();
     renderScene();
     startLoop();
@@ -188,7 +219,19 @@
 
   function startGame() {
     if (state.screen === "playing") return;
+    if (state.hasCheckpointData && !window.confirm("开始新挑战会替换已有存档，确定开始吗？")) return;
     beginLevel(createRun());
+  }
+
+  function continueGame() {
+    if (state.screen !== "home" || !state.checkpoint) return;
+    const run = rules.restoreCheckpoint(state.checkpoint, config);
+    if (state.checkpoint.kind === "level") beginLevel(run);
+    else {
+      state.run = run;
+      state.screen = "result";
+      openShop();
+    }
   }
 
   function openShop() {
@@ -197,6 +240,7 @@
     audio.stopAll();
     state.visuals = effects.createState();
     state.shop = rules.createShop(state.run, config);
+    persistCheckpoint("shop");
     elements.shopProducts.replaceChildren();
     for (const item of state.shop.offers) {
       const definition = config.shop[item];
@@ -208,7 +252,7 @@
       description.className = "product-effect";
       description.textContent = definition.description;
       const price = document.createElement("span");
-      price.textContent = `¥${definition.price}${item === "dynamite" ? " / 枚" : ""}`;
+      price.textContent = `¥${state.shop.prices[item]}${item === "dynamite" ? " / 枚" : ""}`;
       const limit = document.createElement("small");
       const button = document.createElement("button");
       button.type = "button";
@@ -239,7 +283,8 @@
 
   function purchase(item) {
     if (state.screen !== "shop") return;
-    rules.purchaseItem(state.run, state.shop, item, config);
+    const result = rules.purchaseItem(state.run, state.shop, item, config);
+    if (result.success) persistCheckpoint("shop");
     updateInterface();
   }
 
@@ -250,6 +295,7 @@
   }
 
   function returnHome() {
+    if (state.screen === "playing" && lastTimestamp !== null) updateGame(Math.max(0, (performance.now() - lastTimestamp) / 1000));
     stopLoop();
     audio.stopAll();
     state.screen = "home";
@@ -265,7 +311,7 @@
   }
 
   function persistPreferences() {
-    preferencesStore.savePreferences(() => window.localStorage, {
+    state.preferencesError = !preferencesStore.savePreferences(() => window.localStorage, {
       soundEnabled: state.settings.soundEnabled,
       highScore: state.highScore,
       bestClearedLevel: state.bestClearedLevel,
@@ -356,6 +402,14 @@
           persistPreferences();
         }
         state.screen = "result";
+        if (event.success) persistCheckpoint("shop");
+        else {
+          state.checkpoint = null;
+          const cleared = preferencesStore.clearCheckpoint(() => window.localStorage);
+          state.hasCheckpointData = !cleared;
+          state.saveError = !cleared;
+          state.saveMessage = cleared ? "本轮已结束，挑战存档已清除" : "存档清除失败：当前挑战已结束，关闭后旧进度可能仍可恢复。";
+        }
         state.notice = { text: "", seconds: 0 };
         stopLoop();
         audio.stopAll();
@@ -604,6 +658,7 @@
   });
 
   elements.start.addEventListener("click", startGame);
+  elements.continue.addEventListener("click", continueGame);
   elements.returnHome.addEventListener("click", returnHome);
   elements.restart.addEventListener("click", resultAction);
   elements.resultHome.addEventListener("click", returnHome);
@@ -681,6 +736,9 @@
         run: JSON.parse(JSON.stringify(state.run)),
         entrySnapshot: state.entrySnapshot ? JSON.parse(JSON.stringify(state.entrySnapshot)) : null,
         shop: state.shop ? JSON.parse(JSON.stringify(state.shop)) : null,
+        checkpoint: state.checkpoint ? JSON.parse(JSON.stringify(state.checkpoint)) : null,
+        saveError: state.saveError,
+        saveMessage: state.saveMessage,
       };
     },
   });

@@ -5,8 +5,8 @@ const path = require("node:path");
 const { pathToFileURL } = require("node:url");
 const { chromium } = require(process.env.GOLD_PLAYWRIGHT_MODULE || "playwright");
 const root = path.resolve(process.argv[2] || "output/release/preflight-player");
-const prefix = process.argv[3] || "survival-release-preflight";
-const report = { phase: "release-v1.0.0", method: "extracted player archive, file open, original game rules and real keyboard/button input; controlled browser clock; contact explosion uses an explicit four-object fixture", checks: [], errors: [] };
+const prefix = process.argv[3] || "survival-v110-release-preflight";
+const report = { phase: "local-release-v1.1.0", method: "extracted player archive, file open, original game rules and real keyboard/button input; controlled browser clock; contact explosion uses an explicit four-object fixture", checks: [], errors: [] };
 const diag = page => page.evaluate(() => GoldMiner.getDiagnostics());
 
 function installExplosionFixture() {
@@ -39,6 +39,7 @@ function installExplosionFixture() {
   try {
     report.browser = await browser.version();
     const page = await browser.newPage({ viewport: { width: 1280, height: 720 } });
+    page.on("dialog",dialog => dialog.accept());
     const requests = [];
     page.on("request", request => requests.push(request.url()));
     page.on("pageerror", error => report.errors.push(error.message));
@@ -59,6 +60,11 @@ function installExplosionFixture() {
     await page.locator("#resume-button").click(); await page.clock.runFor(100);
     assert.ok(paused.run.remainingTime - (await diag(page)).run.remainingTime < .2);
     report.checks.push("文件直开、随机关卡开始、键盘出钩、暂停冻结及继续无跳变");
+    const savedEntry = (await diag(page)).checkpoint;
+    await page.reload(); await page.locator("#continue-button").click();
+    assert.deepEqual((await diag(page)).checkpoint,savedEntry);
+    assert.equal((await diag(page)).run.remainingTime,60);
+    report.checks.push("玩家包刷新可继续同一关起点，资源与完整布局保留");
     await page.locator("#home-button").click(); await page.evaluate(() => { window.__explosionFixture = true; });
     await page.locator("#start-button").click(); await page.locator("#game-canvas").focus(); await page.keyboard.press("Space");
     await page.clock.runFor(250); const before = await diag(page);

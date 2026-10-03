@@ -1,0 +1,33 @@
+{
+  "phase": "16",
+  "version": "1.1.0",
+  "method": "real browser UI and original collision/reward rules, controlled single-object fixtures, browser clock and explicit settlement fixtures for transaction boundaries",
+  "checks": [
+    "ruby 真实输入抓取、收回及效果",
+    "mysteryBag 真实输入抓取、收回及效果",
+    "treasureChest 真实输入抓取、收回及效果",
+    "cursedRelic 真实输入抓取、收回及效果",
+    "火药桶碰撞立即在原地爆炸，附近物体消失、远处保留、空钩返回，不扣时间或消耗护符",
+    "火药桶爆炸动画、声音和提示只触发一次，暂停冻结爆炸效果",
+    "护身符实际抵消古物惩罚并消耗，保留金币收益",
+    "钱袋库存满转金币、正负时间与幸运概率",
+    "炸药销毁危险物不触发惩罚",
+    "携带新物体与增益暂停 120 秒冻结、输入无效、恢复无跳变",
+    "strength 商店购买、重复拒绝、下一关生效",
+    "diamondBoost 商店购买、重复拒绝、下一关生效",
+    "timeCoupon 商店购买、重复拒绝、下一关生效",
+    "goldBoost 商店购买、重复拒绝、下一关生效",
+    "protectionCharm 商店购买、重复拒绝、下一关生效",
+    "luckyCharm 商店购买、重复拒绝、下一关生效",
+    "四件限购、所有按钮禁用、强制重复点击不扣钱、不刷新商品",
+    "四卡商店在两种桌面视口与短屏无横向溢出",
+    "失败重新挑战，刷新保留新关起点、设置与生存记录",
+    "denied 环境可启动和游玩",
+    "corrupt 环境可启动和游玩",
+    "legacy 环境可启动和游玩",
+    "audio-unavailable 环境可启动和游玩"
+  ],
+  "errors": [],
+  "browser": "154.0.8037.97",
+  "result": "passed"
+}

@@ -4,10 +4,10 @@ const path = require("node:path");
 const { spawn } = require("node:child_process");
 const assert = require("node:assert/strict");
 const fs = require("node:fs/promises");
-const report = { phase: "12", method: "native Chrome tabs via CDP with noDefaults, no document visibility overrides", errors: [] };
+const report = { phase: "16", version: "1.1.0", method: "native Chrome tabs via CDP with noDefaults, no document visibility overrides", errors: [] };
 (async () => {
   const helper = spawn("C:/Program Files/Google/Chrome/Application/chrome.exe", [
-    "--remote-debugging-port=9224", `--user-data-dir=${path.join(__dirname, "survival-native-profile")}`,
+    "--remote-debugging-port=9224", `--user-data-dir=${path.join(__dirname, "survival-v110-native-profile")}`,
     "--no-first-run", "--no-default-browser-check", "--window-position=-32000,-32000",
     "--disable-backgrounding-occluded-windows", "about:blank",
   ], { windowsHide: true, stdio: "ignore" });
@@ -20,6 +20,7 @@ const report = { phase: "12", method: "native Chrome tabs via CDP with noDefault
   const context = browser.contexts()[0];
   try {
     const page = context.pages()[0];
+    page.on("dialog", dialog => dialog.accept());
     page.on("pageerror", e => report.errors.push(e.message));
     await page.goto("http://127.0.0.1:8080");
     await page.locator("#start-button").click();
@@ -38,7 +39,7 @@ const report = { phase: "12", method: "native Chrome tabs via CDP with noDefault
     await page.bringToFront();
     await page.waitForFunction(() => !document.hidden);
     assert.equal(await page.evaluate(() => GoldMiner.getDiagnostics().screen), "paused");
-    await page.screenshot({ path: path.join(__dirname, "survival-native-auto-pause.png"), fullPage: true });
+    await page.screenshot({ path: path.join(__dirname, "survival-v110-native-auto-pause.png"), fullPage: true });
     await page.locator("#resume-button").click();
     const resumed = await page.evaluate(() => GoldMiner.getDiagnostics());
     assert.equal(resumed.screen, "playing");
@@ -50,6 +51,5 @@ const report = { phase: "12", method: "native Chrome tabs via CDP with noDefault
     await page.locator("#home-button").click();
     console.log(JSON.stringify(report, null, 2));
   } finally { await browser.close(); helper.kill(); }
-  await fs.writeFile(path.join(__dirname, "survival-native-pause-report.json"), `${JSON.stringify(report, null, 2)}\n`);
+  await fs.writeFile(path.join(__dirname, "survival-v110-native-pause-report.json"), `${JSON.stringify(report, null, 2)}\n`);
 })().catch(e => { console.error(e.message); process.exitCode = 1; });
-

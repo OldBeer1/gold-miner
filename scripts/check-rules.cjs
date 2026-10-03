@@ -23,29 +23,39 @@ function funded(seed = 0, levelId = 1) {
   rules.advanceRun(run, 60, config);
   return { run, shop: rules.createShop(run, config) };
 }
-check("1000 份布局均可见、可达、无重叠并在 45 秒内无道具达标", () => {
-  for (const levelId of [1, 2, 3, 4, 9, 10, 11, 20, 100, 1000]) {
+check("1700 份布局均可见、可达、无重叠并在 45 秒内无道具达标，比较四种策略", () => {
+  for (const levelId of [1, 2, 3, 4, 9, 10, 11, 19, 20, 21, 29, 30, 31, 39, 40, 100, 1000]) {
     let maximumSeconds = 0, fallbackCount = 0;
+    const steadySeconds = [], fastestFound = [], strategySuccesses = { value: 0, efficiency: 0, safe: 0 };
     for (let seed = 0; seed < 100; seed += 1) {
       const level = rules.createLevel(config, levelId, seed);
       assert.deepEqual(level, rules.createLevel(config, levelId, seed));
-      const d = Math.min(levelId - 1, 9);
-      assert.equal(level.target, 650 + 150 * d); assert.equal(level.layout.length, 15 + d);
+      const parameters = rules.levelParameters(config, levelId);
+      assert.equal(level.target, parameters.target); assert.equal(level.layout.length, parameters.count);
       assert.equal(new Set(level.layout.map(m => m.id)).size, level.layout.length);
       assert.ok(Object.isFrozen(level) && Object.isFrozen(level.layout));
       const bases = level.layout.filter(m => m.safeRoute);
       for (const mineral of level.layout) {
         assert.ok(rules.validPlacement(mineral, level.layout.filter(m => m !== mineral), config));
-        if (!mineral.safeRoute) assert.ok(rules.protectsRoute(mineral, bases, config));
+        if (!mineral.safeRoute && !mineral.routeObstacle) assert.ok(rules.protectsRoute(mineral, bases, config));
       }
       assert.ok(new Set(level.layout.filter(m => config.survival.newTypes.includes(m.type)).map(m => m.type)).size >= 2);
       for (const type of ["powderKeg", "cursedRelic"]) assert.ok(level.layout.filter(m => m.type === type).length <= 2);
       const verified = rules.verifyRoute(config, level);
       assert.ok(verified.success && verified.seconds <= 45);
       maximumSeconds = Math.max(maximumSeconds, verified.seconds);
+      steadySeconds.push(verified.seconds);
+      const alternatives = Object.keys(strategySuccesses).map(strategy => {
+        const route = rules.verifyRoute(config, level, strategy);
+        strategySuccesses[strategy] += Number(route.success);
+        return route;
+      });
+      fastestFound.push(Math.min(verified.seconds, ...alternatives.filter(route => route.success).map(route => route.seconds)));
       fallbackCount += Number(level.fallback);
     }
-    generations.push({ levelId, seeds: 100, maximumSeconds, fallbackCount });
+    const stats = numbers => { const sorted = [...numbers].sort((a,b) => a-b); return { minimum: sorted[0], median: sorted[50], maximum: sorted[99] }; };
+    generations.push({ levelId, seeds: 100, maximumSeconds, fallbackCount, steady: stats(steadySeconds), fastestFound: stats(fastestFound), strategySuccesses });
+    if (levelId >= 10) { assert.ok(stats(steadySeconds).median >= 35); assert.ok(stats(fastestFound).median >= 28); }
   }
 });
 check("不同种子生成不同布局，强制失败使用有效备用布局", () => {
@@ -53,7 +63,7 @@ check("不同种子生成不同布局，强制失败使用有效备用布局", (
   const fallbackConfig = { ...config, survival: { ...config.survival, maxAttempts: 0 } };
   for (const n of [1, 10, 1000]) {
     const level = rules.createLevel(fallbackConfig, n, 42);
-    assert.equal(level.fallback, true); assert.equal(level.layout.length, 15 + Math.min(n - 1, 9));
+    assert.equal(level.fallback, true); assert.equal(level.layout.length, rules.levelParameters(config, n).count);
     assert.ok(rules.verifyRoute(fallbackConfig, level).success);
   }
 });
@@ -254,8 +264,9 @@ check("100 个种子商店四种不重复，固定炸药、重进不刷新或重
 check("四件限购、炸药上限、拒绝交易无扣款", () => {
   const { run, shop } = funded();
   for (let i = 0; i < 4; i += 1) assert.equal(rules.purchaseItem(run, shop, "dynamite", config).success, true);
-  assert.equal(shop.purchaseCount, 4); assert.equal(run.bombs, 5); assert.equal(run.wallet, 4600);
-  assert.equal(rules.purchaseItem(run, shop, shop.offers[1], config).success, false); assert.equal(run.wallet, 4600);
+  const wallet = 5000 - 4 * shop.prices.dynamite;
+  assert.equal(shop.purchaseCount, 4); assert.equal(run.bombs, 5); assert.equal(run.wallet, wallet);
+  assert.equal(rules.purchaseItem(run, shop, shop.offers[1], config).success, false); assert.equal(run.wallet, wallet);
   const next = funded(); next.run.bombs = 5;
   assert.equal(rules.purchaseItem(next.run, next.shop, "dynamite", config).success, false); assert.equal(next.shop.purchaseCount, 0);
   next.run.bombs = 1; next.run.wallet = 50;
@@ -312,8 +323,50 @@ check("收获、爆炸和特殊浮字有数量/寿命上限，零时间冻结", 
   const frozen = JSON.stringify(visuals); effects.advance(visuals, 0); assert.equal(JSON.stringify(visuals), frozen);
   effects.advance(visuals, 1); assert.equal(visuals.particles.length, 0); assert.equal(visuals.labels.length, 0);
 });
-const report = { phase: "12", result: "passed", count: checks.length, checks, generations };
+check("10～19/20～29 同档，20/30/40 提升；极大关号仍有限并有当前档备用路线", () => {
+  for (const [a,b] of [[10,19],[20,29],[30,39]]) {
+    const { id: x, ...first } = rules.levelParameters(config,a), { id: y, ...last } = rules.levelParameters(config,b);
+    assert.deepEqual(first,last);
+  }
+  for (const n of [20,30,40,100,1000,Number.MAX_SAFE_INTEGER]) {
+    const previous = rules.levelParameters(config,n-1), current = rules.levelParameters(config,n);
+    assert.ok(current.target > previous.target || n === Number.MAX_SAFE_INTEGER);
+    assert.ok(Number.isSafeInteger(current.target) && current.count <= 27);
+    const fallbackConfig = { ...config, survival: { ...config.survival, maxAttempts: 0 } };
+    const fallback = rules.createLevel(fallbackConfig,n,7); assert.ok(rules.verifyRoute(config,fallback).success);
+    assert.ok(fallback.route.seconds >= 35);
+  }
+});
+check("倍率覆盖固定/随机金币、满炸药替代收益与增值组合，非金币不放大", () => {
+  for (const [type, reward, effects, bombs, expected] of [
+    ["diamond",null,{ diamondBoost:true },1,750], ["largeGold",null,{goldBoost:true},1,900],
+    ["ruby",null,{diamondBoost:true},1,700], ["treasureChest",{kind:"coins",amount:800},{},1,1600],
+    ["mysteryBag",{kind:"bomb",amount:1},{},5,200], ["mysteryBag",{kind:"bomb",amount:1},{},1,0],
+    ["mysteryBag",{kind:"time",amount:5},{},1,0],
+  ]) {
+    const run = loaded(type,1,{level:{...fixture,rewardScale:2},effects,bombs},reward);
+    rules.advanceRun(run,.1,config); assert.equal(run.levelIncome,expected); assert.equal(run.wallet,expected);
+  }
+});
+const budgets = [];
+check("动态报价按下一关同档一致且升档涨价，实际扣款和保存报价一致", () => {
+  for (const item of Object.keys(config.shop)) {
+    assert.equal(rules.shopPrice(config,10,item),rules.shopPrice(config,19,item));
+    assert.ok(rules.shopPrice(config,20,item) > rules.shopPrice(config,19,item));
+    assert.ok(rules.shopPrice(config,30,item) > rules.shopPrice(config,29,item));
+  }
+  for (const next of [2,10,20,30,100,1000]) {
+    const {run,shop} = funded(42,next-1);
+    const cost = shop.prices.dynamite; const wallet = run.wallet;
+    run.wallet = cost - 1; assert.ok(!rules.purchaseItem(run,shop,"dynamite",config).success); assert.equal(run.wallet,cost-1);
+    run.wallet = wallet; assert.equal(rules.purchaseItem(run,shop,"dynamite",config).cost,cost); assert.equal(run.wallet,wallet-cost);
+    const cart = shop.offers.reduce((sum,item)=>sum+shop.prices[item],0), income = rules.levelParameters(config,next).target;
+    budgets.push({nextLevel:next,offers:shop.offers,prices:shop.prices,oneOfEachCart:cart,targetIncome:income,cartToIncome:cart/income});
+    if(next>=10) assert.ok(cart >= income*.75);
+  }
+});
+const report = { phase: "16", version: config.version, result: "passed", count: checks.length, checks, generations, budgets, strategyLimit: "Four finite heuristics, not a global optimum proof" };
 const directory = path.resolve(__dirname, "../output/playwright");
 fs.mkdirSync(directory, { recursive: true });
-fs.writeFileSync(path.join(directory, "survival-rules-report.json"), JSON.stringify(report, null, 2) + "\n");
-console.log(`无限生存规则检查通过：${checks.length} 项，1000 份关卡布局。`);
+fs.writeFileSync(path.join(directory, "survival-v110-rules-report.json"), JSON.stringify(report, null, 2) + "\n");
+console.log(`无限生存规则检查通过：${checks.length} 项，1700 份关卡布局。`);

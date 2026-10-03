@@ -38,7 +38,7 @@
 
       <section class="scene-shell" aria-label="黄金矿工场景">
         <section id="game-hud" class="hud" aria-label="游戏信息" hidden>
-          <div class="hud-cell"><span>关卡</span><strong id="hud-level">第 1 关</strong></div>
+          <div class="hud-cell"><span id="hud-stage">关卡 · 基础</span><strong id="hud-level">第 1 关</strong></div>
           <div class="hud-cell"><span>本关收入 / 目标</span><strong><span id="hud-income">0</span><i> / </i><span id="hud-target">650</span></strong></div>
           <div class="hud-cell"><span>剩余时间</span><strong><span id="hud-time">60</span><small> 秒</small></strong></div>
           <div class="hud-cell"><span>钱包</span><strong id="hud-wallet">¥ 0</strong></div>
@@ -54,15 +54,17 @@
           <div class="welcome-panel">
             <p class="eyebrow"><span></span> 地底深处，藏着好东西</p>
             <h1>黄金<span>矿工</span></h1>
-            <p class="welcome-description">矿区每次不同，冒险没有终点。<br>火药桶一碰就炸，周围宝物会消失。</p>
+            <p class="welcome-description">矿区每次不同，每十关更有挑战。<br>火药桶一碰就炸，周围宝物会消失。</p>
             <div class="instructions" aria-label="游戏操作说明">
               <p><kbd>空格</kbd><span>或点击矿区出钩</span></p>
               <p><kbd>↓ / S</kbd><span>使用炸药，摆脱慢速拖拽</span></p>
               <p><kbd>Esc</kbd><span>暂停或继续游戏</span></p>
             </div>
-            <button id="start-button" class="button button-primary" type="button">
-              开始挑战 <span aria-hidden="true">→</span>
-            </button>
+            <div class="home-actions single-action">
+              <button id="continue-button" class="button button-primary" type="button" hidden>继续游戏 →</button>
+              <button id="start-button" class="button button-primary" type="button">新挑战 →</button>
+            </div>
+            <p id="checkpoint-description" class="preview-note" hidden></p>
             <p class="preview-note">无限生存 · 每关 60 秒 · 失败后从第一关重新挑战</p>
             <div class="record-row">
               <span title="历史最高的本轮已过关总收入，购物支出不扣除">最高记录 <small>本轮已过关总收入</small></span>
@@ -105,13 +107,14 @@
             <p class="shop-wallet">钱包 <strong id="shop-wallet">¥ 0</strong></p>
             <p id="shop-purchase-count" class="preview-note" role="status">已购买 0 / 4 件</p>
             <div id="shop-products" class="shop-products" aria-label="道具商店"></div>
-            <p class="preview-note">每次最多买 4 件 · 增益仅下一关生效 · 购买可选</p>
+            <p class="preview-note">按下一关难度定价 · 最多买 4 件 · 增益仅下一关生效</p>
             <div class="shop-actions"><button id="shop-home-button" class="button button-quiet" type="button">返回开始界面</button><button id="next-level-button" class="button button-primary" type="button">开始下一关 →</button></div>
           </div>
         </section>
       </section>
 
       <footer class="app-footer">
+        <p id="save-status" class="save-status" role="status"></p>
         <div id="home-footer" class="home-footer">
           <span class="footer-rule">随机关卡 <b>·</b> 随机宝物 <b>·</b> 四槽商店</span>
           <span class="footer-hint">复古像素，简单快乐</span>

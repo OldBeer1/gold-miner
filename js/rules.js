@@ -18,8 +18,15 @@
   function levelParameters(config, levelId) {
     if (!Number.isSafeInteger(levelId) || levelId < 1) throw new Error("关号必须为正整数");
     const difficulty = Math.min(levelId - 1, config.survival.maxDifficulty);
-    return { id: levelId, difficulty, target: config.survival.baseTarget + difficulty * config.survival.targetStep,
-      duration: config.levelDuration, count: config.survival.baseCount + difficulty };
+    const stage = Math.max(0, Math.floor(levelId / 10) - 1);
+    // 后期几何压力逐渐逼近矿区上限，金额使用缓慢的对数增长，避免高关号溢出。
+    const pressure = stage / (stage + 3);
+    const rewardScale = 1 + config.survival.stageIncomeGrowth * Math.log2(1 + stage);
+    const obstacleCount = difficulty < 3 ? 0 : Math.min(4, Math.floor((difficulty - 1) / 2)) + Number(stage >= 2);
+    return { id: levelId, difficulty, stage, pressure, rewardScale,
+      target: Math.round((config.survival.targets[difficulty] + config.survival.stageTargetBonus * pressure) * rewardScale),
+      depth: 250 + 8 * difficulty + config.survival.stageDepthBonus * pressure, obstacleCount,
+      duration: config.levelDuration, count: config.survival.baseCount + difficulty + Math.floor(3 * pressure) };
   }
 
   function boundingRadius(definition) {
@@ -54,26 +61,38 @@
     const offset = fallback ? 0 : random() * 6 - 3;
     const mirror = !fallback && random() < .5 ? -1 : 1;
     const layout = types.map((type, index) => {
-      const angle = ((index * 15 - 60) * mirror + offset) * Math.PI / 180;
-      const distance = 250 + parameters.difficulty * 8 + (fallback ? 0 : random() * 60);
+      const angle = (config.survival.routeAngles[index] * mirror + offset) * Math.PI / 180;
+      const distance = parameters.depth + (fallback ? 30 : 20 + random() * 30);
       return { id: `l${parameters.id}-safe${index}`, type, x: config.miner.anchor.x + Math.sin(angle) * distance,
         y: config.miner.anchor.y + Math.cos(angle) * distance, safeRoute: true, rewardRoll: random() };
     });
     if (!layout.every((mineral, index) => validPlacement(mineral, layout.filter((_, i) => i !== index), config))) return null;
+    const bases = layout.slice();
+    for (const index of config.survival.obstacleIndices.slice(0, parameters.obstacleCount)) {
+      const base = bases[index];
+      const angle = Math.atan2(base.x - config.miner.anchor.x, base.y - config.miner.anchor.y);
+      const distance = 235 + parameters.pressure * 12;
+      const stone = { id: `l${parameters.id}-block${index}`, type: "stone", routeObstacle: true,
+        x: config.miner.anchor.x + Math.sin(angle) * distance, y: config.miner.anchor.y + Math.cos(angle) * distance };
+      if (!validPlacement(stone, layout, config)) return null;
+      layout.push(stone);
+    }
     const newTypes = config.survival.newTypes.filter(type => config.minerals[type]);
     const firstNew = newTypes.length ? Math.floor(random() * newTypes.length) : -1;
-    const required = firstNew < 0 ? [] : [newTypes[firstNew], newTypes[(firstNew + 1 + Math.floor(random() * (newTypes.length - 1))) % newTypes.length]];
-    const available = Object.keys(config.minerals);
-    const bases = layout.slice();
-    for (let i = 0; i < parameters.count - bases.length; i += 1) {
+    const required = firstNew < 0 ? [] : fallback ? ["mysteryBag", "treasureChest"]
+      : [newTypes[firstNew], newTypes[(firstNew + 1 + Math.floor(random() * (newTypes.length - 1))) % newTypes.length]];
+    const available = parameters.difficulty >= 3 ? ["stone", "stone", "stone", "smallGold", "mysteryBag", "treasureChest", "ruby", "cursedRelic", "powderKeg"] : Object.keys(config.minerals);
+    const extraCount = parameters.count - layout.length;
+    for (let i = 0; i < extraCount; i += 1) {
       const pool = available.filter(type => !["powderKeg", "cursedRelic"].includes(type) || layout.filter(item => item.type === type).length < 2);
-      const type = required[i] || pool[Math.floor(random() * pool.length)];
+      const type = required[i] || (fallback ? "stone" : pool[Math.floor(random() * pool.length)]);
       let placed = false;
       for (let attempt = 0; attempt < (fallback ? 1 : config.survival.placementAttempts); attempt += 1) {
         const row = Math.floor(i / 10);
         const mineral = { id: `l${parameters.id}-extra${i}`, type,
           x: fallback ? 75 + (i % 10) * 90 + row * 45 : 60 + random() * 840,
-          y: fallback ? 530 + row * 55 : 210 + random() * 375, rewardRoll: random() };
+          y: fallback ? 530 + row * 55 : (parameters.difficulty >= 3 ? 455 + random() * 130 : 210 + random() * 375),
+          rewardRoll: fallback ? 0 : random() };
         if (!validPlacement(mineral, layout, config) || !protectsRoute(mineral, bases, config)) continue;
         layout.push(mineral);
         placed = true;
@@ -85,17 +104,33 @@
   }
 
   // 与游玩共用碰撞、摆动和计时规则，生成器不靠地图总价值判断可玩性。
-  function verifyRoute(config, level) {
+  function verifyRoute(config, level, strategy = "steady") {
     const run = createRun(config, level.id, { level, runSeed: 0, bombs: 0 });
+    let candidates = null;
     while (run.elapsedTime < 45 && !run.settled && run.levelIncome < level.target) {
       if (run.hook.phase === "swinging") {
-        const next = run.minerals.find(mineral => mineral.safeRoute && mineral.status === "available"
-          && Math.abs(Math.atan2(mineral.x - config.miner.anchor.x, mineral.y - config.miner.anchor.y) * 180 / Math.PI - run.hook.angle) <= .5);
-        if (next) launchHook(run);
+        if (!candidates) {
+          const available = run.minerals.filter(mineral => mineral.status === "available" && mineral.type !== "powderKeg");
+          candidates = available.filter(mineral => mineral.safeRoute);
+          if (strategy !== "steady") {
+            candidates = available.filter(mineral => {
+              const hit = firstHit(config.miner.anchor, mineral, run.minerals, config);
+              return hit?.mineral.id === mineral.id;
+            });
+            if (strategy === "safe") candidates = candidates.filter(mineral => mineral.type !== "cursedRelic" && !(mineral.reward?.kind === "time" && mineral.reward.amount < 0));
+            const value = mineral => (mineral.reward?.kind === "coins" ? mineral.reward.amount : config.minerals[mineral.type].value) * (level.rewardScale || 1);
+            const score = mineral => strategy === "value" ? value(mineral) : (value(mineral) + (mineral.routeObstacle ? 120 : 0))
+              / (Math.hypot(mineral.x - config.miner.anchor.x, mineral.y - config.miner.anchor.y) / config.minerals[mineral.type].returnSpeed + 1);
+            candidates.sort((a, b) => score(b) - score(a));
+            candidates = candidates.slice(0, 3);
+          }
+        }
+        const next = candidates.find(mineral => Math.abs(Math.atan2(mineral.x - config.miner.anchor.x, mineral.y - config.miner.anchor.y) * 180 / Math.PI - run.hook.angle) <= .5);
+        if (next) { launchHook(run); candidates = null; }
       }
       advanceRun(run, 1 / 120, config);
     }
-    return { success: run.levelIncome >= level.target, seconds: run.elapsedTime, income: run.levelIncome };
+    return { strategy, success: run.levelIncome >= level.target, seconds: run.elapsedTime, income: run.levelIncome };
   }
 
   function createLevel(config, levelId, runSeed = 0) {
@@ -182,8 +217,46 @@
     const pool = Object.keys(config.shop).filter(item => item !== "dynamite");
     const offers = ["dynamite"];
     while (offers.length < config.survival.shopSlots && pool.length) offers.push(pool.splice(Math.floor(random() * pool.length), 1)[0]);
-    run.shop = { nextLevelId: run.levelId + 1, offers: Object.freeze(offers), purchaseCount: 0, effects: emptyEffects() };
+    run.shop = { nextLevelId: run.levelId + 1, offers: Object.freeze(offers),
+      prices: Object.freeze(Object.fromEntries(offers.map(item => [item, shopPrice(config, run.levelId + 1, item)]))),
+      purchaseCount: 0, effects: emptyEffects() };
     return run.shop;
+  }
+
+  function shopPrice(config, nextLevelId, item) {
+    const next = levelParameters(config, nextLevelId);
+    const multiplier = (1 + config.survival.warmupPriceGrowth * next.difficulty)
+      * (1 + config.survival.stagePriceGrowth * Math.log2(1 + next.stage)) * next.rewardScale;
+    return Math.ceil(config.shop[item].price * multiplier / 10) * 10;
+  }
+
+  function captureCheckpoint(run, kind, config) {
+    const checkpoint = { schemaVersion: 1, rulesVersion: config.version, kind,
+      run: JSON.parse(JSON.stringify(captureEntrySnapshot(run))) };
+    if (kind === "shop") {
+      if (!run.result?.success) throw new Error("只能保存成功关卡的商店");
+      checkpoint.run.levelIncome = run.levelIncome;
+      checkpoint.run.result = { ...run.result };
+      checkpoint.shop = JSON.parse(JSON.stringify(createShop(run, config)));
+    } else if (kind !== "level" || run.elapsedTime !== 0 || run.levelIncome !== 0) {
+      throw new Error("关卡存档必须在开局创建");
+    }
+    return checkpoint;
+  }
+
+  function restoreCheckpoint(checkpoint, config) {
+    const run = restoreEntrySnapshot(checkpoint.run, config);
+    if (checkpoint.kind === "shop") {
+      run.levelIncome = checkpoint.run.levelIncome;
+      run.result = { ...checkpoint.run.result };
+      run.settled = true;
+      run.remainingTime = 0;
+      run.elapsedTime = run.level.duration;
+      run.hook.phase = "stopped";
+      run.shop = { ...checkpoint.shop, offers: Object.freeze([...checkpoint.shop.offers]),
+        prices: Object.freeze({ ...checkpoint.shop.prices }), effects: { ...checkpoint.shop.effects } };
+    }
+    return run;
   }
 
   function purchaseAvailability(run, shop, item, config) {
@@ -191,18 +264,18 @@
     if (shop.purchaseCount >= config.survival.maxPurchases) return { available: false, reason: "已购满 4 件" };
     if (item === "dynamite" && run.bombs >= config.shop.dynamite.maxInventory) return { available: false, reason: "持有已满" };
     if (item !== "dynamite" && shop.effects[item]) return { available: false, reason: "已购买" };
-    if (run.wallet < config.shop[item].price) return { available: false, reason: "金币不足" };
+    if (run.wallet < shop.prices[item]) return { available: false, reason: "金币不足" };
     return { available: true, reason: "购买" };
   }
 
   function purchaseItem(run, shop, item, config) {
     const availability = purchaseAvailability(run, shop, item, config);
     if (!availability.available) return { success: false, reason: availability.reason };
-    run.wallet -= config.shop[item].price;
+    run.wallet -= shop.prices[item];
     shop.purchaseCount += 1;
     if (item === "dynamite") run.bombs += 1;
     else shop.effects[item] = true;
-    return { success: true, item, cost: config.shop[item].price };
+    return { success: true, item, cost: shop.prices[item] };
   }
 
   function canUseDynamite(run) {
@@ -309,6 +382,7 @@
         feedback.push("炸药 +1");
       } else { value = 100; feedback.push("炸药已满，改为 +¥100"); }
     }
+    value = Math.round(value * (run.level.rewardScale || 1));
     mineral.status = "banked";
     run.levelIncome += value;
     run.wallet += value;
@@ -443,5 +517,7 @@
     return events;
   }
 
-  return Object.freeze({ createLevel, levelParameters, verifyRoute, validPlacement, protectsRoute, resolveReward, createRun, captureEntrySnapshot, restoreEntrySnapshot, createShop, purchaseAvailability, purchaseItem, canUseDynamite, useDynamite, hookPoint, maximumLength, segmentCircle, segmentRectangle, firstHit, launchHook, advanceRun });
+  return Object.freeze({ createLevel, levelParameters, verifyRoute, validPlacement, protectsRoute, resolveReward, createRun,
+    captureEntrySnapshot, restoreEntrySnapshot, captureCheckpoint, restoreCheckpoint, createShop, shopPrice, purchaseAvailability,
+    purchaseItem, canUseDynamite, useDynamite, hookPoint, maximumLength, segmentCircle, segmentRectangle, firstHit, launchHook, advanceRun });
 });

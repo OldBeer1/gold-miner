@@ -3,7 +3,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs/promises");
 const path = require("node:path");
 const { chromium } = require(process.env.GOLD_PLAYWRIGHT_MODULE || "playwright");
-const report = { phase: "12", method: "real browser UI and original collision/reward rules, controlled single-object fixtures, browser clock and explicit settlement fixtures for transaction boundaries", checks: [], errors: [] };
+const report = { phase: "16", version: "1.1.0", method: "real browser UI and original collision/reward rules, controlled single-object fixtures, browser clock and explicit settlement fixtures for transaction boundaries", checks: [], errors: [] };
 const diag = page => page.evaluate(() => GoldMiner.getDiagnostics());
 function fixtureInstaller() {
   let rules;
@@ -49,13 +49,14 @@ async function finish(page, income = 5000) {
     const page = await browser.newPage({ viewport: { width: 1280, height: 720 } });
     await page.addInitScript(fixtureInstaller); await page.clock.install();
     await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1));
+    page.on("dialog", dialog => dialog.accept());
     page.on("pageerror", e => report.errors.push(e.message));
     page.on("console", m => { if (m.type() === "error") report.errors.push(m.text()); });
     await page.goto("http://127.0.0.1:8080");
     for (const [type, income, roll] of [["ruby",350,0], ["mysteryBag",200,.5], ["treasureChest",800,.9], ["cursedRelic",500,0]]) {
       await fresh(page, { type, roll }); await grab(page);
       assert.equal((await diag(page)).run.levelIncome, 0);
-      await page.screenshot({ path: path.join(__dirname, `survival-carry-${type}.png`), fullPage: true });
+      await page.screenshot({ path: path.join(__dirname, `survival-v110-carry-${type}.png`), fullPage: true });
       await page.clock.runFor(3200);
       const state = await diag(page); assert.equal(state.run.levelIncome, income); assert.equal(state.run.minerals[0].status, "banked");
       if (type === "cursedRelic") assert.ok(state.run.remainingTime < 52);
@@ -70,7 +71,7 @@ async function finish(page, income = 5000) {
     await page.locator("#game-canvas").focus(); await page.keyboard.press("Space");
     await page.clock.runFor(250); const beforeExplosion = await diag(page);
     assert.equal(beforeExplosion.run.minerals[0].status, "available"); assert.equal(beforeExplosion.run.hook.phase, "extending");
-    await page.screenshot({ path: path.join(__dirname, "survival-powder-keg-before.png"), fullPage: true });
+    await page.screenshot({ path: path.join(__dirname, "survival-v110-powder-keg-before.png"), fullPage: true });
     await page.clock.runFor(150);
     let state = await diag(page);
     assert.equal(state.run.minerals[0].status, "destroyed"); assert.equal(state.run.effects.protectionCharm, true);
@@ -84,7 +85,7 @@ async function finish(page, income = 5000) {
     assert.equal(state.audio.counts.explode || 0, (beforeExplosion.audio.counts.explode || 0) + 1);
     assert.equal(state.audio.counts.harvest || 0, beforeExplosion.audio.counts.harvest || 0);
     assert.ok((await page.locator("#input-feedback").textContent()).includes("火药桶爆炸"));
-    await page.screenshot({ path: path.join(__dirname, "survival-powder-keg-explosion.png"), fullPage: true });
+    await page.screenshot({ path: path.join(__dirname, "survival-v110-powder-keg-explosion.png"), fullPage: true });
     await page.keyboard.press("Escape"); const explosionPaused = await diag(page); await page.clock.fastForward(5000);
     assert.deepEqual((await diag(page)).visuals, explosionPaused.visuals); assert.deepEqual((await diag(page)).run, explosionPaused.run);
     await page.locator("#resume-button").click(); await page.clock.runFor(1000);
@@ -125,7 +126,7 @@ async function finish(page, income = 5000) {
       await fresh(page, { seed }); await finish(page); await page.locator("#restart-button").click();
       assert.equal(await page.locator("#shop-products .shop-product").count(), 4);
       await page.locator(`#buy-${item}`).click(); const bought = await diag(page);
-      assert.equal(bought.shop.purchaseCount, 1); assert.equal(bought.run.wallet, 5000 - config.shop[item].price);
+      assert.equal(bought.shop.purchaseCount, 1); assert.equal(bought.run.wallet, 5000 - bought.shop.prices[item]);
       assert.equal(await page.locator(`#buy-${item}`).isDisabled(), true);
       await page.locator(`#buy-${item}`).dispatchEvent("click"); assert.equal((await diag(page)).shop.purchaseCount, 1);
       await page.locator("#next-level-button").click(); state = await diag(page); assert.equal(state.run.levelId, 2); assert.equal(state.run.effects[item], true);
@@ -135,10 +136,10 @@ async function finish(page, income = 5000) {
     await fresh(page, { seed: 0 }); await finish(page); await page.locator("#restart-button").click();
     const offers = (await diag(page)).shop.offers;
     for (let i = 0; i < 4; i += 1) await page.locator("#buy-dynamite").click();
-    state = await diag(page); assert.equal(state.shop.purchaseCount, 4); assert.equal(state.run.wallet, 4600); assert.equal(state.run.bombs, 5);
+    state = await diag(page); assert.equal(state.shop.purchaseCount, 4); assert.equal(state.run.wallet, 5000 - 4 * state.shop.prices.dynamite); assert.equal(state.run.bombs, 5);
     for (const item of offers) { assert.equal(await page.locator(`#buy-${item}`).isDisabled(), true); await page.locator(`#buy-${item}`).dispatchEvent("click"); }
-    assert.equal((await diag(page)).run.wallet, 4600); assert.deepEqual((await diag(page)).shop.offers, offers);
-    await page.screenshot({ path: path.join(__dirname, "survival-shop-limit.png"), fullPage: true });
+    assert.equal((await diag(page)).run.wallet, 5000 - 4 * state.shop.prices.dynamite); assert.deepEqual((await diag(page)).shop.offers, offers);
+    await page.screenshot({ path: path.join(__dirname, "survival-v110-shop-limit.png"), fullPage: true });
     report.checks.push("四件限购、所有按钮禁用、强制重复点击不扣钱、不刷新商品");
     await fresh(page, {}); await finish(page, 650); await page.locator("#restart-button").click();
     for (const viewport of [{ width: 1280, height: 720 }, { width: 1920, height: 1080 }, { width: 1280, height: 480 }]) {
@@ -149,7 +150,7 @@ async function finish(page, income = 5000) {
       if (viewport.height >= 720) for (const selector of ["#next-level-button", "#shop-home-button", "#buy-dynamite"]) {
         const box = await page.locator(selector).boundingBox(); assert.ok(box.y >= 0 && box.y + box.height <= viewport.height);
       }
-      await page.screenshot({ path: path.join(__dirname, `survival-shop-${viewport.width}x${viewport.height}.png`), fullPage: true });
+      await page.screenshot({ path: path.join(__dirname, `survival-v110-shop-${viewport.width}x${viewport.height}.png`), fullPage: true });
     }
     report.checks.push("四卡商店在两种桌面视口与短屏无横向溢出");
     await page.setViewportSize({ width: 1280, height: 720 });
@@ -160,9 +161,11 @@ async function finish(page, income = 5000) {
     const preferences = await page.evaluate(() => JSON.parse(localStorage.getItem(GoldMinerStorage.key)));
     assert.deepEqual(Object.keys(preferences).sort(), ["bestClearedLevel", "highScore", "soundEnabled"]);
     await page.reload(); state = await diag(page); assert.equal(state.screen, "home"); assert.equal(state.bestClearedLevel, preferences.bestClearedLevel); assert.equal(state.highScore, preferences.highScore);
-    report.checks.push("失败重新挑战和刷新只保存设置与生存记录");
+    assert.equal(state.checkpoint.kind, "level");
+    report.checks.push("失败重新挑战，刷新保留新关起点、设置与生存记录");
     for (const mode of ["denied", "corrupt", "legacy", "audio-unavailable"]) {
       const second = await browser.newPage();
+      second.on("dialog", dialog => dialog.accept());
       await second.addInitScript(mode => {
         if (mode === "denied") Object.defineProperty(window, "localStorage", { get() { throw Error("denied"); } });
         if (mode === "corrupt") Storage.prototype.getItem = () => "{bad";
@@ -179,6 +182,6 @@ async function finish(page, income = 5000) {
     assert.deepEqual(report.errors, []); report.result = "passed";
     console.log(`浏览器边界验证通过：${report.checks.length} 项。`);
   } finally {
-    await browser.close(); await fs.writeFile(path.join(__dirname, "survival-ui-report.json"), JSON.stringify(report, null, 2) + "\n");
+    await browser.close(); await fs.writeFile(path.join(__dirname, "survival-v110-ui-report.json"), JSON.stringify(report, null, 2) + "\n");
   }
 })().catch(e => { console.error(e); process.exitCode = 1; });

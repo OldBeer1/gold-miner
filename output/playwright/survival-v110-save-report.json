@@ -1,0 +1,20 @@
+{
+  "version": "1.1.0",
+  "method": "real browser UI and rules, controlled clock and explicit one-gold level fixture for settlement boundaries",
+  "checks": [
+    "关内赚取后刷新回本关起点，种子/布局相同，钱包回滚",
+    "返回主页保留存档，新挑战取消覆盖后继续原挑战",
+    "成功结算退出直达固定商店，购物恢复同报价、金额、库存和限购且不重复收入",
+    "入下一关保存、实际失败清档、记录保留、重新挑战资源重置",
+    "确认新挑战替换存档并生成新种子",
+    "损坏存档提示且可确认覆盖后游玩",
+    "未知玩法版本拒绝恢复并显示版本提示",
+    "read 存储场景反馈正确且仍可游玩",
+    "write 存储场景反馈正确且仍可游玩",
+    "delete 存储场景反馈正确且仍可游玩",
+    "legacy 存储场景反馈正确且仍可游玩"
+  ],
+  "errors": [],
+  "browser": "154.0.8037.97",
+  "result": "passed"
+}
