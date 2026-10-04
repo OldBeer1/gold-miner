@@ -1,13 +1,14 @@
 (function (root, factory) {
   "use strict";
-  if (typeof module === "object" && module.exports) module.exports = factory();
-  else root.GoldMinerStorage = factory();
-})(typeof window !== "undefined" ? window : globalThis, function () {
+  if (typeof module === "object" && module.exports) module.exports = factory(require("./growth.js"));
+  else root.GoldMinerStorage = factory(root.GoldMinerGrowth);
+})(typeof window !== "undefined" ? window : globalThis, function (growth) {
   "use strict";
   const key = "gold-miner.survival.preferences.v2";
   const previousKey = "gold-miner.survival.preferences.v1";
   const legacyKey = "gold-miner.preferences.v1";
   const checkpointKey = "gold-miner.survival.checkpoint.v1";
+  const progressKey = "gold-miner.survival.progress.v1";
 
   function validatePreferences(value) {
     const data = value && typeof value === "object" && !Array.isArray(value) ? value : {};
@@ -138,6 +139,90 @@
     } catch { return false; }
   }
 
+  function validateProgress(value, config) {
+    const data = growth.clone(value);
+    if (!growth.validateDocument(data)) return null;
+    const active = data.activeRun;
+    if (active) {
+      const checkpoint = validateCheckpoint(active.checkpoint, config);
+      if (!checkpoint || checkpoint.run.runSeed !== active.runSeed
+        || active.committedThroughLevel !== checkpoint.run.levelId - (checkpoint.kind === "level" ? 1 : 0)
+        || checkpoint.kind === "level" && active.entryCountedForLevel !== checkpoint.run.levelId
+        || active.bestReachedLevel < checkpoint.run.levelId || active.runTotals.qualifiedIncome !== checkpoint.run.totalIncome) return null;
+      active.checkpoint = checkpoint;
+    }
+    return data;
+  }
+
+  function adaptV110Checkpoint(value, config) {
+    // v1.2 没有改变关卡数值，仍显式按旧版本校验，再复制兼容的入口/交易字段。
+    const old = validateCheckpoint(value, { ...config, version: "1.1.0" });
+    if (!old) return null;
+    const source = old.run;
+    const run = { levelId: source.levelId, runSeed: source.runSeed, level: source.level, wallet: source.wallet,
+      bombs: source.bombs, totalIncome: source.totalIncome, effects: source.effects };
+    if (old.kind === "shop") { run.levelIncome = source.levelIncome; run.result = source.result; }
+    const checkpoint = { schemaVersion: 1, rulesVersion: config.version, kind: old.kind, run };
+    if (old.kind === "shop") checkpoint.shop = old.shop;
+    return validateCheckpoint(checkpoint, config);
+  }
+
+  function saveProgress(source, document, config, expectedRevision) {
+    try {
+      const storage = typeof source === "function" ? source() : source;
+      const current = storage.getItem(progressKey);
+      const currentDocument = current === null ? null : JSON.parse(current);
+      if (currentDocument !== null && !validateProgress(currentDocument, config)) return { saved: false, conflict: true, message: "磁盘档案损坏或版本不兼容，已保留原数据，请重新载入。" };
+      const revision = currentDocument === null ? null : currentDocument.revision;
+      if (revision !== expectedRevision) return { saved: false, conflict: true, message: "其他页面已更新档案，请重新载入。" };
+      const candidate = growth.clone(document);
+      candidate.revision = (expectedRevision ?? 0) + 1;
+      const validated = validateProgress(candidate, config);
+      if (!validated) return { saved: false, message: "档案校验失败：本次进度仅在当前页面保留。" };
+      storage.setItem(progressKey, JSON.stringify(validated));
+      return { saved: true, revision: validated.revision };
+    } catch {
+      return { saved: false, message: "保存失败：本次未能保存，关闭后旧进度、统计或报告可能仍可恢复。" };
+    }
+  }
+
+  function loadProgress(source, config, now = new Date().toISOString()) {
+    const preferences = loadPreferences(source);
+    const fresh = () => growth.createDocument(preferences, now);
+    let storage, text;
+    try { storage = typeof source === "function" ? source() : source; text = storage.getItem(progressKey); }
+    catch { return { document: fresh(), revision: null, blocked: true, message: "无法读取档案：本次只能临时游玩，关闭后无法保证恢复。" }; }
+    if (text !== null) {
+      try {
+        if (text.length > 300000) throw new Error("oversized progress");
+        const document = validateProgress(JSON.parse(text), config);
+        if (!document) throw new Error("invalid progress");
+        return { document, revision: document.revision, blocked: false, message: "" };
+      } catch {
+        return { document: fresh(), revision: null, blocked: true, message: "档案损坏或版本不兼容，已保留原数据。本次可临时游玩，不能保存；请检查备份。" };
+      }
+    }
+    const document = fresh();
+    growth.evaluate(document, null, now, true);
+    let migrationMessage = "";
+    try {
+      const oldText = storage.getItem(checkpointKey);
+      if (oldText !== null) {
+        const checkpoint = oldText.length <= 100000 ? adaptV110Checkpoint(JSON.parse(oldText), config) : null;
+        if (checkpoint) {
+          growth.createActive(document, checkpoint, `legacy-${checkpoint.run.runSeed}-${checkpoint.run.levelId}-${checkpoint.kind}`, now, true);
+          if (checkpoint.kind === "level") growth.enterLevel(document, checkpoint, now);
+          migrationMessage = "旧挑战已迁入，次数与时长从升级后记录。";
+        } else migrationMessage = "旧挑战损坏或不兼容，原数据已保留。";
+      }
+    } catch { migrationMessage = "旧挑战无法读取，原数据已保留。"; }
+    const saved = saveProgress(storage, document, config, null);
+    if (saved.saved) document.revision = saved.revision;
+    return { document, revision: saved.saved ? saved.revision : null, blocked: false,
+      message: saved.saved ? migrationMessage : `${migrationMessage} ${saved.message}`.trim() };
+  }
+
   return Object.freeze({ key, previousKey, legacyKey, checkpointKey, validatePreferences, loadPreferences, savePreferences,
-    highScoreAfterRun, validateCheckpoint, loadCheckpoint, saveCheckpoint, clearCheckpoint });
+    highScoreAfterRun, validateCheckpoint, loadCheckpoint, saveCheckpoint, clearCheckpoint,
+    progressKey, validateProgress, adaptV110Checkpoint, saveProgress, loadProgress });
 });

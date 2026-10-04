@@ -73,5 +73,5 @@ check("读写/删除不可用安全返回，失败删除不影响记录", () => 
   const db = memory(); storage.savePreferences(db, { highScore: 100 }); storage.saveCheckpoint(db, rules.captureCheckpoint(entry(), "level", config), config);
   assert.ok(storage.clearCheckpoint(db)); assert.equal(storage.loadCheckpoint(db, config).checkpoint, null); assert.equal(storage.loadPreferences(db).highScore, 100);
 });
-fs.writeFileSync(path.resolve(__dirname, "../output/playwright/survival-v110-checkpoints-report.json"), JSON.stringify({ version: config.version, checks, result: "passed" }, null, 2) + "\n");
+fs.writeFileSync(path.resolve(__dirname, `../output/playwright/survival-v${config.version.replaceAll(".", "")}-checkpoints-report.json`), JSON.stringify({ version: config.version, checks, result: "passed" }, null, 2) + "\n");
 console.log(`存档规则检查通过：${checks.length} 项。`);

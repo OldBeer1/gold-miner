@@ -1,4 +1,4 @@
-param([string]$Version = '1.1.0')
+param([string]$Version = '1.2.0')
 
 $ErrorActionPreference = 'Stop'
 if ($Version -notmatch '^\d+\.\d+\.\d+$') { throw 'Version must use major.minor.patch.' }
@@ -8,7 +8,8 @@ $goldProjectRoot = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 $goldReleaseDirectory = Join-Path $goldProjectRoot 'output\release'
 [void][System.IO.Directory]::CreateDirectory($goldReleaseDirectory)
 $goldArchivePath = Join-Path $goldReleaseDirectory "Gold-survival-v$Version.zip"
-$goldRuntimeFiles = @('index.html', 'styles.css', 'js/config.js', 'js/rules.js', 'js/game.js', 'js/storage.js', 'js/effects.js', 'js/audio.js')
+$goldRuntimeFiles = @('index.html', 'styles.css', 'js/config.js', 'js/growth.js', 'js/rules.js', 'js/game.js', 'js/storage.js', 'js/effects.js', 'js/audio.js')
+if ((Get-Content -LiteralPath (Join-Path $goldProjectRoot 'js/config.js') -Raw) -notmatch ('version: "' + [regex]::Escape($Version) + '"')) { throw 'Requested version does not match runtime config.' }
 foreach ($goldRelativePath in $goldRuntimeFiles) {
     if (-not (Test-Path -LiteralPath (Join-Path $goldProjectRoot $goldRelativePath) -PathType Leaf)) {
         throw "Missing runtime file: $goldRelativePath"
@@ -48,7 +49,15 @@ $goldPlayerReadme = @"
 
 自动保存关卡起点和商店交易。刷新或关内退出后，主页“继续游戏”从当前关起点重开：同一地图/奖励，钱包、炸药、时间和增益回到入关状态，关内新收入不保留；从商店继续时保留原商品、报价、钱包、购买次数与增益。失败清除本轮存档，最高记录保留。新挑战需确认覆盖已有存档。
 
-音效和新版最高记录也会保存；旧版只继承音效，旧成绩不删除。保存失败会有提示，此时关闭页面后不能保证恢复。移动文件夹、更换浏览器、文件直开/服务地址切换或清除浏览器数据可能使用不同存档。
+音效、最高记录和成长档案统一保存。v1.1.0 的有效最高记录及关卡/商店可迁入，原数据保留；无法还原的次数与时长从升级后开始记录。保存失败会有提示，此时关闭页面后可能恢复旧进度。未知或损坏档案保留原数据，可临时游玩。移动文件夹、更换浏览器、文件直开/服务地址切换或清除浏览器数据可能使用不同存档。同一地址请只用一个页面游玩，外部更新会冻结并要求重新载入。
+
+## 矿工档案与成就
+
+主页可查看矿工档案、18 项成就、9 类矿井图鉴和最近 10 局报告。成就提供徽章及部分称号，称号只作展示，不增加采矿能力。
+
+本关回收、技巧与时长在正式结算后记录；关内刷新或返回后从入口继续，这些尚未结算的成果会回滚。布局发现和到达关数在首次入关时记录，继续同一入口不重复。
+
+报告区分成功关有效成绩和包含失败关的实际回收收入。正式失败结束挑战并保存报告；确认新挑战覆盖旧局会记录主动放弃，只包含已结算成果。取消覆盖不改变数据，返回主页保留挑战。暂停可以查看资料，关闭资料后仍暂停，需主动继续。
 
 源码、需求文档和更新版本：https://github.com/OldBeer1/gold-miner
 "@
@@ -75,5 +84,5 @@ $goldManifest = [ordered]@{
     entries = $goldRuntimeFiles + 'README.md'
 }
 $goldManifest | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath (Join-Path $goldReleaseDirectory "release-manifest-v$Version.json") -Encoding utf8
-Write-Output "玩家包已生成：$goldArchivePath（$($goldManifest.size) 字节，9 个文件）"
+Write-Output "玩家包已生成：$goldArchivePath（$($goldManifest.size) 字节，$($goldManifest.entries.Count) 个文件）"
 Write-Output "SHA-256：$($goldManifest.sha256)"

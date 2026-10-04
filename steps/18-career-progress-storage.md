@@ -1,6 +1,6 @@
 # 第 18 步：生涯统计与成长存档
 
-状态：待开始。目标版本：v1.2.0。前置：[第 17 步](17-growth-data-events.md) 已完成实际实现与验证。
+状态：已完成（2026-10-04，本地验收）。目标版本：v1.2.0。前置：[第 17 步](17-growth-data-events.md) 已完成实际实现与验证。
 
 ## 1. 开始前读取
 
@@ -52,3 +52,9 @@
 ```text
 请按 AGENTS.md 接手顺序读取项目文档，再读取 FEATURE_ROADMAP.md、steps/18-career-progress-storage.md 和第 17 步最新交接，确认前置检查通过。完成第 18 步生涯统计、统一成长存档、旧版本迁移、重复提交防护与异常反馈，执行存储和浏览器验证，更新 IMPLEMENTATION_PLAN.md、VALIDATION.md 及对应说明。仅完成本步范围，不自动进入第 19 步；不推送或发布。
 ```
+
+## 7. 实际完成交接
+
+storage.loadProgress / saveProgress / validateProgress 使用 progress.v1 权威文档；显式迁移 v1.1.0 入口/商店，旧键保留。失败/成功/交易同次保存，修订冲突冻结；6 组快照、迁移/失败重试纯逻辑及真实浏览器恢复通过。
+
+统一结果、接口与限制见 [最新交接](../IMPLEMENTATION_PLAN.md) 和 [v1.2.0 实际验收](../VALIDATION.md)。原执行提示词保留作范围追溯；已完成内容不重复实施。

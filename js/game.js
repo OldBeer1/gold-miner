@@ -4,10 +4,10 @@
   const config = window.GoldMinerConfig;
   const rules = window.GoldMinerRules;
   const preferencesStore = window.GoldMinerStorage;
+  const growth = window.GoldMinerGrowth;
   const effects = window.GoldMinerEffects;
   const audio = window.GoldMinerAudio.createPlayer();
-  const savedPreferences = preferencesStore.loadPreferences(() => window.localStorage);
-  const savedCheckpoint = preferencesStore.loadCheckpoint(() => window.localStorage, config);
+  const savedProgress = preferencesStore.loadProgress(() => window.localStorage, config);
   const canvas = document.getElementById("game-canvas");
   const context = canvas.getContext("2d");
   const elements = {
@@ -60,20 +60,28 @@
   const colors = config.palette;
   const state = {
     screen: "home",
-    settings: { soundEnabled: savedPreferences.soundEnabled },
-    highScore: savedPreferences.highScore,
-    bestClearedLevel: savedPreferences.bestClearedLevel,
+    settings: savedProgress.document.settings,
+    highScore: savedProgress.document.profile.career.bestRunIncome,
+    bestClearedLevel: savedProgress.document.profile.career.bestClearedLevel,
+    progress: savedProgress.document,
+    revision: savedProgress.revision,
+    storageBlocked: savedProgress.blocked,
+    externalChange: false,
+    profileReturn: "home",
+    profilePage: "career",
+    levelUnlocks: [],
+    unlockQueue: [],
+    toastSeconds: 0,
     run: createRun(),
     notice: { text: "", seconds: 0 },
     entrySnapshot: null,
     shop: null,
     pauseReason: null,
     visuals: effects.createState(),
-    checkpoint: savedCheckpoint.checkpoint,
-    hasCheckpointData: savedCheckpoint.hasData,
-    saveMessage: savedCheckpoint.message,
-    saveError: Boolean(savedCheckpoint.message),
-    preferencesError: false,
+    checkpoint: savedProgress.document.activeRun?.checkpoint || null,
+    hasCheckpointData: Boolean(savedProgress.document.activeRun),
+    saveMessage: savedProgress.message,
+    saveError: savedProgress.blocked || savedProgress.revision === null,
   };
   audio.setEnabled(state.settings.soundEnabled);
   let frameId = null;
@@ -108,7 +116,16 @@
     elements.result.hidden = state.screen !== "result";
     elements.shop.hidden = state.screen !== "shop";
     elements.pauseScreen.hidden = state.screen !== "paused";
+    document.getElementById("profile-screen").hidden = state.screen !== "profile";
+    document.getElementById("latest-report-button").hidden = !state.progress.profile.recentReports.length;
+    document.getElementById("reload-progress-button").hidden = !state.externalChange;
+    const title = growth.definitions.find(def => def.id === state.progress.profile.equippedTitleId)?.reward.title;
+    setText(document.getElementById("equipped-title"), title ? `称号 · ${title}` : "矿工档案 · 成就记录你的经历");
+    const toast = document.getElementById("achievement-notice");
+    toast.hidden = !state.unlockQueue.length || state.screen === "paused" || state.screen === "profile";
+    if (state.unlockQueue.length) setText(document.getElementById("achievement-notice-text"), `徽章解锁 · ${growth.definitions.find(def => def.id === state.unlockQueue[0]).title}${state.saveError ? "（本次未能保存）" : ""}`);
     elements.pause.disabled = !["playing", "paused"].includes(state.screen);
+    for (const button of [elements.start, elements.continue, elements.restart, elements.nextLevel, elements.resume]) button.disabled = state.externalChange;
     elements.pause.setAttribute("aria-pressed", String(state.screen === "paused"));
     setText(elements.pause, state.screen === "paused" ? "继续" : "暂停");
     setText(elements.pauseTitle, state.pauseReason === "hidden" ? "已自动暂停" : "已暂停");
@@ -125,8 +142,8 @@
     if (state.checkpoint) setText(elements.checkpointDescription, state.checkpoint.kind === "shop"
       ? `已保存：第 ${state.checkpoint.run.levelId} 关后的商店`
       : `已保存：第 ${state.checkpoint.run.levelId} 关起点 · 关内退出会从本关重开`);
-    setText(elements.saveStatus, state.saveMessage + (state.preferencesError ? " · 音效或最高记录保存失败" : ""));
-    elements.saveStatus.classList.toggle("is-error", state.saveError || state.preferencesError);
+    setText(elements.saveStatus, state.saveMessage);
+    elements.saveStatus.classList.toggle("is-error", state.saveError);
     elements.level.textContent = `第 ${state.run.levelId} 关`;
     setText(document.getElementById("hud-stage"), level.stage ? `关卡 · 进阶 ${level.stage}` : "关卡 · 基础");
     elements.level.title = `矿物收入 ×${(level.rewardScale || 1).toFixed(2)}，石头阻挡 ${level.obstacleCount || 0} 条路线`;
@@ -167,7 +184,7 @@
     if (state.run.result) {
       const result = state.run.result;
       setText(elements.resultEyebrow, `采矿报告 · 第 ${String(state.run.levelId).padStart(2, "0")} 关`);
-      setText(elements.resultTitle, result.success ? `第 ${state.run.levelId} 关达标！` : "本轮挑战结束");
+      setText(elements.resultTitle, result.success ? `第 ${state.run.levelId} 关达标！` : "本次挑战报告");
       setText(elements.resultDescription, result.success
         ? "本关收入已累计，去补给站准备下一关。更深处还有新发现。"
         : `第 ${state.run.levelId} 关未达标，已通过 ${state.run.levelId - 1} 关。本次失败收入不计入记录。`);
@@ -175,6 +192,7 @@
       setText(elements.resultIncome, `¥ ${result.levelIncome}`);
       setText(elements.resultTarget, `¥ ${result.target}`);
       setText(elements.resultTotal, `¥ ${result.totalIncome}`);
+      setText(document.getElementById("result-achievements"), state.levelUnlocks.length ? `本关新徽章：${state.levelUnlocks.map(id => growth.definitions.find(def => def.id === id).title).join("、")}` : "");
     }
     if (state.shop) {
       const next = rules.levelParameters(config, state.shop.nextLevelId);
@@ -192,12 +210,28 @@
   }
 
   function persistCheckpoint(kind) {
-    state.checkpoint = rules.captureCheckpoint(state.run, kind, config);
-    const saved = preferencesStore.saveCheckpoint(() => window.localStorage, state.checkpoint, config);
-    state.hasCheckpointData = true;
-    state.saveError = !saved;
-    state.saveMessage = saved ? (kind === "shop" ? "商店进度已保存" : "已保存本关起点，退出后可继续")
-      : "保存失败：本次进度仅在当前页面保留，关闭后无法保证恢复。";
+    const checkpoint = rules.captureCheckpoint(state.run, kind, config);
+    if (kind === "level") queueUnlocks(growth.enterLevel(state.progress, checkpoint, new Date().toISOString()));
+    else state.progress.activeRun.checkpoint = checkpoint;
+    persistProgress(kind === "shop" ? "商店与档案已保存" : "已保存本关起点，退出后可继续");
+  }
+
+  function persistProgress(message) {
+    state.checkpoint = state.progress.activeRun?.checkpoint || null;
+    state.hasCheckpointData = Boolean(state.checkpoint);
+    state.highScore = state.progress.profile.career.bestRunIncome;
+    state.bestClearedLevel = state.progress.profile.career.bestClearedLevel;
+    if (state.storageBlocked || state.externalChange) { state.saveError = true; return; }
+    const saved = preferencesStore.saveProgress(() => window.localStorage, state.progress, config, state.revision);
+    state.saveError = !saved.saved;
+    state.saveMessage = saved.saved ? message : saved.message;
+    if (saved.saved) { state.revision = saved.revision; state.progress.revision = saved.revision; }
+    if (saved.conflict) handleExternalChange();
+  }
+
+  function queueUnlocks(ids) {
+    for (const id of ids) if (!state.unlockQueue.includes(id)) state.unlockQueue.push(id);
+    if (ids.length) { state.toastSeconds = 4; audio.play("success"); }
   }
 
   function beginLevel(run, snapshot = rules.captureEntrySnapshot(run)) {
@@ -210,6 +244,8 @@
     state.notice = { text: "", seconds: 0 };
     state.visuals = effects.createState();
     state.screen = "playing";
+    state.levelUnlocks = [];
+    document.getElementById("result-report").replaceChildren();
     persistCheckpoint("level");
     updateInterface();
     renderScene();
@@ -219,12 +255,19 @@
 
   function startGame() {
     if (state.screen === "playing") return;
+    if (state.externalChange) return;
     if (state.hasCheckpointData && !window.confirm("开始新挑战会替换已有存档，确定开始吗？")) return;
-    beginLevel(createRun());
+    const now = new Date().toISOString();
+    growth.abandon(state.progress, now);
+    const run = createRun();
+    const checkpoint = rules.captureCheckpoint(run, "level", config);
+    const runId = window.crypto?.randomUUID ? window.crypto.randomUUID() : `run-${Date.now()}-${run.runSeed}`;
+    growth.createActive(state.progress, checkpoint, runId, now, false);
+    beginLevel(run);
   }
 
   function continueGame() {
-    if (state.screen !== "home" || !state.checkpoint) return;
+    if (state.screen !== "home" || !state.checkpoint || state.externalChange) return;
     const run = rules.restoreCheckpoint(state.checkpoint, config);
     if (state.checkpoint.kind === "level") beginLevel(run);
     else {
@@ -270,7 +313,7 @@
   }
 
   function startNextLevel() {
-    if (state.screen !== "shop") return;
+    if (state.screen !== "shop" || state.externalChange) return;
     const next = rules.createRun(config, state.shop.nextLevelId, {
       wallet: state.run.wallet,
       bombs: state.run.bombs,
@@ -282,7 +325,7 @@
   }
 
   function purchase(item) {
-    if (state.screen !== "shop") return;
+    if (state.screen !== "shop" || state.externalChange) return;
     const result = rules.purchaseItem(state.run, state.shop, item, config);
     if (result.success) persistCheckpoint("shop");
     updateInterface();
@@ -311,11 +354,7 @@
   }
 
   function persistPreferences() {
-    state.preferencesError = !preferencesStore.savePreferences(() => window.localStorage, {
-      soundEnabled: state.settings.soundEnabled,
-      highScore: state.highScore,
-      bestClearedLevel: state.bestClearedLevel,
-    });
+    persistProgress("设置与档案已保存");
   }
 
   function pauseGame(reason = "manual") {
@@ -337,7 +376,7 @@
   }
 
   function resumeGame() {
-    if (state.screen !== "paused" || document.hidden) return;
+    if (state.screen !== "paused" || document.hidden || state.externalChange) return;
     state.screen = "playing";
     state.pauseReason = null;
     updateInterface();
@@ -373,6 +412,10 @@
   }
 
   function updateGame(deltaSeconds) {
+    if (state.unlockQueue.length) {
+      state.toastSeconds -= deltaSeconds;
+      if (state.toastSeconds <= 0) { state.unlockQueue.shift(); state.toastSeconds = 4; if (state.unlockQueue.length) audio.play("success"); }
+    }
     state.notice.seconds = Math.max(0, state.notice.seconds - deltaSeconds);
     const elapsedBefore = state.run.elapsedTime;
     const events = rules.advanceRun(state.run, deltaSeconds, config);
@@ -394,30 +437,163 @@
         audio.play(event.timeChange < 0 ? "explode" : "harvest");
       }
       if (event.type === "settled") {
-        const highScore = preferencesStore.highScoreAfterRun(state.highScore, state.run);
-        const bestClearedLevel = event.success ? Math.max(state.bestClearedLevel, state.run.levelId) : state.bestClearedLevel;
-        if (highScore > state.highScore || bestClearedLevel > state.bestClearedLevel) {
-          state.highScore = highScore;
-          state.bestClearedLevel = bestClearedLevel;
-          persistPreferences();
-        }
+        const checkpoint = event.success ? rules.captureCheckpoint(state.run, "shop", config) : null;
+        state.levelUnlocks = growth.settleLevel(state.progress, state.run, checkpoint, new Date().toISOString());
         state.screen = "result";
-        if (event.success) persistCheckpoint("shop");
-        else {
-          state.checkpoint = null;
-          const cleared = preferencesStore.clearCheckpoint(() => window.localStorage);
-          state.hasCheckpointData = !cleared;
-          state.saveError = !cleared;
-          state.saveMessage = cleared ? "本轮已结束，挑战存档已清除" : "存档清除失败：当前挑战已结束，关闭后旧进度可能仍可恢复。";
-        }
+        persistProgress(event.success ? "本关成果与商店已保存" : "挑战已结束，档案与报告已保存");
+        if (!event.success) renderReport(state.progress.profile.recentReports[0], document.getElementById("result-report"));
         state.notice = { text: "", seconds: 0 };
         stopLoop();
         audio.stopAll();
         audio.play(event.success ? "success" : "failure");
+        queueUnlocks(state.levelUnlocks);
       }
     }
   }
 
+  function element(tag, text, className = "") {
+    const node = document.createElement(tag); node.textContent = text; node.className = className; return node;
+  }
+  const formatDate = value => value ? new Date(value).toLocaleString("zh-CN") : "—";
+  const formatDuration = ms => `${Math.floor(ms / 60000)}:${String(Math.floor(ms / 1000) % 60).padStart(2, "0")}`;
+  const hitRate = totals => totals.hooksLaunched ? `${(100 * totals.hooksHit / totals.hooksLaunched).toFixed(1)}%` : "—";
+  function statList(rows, container) {
+    const list = element("dl", "", "profile-stats");
+    for (const [label, value] of rows) { const row = element("div", ""); row.append(element("dt", label), element("dd", String(value))); list.append(row); }
+    container.append(list);
+  }
+  function totalsRows(t) {
+    return [["已通过关卡", t.levelsCleared], ["有效成绩收入", `¥ ${t.qualifiedIncome}`], ["实际回收收入", `¥ ${t.recoveredIncome}`],
+      ["失败关回收收入", `¥ ${t.failedLevelIncome}`], ["有效采矿时长", formatDuration(t.activePlayMs)], ["出钩 / 命中", `${t.hooksLaunched} / ${t.hooksHit}`],
+      ["命中率", hitRate(t)], ["成功回收", t.objectsRecovered], ["使用炸药 / 销毁物体", `${t.dynamiteUsed} / ${t.objectsDestroyedByDynamite}`],
+      ["引爆火药桶 / 额外销毁", `${t.barrelsDetonated} / ${t.objectsDestroyedByBarrel}`], ["钱袋好运 / 坏运", `${t.bagGoodLuck} / ${t.bagBadLuck}`],
+      ["宝箱最高档", t.chestTopRewards], ["实际增加时间", `${t.timeAddedMs / 1000} 秒`], ["古物实际扣时", `${t.cursedTimeLostMs / 1000} 秒`],
+      ["护符抵消", t.penaltiesBlocked], ["单次最高回收", `¥ ${t.bestRecoveryValue}`]];
+  }
+  function renderReport(report, container) {
+    container.replaceChildren();
+    if (!report) return;
+    if (container.id === "result-report") {
+      container.append(element("p", `有效采矿 ${formatDuration(report.totals.activePlayMs)} · 命中率 ${hitRate(report.totals)} · 回收 ¥${report.totals.recoveredIncome}`));
+      const details = document.createElement("details"), body = element("div", "");
+      details.append(element("summary", "本次挑战报告 · 查看完整统计与新纪录"), body);
+      renderReport(report, body); container.append(details); return;
+    }
+    container.append(element("h3", "本次挑战报告"));
+    container.append(element("p", report.reason === "failed" ? `第 ${report.failure.levelId} 关未达标 · 回收 ¥${report.failure.income} / 目标 ¥${report.failure.target}` : "主动放弃 · 只记录已经结算的关卡"));
+    if (!report.statisticsComplete) container.append(element("p", "升级后记录：有效成绩继承旧局，回收次数、收入与时长仅包含升级后成果。"));
+    statList([["最高到达关", report.bestReachedLevel], ...totalsRows(report.totals), ["种子", report.runSeed], ["开始时间", formatDate(report.startedAt)], ["结束时间", formatDate(report.endedAt)]], container);
+    const records = { bestRunIncome: "最高有效成绩", bestClearedLevel: "最高通过关", bestReachedLevel: "最高到达关" };
+    container.append(element("p", `本局新纪录：${report.newRecords.map(key => records[key]).join("、") || "暂无"}`));
+    container.append(element("p", `本局新徽章：${report.newAchievementIds.map(id => growth.definitions.find(def => def.id === id).title).join("、") || "暂无"}`));
+  }
+  function openProfile(page = "career") {
+    if (state.screen === "playing") pauseGame();
+    if (state.screen !== "profile") { state.profileReturn = state.screen; state.profileFocus = document.activeElement; }
+    state.screen = "profile"; state.profilePage = page;
+    for (const region of document.querySelectorAll(".app-header, .scene-shell, .app-footer")) region.inert = true;
+    renderProfile(); updateInterface(); document.getElementById("profile-close-button").focus({ preventScroll: true });
+  }
+  function closeProfile() {
+    state.screen = state.profileReturn;
+    for (const region of document.querySelectorAll(".app-header, .scene-shell, .app-footer")) region.inert = false;
+    updateInterface(); renderScene(); state.profileFocus?.focus({ preventScroll: true });
+  }
+  function renderProfile() {
+    const content = document.getElementById("profile-content"), profile = state.progress.profile, career = profile.career;
+    content.replaceChildren();
+    const pageTitles = { career: "矿工档案", achievements: "成就", collection: "矿井图鉴", report: "挑战报告" };
+    setText(document.getElementById("profile-title"), pageTitles[state.profilePage]);
+    for (const button of document.querySelectorAll("#profile-screen [data-profile]")) button.setAttribute("aria-pressed", String(button.dataset.profile === state.profilePage));
+    if (state.profilePage === "report") { renderReport(state.selectedReport || profile.recentReports[0], content); return; }
+    if (state.profilePage === "career") {
+      content.append(element("p", `统计始于 ${formatDate(profile.statisticsSince)}。本关成果在结算后记录，入口重试会回滚。`));
+      statList([["新挑战 / 继承挑战", `${career.runsStarted} / ${career.runsImported}`], ["失败 / 主动放弃", `${career.runsFailed} / ${career.runsAbandoned}`],
+        ["最高到达 / 最高通过", `${career.bestReachedLevel} / ${career.bestClearedLevel}`], ["单局最高有效成绩", `¥ ${career.bestRunIncome}`],
+        ["成功关最高收入", `¥ ${career.bestLevelIncome}`], ...totalsRows(career)], content);
+      content.append(element("h3", "历史记录（继承 v1.1.0）"));
+      content.append(element("p", `最高有效成绩 ¥${profile.legacyRecords.highScore} · 最高通过 ${profile.legacyRecords.bestClearedLevel} 关。旧累计次数无法还原。`));
+      content.append(element("h3", "分类型回收"));
+      statList(growth.recoverableTypes.map(type => [config.minerals[type].label, career.recoveredByType[type]]), content);
+      content.append(element("h3", "最近挑战报告"));
+      if (!profile.recentReports.length) content.append(element("p", "暂无报告。挑战失败或确认放弃后记录。"));
+      for (const report of profile.recentReports) {
+        const button = element("button", `${formatDate(report.endedAt)} · ${report.reason === "failed" ? "失败" : "放弃"} · ¥${report.totals.qualifiedIncome}`, "button button-quiet result-home");
+        button.type = "button"; button.addEventListener("click", () => { state.selectedReport = report; state.profilePage = "report"; renderProfile(); }); content.append(button);
+      }
+    }
+    if (state.profilePage === "achievements") {
+      content.append(element("p", `已解锁 ${growth.definitions.filter(def => profile.achievements[def.id].unlockedAt).length} / ${growth.definitions.length}。徽章和称号只作纪念，不改变采矿能力。`));
+      const clearTitle = element("button", "卸下称号", "button button-quiet"); clearTitle.type = "button";
+      clearTitle.addEventListener("click", () => { growth.equipTitle(state.progress, null); persistProgress("称号已保存"); updateInterface(); renderProfile(); }); content.append(clearTitle);
+      const filters = element("div", "", "profile-filters");
+      for (const [key, label, values] of [["status", "解锁状态", ["全部", "已解锁", "未解锁"]], ["category", "分类", ["全部", ...new Set(growth.definitions.map(def => def.category))]]]) {
+        const control = element("label", label), select = document.createElement("select"); select.id = `achievement-${key}`;
+        for (const value of values) select.append(element("option", value));
+        select.value = state[`filter_${key}`] || "全部";
+        select.addEventListener("change", () => { state[`filter_${key}`] = select.value; renderProfile(); document.getElementById(select.id).focus(); });
+        control.append(select); filters.append(control);
+      }
+      content.append(filters);
+      const grid = element("div", "", "profile-grid");
+      for (const def of growth.definitions) {
+        const item = profile.achievements[def.id], unlocked = Boolean(item.unlockedAt);
+        if (state.filter_status === "已解锁" && !unlocked || state.filter_status === "未解锁" && unlocked || state.filter_category && state.filter_category !== "全部" && state.filter_category !== def.category) continue;
+        const card = element("article", "", "profile-card"); card.dataset.achievement = def.id;
+        const hidden = def.hidden && !unlocked;
+        card.append(element("h3", hidden ? "？？？" : `${unlocked ? "◆ " : "◇ "}${def.title}`));
+        card.append(element("p", `${def.rarity} · ${def.category} · ${unlocked ? "已解锁" : "未解锁"}`));
+        card.append(element("p", hidden ? def.hint : def.description));
+        if (!hidden) {
+          const progress = document.createElement("progress"); progress.max = def.target; progress.value = item.progress; progress.setAttribute("aria-label", def.title);
+          card.append(progress, element("p", `${item.progress} / ${def.target}`));
+        }
+        if (unlocked) {
+          card.append(element("p", `徽章已获得 · ${formatDate(item.unlockedAt)}`));
+          if (def.reward.title) {
+            const button = element("button", profile.equippedTitleId === def.id ? `已装备：${def.reward.title}` : `装备称号：${def.reward.title}`, "button button-quiet"); button.type = "button"; button.disabled = profile.equippedTitleId === def.id;
+            button.addEventListener("click", () => { growth.equipTitle(state.progress, def.id); persistProgress("称号已保存"); updateInterface(); renderProfile(); }); card.append(button);
+          }
+        }
+        grid.append(card);
+      }
+      if (!grid.children.length) grid.append(element("p", "这个筛选下暂无成就。")); content.append(grid);
+    }
+    if (state.profilePage === "collection") {
+      content.append(element("p", `已研究 ${growth.types.filter(type => profile.collection[type].researchedAt).length} / 9。奖励需实际回收后发现，火药桶需亲自引爆。`));
+      const grid = element("div", "", "profile-grid");
+      for (const type of growth.types) {
+        const item = profile.collection[type], researched = Boolean(item.researchedAt), definition = config.minerals[type];
+        const card = element("article", "", "profile-card"); card.dataset.mineral = type;
+        const icon = document.createElement("canvas"); icon.width = 64; icon.height = 64; icon.className = `mineral-icon${researched ? "" : " is-unknown"}`; icon.setAttribute("aria-hidden", "true");
+        drawMineral({ type, x: 32, y: 32 }, icon.getContext("2d"));
+        card.append(icon, element("h3", researched ? definition.label : "？？？"));
+        card.append(element("p", researched ? "已研究" : item.seen ? "已发现，尚未回收／引爆" : "未发现"));
+        card.append(element("p", `已发现 ${item.seen} 件 · ${type === "powderKeg" ? `已引爆 ${item.detonated} 次` : `已回收 ${item.recovered} 件`}`));
+        if (researched) {
+          const details = document.createElement("details"); details.append(element("summary", "查看物体详情"));
+          const notes = { ruby: "不受钻石增值剂影响。", mysteryBag: "金币、炸药或时间；满炸药转基础 ¥100，基础档位不变。", treasureChest: "基础金币 150 / 450 / 800，幸运符改变概率。", cursedRelic: "完整收回后 −5 秒，护身符可抵消；扣至零立刻结算。", powderKeg: "钩尖碰到立即爆炸，范围 80 像素，无连锁；范围销毁无收益、不消耗炸药或护符。" };
+          details.append(element("p", `${type === "powderKeg" ? "不可回收" : `基础价值 ¥${definition.value} · 回收速度 ${definition.returnSpeed}`}。金币随关卡倍率与对应增值剂修正，时间与道具数量不放大。${notes[type] || "完整收回才入账。"}`));
+          statList([["炸药销毁", item.destroyedByDynamite], ["桶范围销毁（包含触发桶）", item.destroyedByBarrel], ["首次发现", formatDate(item.firstSeenAt)], ["首次研究", formatDate(item.researchedAt)]], details);
+          if (growth.rewardIds[type]) {
+            const labels = { coins_50: "金币 50", coins_200: "金币 200", bomb_1: "炸药 +1", time_plus_5: "时间 +5 秒", time_minus_5: "时间 −5 秒", coins_150: "金币 150", coins_450: "金币 450", coins_800: "金币 800" };
+            details.append(element("p", `已发现奖励 ${item.rewardIds.length} / ${growth.rewardIds[type].length}：${item.rewardIds.map(id => labels[id]).join("、") || "暂无"}`));
+          }
+          card.append(details);
+        }
+        grid.append(card);
+      }
+      content.append(grid);
+    }
+  }
+  function handleExternalChange() {
+    state.externalChange = true;
+    // 外部修订到来时直接冻结，不能在暂停前补算并提交过期的本关。
+    stopLoop(); audio.stopAll();
+    if (state.screen === "playing") { state.screen = "paused"; state.pauseReason = "external"; }
+    state.saveError = true; state.saveMessage = "其他页面已更新档案，当前页面已冻结。请重新载入最新档案；首发不支持多页面同时游玩。";
+    updateInterface();
+  }
   function clientToCanvasPoint(clientX, clientY) {
     const bounds = canvas.getBoundingClientRect();
     return {
@@ -452,20 +628,20 @@
     return true;
   }
 
-  function fill(color, x, y, width, height) {
-    context.fillStyle = color;
-    context.fillRect(Math.round(x), Math.round(y), Math.round(width), Math.round(height));
+  function fill(color, x, y, width, height, surface = context) {
+    surface.fillStyle = color;
+    surface.fillRect(Math.round(x), Math.round(y), Math.round(width), Math.round(height));
   }
 
-  function polygon(color, points) {
-    context.fillStyle = color;
-    context.beginPath();
+  function polygon(color, points, surface = context) {
+    surface.fillStyle = color;
+    surface.beginPath();
     points.forEach(([x, y], index) => {
-      if (index === 0) context.moveTo(Math.round(x), Math.round(y));
-      else context.lineTo(Math.round(x), Math.round(y));
+      if (index === 0) surface.moveTo(Math.round(x), Math.round(y));
+      else surface.lineTo(Math.round(x), Math.round(y));
     });
-    context.closePath();
-    context.fill();
+    surface.closePath();
+    surface.fill();
   }
 
   function drawBackground() {
@@ -548,57 +724,59 @@
     fill(colors.stoneLight, x + 6, y - 4, 4, 6);
   }
 
-  function drawMineral(mineral) {
+  function drawMineral(mineral, surface = context) {
+    const rect = (...args) => fill(...args, surface);
+    const shape = (...args) => polygon(...args, surface);
     const { x, y, type } = mineral;
     const definition = config.minerals[type];
     if (type === "diamond" || type === "ruby") {
       const halfWidth = definition.width / 2;
       const halfHeight = definition.height / 2;
       const gem = type === "ruby" ? ["#dc5261", "#ffbcc3", "#933347"] : [colors.diamond, colors.diamondLight, colors.diamondShadow];
-      polygon(gem[0], [[x, y - halfHeight], [x + halfWidth, y], [x, y + halfHeight], [x - halfWidth, y]]);
-      polygon(gem[1], [[x, y - halfHeight], [x, y + 2], [x - halfWidth, y]]);
-      polygon(gem[2], [[x, y + 2], [x + halfWidth, y], [x, y + halfHeight]]);
+      shape(gem[0], [[x, y - halfHeight], [x + halfWidth, y], [x, y + halfHeight], [x - halfWidth, y]]);
+      shape(gem[1], [[x, y - halfHeight], [x, y + 2], [x - halfWidth, y]]);
+      shape(gem[2], [[x, y + 2], [x + halfWidth, y], [x, y + halfHeight]]);
       if (Math.floor(state.visuals.time * 3 + x) % 5 === 0) {
-        fill(colors.diamondLight, x - 2, y - halfHeight - 4, 4, 8);
-        fill(colors.diamondLight, x - 4, y - halfHeight - 2, 8, 4);
+        rect(colors.diamondLight, x - 2, y - halfHeight - 4, 4, 8);
+        rect(colors.diamondLight, x - 4, y - halfHeight - 2, 8, 4);
       }
       return;
     }
     if (type === "mysteryBag") {
-      fill(colors.goldShadow, x - 7, y - 14, 14, 6);
-      fill(colors.wood, x - 12, y - 5, 24, 17);
-      fill(colors.goldLight, x - 8, y - 4, 7, 13);
-      fill(colors.dark, x - 8, y - 8, 16, 3);
-      fill(colors.dark, x + 2, y + 2, 5, 3);
-      fill(colors.dark, x + 4, y + 7, 3, 3);
+      rect(colors.goldShadow, x - 7, y - 14, 14, 6);
+      rect(colors.wood, x - 12, y - 5, 24, 17);
+      rect(colors.goldLight, x - 8, y - 4, 7, 13);
+      rect(colors.dark, x - 8, y - 8, 16, 3);
+      rect(colors.dark, x + 2, y + 2, 5, 3);
+      rect(colors.dark, x + 4, y + 7, 3, 3);
       return;
     }
     if (type === "treasureChest") {
-      fill(colors.woodShadow, x - 17, y - 14, 34, 28);
-      fill(colors.wood, x - 15, y - 12, 30, 12);
-      fill(colors.gold, x - 17, y - 2, 34, 4);
-      fill(colors.goldShadow, x - 12, y - 14, 4, 28);
-      fill(colors.goldShadow, x + 8, y - 14, 4, 28);
-      fill(colors.goldLight, x - 3, y - 1, 6, 8);
+      rect(colors.woodShadow, x - 17, y - 14, 34, 28);
+      rect(colors.wood, x - 15, y - 12, 30, 12);
+      rect(colors.gold, x - 17, y - 2, 34, 4);
+      rect(colors.goldShadow, x - 12, y - 14, 4, 28);
+      rect(colors.goldShadow, x + 8, y - 14, 4, 28);
+      rect(colors.goldLight, x - 3, y - 1, 6, 8);
       return;
     }
     if (type === "cursedRelic") {
-      fill("#695681", x - 9, y - 15, 18, 9);
-      fill("#9c79af", x - 13, y - 6, 26, 17);
-      fill("#493855", x - 10, y + 11, 20, 4);
-      fill("#ff9178", x - 7, y - 3, 4, 5);
-      fill("#ff9178", x + 3, y - 3, 4, 5);
-      fill(colors.dark, x - 4, y + 6, 8, 3);
+      rect("#695681", x - 9, y - 15, 18, 9);
+      rect("#9c79af", x - 13, y - 6, 26, 17);
+      rect("#493855", x - 10, y + 11, 20, 4);
+      rect("#ff9178", x - 7, y - 3, 4, 5);
+      rect("#ff9178", x + 3, y - 3, 4, 5);
+      rect(colors.dark, x - 4, y + 6, 8, 3);
       return;
     }
     if (type === "powderKeg") {
-      fill(colors.woodShadow, x - 11, y - 14, 22, 31);
-      fill(colors.shirt, x - 13, y - 11, 26, 25);
-      fill(colors.stoneLight, x - 13, y - 9, 26, 3);
-      fill(colors.stoneLight, x - 13, y + 10, 26, 3);
-      fill(colors.goldLight, x - 2, y - 17, 4, 5);
-      fill(colors.goldLight, x - 2, y - 2, 4, 6);
-      fill(colors.goldLight, x - 2, y + 6, 4, 2);
+      rect(colors.woodShadow, x - 11, y - 14, 22, 31);
+      rect(colors.shirt, x - 13, y - 11, 26, 25);
+      rect(colors.stoneLight, x - 13, y - 9, 26, 3);
+      rect(colors.stoneLight, x - 13, y + 10, 26, 3);
+      rect(colors.goldLight, x - 2, y - 17, 4, 5);
+      rect(colors.goldLight, x - 2, y - 2, 4, 6);
+      rect(colors.goldLight, x - 2, y + 6, 4, 2);
       return;
     }
     const r = definition.radius;
@@ -606,10 +784,10 @@
     const base = isStone ? colors.stone : colors.gold;
     const shadow = isStone ? colors.stoneShadow : colors.goldShadow;
     const light = isStone ? colors.stoneLight : colors.goldLight;
-    polygon(shadow, [[x - r, y - r * .3], [x - r * .6, y - r * .8], [x + r * .5, y - r], [x + r, y - r * .2], [x + r * .7, y + r * .7], [x, y + r], [x - r * .8, y + r * .6]]);
-    polygon(base, [[x - r, y - r * .3], [x - r * .6, y - r * .8], [x + r * .5, y - r], [x + r * .7, y + r * .4], [x - r * .6, y + r * .5]]);
-    fill(light, x - r * .5, y - r * .45, r * .65, Math.max(4, r * .2));
-    fill(shadow, x + r * .15, y + r * .1, r * .3, Math.max(4, r * .2));
+    shape(shadow, [[x - r, y - r * .3], [x - r * .6, y - r * .8], [x + r * .5, y - r], [x + r, y - r * .2], [x + r * .7, y + r * .7], [x, y + r], [x - r * .8, y + r * .6]]);
+    shape(base, [[x - r, y - r * .3], [x - r * .6, y - r * .8], [x + r * .5, y - r], [x + r * .7, y + r * .4], [x - r * .6, y + r * .5]]);
+    rect(light, x - r * .5, y - r * .45, r * .65, Math.max(4, r * .2));
+    rect(shadow, x + r * .15, y + r * .1, r * .3, Math.max(4, r * .2));
   }
 
   function renderScene() {
@@ -658,6 +836,14 @@
   });
 
   elements.start.addEventListener("click", startGame);
+  for (const button of document.querySelectorAll("[data-profile]")) button.addEventListener("click", () => openProfile(button.dataset.profile));
+  document.getElementById("profile-close-button").addEventListener("click", closeProfile);
+  document.getElementById("latest-report-button").addEventListener("click", () => { state.selectedReport = null; openProfile("report"); });
+  document.getElementById("reload-progress-button").addEventListener("click", () => window.location.reload());
+  document.getElementById("next-achievement-button").addEventListener("click", () => {
+    state.unlockQueue.shift(); state.toastSeconds = 4;
+    if (state.unlockQueue.length) audio.play("success"); updateInterface();
+  });
   elements.continue.addEventListener("click", continueGame);
   elements.returnHome.addEventListener("click", returnHome);
   elements.restart.addEventListener("click", resultAction);
@@ -690,6 +876,16 @@
     if (handleGameInput("launch", point)) canvas.focus({ preventScroll: true });
   });
   document.addEventListener("keydown", (event) => {
+    if (state.screen === "profile") {
+      if (event.code === "Escape") { event.preventDefault(); if (!event.repeat) closeProfile(); }
+      if (event.code === "Tab") {
+        const controls = [...document.querySelectorAll("#profile-screen button:not(:disabled), #profile-screen select, #profile-screen summary")].filter(node => node.getClientRects().length);
+        const first = controls[0], last = controls[controls.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+      }
+      return;
+    }
     if (event.code === "Escape" && ["playing", "paused"].includes(state.screen)) {
       event.preventDefault();
       if (!event.repeat) {
@@ -709,6 +905,11 @@
   });
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) pauseGame("hidden");
+  });
+  window.addEventListener("storage", event => {
+    if (event.key !== preferencesStore.progressKey && event.key !== null) return;
+    try { if (event.newValue === null || JSON.parse(event.newValue).revision !== state.revision) handleExternalChange(); }
+    catch { handleExternalChange(); }
   });
   window.addEventListener("pagehide", () => {
     if (state.screen === "playing") pauseGame("hidden");
@@ -737,6 +938,9 @@
         entrySnapshot: state.entrySnapshot ? JSON.parse(JSON.stringify(state.entrySnapshot)) : null,
         shop: state.shop ? JSON.parse(JSON.stringify(state.shop)) : null,
         checkpoint: state.checkpoint ? JSON.parse(JSON.stringify(state.checkpoint)) : null,
+        progress: growth.clone(state.progress),
+        externalChange: state.externalChange,
+        levelUnlocks: [...state.levelUnlocks],
         saveError: state.saveError,
         saveMessage: state.saveMessage,
       };

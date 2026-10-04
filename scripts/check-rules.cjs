@@ -194,7 +194,7 @@ check("钩尖碰到火药桶立即爆炸并清除附近物体，空钩回收且�
     assert.deepEqual(events[0].point, { x: 480, y: 300 }); assert.equal(events[0].radius, 80);
     assert.deepEqual(events[0].destroyedIds, ["keg", "gold", "bag", "relic", "chest"]);
     assert.equal(run.minerals.at(-1).status, "available");
-    assert.deepEqual(rules.advanceRun(run, .4, config), []); assert.equal(run.hook.phase, "swinging");
+    assert.deepEqual(rules.advanceRun(run, .4, config), [{ type: "empty-returned" }]); assert.equal(run.hook.phase, "swinging");
     assert.equal(run.wallet, 200); assert.equal(run.levelIncome, 0); close(run.remainingTime, 59.37);
   }
 });
@@ -365,8 +365,8 @@ check("动态报价按下一关同档一致且升档涨价，实际扣款和保�
     if(next>=10) assert.ok(cart >= income*.75);
   }
 });
-const report = { phase: "16", version: config.version, result: "passed", count: checks.length, checks, generations, budgets, strategyLimit: "Four finite heuristics, not a global optimum proof" };
+const report = { phase: "rules-regression", version: config.version, result: "passed", count: checks.length, checks, generations, budgets, strategyLimit: "Four finite heuristics, not a global optimum proof" };
 const directory = path.resolve(__dirname, "../output/playwright");
 fs.mkdirSync(directory, { recursive: true });
-fs.writeFileSync(path.join(directory, "survival-v110-rules-report.json"), JSON.stringify(report, null, 2) + "\n");
+fs.writeFileSync(path.join(directory, `survival-v${config.version.replaceAll(".", "")}-rules-report.json`), JSON.stringify(report, null, 2) + "\n");
 console.log(`无限生存规则检查通过：${checks.length} 项，1700 份关卡布局。`);

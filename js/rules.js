@@ -1,8 +1,8 @@
 (function (root, factory) {
   "use strict";
-  if (typeof module === "object" && module.exports) module.exports = factory();
-  else root.GoldMinerRules = factory();
-})(typeof window !== "undefined" ? window : globalThis, function () {
+  if (typeof module === "object" && module.exports) module.exports = factory(require("./growth.js"));
+  else root.GoldMinerRules = factory(root.GoldMinerGrowth);
+})(typeof window !== "undefined" ? window : globalThis, function (growth) {
   "use strict";
 
   function seededRandom(seed, levelId, purpose) {
@@ -176,7 +176,7 @@
     const effects = emptyEffects();
     Object.keys(effects).forEach(key => { effects[key] = Boolean(entry.effects?.[key]); });
     const timeBonus = effects.timeCoupon ? config.shop.timeCoupon.seconds : 0;
-    return {
+    const run = {
       levelId, level, runSeed,
       levelIncome: 0,
       wallet: entry.wallet ?? config.initialRun.wallet,
@@ -192,6 +192,8 @@
       settled: false,
       result: null,
     };
+    run.growth = growth.createLevelStats(run);
+    return run;
   }
 
   function captureEntrySnapshot(run) {
@@ -290,7 +292,9 @@
     run.bombs -= 1;
     run.hook.carryingId = null;
     run.hook.phase = "returning-empty";
-    return { type: "destroyed", id: mineral.id, mineralType: mineral.type };
+    const event = { type: "destroyed", id: mineral.id, mineralType: mineral.type };
+    growth.recordEvent(run, event);
+    return event;
   }
 
   function hookPoint(hook, config, length = hook.length) {
@@ -365,6 +369,7 @@
   function launchHook(run) {
     if (run.settled || run.hook.phase !== "swinging") return false;
     run.hook.phase = "extending";
+    growth.recordEvent(run, { type: "launched" });
     return true;
   }
 
@@ -372,6 +377,8 @@
     const mineral = run.minerals.find((item) => item.id === run.hook.carryingId);
     if (!mineral || mineral.status !== "carried" || run.settled) return false;
     const reward = mineral.reward;
+    const timeBefore = run.remainingTime;
+    const incomeBefore = run.levelIncome;
     let value = reward?.kind === "coins" ? reward.amount : config.minerals[mineral.type].value;
     if (mineral.type === "diamond" && run.effects.diamondBoost) value *= config.shop.diamondBoost.multiplier;
     if (["smallGold", "largeGold"].includes(mineral.type) && run.effects.goldBoost) value *= config.shop.goldBoost.multiplier;
@@ -400,7 +407,12 @@
       feedback.push(timeChange ? `时间 +${timeChange} 秒` : "时间加成已满");
     } else if (timeChange < 0) feedback.push(`时间 ${timeChange} 秒`);
     run.remainingTime = Math.max(0, run.remainingTime + timeChange);
-    events.push({ type: "banked", id: mineral.id, mineralType: mineral.type, value, timeChange, protectedPenalty, feedback });
+    const event = { type: "banked", id: mineral.id, mineralType: mineral.type, value, timeChange, protectedPenalty, feedback,
+      rewardId: growth.rewardId(reward), timeBefore, timeAfter: run.remainingTime, actualTimeChange: run.remainingTime - timeBefore,
+      incomeBefore, incomeAfter: run.levelIncome, firstTargetReached: incomeBefore < run.level.target && run.levelIncome >= run.level.target,
+      elapsedTime: run.elapsedTime };
+    growth.recordEvent(run, event);
+    events.push(event);
     return true;
   }
 
@@ -427,8 +439,10 @@
     run.hook.phase = "returning-empty";
     run.hook.carryingId = null;
     // 范围内的物体直接销毁，不结算奖励或惩罚；其他桶不继续引爆。
-    events.push({ type: "exploded", id: keg.id, mineralType: keg.type,
-      point: { x: keg.x, y: keg.y }, radius, destroyedIds });
+    const event = { type: "exploded", id: keg.id, mineralType: keg.type,
+      point: { x: keg.x, y: keg.y }, radius, destroyedIds };
+    growth.recordEvent(run, event);
+    events.push(event);
   }
 
   function stepHook(run, seconds, config, events, endsAtDeadline) {
@@ -458,7 +472,9 @@
         hook.phase = "returning-loaded";
         hook.carryingId = hit.mineral.id;
         hit.mineral.status = "carried";
-        events.push({ type: "grabbed", id: hit.mineral.id, mineralType: hit.mineral.type });
+        const event = { type: "grabbed", id: hit.mineral.id, mineralType: hit.mineral.type };
+        growth.recordEvent(run, event);
+        events.push(event);
       } else if (hook.length >= limit) {
         hook.phase = "returning-empty";
       }
@@ -472,6 +488,11 @@
       // 同时到达锚点和截止时刻时，优先结束关卡，避免超时补入账。
       if (arrivalSeconds <= seconds && (!endsAtDeadline || arrivalSeconds < seconds - 1e-9)) {
         if (mineral) bankCarriedMineral(run, config, events);
+        else {
+          const event = { type: "empty-returned" };
+          growth.recordEvent(run, event);
+          events.push(event);
+        }
         resetHook(hook, config);
       }
     }
@@ -490,7 +511,9 @@
     run.hook.carryingId = null;
     run.effects = emptyEffects();
     run.result = { success, levelIncome: run.levelIncome, target, totalIncome: run.totalIncome };
-    events.push({ type: "settled", ...run.result });
+    const event = { type: "settled", ...run.result };
+    growth.recordEvent(run, event);
+    events.push(event);
     return true;
   }
 

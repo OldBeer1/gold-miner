@@ -8,6 +8,7 @@
     <link rel="icon" href="data:,">
     <link rel="stylesheet" href="styles.css">
     <script src="js/config.js" defer></script>
+    <script src="js/growth.js" defer></script>
     <script src="js/rules.js" defer></script>
     <script src="js/storage.js" defer></script>
     <script src="js/effects.js" defer></script>
@@ -71,6 +72,13 @@
               <strong id="high-score">¥ 0</strong>
             </div>
             <div class="record-row"><span>最高已通过关数</span><strong id="best-cleared-level">0 关</strong></div>
+            <p id="equipped-title" class="preview-note"></p>
+            <nav class="profile-actions" aria-label="矿工资料">
+              <button class="button button-quiet" type="button" data-profile="career">矿工档案</button>
+              <button class="button button-quiet" type="button" data-profile="achievements">成就</button>
+              <button class="button button-quiet" type="button" data-profile="collection">矿井图鉴</button>
+            </nav>
+            <button id="latest-report-button" class="button button-quiet result-home" type="button" hidden>查看最近挑战报告</button>
           </div>
         </div>
 
@@ -86,6 +94,8 @@
               <div><dt>本轮已过关总收入</dt><dd id="result-total">¥ 0</dd></div>
             </dl>
             <p class="result-deadline">时间到，未收回的矿物不计分</p>
+            <p id="result-achievements" class="preview-note"></p>
+            <div id="result-report"></div>
             <button id="restart-button" class="button button-primary" type="button">再玩一次 <span aria-hidden="true">↻</span></button>
             <button id="result-home-button" class="button button-quiet result-home" type="button">返回开始界面</button>
           </div>
@@ -97,6 +107,7 @@
             <p id="pause-description" class="welcome-description">时间和矿物已冻结，准备好后继续。</p>
             <button id="resume-button" class="button button-primary" type="button">继续采矿 →</button>
             <button id="pause-home-button" class="button button-quiet result-home" type="button">返回开始界面</button>
+            <button class="button button-quiet result-home" type="button" data-profile="career">查看矿工档案</button>
           </div>
         </section>
         <section id="shop-screen" class="shop-screen" aria-labelledby="shop-title" hidden>
@@ -113,8 +124,20 @@
         </section>
       </section>
 
+      <section id="profile-screen" class="profile-screen" role="dialog" aria-modal="true" aria-labelledby="profile-title" hidden>
+        <header class="profile-header"><h2 id="profile-title">矿工档案</h2><button id="profile-close-button" class="button button-quiet" type="button">返回 · Esc</button></header>
+        <nav class="profile-actions" aria-label="资料页面">
+          <button class="button button-quiet" type="button" data-profile="career">矿工档案</button>
+          <button class="button button-quiet" type="button" data-profile="achievements">成就</button>
+          <button class="button button-quiet" type="button" data-profile="collection">矿井图鉴</button>
+        </nav>
+        <div id="profile-content" class="profile-content"></div>
+      </section>
+
       <footer class="app-footer">
         <p id="save-status" class="save-status" role="status"></p>
+        <button id="reload-progress-button" class="button button-quiet" type="button" hidden>重新载入最新档案</button>
+        <div id="achievement-notice" class="achievement-notice" role="status" hidden><span id="achievement-notice-text"></span><button id="next-achievement-button" class="button button-quiet" type="button">下一枚／关闭</button></div>
         <div id="home-footer" class="home-footer">
           <span class="footer-rule">随机关卡 <b>·</b> 随机宝物 <b>·</b> 四槽商店</span>
           <span class="footer-hint">复古像素，简单快乐</span>

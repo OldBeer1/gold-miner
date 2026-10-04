@@ -1,0 +1,20 @@
+{
+  "version": "1.2.0",
+  "result": "passed",
+  "entries": [
+    "index.html",
+    "README.md",
+    "styles.css",
+    "js/audio.js",
+    "js/config.js",
+    "js/effects.js",
+    "js/game.js",
+    "js/growth.js",
+    "js/rules.js",
+    "js/storage.js"
+  ],
+  "runtimeFilesCompared": 9,
+  "size": 46618,
+  "sha256": "bd9584f7d0fa079fb0d4e475274af912675d7941b85c3a359b3742c608aac324",
+  "extractionRoot": "D:\\CoDeXs\\Gold\\output\\release\\verify-v1.2.0-final-20261004"
+}

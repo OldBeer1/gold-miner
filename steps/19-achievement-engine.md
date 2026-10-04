@@ -1,6 +1,6 @@
 # 第 19 步：成就判定与奖励状态
 
-状态：待开始。目标版本：v1.2.0。前置：[第 17 步](17-growth-data-events.md)、[第 18 步](18-career-progress-storage.md) 已完成。
+状态：已完成（2026-10-04，本地验收）。目标版本：v1.2.0。前置：[第 17 步](17-growth-data-events.md)、[第 18 步](18-career-progress-storage.md) 已完成。
 
 ## 1. 开始前读取
 
@@ -38,3 +38,9 @@
 ```text
 请按 AGENTS.md 接手顺序读取项目文档，再读取 FEATURE_ROADMAP.md、steps/19-achievement-engine.md 和第 17～18 步交接。按分步完成 18 项成就判定、候选提交、一次性解锁、徽章称号状态和旧纪录可证明的补发，执行全部成就关键边界与相关回归，更新 IMPLEMENTATION_PLAN.md 和 VALIDATION.md。完整页面留给第 21 步，不自动进入第 20 步；不推送或发布。
 ```
+
+## 7. 实际完成交接
+
+growth.evaluate 实现 18 项条件与一次性解锁，equipTitle 保存称号。成长报告逐项记录 18 项正反条件；旧通过纪录只补发 1/5/20，失败成果与需通关条件分开，提示不重放。
+
+统一结果、接口与限制见 [最新交接](../IMPLEMENTATION_PLAN.md) 和 [v1.2.0 实际验收](../VALIDATION.md)。原执行提示词保留作范围追溯；已完成内容不重复实施。

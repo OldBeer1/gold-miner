@@ -4,9 +4,9 @@ const fs = require("node:fs/promises");
 const path = require("node:path");
 const { pathToFileURL } = require("node:url");
 const { chromium } = require(process.env.GOLD_PLAYWRIGHT_MODULE || "playwright");
-const root = path.resolve(process.argv[2] || "output/release/preflight-player");
-const prefix = process.argv[3] || "survival-v110-release-preflight";
-const report = { phase: "local-release-v1.1.0", method: "extracted player archive, file open, original game rules and real keyboard/button input; controlled browser clock; contact explosion uses an explicit four-object fixture", checks: [], errors: [] };
+const root = path.resolve(process.argv[2] || "output/release/verify-v1.2.0");
+const prefix = process.argv[3] || "survival-v120-release-preflight";
+const report = { phase: "local-release", method: "extracted player archive, file open, original game rules and real keyboard/button input; controlled browser clock; contact explosion uses an explicit four-object fixture", checks: [], errors: [] };
 const diag = page => page.evaluate(() => GoldMiner.getDiagnostics());
 
 function installExplosionFixture() {
@@ -31,7 +31,7 @@ function installExplosionFixture() {
 }
 
 (async () => {
-  for (const file of ["index.html", "styles.css", "README.md", "js/config.js", "js/rules.js", "js/game.js", "js/storage.js", "js/effects.js", "js/audio.js"]) {
+  for (const file of ["index.html", "styles.css", "README.md", "js/config.js", "js/growth.js", "js/rules.js", "js/game.js", "js/storage.js", "js/effects.js", "js/audio.js"]) {
     assert.ok((await fs.stat(path.join(root, file))).isFile());
   }
   report.checks.push("玩家包包含全部运行文件与中文说明");
@@ -48,6 +48,7 @@ function installExplosionFixture() {
     await page.clock.install();
     await page.clock.pauseAt(new Date(await page.evaluate(() => Date.now()) + 1));
     await page.goto(pathToFileURL(path.join(root, "index.html")).href);
+    report.version = await page.evaluate(() => GoldMinerConfig.version);
     assert.equal((await diag(page)).screen, "home");
     await page.locator("#start-button").click();
     assert.equal((await diag(page)).screen, "playing");
@@ -80,6 +81,20 @@ function installExplosionFixture() {
     await page.screenshot({ path: path.join(__dirname, `${prefix}-explosion.png`), fullPage: true });
     await page.clock.runFor(1000); assert.equal((await diag(page)).audio.counts.explode, exploded.audio.counts.explode);
     report.checks.push("玩家包火药桶接触即原地爆炸，近物销毁、远物保留、空钩返回，不扣时间或消耗库存/护符");
+    await page.clock.fastForward(61000);
+    assert.equal((await diag(page)).progress.activeRun, null);
+    assert.ok((await diag(page)).progress.profile.recentReports.length >= 1);
+    await page.locator("#result-home-button").click();
+    for (const name of ["career", "achievements", "collection"]) {
+      await page.locator(`[data-profile="${name}"]`).filter({ visible: true }).first().click();
+      assert.equal(await page.locator("#profile-screen").isVisible(), true);
+      if (name === "achievements") assert.equal(await page.locator("[data-achievement]").count(), 18);
+      if (name === "collection") assert.equal(await page.locator("[data-mineral]").count(), 9);
+      await page.keyboard.press("Escape");
+    }
+    await page.reload(); await page.locator("#latest-report-button").click();
+    assert.match(await page.locator("#profile-content").textContent(), /本次挑战报告/);
+    report.checks.push("解压包成长档案、18 成就、9 类图鉴与失败报告完整，刷新后报告可查看且结束挑战不复活");
     assert.ok(requests.every(url => url.startsWith("file:") || url.startsWith("data:")));
     assert.deepEqual(report.errors, []);
     report.checks.push("资源均本地加载，无远程素材请求、无未处理浏览器错误");
