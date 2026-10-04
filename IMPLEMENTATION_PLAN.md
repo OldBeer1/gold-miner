@@ -1,6 +1,6 @@
 # 黄金矿工：当前实施计划
 
-更新：2026-10-04。当前本地实现 **v1.2.0**，第 01～16 步已完成并归档，第 17～22 步已完成实现、验收与本地玩家包。v1.3.0～v1.4.0 为后续规划。**当前下一步：第 23 步（本轮未实施）。**
+更新：2026-10-04。当前正式版本 **v1.2.0**，第 01～16 步已完成并归档，第 17～22 步已完成实现、验收、源码推送与 GitHub Release 玩家包。v1.3.0～v1.4.0 为后续规划。**当前下一步：第 23 步（本轮未实施）。**
 
 当前规则见 [GAME_SPEC.md](GAME_SPEC.md)，未来需求见 [FEATURE_ROADMAP.md](FEATURE_ROADMAP.md)，实际验证见 [VALIDATION.md](VALIDATION.md)。历史步骤、发布与完整交接见 [docs/HISTORY.md](docs/HISTORY.md)。
 
@@ -15,13 +15,13 @@
 | 19 | v1.2.0 | [成就判定与奖励状态](steps/19-achievement-engine.md) | 18 | 已完成（本地验收） |
 | 20 | v1.2.0 | [矿井图鉴数据与解锁](steps/20-mining-collection.md) | 19 | 已完成（本地验收） |
 | 21 | v1.2.0 | [资料页面与单局报告](steps/21-career-pages-run-report.md) | 20 | 已完成（本地验收） |
-| 22 | v1.2.0 | [成长系统完整验收与本地交付](steps/22-growth-validation-delivery.md) | 21 | 已完成（本地验收） |
+| 22 | v1.2.0 | [成长系统完整验收与 GitHub 交付](steps/22-growth-validation-delivery.md) | 21 | 已完成（正式发布） |
 | 23 | v1.3.0 | [随机事件规则与生成](steps/23-random-event-rules.md) | 22，v1.2.0 验收通过 | 后续规划 |
 | 24 | v1.3.0 | [事件流程、商店与存档](steps/24-random-event-flow-save.md) | 23 | 后续规划 |
-| 25 | v1.3.0 | [随机事件完整验收与本地交付](steps/25-events-validation-delivery.md) | 24 | 后续规划 |
+| 25 | v1.3.0 | [随机事件完整验收与 GitHub 交付](steps/25-events-validation-delivery.md) | 24 | 后续规划 |
 | 26 | v1.4.0 | [Seed 挑战与模式隔离](steps/26-seed-challenge-mode.md) | 25，v1.3.0 验收通过 | 后续规划 |
 | 27 | v1.4.0 | [每日挑战与日期规则](steps/27-daily-challenge-mode.md) | 26 | 后续规划 |
-| 28 | v1.4.0 | [挑战模式完整验收与本地交付](steps/28-challenges-validation-delivery.md) | 27 | 后续规划 |
+| 28 | v1.4.0 | [挑战模式完整验收与 GitHub 交付](steps/28-challenges-validation-delivery.md) | 27 | 后续规划 |
 
 ## 2. 执行与完成要求
 
@@ -29,7 +29,7 @@
 
 前置未完成时先补齐。每步保持游戏可启动，数据阶段的引擎检查不等于完整玩家页面已交付。实际实现与本步验证通过后同步本表及步骤状态；失败或环境限制写明原因与剩余工作。
 
-第 22、25、28 步负责最终规则／存储／浏览器验证、文档与本地玩家包；提交、推送和远程发布按当次授权处理。已完成步骤不重复实施。
+第 22、25、28 步负责最终规则／存储／浏览器验证、文档与玩家包，并按 [AGENTS.md](AGENTS.md) 的持续授权完成全部 GitHub 交付。已完成步骤不重复实施。
 
 ## 3. 已完成基线
 
@@ -71,3 +71,9 @@ FEATURE_ROADMAP 定义 v1.2.0 的 18 项成就、生涯统计、9 类图鉴、�
 ### 2026-10-04：v1.2.0 源码同步 GitHub
 
 用户在本地验收完成后授权推送 GitHub。本次同步 main 的范围为第 17～22 步源码、现行规格与交接、检查脚本、v120 报告和截图；沿用上节已执行的功能验收。同步前核对远程基线、提交差异、报告结果及最终玩家包运行文件一致性，提交后核对远程分支提交。玩家 ZIP 保留本地，正式 Release 仍为 v1.1.0；第 23～28 步保持规划状态。
+
+### 2026-10-04：完整 GitHub 交付与持续授权
+
+用户明确要求每完成一个版本必须全部推送 GitHub，已写入 AGENTS，并同步版本验收步骤及规划中的交付要求。v1.2.0 源码提交 `94b6806ce81bae25037150a0b7787c41a9c9de97` 已在 main；对应 v1.2.0 标签与正式最新稳定 Release 已发布，玩家包公开下载可用。匿名下载复验为 46618 字节、10 文件，SHA-256 与本地验收包一致，9 个运行文件逐项匹配。
+
+README 更新下载入口，VALIDATION 增加正式发布证据，报告为 `output/playwright/survival-v120-published-release-report.json`。本次只修改交付规则、文档和发布证据，未改变运行代码；沿用既有功能与浏览器验收，额外执行公开下载和文件一致性核对。发布记录及规则提交推送至 main，保留历史发布与 ZIP；第 23～28 步仍为规划。

@@ -1,4 +1,4 @@
-# 第 28 步：挑战模式完整验收与 v1.4.0 本地交付
+# 第 28 步：挑战模式完整验收与 v1.4.0 GitHub 交付
 
 状态：后续规划。目标版本：v1.4.0。前置：[第 26 步](26-seed-challenge-mode.md)、[第 27 步](27-daily-challenge-mode.md) 已完成。
 
@@ -8,7 +8,7 @@
 
 ## 2. 本步完成后
 
-无限、每日和 Seed 三种模式完整可用，确定性、赛程、成绩与保存隔离有证据，v1.4.0 文档与独立玩家包一致。
+无限、每日和 Seed 三种模式完整可用，确定性、赛程、成绩与保存隔离有证据，v1.4.0 文档与独立玩家包一致，并按 [AGENTS.md](../AGENTS.md) 完成全部 GitHub 交付。
 
 ## 3. 验收与交付范围
 
@@ -23,12 +23,12 @@
 
 ## 4. 完成与交接
 
-最终必要检查、文档和包一致后，才标记第 28 步及 v1.4.0 完成。在 [实施计划](../IMPLEMENTATION_PLAN.md) 与 [验收记录](../VALIDATION.md) 记录最终规则、算法、迁移、实际试玩／受控证据、包信息和未解决问题。
+最终必要检查、文档、包一致且全部 GitHub 交付核验后，才标记第 28 步及 v1.4.0 完成。在 [实施计划](../IMPLEMENTATION_PLAN.md) 与 [验收记录](../VALIDATION.md) 记录最终规则、算法、迁移、实际试玩／受控证据、包信息和未解决问题。
 
-正式远程提交、推送与发布需要当次授权。后续排行榜、云存档或自定义规则另立规格，不在本步扩展。
+版本交付按 [AGENTS.md](../AGENTS.md) 的持续授权执行。后续排行榜、云存档或自定义规则另立规格，不在本步扩展。
 
 ## 5. 执行提示词
 
 ```text
-请按 AGENTS.md 接手顺序读取项目文档，再读取 FEATURE_ROADMAP.md、steps/28-challenges-validation-delivery.md 和第 26～27 步交接与证据。完成 v1.4.0 三模式最终回归、日期与 Seed 确定性、有限赛程、记录成就隔离、存档迁移与实际浏览器验证，修复当前问题，制作并独立解压核对本地玩家包。同步 README.md、IMPLEMENTATION_PLAN.md、VALIDATION.md 和最终挑战规格，达标后再标记完成。未经当次授权不推送或发布。
+请按 AGENTS.md 接手顺序读取项目文档，再读取 FEATURE_ROADMAP.md、steps/28-challenges-validation-delivery.md 和第 26～27 步交接与证据。完成 v1.4.0 三模式最终回归、日期与 Seed 确定性、有限赛程、记录成就隔离、存档迁移与实际浏览器验证，修复当前问题，制作并独立解压核对玩家包。按 AGENTS.md 完成全部 GitHub 交付与公开下载核验，同步 README.md、IMPLEMENTATION_PLAN.md、VALIDATION.md 和最终挑战规格，达标后再标记完成。
 ```
