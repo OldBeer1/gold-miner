@@ -8,6 +8,7 @@
     <link rel="icon" href="data:,">
     <link rel="stylesheet" href="styles.css">
     <script src="js/config.js" defer></script>
+    <script src="js/challenges.js" defer></script>
     <script src="js/growth.js" defer></script>
     <script src="js/rules.js" defer></script>
     <script src="js/storage.js" defer></script>
@@ -61,17 +62,22 @@
               <p><kbd>↓ / S</kbd><span>使用炸药，摆脱慢速拖拽</span></p>
               <p><kbd>Esc</kbd><span>暂停或继续游戏</span></p>
             </div>
+            <div class="challenge-controls">
+              <label>挑战模式<select id="challenge-mode"><option value="endless">无限生存</option><option value="seed">Seed 挑战 · 20 关</option><option value="daily">每日挑战 · 20 关</option></select></label>
+              <label id="seed-control" hidden>Seed<input id="challenge-seed" type="text" inputmode="numeric" maxlength="10" placeholder="0～4294967295" aria-describedby="challenge-info"></label>
+            </div>
+            <p id="challenge-info" class="preview-note" role="status"></p>
             <div class="home-actions single-action">
               <button id="continue-button" class="button button-primary" type="button" hidden>继续游戏 →</button>
               <button id="start-button" class="button button-primary" type="button">新挑战 →</button>
             </div>
             <p id="checkpoint-description" class="preview-note" hidden></p>
-            <p class="preview-note">无限生存 · 每关 60 秒 · 失败后从第一关重新挑战</p>
+            <p class="preview-note">每关 60 秒 · 第 5 关起，每 5 关可能遇到特殊矿层</p>
             <div class="record-row">
-              <span title="历史最高的本轮已过关总收入，购物支出不扣除">最高记录 <small>本轮已过关总收入</small></span>
+              <span title="无限模式历史最高成绩，购物支出不扣除">无限最高记录 <small>本轮已过关总收入</small></span>
               <strong id="high-score">¥ 0</strong>
             </div>
-            <div class="record-row"><span>最高已通过关数</span><strong id="best-cleared-level">0 关</strong></div>
+            <div class="record-row"><span>无限最高已通过关数</span><strong id="best-cleared-level">0 关</strong></div>
             <p id="equipped-title" class="preview-note"></p>
             <nav class="profile-actions" aria-label="矿工资料">
               <button class="button button-quiet" type="button" data-profile="career">矿工档案</button>
@@ -83,6 +89,7 @@
         </div>
 
         <p id="scene-label" class="scene-label" hidden>瞄准目标，按空格或点击矿区出钩</p>
+        <p id="event-label" class="event-label" hidden></p>
         <section id="result-screen" class="result-screen" aria-labelledby="result-title" hidden>
           <div class="welcome-panel result-panel">
             <p id="result-eyebrow" class="eyebrow">采矿报告 · 第 01 关</p>
@@ -115,6 +122,7 @@
             <p class="eyebrow">关间休息 · 计时尚未开始</p>
             <h2 id="shop-title">矿工补给站</h2>
             <p id="shop-destination" class="welcome-description">下一站：第 2 关</p>
+            <p id="shop-event" class="preview-note"></p>
             <p class="shop-wallet">钱包 <strong id="shop-wallet">¥ 0</strong></p>
             <p id="shop-purchase-count" class="preview-note" role="status">已购买 0 / 4 件</p>
             <div id="shop-products" class="shop-products" aria-label="道具商店"></div>

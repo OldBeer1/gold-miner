@@ -1,0 +1,351 @@
+{
+  "phase": "28",
+  "version": "1.4.0",
+  "method": "original game and user-entered Seed 9, real elapsed time and real keyboard/mouse; no clock, level, income or outcome overrides",
+  "levels": [
+    {
+      "levelId": 1,
+      "target": 650,
+      "income": 650,
+      "qualifiedAt": 7.979343599999999,
+      "settledAt": 59.9783175,
+      "totalIncome": 650,
+      "trace": [
+        {
+          "id": "l1-safe1",
+          "type": "diamond",
+          "income": 250,
+          "realSeconds": 2.1134920000000004
+        },
+        {
+          "id": "l1-safe2",
+          "type": "smallGold",
+          "income": 350,
+          "realSeconds": 4.8148638
+        },
+        {
+          "id": "l1-safe4",
+          "type": "largeGold",
+          "income": 650,
+          "realSeconds": 7.979335099999999
+        }
+      ]
+    },
+    {
+      "levelId": 2,
+      "target": 800,
+      "income": 800,
+      "qualifiedAt": 6.380133800000003,
+      "settledAt": 60.20344540000001,
+      "totalIncome": 1450,
+      "trace": [
+        {
+          "id": "l2-safe4",
+          "type": "largeGold",
+          "income": 300,
+          "realSeconds": 2.752236899999996
+        },
+        {
+          "id": "l2-safe3",
+          "type": "diamond",
+          "income": 550,
+          "realSeconds": 4.4227949
+        },
+        {
+          "id": "l2-safe1",
+          "type": "diamond",
+          "income": 800,
+          "realSeconds": 6.380124600000003
+        }
+      ]
+    },
+    {
+      "levelId": 3,
+      "target": 950,
+      "income": 1100,
+      "qualifiedAt": 11.149101899999994,
+      "settledAt": 60.07926529999998,
+      "totalIncome": 2550,
+      "trace": [
+        {
+          "id": "l3-safe5",
+          "type": "diamond",
+          "income": 250,
+          "realSeconds": 1.786675000000003
+        },
+        {
+          "id": "l3-safe7",
+          "type": "diamond",
+          "income": 500,
+          "realSeconds": 3.7875589000000036
+        },
+        {
+          "id": "l3-safe8",
+          "type": "largeGold",
+          "income": 800,
+          "realSeconds": 6.8497405
+        },
+        {
+          "id": "l3-safe4",
+          "type": "largeGold",
+          "income": 1100,
+          "realSeconds": 11.149082000000009
+        }
+      ]
+    },
+    {
+      "levelId": 4,
+      "target": 1200,
+      "income": 1200,
+      "qualifiedAt": 13.218872599999973,
+      "settledAt": 60.0454847,
+      "totalIncome": 3750,
+      "trace": [
+        {
+          "id": "l4-safe5",
+          "type": "diamond",
+          "income": 250,
+          "realSeconds": 1.7267112999999954
+        },
+        {
+          "id": "l4-safe7",
+          "type": "diamond",
+          "income": 500,
+          "realSeconds": 3.8043444999999774
+        },
+        {
+          "id": "l4-safe8",
+          "type": "largeGold",
+          "income": 800,
+          "realSeconds": 7.4478079999999895
+        },
+        {
+          "id": "l4-safe6",
+          "type": "smallGold",
+          "income": 900,
+          "realSeconds": 9.675497199999983
+        },
+        {
+          "id": "l4-safe4",
+          "type": "largeGold",
+          "income": 1200,
+          "realSeconds": 13.218868299999972
+        }
+      ]
+    },
+    {
+      "levelId": 5,
+      "target": 1512,
+      "income": 1620,
+      "qualifiedAt": 18.6208952,
+      "settledAt": 60.176941299999974,
+      "totalIncome": 5370,
+      "trace": [
+        {
+          "id": "l5-safe5",
+          "type": "diamond",
+          "income": 250,
+          "realSeconds": 1.928482400000008
+        },
+        {
+          "id": "l5-safe6",
+          "type": "diamond",
+          "income": 500,
+          "realSeconds": 3.8104821999999987
+        },
+        {
+          "id": "l5-safe7",
+          "type": "diamond",
+          "income": 750,
+          "realSeconds": 5.6452399999999905
+        },
+        {
+          "id": "l5-safe8",
+          "type": "largeGold",
+          "income": 1050,
+          "realSeconds": 8.827172900000004
+        },
+        {
+          "id": "l5-safe4",
+          "type": "largeGold",
+          "income": 1350,
+          "realSeconds": 13.488212599999999
+        },
+        {
+          "id": "l5-block3",
+          "type": "stone",
+          "income": 1370,
+          "realSeconds": 16.819542400000007
+        },
+        {
+          "id": "l5-safe2",
+          "type": "diamond",
+          "income": 1620,
+          "realSeconds": 18.620888800000014
+        }
+      ]
+    }
+  ],
+  "shops": [
+    {
+      "afterLevel": 1,
+      "offers": [
+        "dynamite",
+        "protectionCharm",
+        "strength",
+        "luckyCharm"
+      ]
+    },
+    {
+      "afterLevel": 2,
+      "offers": [
+        "dynamite",
+        "goldBoost",
+        "timeCoupon",
+        "luckyCharm"
+      ]
+    },
+    {
+      "afterLevel": 3,
+      "offers": [
+        "dynamite",
+        "diamondBoost",
+        "timeCoupon",
+        "luckyCharm"
+      ]
+    },
+    {
+      "afterLevel": 4,
+      "offers": [
+        "dynamite",
+        "timeCoupon",
+        "diamondBoost",
+        "luckyCharm"
+      ]
+    },
+    {
+      "afterLevel": 5,
+      "offers": [
+        "dynamite",
+        "protectionCharm",
+        "timeCoupon",
+        "strength"
+      ]
+    }
+  ],
+  "errors": [],
+  "browser": "154.0.8037.97",
+  "runSeed": 9,
+  "enteredLevel6": true,
+  "growth": {
+    "career": {
+      "levelsCleared": 5,
+      "qualifiedIncome": 5370,
+      "recoveredIncome": 5370,
+      "failedLevelIncome": 0,
+      "hooksLaunched": 22,
+      "hooksHit": 22,
+      "objectsRecovered": 22,
+      "dynamiteUsed": 0,
+      "objectsDestroyedByDynamite": 0,
+      "barrelsDetonated": 0,
+      "objectsDestroyedByBarrel": 0,
+      "bagGoodLuck": 0,
+      "bagBadLuck": 0,
+      "chestTopRewards": 0,
+      "timeAddedMs": 0,
+      "cursedTimeLostMs": 0,
+      "penaltiesBlocked": 0,
+      "activePlayMs": 360000,
+      "bestRecoveryValue": 300,
+      "recoveredByType": {
+        "smallGold": 2,
+        "largeGold": 8,
+        "stone": 1,
+        "diamond": 11,
+        "ruby": 0,
+        "mysteryBag": 0,
+        "treasureChest": 0,
+        "cursedRelic": 0,
+        "powderKeg": 0
+      },
+      "runsStarted": 1,
+      "runsImported": 0,
+      "runsFailed": 1,
+      "runsAbandoned": 0,
+      "bestReachedLevel": 0,
+      "bestClearedLevel": 0,
+      "bestRunIncome": 0,
+      "bestLevelIncome": 0
+    },
+    "report": {
+      "runId": "518e64a8-5461-4d1d-936f-2efb52a4a374",
+      "mode": "seed",
+      "rulesetVersion": "1.4.0",
+      "challenge": {
+        "mode": "seed",
+        "seed": 9,
+        "date": null,
+        "rulesVersion": "1.4.0",
+        "levelLimit": 20
+      },
+      "eventCounts": {
+        "none": 5,
+        "diamondVein": 1
+      },
+      "runSeed": 9,
+      "startedAt": "2026-10-04T13:58:32.840Z",
+      "endedAt": "2026-10-04T14:04:34.401Z",
+      "reason": "failed",
+      "statisticsComplete": true,
+      "bestReachedLevel": 6,
+      "totals": {
+        "levelsCleared": 5,
+        "qualifiedIncome": 5370,
+        "recoveredIncome": 5370,
+        "failedLevelIncome": 0,
+        "hooksLaunched": 22,
+        "hooksHit": 22,
+        "objectsRecovered": 22,
+        "dynamiteUsed": 0,
+        "objectsDestroyedByDynamite": 0,
+        "barrelsDetonated": 0,
+        "objectsDestroyedByBarrel": 0,
+        "bagGoodLuck": 0,
+        "bagBadLuck": 0,
+        "chestTopRewards": 0,
+        "timeAddedMs": 0,
+        "cursedTimeLostMs": 0,
+        "penaltiesBlocked": 0,
+        "activePlayMs": 360000,
+        "bestRecoveryValue": 300,
+        "recoveredByType": {
+          "smallGold": 2,
+          "largeGold": 8,
+          "stone": 1,
+          "diamond": 11,
+          "ruby": 0,
+          "mysteryBag": 0,
+          "treasureChest": 0,
+          "cursedRelic": 0,
+          "powderKeg": 0
+        }
+      },
+      "failure": {
+        "levelId": 6,
+        "income": 0,
+        "target": 1600,
+        "eventId": "none"
+      },
+      "newAchievementIds": [],
+      "newRecords": []
+    }
+  },
+  "failure": {
+    "levelId": 6,
+    "realSeconds": 60.22499430000002,
+    "totalIncome": 5370
+  },
+  "mouseUsed": true,
+  "result": "passed"
+}

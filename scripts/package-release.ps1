@@ -1,14 +1,15 @@
-param([string]$Version = '1.2.0')
+﻿param([string]$Version = '1.4.0')
 
 $ErrorActionPreference = 'Stop'
 if ($Version -notmatch '^\d+\.\d+\.\d+$') { throw 'Version must use major.minor.patch.' }
 Add-Type -AssemblyName System.IO.Compression.FileSystem
+Add-Type -AssemblyName System.IO.Compression
 
 $goldProjectRoot = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 $goldReleaseDirectory = Join-Path $goldProjectRoot 'output\release'
 [void][System.IO.Directory]::CreateDirectory($goldReleaseDirectory)
 $goldArchivePath = Join-Path $goldReleaseDirectory "Gold-survival-v$Version.zip"
-$goldRuntimeFiles = @('index.html', 'styles.css', 'js/config.js', 'js/growth.js', 'js/rules.js', 'js/game.js', 'js/storage.js', 'js/effects.js', 'js/audio.js')
+$goldRuntimeFiles = @('index.html', 'styles.css', 'js/config.js', 'js/challenges.js', 'js/growth.js', 'js/rules.js', 'js/game.js', 'js/storage.js', 'js/effects.js', 'js/audio.js')
 if ((Get-Content -LiteralPath (Join-Path $goldProjectRoot 'js/config.js') -Raw) -notmatch ('version: "' + [regex]::Escape($Version) + '"')) { throw 'Requested version does not match runtime config.' }
 foreach ($goldRelativePath in $goldRuntimeFiles) {
     if (-not (Test-Path -LiteralPath (Join-Path $goldProjectRoot $goldRelativePath) -PathType Leaf)) {
@@ -17,7 +18,7 @@ foreach ($goldRelativePath in $goldRuntimeFiles) {
 }
 
 $goldPlayerReadme = @"
-# 黄金矿工 · 无限生存 v$Version
+# 黄金矿工 · 矿层与挑战 v$Version
 
 ## 开始游玩
 
@@ -45,7 +46,17 @@ $goldPlayerReadme = @"
 
 回收类物体拖回矿工处才触发收入或奖励。钩尖碰到火药桶立即原地爆炸，清除 80 个画布像素范围内的未回收物体，抓钩空钩返回。爆炸不扣时间、不消耗炸药或护身符；被炸毁物体没有收益或特殊效果。
 
-## 保存
+## 随机矿层与挑战模式
+
+从第 5 关开始，每逢 5 的倍数关有 60% 事件机会；黄金热潮、钻石矿脉、地质不稳定、黑市、贫瘠矿层每次只出现一种。商店提前显示下一关实际事件、目标与固定报价，刷新不重抽。
+
+主页可选无限生存、Seed 挑战或每日挑战。无限无终点，Seed 与每日均为 20 关赛程，使用同一初始资源和商店；第 20 关成功后结束并保存报告。Seed 接受 0～4294967295 的整数。相同模式、规则版本、Seed 与相同道具选择复现一致内容。
+
+每日使用设备 UTC+8 日期，跨日继续保持原日期与地图，新局使用当前日期。离线日期和成绩不提供防作弊保证，可重复练习。Seed 和每日个人最佳按赛题/规则独立保存，依次比较通过关数、有效成绩、有效采矿时长，最多保留最近更新的 200 个赛题。报告中的分享文本可以复制，游戏不会自动对外发送。
+
+原 18 项成就只在无限模式解锁；生涯按模式汇总，图鉴与报告共用，挑战成绩不会改变无限最高纪录。有效 v1.2.0 档案可迁入，当前入口和已支付交易保留，首次升级保留原文备份。
+
+## 自动保存
 
 自动保存关卡起点和商店交易。刷新或关内退出后，主页“继续游戏”从当前关起点重开：同一地图/奖励，钱包、炸药、时间和增益回到入关状态，关内新收入不保留；从商店继续时保留原商品、报价、钱包、购买次数与增益。失败清除本轮存档，最高记录保留。新挑战需确认覆盖已有存档。
 

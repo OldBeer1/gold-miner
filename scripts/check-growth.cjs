@@ -225,6 +225,6 @@ check("称号、检查与图鉴不消费随机数；已解锁成就不因目录�
   growth.evaluate(t.doc, null, now); assert.deepEqual(t.doc.profile.achievements.clear_20, unlocked);
   assert.deepEqual(rules.createRun(config, 50, { runSeed: 78 }).level, before.level);
 });
-fs.writeFileSync("output/playwright/survival-v120-growth-report.json", JSON.stringify({ version: config.version,
+fs.writeFileSync(`output/playwright/survival-v${config.version.replaceAll(".", "")}-growth-report.json`, JSON.stringify({ version: config.version,
   method: "pure engine with explicit layouts, carrying state and times; no claim of natural play", achievementChecks, checks, result: "passed" }, null, 2) + "\n");
 console.log(`成长检查通过：${achievementChecks.length} 项成就正反条件，${checks.length} 组事件/保存/图鉴/报告边界。`);

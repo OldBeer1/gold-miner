@@ -1,6 +1,8 @@
 # 第 28 步：挑战模式完整验收与 v1.4.0 GitHub 交付
 
-状态：后续规划。目标版本：v1.4.0。前置：[第 26 步](26-seed-challenge-mode.md)、[第 27 步](27-daily-challenge-mode.md) 已完成。
+状态：实现与验收完成，完整 GitHub 交付中（2026-10-04）。目标版本：v1.4.0。前置：[第 26 步](26-seed-challenge-mode.md)、[第 27 步](27-daily-challenge-mode.md) 已完成。
+
+本轮用户明确要求第 23～28 步合并推进并统一交付 v1.4.0；原 v1.3.0 不单独发行。分步范围统一按合并版执行，最终状态与证据以实施计划和验收记录为准。
 
 ## 1. 开始前读取
 
@@ -32,3 +34,7 @@
 ```text
 请按 AGENTS.md 接手顺序读取项目文档，再读取 FEATURE_ROADMAP.md、steps/28-challenges-validation-delivery.md 和第 26～27 步交接与证据。完成 v1.4.0 三模式最终回归、日期与 Seed 确定性、有限赛程、记录成就隔离、存档迁移与实际浏览器验证，修复当前问题，制作并独立解压核对玩家包。按 AGENTS.md 完成全部 GitHub 交付与公开下载核验，同步 README.md、IMPLEMENTATION_PLAN.md、VALIDATION.md 和最终挑战规格，达标后再标记完成。
 ```
+
+## 6. 2026-10-04 实际交接
+
+最终规则、存储、九组浏览器、原生标签暂停、三视口七音效与七组独立玩家包检查通过；模拟／受控 20 关与真实五关证据分开，完整发布核验见最新交接。 无新增运行依赖；对应实现与证据见 [现行规格](../GAME_SPEC.md)、[验收记录](../VALIDATION.md) 和 [最新交接](../IMPLEMENTATION_PLAN.md#4-最新交接)。完整 GitHub 交付完成后更新本步最终状态。

@@ -1,8 +1,8 @@
 (function (root, factory) {
   "use strict";
-  if (typeof module === "object" && module.exports) module.exports = factory(require("./growth.js"));
-  else root.GoldMinerRules = factory(root.GoldMinerGrowth);
-})(typeof window !== "undefined" ? window : globalThis, function (growth) {
+  if (typeof module === "object" && module.exports) module.exports = factory(require("./growth.js"), require("./challenges.js"));
+  else root.GoldMinerRules = factory(root.GoldMinerGrowth, root.GoldMinerChallenges);
+})(typeof window !== "undefined" ? window : globalThis, function (growth, challenges) {
   "use strict";
 
   function seededRandom(seed, levelId, purpose) {
@@ -33,6 +33,27 @@
     return definition.radius || Math.hypot(definition.width / 2, definition.height / 2);
   }
 
+  function selectEvent(config, levelId, runSeed) {
+    levelParameters(config, levelId);
+    if (!config.events || config.version !== "1.4.0" || levelId < config.events.firstLevel || levelId % config.events.interval !== 0) return "none";
+    const random = seededRandom(runSeed, levelId, 0x45564e54);
+    if (random() >= config.events.probability) return "none";
+    const ids = Object.keys(config.events.definitions).filter(id => id !== "none");
+    return ids[Math.floor(random() * ids.length)];
+  }
+
+  function resolveEvent(config, id = "none") {
+    if (!Object.hasOwn(config.events.definitions, id)) throw new Error("未知矿层事件");
+    return Object.freeze({ id, ...config.events.definitions[id] });
+  }
+
+  function eventParameters(config, levelId, event) {
+    const base = levelParameters(config, levelId);
+    return { ...base, event, target: Math.round(base.target * event.targetMultiplier),
+      rewardScale: base.rewardScale * event.rewardMultiplier,
+      count: Math.max(9 + base.obstacleCount + 2, base.count + event.countDelta) };
+  }
+
   function validPlacement(mineral, layout, config) {
     const radius = boundingRadius(config.minerals[mineral.type]);
     const mine = config.mine;
@@ -58,6 +79,7 @@
 
   function makeLayout(config, parameters, random, fallback) {
     const types = ["largeGold", "diamond", "smallGold", "diamond", "largeGold", "diamond", "smallGold", "diamond", "largeGold"];
+    if (parameters.event?.id === "diamondVein") { types[2] = "diamond"; types[6] = "diamond"; }
     const offset = fallback ? 0 : random() * 6 - 3;
     const mirror = !fallback && random() < .5 ? -1 : 1;
     const layout = types.map((type, index) => {
@@ -79,12 +101,15 @@
     }
     const newTypes = config.survival.newTypes.filter(type => config.minerals[type]);
     const firstNew = newTypes.length ? Math.floor(random() * newTypes.length) : -1;
-    const required = firstNew < 0 ? [] : fallback ? ["mysteryBag", "treasureChest"]
+    let required = firstNew < 0 ? [] : fallback ? ["mysteryBag", "treasureChest"]
       : [newTypes[firstNew], newTypes[(firstNew + 1 + Math.floor(random() * (newTypes.length - 1))) % newTypes.length]];
+    if (parameters.event?.id === "goldRush") required = ["largeGold", "stone", ...required];
+    if (parameters.event?.id === "unstable") required = ["powderKeg", "powderKeg", "mysteryBag", "treasureChest"];
     const available = parameters.difficulty >= 3 ? ["stone", "stone", "stone", "smallGold", "mysteryBag", "treasureChest", "ruby", "cursedRelic", "powderKeg"] : Object.keys(config.minerals);
     const extraCount = parameters.count - layout.length;
     for (let i = 0; i < extraCount; i += 1) {
-      const pool = available.filter(type => !["powderKeg", "cursedRelic"].includes(type) || layout.filter(item => item.type === type).length < 2);
+      const pool = available.filter(type => !["powderKeg", "cursedRelic"].includes(type)
+        || layout.filter(item => item.type === type).length < (type === "powderKeg" ? parameters.event?.maxPowderKegs || 2 : 2));
       const type = required[i] || (fallback ? "stone" : pool[Math.floor(random() * pool.length)]);
       let placed = false;
       for (let attempt = 0; attempt < (fallback ? 1 : config.survival.placementAttempts); attempt += 1) {
@@ -133,8 +158,9 @@
     return { strategy, success: run.levelIncome >= level.target, seconds: run.elapsedTime, income: run.levelIncome };
   }
 
-  function createLevel(config, levelId, runSeed = 0) {
-    const parameters = levelParameters(config, levelId);
+  function createLevel(config, levelId, runSeed = 0, eventId = selectEvent(config, levelId, runSeed)) {
+    const event = resolveEvent(config, eventId);
+    const parameters = eventParameters(config, levelId, event);
     const random = seededRandom(runSeed, levelId, 0x4c41594f);
     for (let attempt = 0; attempt < config.survival.maxAttempts; attempt += 1) {
       const layout = makeLayout(config, parameters, random, false);
@@ -144,10 +170,16 @@
       if (route.success) return freezeLevel({ ...level, route });
     }
     const layout = makeLayout(config, parameters, seededRandom(runSeed, levelId, 0x46414c4c), true);
-    if (!layout) throw new Error("备用布局配置无效");
+    if (!layout) {
+      if (eventId !== "none") return freezeLevel({ ...createLevel(config, levelId, runSeed, "none"), requestedEventId: eventId, eventDowngrade: "事件备用布局不可用，恢复普通矿层" });
+      throw new Error("备用布局配置无效");
+    }
     const level = { ...parameters, layout, fallback: true };
     const route = verifyRoute(config, level);
-    if (!route.success) throw new Error("备用布局没有可达标路线");
+    if (!route.success) {
+      if (eventId !== "none") return freezeLevel({ ...createLevel(config, levelId, runSeed, "none"), requestedEventId: eventId, eventDowngrade: "事件预算不满足，恢复普通矿层" });
+      throw new Error("备用布局没有可达标路线");
+    }
     return freezeLevel({ ...level, route });
   }
 
@@ -171,13 +203,16 @@
 
   function createRun(config, levelId = 1, entry = {}) {
     const runSeed = entry.runSeed ?? 0;
-    const level = entry.level || createLevel(config, levelId, runSeed);
+    const challenge = entry.challenge || challenges.create("endless", runSeed, null, config.version);
+    if (!challenges.valid(challenge, config.version) || challenge.seed !== runSeed) throw new Error("挑战身份无效");
+    if (challenge.levelLimit && levelId > challenge.levelLimit) throw new Error("挑战赛程已结束");
+    const level = entry.level || createLevel(config, levelId, challenges.generationSeed(challenge));
     if (!level || !level.layout.length) throw new Error("该关卡尚未配置布局");
     const effects = emptyEffects();
     Object.keys(effects).forEach(key => { effects[key] = Boolean(entry.effects?.[key]); });
     const timeBonus = effects.timeCoupon ? config.shop.timeCoupon.seconds : 0;
     const run = {
-      levelId, level, runSeed,
+      levelId, level, runSeed, challenge,
       levelIncome: 0,
       wallet: entry.wallet ?? config.initialRun.wallet,
       totalIncome: entry.totalIncome ?? config.initialRun.totalIncome,
@@ -200,6 +235,7 @@
     return Object.freeze({
       levelId: run.levelId,
       runSeed: run.runSeed,
+      challenge: run.challenge,
       level: run.level,
       wallet: run.wallet,
       bombs: run.bombs,
@@ -213,23 +249,25 @@
   }
 
   function createShop(run, config) {
-    if (!run.result?.success) return null;
+    if (!run.result?.success || run.challenge?.levelLimit === run.levelId) return null;
     if (run.shop) return run.shop;
-    const random = seededRandom(run.runSeed, run.levelId, 0x53484f50);
+    const random = seededRandom(challenges.generationSeed(run.challenge), run.levelId, 0x53484f50);
     const pool = Object.keys(config.shop).filter(item => item !== "dynamite");
     const offers = ["dynamite"];
     while (offers.length < config.survival.shopSlots && pool.length) offers.push(pool.splice(Math.floor(random() * pool.length), 1)[0]);
-    run.shop = { nextLevelId: run.levelId + 1, offers: Object.freeze(offers),
-      prices: Object.freeze(Object.fromEntries(offers.map(item => [item, shopPrice(config, run.levelId + 1, item)]))),
+    const nextLevel = createLevel(config, run.levelId + 1, challenges.generationSeed(run.challenge));
+    run.shop = { nextLevelId: run.levelId + 1, nextLevel,
+      prices: Object.freeze(Object.fromEntries(offers.map(item => [item, shopPrice(config, run.levelId + 1, item, nextLevel.event)]))), offers: Object.freeze(offers),
       purchaseCount: 0, effects: emptyEffects() };
     return run.shop;
   }
 
-  function shopPrice(config, nextLevelId, item) {
+  function shopPrice(config, nextLevelId, item, event = null) {
     const next = levelParameters(config, nextLevelId);
     const multiplier = (1 + config.survival.warmupPriceGrowth * next.difficulty)
       * (1 + config.survival.stagePriceGrowth * Math.log2(1 + next.stage)) * next.rewardScale;
-    return Math.ceil(config.shop[item].price * multiplier / 10) * 10;
+    const eventMultiplier = event?.id === "blackMarket" ? item === "dynamite" ? .75 : 1.25 : 1;
+    return Math.ceil(config.shop[item].price * multiplier * eventMultiplier / 10) * 10;
   }
 
   function captureCheckpoint(run, kind, config) {
@@ -540,7 +578,7 @@
     return events;
   }
 
-  return Object.freeze({ createLevel, levelParameters, verifyRoute, validPlacement, protectsRoute, resolveReward, createRun,
+  return Object.freeze({ createLevel, levelParameters, selectEvent, resolveEvent, eventParameters, verifyRoute, validPlacement, protectsRoute, resolveReward, createRun,
     captureEntrySnapshot, restoreEntrySnapshot, captureCheckpoint, restoreCheckpoint, createShop, shopPrice, purchaseAvailability,
     purchaseItem, canUseDynamite, useDynamite, hookPoint, maximumLength, segmentCircle, segmentRectangle, firstHit, launchHook, advanceRun });
 });

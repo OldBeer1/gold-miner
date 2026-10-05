@@ -28,8 +28,8 @@ check("1700 份布局均可见、可达、无重叠并在 45 秒内无道具达�
     let maximumSeconds = 0, fallbackCount = 0;
     const steadySeconds = [], fastestFound = [], strategySuccesses = { value: 0, efficiency: 0, safe: 0 };
     for (let seed = 0; seed < 100; seed += 1) {
-      const level = rules.createLevel(config, levelId, seed);
-      assert.deepEqual(level, rules.createLevel(config, levelId, seed));
+      const level = rules.createLevel(config, levelId, seed, "none");
+      assert.deepEqual(level, rules.createLevel(config, levelId, seed, "none"));
       const parameters = rules.levelParameters(config, levelId);
       assert.equal(level.target, parameters.target); assert.equal(level.layout.length, parameters.count);
       assert.equal(new Set(level.layout.map(m => m.id)).size, level.layout.length);
@@ -62,7 +62,7 @@ check("不同种子生成不同布局，强制失败使用有效备用布局", (
   assert.notDeepEqual(rules.createLevel(config, 1, 0).layout, rules.createLevel(config, 1, 1).layout);
   const fallbackConfig = { ...config, survival: { ...config.survival, maxAttempts: 0 } };
   for (const n of [1, 10, 1000]) {
-    const level = rules.createLevel(fallbackConfig, n, 42);
+    const level = rules.createLevel(fallbackConfig, n, 42, "none");
     assert.equal(level.fallback, true); assert.equal(level.layout.length, rules.levelParameters(config, n).count);
     assert.ok(rules.verifyRoute(fallbackConfig, level).success);
   }
@@ -333,7 +333,7 @@ check("10～19/20～29 同档，20/30/40 提升；极大关号仍有限并有当
     assert.ok(current.target > previous.target || n === Number.MAX_SAFE_INTEGER);
     assert.ok(Number.isSafeInteger(current.target) && current.count <= 27);
     const fallbackConfig = { ...config, survival: { ...config.survival, maxAttempts: 0 } };
-    const fallback = rules.createLevel(fallbackConfig,n,7); assert.ok(rules.verifyRoute(config,fallback).success);
+    const fallback = rules.createLevel(fallbackConfig,n,7,"none"); assert.ok(rules.verifyRoute(config,fallback).success);
     assert.ok(fallback.route.seconds >= 35);
   }
 });

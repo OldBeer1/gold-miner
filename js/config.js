@@ -2,7 +2,7 @@
   "use strict";
 
   const config = {
-    version: "1.2.0",
+    version: "1.4.0",
     canvas: { width: 960, height: 640 },
     mine: { x: 24, y: 160, width: 912, height: 456 },
     miner: { anchor: { x: 480, y: 112 } },
@@ -125,6 +125,17 @@
         { kind: "coins", amount: 450, weight: 35, luckyWeight: 50 },
         { kind: "coins", amount: 800, weight: 15, luckyWeight: 30 },
       ],
+    },
+    events: {
+      firstLevel: 5, interval: 5, probability: .6,
+      definitions: {
+        none: { name: "普通矿层", description: "沿用普通矿层规则", targetMultiplier: 1, rewardMultiplier: 1, countDelta: 0, maxPowderKegs: 2 },
+        goldRush: { name: "黄金热潮", description: "额外金块与石头，深处收益和清障机会增加", targetMultiplier: 1, rewardMultiplier: 1, countDelta: 2, maxPowderKegs: 2 },
+        diamondVein: { name: "钻石矿脉", description: "两条小金块路线变为钻石，目标提高 8%", targetMultiplier: 1.08, rewardMultiplier: 1, countDelta: 0, maxPowderKegs: 2 },
+        unstable: { name: "地质不稳定", description: "至少两个火药桶，最多四个；接触即爆炸，请谨慎瞄准", targetMultiplier: 1, rewardMultiplier: 1, countDelta: 2, maxPowderKegs: 4 },
+        blackMarket: { name: "黑市", description: "本次补给炸药价格 ×0.75，其他商品 ×1.25；矿层规则不变", targetMultiplier: 1, rewardMultiplier: 1, countDelta: 0, maxPowderKegs: 2 },
+        sparse: { name: "贫瘠矿层", description: "减少四个额外物体，金币收入 ×1.12，目标 ×1.08", targetMultiplier: 1.08, rewardMultiplier: 1.12, countDelta: -4, maxPowderKegs: 2 },
+      },
     },
     palette: {
       sky: "#9bbaad", skyLight: "#bdd1b4", mountain: "#7a9b8d",

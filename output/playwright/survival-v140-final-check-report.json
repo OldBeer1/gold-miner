@@ -1,0 +1,40 @@
+{
+  "version": "1.4.0",
+  "result": "passed",
+  "syntaxFiles": [
+    "js/config.js",
+    "js/game.js",
+    "js/growth.js",
+    "js/rules.js",
+    "js/storage.js",
+    "output/playwright/verify-survival-release.cjs",
+    "scripts/check-growth.cjs",
+    "scripts/check-rules.cjs",
+    "js/challenges.js",
+    "scripts/check-challenges.cjs",
+    "output/playwright/verify-survival-v140-challenges.cjs",
+    "output/playwright/verify-survival-v140-native-pause.cjs",
+    "output/playwright/verify-survival-v140-real-run.cjs",
+    "output/playwright/verify-survival-v140-smoke.cjs"
+  ],
+  "markdownFiles": 19,
+  "localLinks": 275,
+  "anchors": 16,
+  "reportsChecked": [
+    "challenges",
+    "challenges-ui",
+    "growth",
+    "checkpoints",
+    "rules",
+    "native-pause",
+    "smoke",
+    "real-run",
+    "package",
+    "release-preflight"
+  ],
+  "checks": [
+    "所有修改和新增 JS/CJS 语法通过",
+    "当前 Markdown 引用、章节锚点与代码块闭合通过",
+    "已完成验收报告均 passed 且错误列表为空"
+  ]
+}
