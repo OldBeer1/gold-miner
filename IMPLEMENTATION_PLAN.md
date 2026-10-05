@@ -1,6 +1,6 @@
 # 黄金矿工：当前实施计划
 
-更新：2026-10-04。已发布基线 **v1.2.0**。用户要求将原 v1.3.0 事件与 v1.4.0 挑战合并推进，当前源码 **v1.4.0**，第 23～28 步实现与本地验收完成，正在完整 GitHub 交付。第 01～16 步归档，第 17～22 步已交付。
+更新：2026-10-05。当前正式版本 **v1.4.0**。用户要求将原 v1.3.0 事件与 v1.4.0 挑战合并推进，当前源码 **v1.4.0**，第 23～28 步实现、验收与完整 GitHub 交付已完成。第 01～16 步归档，第 17～22 步已交付。
 
 当前规则见 [GAME_SPEC.md](GAME_SPEC.md)，未来需求见 [FEATURE_ROADMAP.md](FEATURE_ROADMAP.md)，实际验证见 [VALIDATION.md](VALIDATION.md)。历史步骤、发布与完整交接见 [docs/HISTORY.md](docs/HISTORY.md)。
 
@@ -10,18 +10,18 @@
 
 | 步骤 | 版本 | 独立任务 | 前置 | 状态 |
 | --- | --- | --- | --- | --- |
-| 17 | v1.2.0 | [成长数据定义与规则事件](steps/17-growth-data-events.md) | v1.1.0 已验收 | 已完成（本地验收） |
-| 18 | v1.2.0 | [生涯统计与成长存档](steps/18-career-progress-storage.md) | 17 | 已完成（本地验收） |
-| 19 | v1.2.0 | [成就判定与奖励状态](steps/19-achievement-engine.md) | 18 | 已完成（本地验收） |
-| 20 | v1.2.0 | [矿井图鉴数据与解锁](steps/20-mining-collection.md) | 19 | 已完成（本地验收） |
-| 21 | v1.2.0 | [资料页面与单局报告](steps/21-career-pages-run-report.md) | 20 | 已完成（本地验收） |
+| 17 | v1.2.0 | [成长数据定义与规则事件](steps/17-growth-data-events.md) | v1.1.0 已验收 | 已完成（随 v1.2.0 发布） |
+| 18 | v1.2.0 | [生涯统计与成长存档](steps/18-career-progress-storage.md) | 17 | 已完成（随 v1.2.0 发布） |
+| 19 | v1.2.0 | [成就判定与奖励状态](steps/19-achievement-engine.md) | 18 | 已完成（随 v1.2.0 发布） |
+| 20 | v1.2.0 | [矿井图鉴数据与解锁](steps/20-mining-collection.md) | 19 | 已完成（随 v1.2.0 发布） |
+| 21 | v1.2.0 | [资料页面与单局报告](steps/21-career-pages-run-report.md) | 20 | 已完成（随 v1.2.0 发布） |
 | 22 | v1.2.0 | [成长系统完整验收与 GitHub 交付](steps/22-growth-validation-delivery.md) | 21 | 已完成（正式发布） |
-| 23 | v1.4.0（合并） | [随机事件规则与生成](steps/23-random-event-rules.md) | 22，v1.2.0 验收通过 | 实现与验收完成，交付中 |
-| 24 | v1.4.0（合并） | [事件流程、商店与存档](steps/24-random-event-flow-save.md) | 23 | 实现与验收完成，交付中 |
-| 25 | v1.4.0（合并） | [随机事件完整验收与 GitHub 交付](steps/25-events-validation-delivery.md) | 24 | 实现与验收完成，交付中 |
-| 26 | v1.4.0 | [Seed 挑战与模式隔离](steps/26-seed-challenge-mode.md) | 25，事件验收通过 | 实现与验收完成，交付中 |
-| 27 | v1.4.0 | [每日挑战与日期规则](steps/27-daily-challenge-mode.md) | 26 | 实现与验收完成，交付中 |
-| 28 | v1.4.0 | [挑战模式完整验收与 GitHub 交付](steps/28-challenges-validation-delivery.md) | 27 | 实现与验收完成，交付中 |
+| 23 | v1.4.0（合并） | [随机事件规则与生成](steps/23-random-event-rules.md) | 22，v1.2.0 验收通过 | 已完成（统一正式发布） |
+| 24 | v1.4.0（合并） | [事件流程、商店与存档](steps/24-random-event-flow-save.md) | 23 | 已完成（统一正式发布） |
+| 25 | v1.4.0（合并） | [随机事件完整验收与 GitHub 交付](steps/25-events-validation-delivery.md) | 24 | 已完成（统一正式发布） |
+| 26 | v1.4.0 | [Seed 挑战与模式隔离](steps/26-seed-challenge-mode.md) | 25，事件验收通过 | 已完成（统一正式发布） |
+| 27 | v1.4.0 | [每日挑战与日期规则](steps/27-daily-challenge-mode.md) | 26 | 已完成（统一正式发布） |
+| 28 | v1.4.0 | [挑战模式完整验收与 GitHub 交付](steps/28-challenges-validation-delivery.md) | 27 | 已完成（统一正式发布） |
 
 ## 2. 执行与完成要求
 
@@ -92,3 +92,11 @@ README 更新下载入口，VALIDATION 增加正式发布证据，报告为 `out
 有效 v1.2.0 权威档案显式校验、备份原文后迁入无限模式，保留布局、已支付交易、成就、装备和报告；旧商店下一关为普通矿层，原报价不变。未知格式／非法日期事件保留原数据。新增 challenges 模块、check-challenges 和 v140 证据入口，实际检查见 VALIDATION。
 
 玩家包 53798 字节／11 文件，10 个运行文件逐项一致，SHA-256 为 79e6bde1ff51e3d250e85354a11a00012f1737be788d578a4eaae77ab26dbea1。Windows PowerShell 5.1 独立打包和 Chrome 解压包通过，脚本显式加载压缩程序集并采用 UTF-8 BOM 兼容中文。正式发布、匿名下载与最终同步仍需完成；无已知功能阻断。离线日期不防作弊，浏览器／地址隔离和单页面限制继续适用。
+
+### 2026-10-05：v1.4.0 完整 GitHub 交付
+
+源码、配置、规格、分步交接、检查脚本及全部 v140 报告／截图已提交并推送 main，验收源码为 `9a82b3a21b82752dba77743d144614075020970a`。v1.4.0 标签对应该源码，正式最新稳定 Release 已发布：[版本说明](https://github.com/OldBeer1/gold-miner/releases/tag/v1.4.0)、[玩家包](https://github.com/OldBeer1/gold-miner/releases/download/v1.4.0/Gold-survival-v1.4.0.zip)。原 v1.3.0 不单独发行，历史版本、证据与 ZIP 保留。
+
+匿名公开下载复验为 53798 字节／11 文件，SHA-256 `79e6bde1ff51e3d250e85354a11a00012f1737be788d578a4eaae77ab26dbea1` 与本地包一致；10 个运行文件逐项匹配，清单无额外依赖或缓存。[发布验证报告](output/playwright/survival-v140-published-release-report.json) 保存安全公开元数据和校验结果；下载包与已执行七组解压浏览器验收的包完全一致，发布阶段没有重新声称一次新的完整试玩。
+
+README 更新 v1.4.0 下载入口，FEATURE_ROADMAP、VALIDATION 与第 23～28 步同步正式完成状态。本轮最后将发布验证、版本入口与最终交接提交推送，并核对远程 main 与本地相同；源码标签固定在验收提交，后续发布文档提交不改变玩家运行文件。没有剩余已授权实施步骤或已知阻断；后续功能按玩家反馈另立范围，离线日期、单活动存档和浏览器地址隔离限制继续适用。

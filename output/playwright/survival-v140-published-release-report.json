@@ -1,0 +1,39 @@
+{
+  "version": "1.4.0",
+  "result": "passed",
+  "checkedAt": "2026-10-05T02:50:23.4839631Z",
+  "sourceCommit": "9a82b3a21b82752dba77743d144614075020970a",
+  "releaseUrl": "https://github.com/OldBeer1/gold-miner/releases/tag/v1.4.0",
+  "downloadUrl": "https://github.com/OldBeer1/gold-miner/releases/download/v1.4.0/Gold-survival-v1.4.0.zip",
+  "releaseId": 403324542,
+  "assetId": 611295924,
+  "draft": false,
+  "prerelease": false,
+  "publicLatestVerified": true,
+  "anonymousDownload": true,
+  "size": 53798,
+  "sha256": "79e6bde1ff51e3d250e85354a11a00012f1737be788d578a4eaae77ab26dbea1",
+  "assetDigest": "sha256:79e6bde1ff51e3d250e85354a11a00012f1737be788d578a4eaae77ab26dbea1",
+  "entries": [
+    "index.html",
+    "js/audio.js",
+    "js/challenges.js",
+    "js/config.js",
+    "js/effects.js",
+    "js/game.js",
+    "js/growth.js",
+    "js/rules.js",
+    "js/storage.js",
+    "README.md",
+    "styles.css"
+  ],
+  "runtimeFilesCompared": 10,
+  "checks": [
+    "public release stable and latest",
+    "tag resolves to verified source commit",
+    "anonymous public download matches size and SHA-256",
+    "extracted entries exactly match manifest",
+    "ten runtime files match current verified source"
+  ],
+  "runtimeVerification": "Final local package browser preflight passed 7 groups; public package bytes are identical. No new gameplay run performed during publication."
+}

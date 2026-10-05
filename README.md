@@ -1,6 +1,6 @@
 # 黄金矿工 · 无限生存
 
-原生 HTML、CSS、JavaScript 和 Canvas 2D 像素风单机游戏，无构建步骤、第三方运行依赖或远程素材。当前源码为 **v1.4.0：矿层与挑战**，按用户要求合并第 23～28 步的随机事件、Seed 与每日挑战，实现与本地验收完成，正在完整 GitHub 交付。既有 v1.2.0 正式版本保留。
+原生 HTML、CSS、JavaScript 和 Canvas 2D 像素风单机游戏，无构建步骤、第三方运行依赖或远程素材。当前源码为 **v1.4.0：矿层与挑战**，按用户要求合并第 23～28 步的随机事件、Seed 与每日挑战，已完成实现、验收与正式 GitHub 发布。既有 v1.2.0 和更早版本保留。
 
 ![采矿画面](output/playwright/survival-v140-scene-1280x720.png)
 
@@ -8,7 +8,7 @@
 
 双击 `index.html`，使用 Chrome、Edge 等现代桌面浏览器打开。点击“新挑战”，已有存档时点击“继续游戏”。玩家包解压整个目录后直接打开，无需 Node.js 或联网。
 
-[下载 v1.2.0 玩家包](https://github.com/OldBeer1/gold-miner/releases/download/v1.2.0/Gold-survival-v1.2.0.zip) · [版本说明](https://github.com/OldBeer1/gold-miner/releases/tag/v1.2.0) · [源码仓库](https://github.com/OldBeer1/gold-miner)。本地同一玩家包为 `output/release/Gold-survival-v1.2.0.zip`，打包、独立解压及公开下载复验见 [VALIDATION.md](VALIDATION.md)。
+[下载 v1.4.0 玩家包](https://github.com/OldBeer1/gold-miner/releases/download/v1.4.0/Gold-survival-v1.4.0.zip) · [版本说明](https://github.com/OldBeer1/gold-miner/releases/tag/v1.4.0) · [源码仓库](https://github.com/OldBeer1/gold-miner)。本地同一玩家包为 `output/release/Gold-survival-v1.4.0.zip`，打包、独立解压及公开下载复验见 [VALIDATION.md](VALIDATION.md)。
 
 需要本地服务时，在项目根目录使用 **PowerShell**：
 
@@ -93,7 +93,7 @@ node .\scripts\check-rules.cjs
 | [VALIDATION.md](VALIDATION.md) | 当前版本实际验证与限制 |
 | [docs/HISTORY.md](docs/HISTORY.md) | 旧规格、完成步骤、历史交接与验收原文索引 |
 
-v1.2.0 第 17～22 步已完成。用户要求将原 v1.3.0 随机事件与 v1.4.0 Seed／每日挑战合并交付，第 23～28 步已在同一个 v1.4.0 版本内完成实现与验收。任务与交付状态只在实施计划维护，每份 `steps/` 文件保留范围和实际交接。
+v1.2.0 第 17～22 步已完成。用户要求将原 v1.3.0 随机事件与 v1.4.0 Seed／每日挑战合并交付，第 23～28 步已统一在 v1.4.0 完成并正式发布，原 v1.3.0 不单独发行。任务与交付状态只在实施计划维护，每份 `steps/` 文件保留范围和实际交接。
 
 | 文件 | 实现职责 |
 | --- | --- |
