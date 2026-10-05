@@ -2,7 +2,8 @@
   "use strict";
 
   const config = {
-    version: "1.4.0",
+    version: "1.4.1",
+    rulesVersion: "1.4.0",
     canvas: { width: 960, height: 640 },
     mine: { x: 24, y: 160, width: 912, height: 456 },
     miner: { anchor: { x: 480, y: 112 } },

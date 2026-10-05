@@ -1,0 +1,29 @@
+{
+  "version": "1.4.1",
+  "rulesVersion": "1.4.0",
+  "result": "passed",
+  "filename": "Gold-survival-v1.4.1.zip",
+  "size": 55409,
+  "sha256": "be4870cd6bfc9fd0bed2de1c086b9f812be6a9f16228524b2771f907a26d1990",
+  "entries": [
+    "index.html",
+    "styles.css",
+    "js/config.js",
+    "js/challenges.js",
+    "js/growth.js",
+    "js/rules.js",
+    "js/game.js",
+    "js/storage.js",
+    "js/effects.js",
+    "js/audio.js",
+    "README.md"
+  ],
+  "runtimeFilesCompared": 10,
+  "checks": [
+    "ZIP 大小及 SHA-256 与清单一致",
+    "独立解压精确 11 文件，无依赖/缓存/日志/存档",
+    "10 个运行文件逐项匹配已验收源码",
+    "Windows PowerShell 5.1 实际打包，中文说明 UTF-8 正常",
+    "独立包真实 Chrome 7 组检查包含 Seed/每日，发行与规则版本分开"
+  ]
+}

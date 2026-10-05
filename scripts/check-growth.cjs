@@ -150,7 +150,7 @@ check("图鉴全部 9 类、5/3 基础奖励；满炸药、护符、倍率不新
 });
 check("旧关卡与商店显式迁移、补发可证明成就、旧键保持不变", () => {
   for (const kind of ["level", "shop"]) {
-    const oldConfig = { ...config, version: "1.1.0" }, run = rules.createRun(oldConfig, 20, { runSeed: 123, wallet: 4000, totalIncome: 5000 });
+    const oldConfig = { ...config, version: "1.1.0", rulesVersion: "1.1.0" }, run = rules.createRun(oldConfig, 20, { runSeed: 123, wallet: 4000, totalIncome: 5000 });
     if (kind === "shop") { run.levelIncome = 6000; run.wallet += 6000; rules.advanceRun(run, 61, oldConfig); rules.purchaseItem(run, rules.createShop(run, oldConfig), "dynamite", oldConfig); }
     const cp = rules.captureCheckpoint(run, kind, oldConfig), db = database();
     const oldText = JSON.stringify(cp), prefs = JSON.stringify({ soundEnabled: false, highScore: 12000, bestClearedLevel: 20 });

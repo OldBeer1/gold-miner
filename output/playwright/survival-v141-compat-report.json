@@ -1,0 +1,15 @@
+{
+  "version": "1.4.1",
+  "rulesVersion": "1.4.0",
+  "baselineCommit": "9a82b3a21b82752dba77743d144614075020970a",
+  "result": "passed",
+  "checks": [
+    "发行 1.4.1 / 规则 1.4.0 分离，玩法参数逐项与验收源码一致",
+    "三模式 90 组固定种子/关号：地图、事件、奖励值、目标、收益和商店精确一致",
+    "v1.4.0 三模式入口/商店/报告直接读取，修订/原文/个人最佳不写入或迁移",
+    "旧配置无 rulesVersion 仍回退 version，现行日期派生/记录键/分享不换规则"
+  ],
+  "layouts": 90,
+  "shops": 90,
+  "method": "exact comparison against committed v1.4.0 source; formal fixtures, not gameplay performance claims"
+}

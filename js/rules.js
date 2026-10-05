@@ -4,6 +4,7 @@
   else root.GoldMinerRules = factory(root.GoldMinerGrowth, root.GoldMinerChallenges);
 })(typeof window !== "undefined" ? window : globalThis, function (growth, challenges) {
   "use strict";
+  const ruleVersion = config => config.rulesVersion ?? config.version;
 
   function seededRandom(seed, levelId, purpose) {
     let value = ((seed >>> 0) ^ Math.imul(levelId, 0x9e3779b1) ^ purpose) >>> 0;
@@ -35,7 +36,7 @@
 
   function selectEvent(config, levelId, runSeed) {
     levelParameters(config, levelId);
-    if (!config.events || config.version !== "1.4.0" || levelId < config.events.firstLevel || levelId % config.events.interval !== 0) return "none";
+    if (!config.events || ruleVersion(config) !== "1.4.0" || levelId < config.events.firstLevel || levelId % config.events.interval !== 0) return "none";
     const random = seededRandom(runSeed, levelId, 0x45564e54);
     if (random() >= config.events.probability) return "none";
     const ids = Object.keys(config.events.definitions).filter(id => id !== "none");
@@ -203,8 +204,8 @@
 
   function createRun(config, levelId = 1, entry = {}) {
     const runSeed = entry.runSeed ?? 0;
-    const challenge = entry.challenge || challenges.create("endless", runSeed, null, config.version);
-    if (!challenges.valid(challenge, config.version) || challenge.seed !== runSeed) throw new Error("挑战身份无效");
+    const challenge = entry.challenge || challenges.create("endless", runSeed, null, ruleVersion(config));
+    if (!challenges.valid(challenge, ruleVersion(config)) || challenge.seed !== runSeed) throw new Error("挑战身份无效");
     if (challenge.levelLimit && levelId > challenge.levelLimit) throw new Error("挑战赛程已结束");
     const level = entry.level || createLevel(config, levelId, challenges.generationSeed(challenge));
     if (!level || !level.layout.length) throw new Error("该关卡尚未配置布局");
@@ -271,7 +272,7 @@
   }
 
   function captureCheckpoint(run, kind, config) {
-    const checkpoint = { schemaVersion: 1, rulesVersion: config.version, kind,
+    const checkpoint = { schemaVersion: 1, rulesVersion: ruleVersion(config), kind,
       run: JSON.parse(JSON.stringify(captureEntrySnapshot(run))) };
     if (kind === "shop") {
       if (!run.result?.success) throw new Error("只能保存成功关卡的商店");

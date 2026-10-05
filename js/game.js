@@ -6,12 +6,29 @@
   const preferencesStore = window.GoldMinerStorage;
   const growth = window.GoldMinerGrowth;
   const challenges = window.GoldMinerChallenges;
+  const rulesVersion = config.rulesVersion ?? config.version;
   const effects = window.GoldMinerEffects;
   const audio = window.GoldMinerAudio.createPlayer();
   const savedProgress = preferencesStore.loadProgress(() => window.localStorage, config);
   const canvas = document.getElementById("game-canvas");
   const context = canvas.getContext("2d");
   const elements = {
+    app: document.querySelector(".app"),
+    homeActions: document.querySelector(".home-actions"),
+    profile: document.getElementById("profile-screen"),
+    latestReport: document.getElementById("latest-report-button"),
+    seedControl: document.getElementById("seed-control"),
+    mode: document.getElementById("challenge-mode"),
+    seed: document.getElementById("challenge-seed"),
+    challengeInfo: document.getElementById("challenge-info"),
+    reload: document.getElementById("reload-progress-button"),
+    equippedTitle: document.getElementById("equipped-title"),
+    toast: document.getElementById("achievement-notice"),
+    toastText: document.getElementById("achievement-notice-text"),
+    stage: document.getElementById("hud-stage"),
+    eventLabel: document.getElementById("event-label"),
+    resultAchievements: document.getElementById("result-achievements"),
+    shopEvent: document.getElementById("shop-event"),
     home: document.getElementById("home-screen"),
     hud: document.getElementById("game-hud"),
     sceneLabel: document.getElementById("scene-label"),
@@ -70,8 +87,10 @@
     externalChange: false,
     profileReturn: "home",
     profilePage: "career",
-    selectedMode: "endless",
-    seedInput: "",
+    selectedMode: savedProgress.document.activeRun?.challenge.mode || "endless",
+    seedInput: savedProgress.document.activeRun?.challenge.mode === "seed" ? String(savedProgress.document.activeRun.challenge.seed) : "",
+    recordFilter: "all",
+    recordPage: 1,
     challengeError: "",
     observedDate: challenges.dailyDate(),
     levelUnlocks: [],
@@ -93,6 +112,9 @@
   let lastTimestamp = null;
   let frameCount = 0;
   let loopStarts = 0;
+  let homeDateTimer = null;
+  elements.mode.value = state.selectedMode;
+  elements.seed.value = state.seedInput;
 
   canvas.width = config.canvas.width;
   canvas.height = config.canvas.height;
@@ -109,123 +131,137 @@
     if (element.textContent !== text) element.textContent = text;
   }
 
-  function updateInterface() {
-    const inGame = ["playing", "paused", "result"].includes(state.screen);
-    const level = state.run.level;
-    document.querySelector(".app").dataset.screen = state.screen;
-    elements.home.hidden = state.screen !== "home";
-    elements.homeFooter.hidden = state.screen !== "home";
-    elements.hud.hidden = !inGame;
-    elements.toolbar.hidden = !inGame;
-    elements.sceneLabel.hidden = !inGame;
-    elements.result.hidden = state.screen !== "result";
-    elements.shop.hidden = state.screen !== "shop";
-    elements.pauseScreen.hidden = state.screen !== "paused";
-    document.getElementById("profile-screen").hidden = state.screen !== "profile";
-    document.getElementById("latest-report-button").hidden = !state.progress.profile.recentReports.length;
-    document.getElementById("seed-control").hidden = state.selectedMode !== "seed";
+  function setProperty(element, key, value) {
+    if (element[key] !== value) element[key] = value;
+  }
+  function setAttribute(element, key, value) {
+    if (element.getAttribute(key) !== value) element.setAttribute(key, value);
+  }
+  function toggleClass(element, name, enabled) {
+    if (element.classList.contains(name) !== enabled) element.classList.toggle(name, enabled);
+  }
+  function clearHomeDateTimer() {
+    if (homeDateTimer !== null) window.clearTimeout(homeDateTimer);
+    homeDateTimer = null;
+  }
+  function syncHomeDateTimer() {
+    clearHomeDateTimer();
+    if (state.screen !== "home" || document.hidden) return;
+    const midnight = Date.parse(`${challenges.dailyDate()}T00:00:00Z`) + 16 * 3600000;
+    homeDateTimer = window.setTimeout(() => {
+      homeDateTimer = null;
+      if (state.screen === "home" && !document.hidden) { updateHomeInterface(); syncHomeDateTimer(); }
+    }, Math.max(1, Math.min(60000, midnight - Date.now())));
+  }
+
+  function updateHomeInterface() {
+    setProperty(elements.seedControl, "hidden", state.selectedMode !== "seed");
     const today = challenges.dailyDate();
     if (today !== state.observedDate) { state.observedDate = today; state.clockNotice = "设备日期已变化；继续游戏保留原日期，新每日局使用当前日期。"; }
     const inputSeed = challenges.normalizeSeed(state.seedInput);
     const selected = state.selectedMode === "daily" ? challenges.create("daily", 0, today) : state.selectedMode === "seed" && inputSeed !== null ? challenges.create("seed", inputSeed) : null;
     const best = selected ? state.progress.profile.challengeRecords[challenges.key(selected)] : null;
-    setText(document.getElementById("challenge-info"), state.challengeError || (selected ? `${challenges.names[selected.mode]}${selected.date ? ` · ${selected.date} UTC+8` : ""} · Seed ${selected.seed} · 规则 ${config.version}${best ? ` · 最佳 ${best.levelsCleared}/20 关 ¥${best.qualifiedIncome}` : " · 暂无个人纪录"}` : state.selectedMode === "seed" ? "输入 0～4294967295 的整数 Seed，可重复练习同一矿井。" : "无限推进；每日与 Seed 挑战有独立纪录，成就只在无限模式解锁。"));
-    document.getElementById("challenge-info").title = "每日使用 UTC+8 的设备日期，离线成绩不提供防作弊保证。个人最佳最多保留最近更新的 200 个赛题。";
-    if (state.selectedMode === "daily") document.getElementById("challenge-info").append(document.createTextNode(` · ${state.clockNotice || "日期来自设备时钟，可重复练习，离线成绩不防作弊。"}`));
-    document.getElementById("reload-progress-button").hidden = !state.externalChange;
+    let description = selected ? `${challenges.names[selected.mode]}${selected.date ? ` · ${selected.date} UTC+8` : ""} · Seed ${selected.seed} · 规则 ${rulesVersion}${best ? ` · 最佳 ${best.levelsCleared}/20 关 ¥${best.qualifiedIncome}` : " · 暂无个人纪录"}` : state.selectedMode === "seed" ? "输入 0～4294967295 的整数 Seed，可重复练习同一矿井。" : "无限推进；每日与 Seed 挑战有独立纪录，成就只在无限模式解锁。";
+    if (state.selectedMode === "daily") description += ` · ${state.clockNotice || "日期来自设备时钟，可重复练习，离线成绩不防作弊。"}`;
+    setText(elements.challengeInfo, state.challengeError || description);
+    setAttribute(elements.challengeInfo, "title", "每日使用 UTC+8 的设备日期，离线成绩不提供防作弊保证。个人最佳最多保留最近更新的 200 个赛题。");
+    setProperty(elements.latestReport, "hidden", !state.progress.profile.recentReports.length);
     const title = growth.definitions.find(def => def.id === state.progress.profile.equippedTitleId)?.reward.title;
-    setText(document.getElementById("equipped-title"), title ? `称号 · ${title}` : "矿工档案 · 成就记录你的经历");
-    const toast = document.getElementById("achievement-notice");
-    toast.hidden = !state.unlockQueue.length || state.screen === "paused" || state.screen === "profile";
-    if (state.unlockQueue.length) setText(document.getElementById("achievement-notice-text"), `徽章解锁 · ${growth.definitions.find(def => def.id === state.unlockQueue[0]).title}${state.saveError ? "（本次未能保存）" : ""}`);
-    elements.pause.disabled = !["playing", "paused"].includes(state.screen);
-    for (const button of [elements.start, elements.continue, elements.restart, elements.nextLevel, elements.resume]) button.disabled = state.externalChange;
-    elements.pause.setAttribute("aria-pressed", String(state.screen === "paused"));
+    setText(elements.equippedTitle, title ? `称号 · ${title}` : "矿工档案 · 成就记录你的经历");
+    setText(elements.highScore, `¥ ${state.highScore}`);
+    setText(elements.bestClearedLevel, `${state.bestClearedLevel} 关`);
+    setProperty(elements.continue, "hidden", !state.checkpoint);
+    setProperty(elements.checkpointDescription, "hidden", !state.checkpoint);
+    toggleClass(elements.homeActions, "single-action", !state.checkpoint);
+    toggleClass(elements.start, "button-primary", !state.checkpoint);
+    toggleClass(elements.start, "button-quiet", Boolean(state.checkpoint));
+    setText(elements.start, `${state.selectedMode === "daily" ? "开始今日挑战" : state.selectedMode === "seed" ? "开始 Seed 挑战" : "开始无限挑战"} →`);
+    if (state.checkpoint) {
+      const challenge = state.checkpoint.run.challenge;
+      setText(elements.continue, `继续${challenges.names[challenge.mode]} →`);
+      setText(elements.checkpointDescription, `已保存：${challenges.names[challenge.mode]} · ${challenge.date || `Seed ${challenge.seed}`} · 第 ${state.checkpoint.run.levelId} 关${state.checkpoint.kind === "shop" ? "后的商店" : "起点"}`);
+    }
+  }
+
+  function updateInterface() {
+    const inGame = ["playing", "paused", "result"].includes(state.screen), level = state.run.level;
+    if (elements.app.dataset.screen !== state.screen) elements.app.dataset.screen = state.screen;
+    for (const [element, visible] of [[elements.home, state.screen === "home"], [elements.homeFooter, state.screen === "home"], [elements.hud, inGame], [elements.eventLabel, inGame], [elements.toolbar, inGame], [elements.sceneLabel, inGame], [elements.result, state.screen === "result"], [elements.shop, state.screen === "shop"], [elements.pauseScreen, state.screen === "paused"], [elements.profile, state.screen === "profile"]]) setProperty(element, "hidden", !visible);
+    if (state.screen === "home") updateHomeInterface();
+    syncHomeDateTimer();
+    setProperty(elements.reload, "hidden", !state.externalChange);
+    setProperty(elements.toast, "hidden", !state.unlockQueue.length || state.screen === "paused" || state.screen === "profile");
+    if (state.unlockQueue.length) setText(elements.toastText, `徽章解锁 · ${growth.definitions.find(def => def.id === state.unlockQueue[0]).title}${state.saveError ? "（本次未能保存）" : ""}`);
+    setProperty(elements.pause, "disabled", !["playing", "paused"].includes(state.screen));
+    for (const button of [elements.start, elements.continue, elements.restart, elements.nextLevel, elements.resume]) setProperty(button, "disabled", state.externalChange);
+    setAttribute(elements.pause, "aria-pressed", String(state.screen === "paused"));
     setText(elements.pause, state.screen === "paused" ? "继续" : "暂停");
     setText(elements.pauseTitle, state.pauseReason === "hidden" ? "已自动暂停" : "已暂停");
     setText(elements.pauseDescription, state.pauseReason === "hidden" ? "离开页面时已暂停，返回后点击继续采矿。" : "时间、钩子和矿物已冻结，准备好后继续。");
-    elements.sound.setAttribute("aria-pressed", String(state.settings.soundEnabled));
-    elements.soundLabel.textContent = `音效：${state.settings.soundEnabled ? "开" : "关"}`;
-    elements.highScore.textContent = `¥ ${state.highScore}`;
-    elements.bestClearedLevel.textContent = `${state.bestClearedLevel} 关`;
-    elements.continue.hidden = !state.checkpoint;
-    elements.checkpointDescription.hidden = !state.checkpoint;
-    document.querySelector(".home-actions").classList.toggle("single-action", !state.checkpoint);
-    elements.start.classList.toggle("button-primary", !state.checkpoint);
-    elements.start.classList.toggle("button-quiet", Boolean(state.checkpoint));
-    if (state.checkpoint) setText(elements.checkpointDescription, state.checkpoint.kind === "shop"
-      ? `已保存：${challenges.names[state.checkpoint.run.challenge.mode]}${state.checkpoint.run.challenge.date ? ` · ${state.checkpoint.run.challenge.date}` : ""} · 第 ${state.checkpoint.run.levelId} 关后的商店`
-      : `已保存：${challenges.names[state.checkpoint.run.challenge.mode]}${state.checkpoint.run.challenge.date ? ` · ${state.checkpoint.run.challenge.date}` : ""} · 第 ${state.checkpoint.run.levelId} 关起点`);
+    setAttribute(elements.sound, "aria-pressed", String(state.settings.soundEnabled));
+    setText(elements.soundLabel, `音效：${state.settings.soundEnabled ? "开" : "关"}`);
     setText(elements.saveStatus, state.saveMessage);
-    elements.saveStatus.classList.toggle("is-error", state.saveError);
-    elements.level.textContent = `第 ${state.run.levelId} 关`;
-    setText(document.getElementById("hud-stage"), state.run.challenge.mode === "endless" ? level.stage ? `关卡 · 进阶 ${level.stage}` : "无限 · 基础" : `${challenges.names[state.run.challenge.mode]} · ${state.run.levelId}/20`);
-    const eventLabel = document.getElementById("event-label");
-    eventLabel.hidden = !inGame;
-    setText(eventLabel, `${level.event?.name || "普通矿层"} · ${level.event?.description || "沿用普通矿层规则"}${level.eventDowngrade ? ` · ${level.eventDowngrade}` : ""}`);
-    elements.level.title = `矿物收入 ×${(level.rewardScale || 1).toFixed(2)}，石头阻挡 ${level.obstacleCount || 0} 条路线`;
-    elements.income.textContent = String(state.run.levelIncome);
-    elements.target.textContent = String(level.target);
-    setText(elements.time, String(Math.ceil(state.run.remainingTime)));
-    elements.time.classList.toggle("is-urgent", state.run.remainingTime <= 10);
-    elements.wallet.textContent = `¥ ${state.run.wallet}`;
-    elements.bombs.textContent = `${state.run.bombs} 枚`;
-    const effects = [];
-    if (state.run.effects.strength) effects.push(`力量 ×${config.shop.strength.multiplier}`);
-    if (state.run.effects.diamondBoost) effects.push(`钻石 ×${config.shop.diamondBoost.multiplier}`);
-    if (state.run.effects.goldBoost) effects.push("黄金 ×1.5");
-    if (state.run.effects.timeCoupon) effects.push("延时 +10秒");
-    if (state.run.effects.protectionCharm) effects.push("护身符 · 1次");
-    if (state.run.effects.luckyCharm) effects.push("幸运符");
-    elements.effects.textContent = effects.length ? effects.join("、") : "无";
-    const dynamiteReady = state.screen === "playing" && rules.canUseDynamite(state.run);
-    elements.dynamite.disabled = !dynamiteReady;
-    elements.dynamite.classList.toggle("button-dynamite-ready", dynamiteReady);
-    setText(elements.dynamite, `炸药 · ${state.run.bombs} 枚`);
-    const qualified = state.run.levelIncome >= level.target;
-    setText(elements.sceneLabel, qualified ? "已达标，可继续采矿" : state.run.remainingTime <= 10
-      ? "最后 10 秒！时间到，未收回的矿物不计分" : `收回矿物才入账 · 本关目标 ¥${level.target}`);
-    elements.sceneLabel.classList.toggle("is-qualified", qualified);
-    const phase = state.run.hook.phase;
-    const carried = state.run.minerals.find((mineral) => mineral.id === state.run.hook.carryingId);
-    let feedback = "瞄准目标，按空格或点击矿区出钩";
-    if (phase === "extending") feedback = "出钩中，方向已锁定";
-    if (phase === "returning-empty") feedback = "空钩回收中，稍后再试";
-    if (carried) feedback = `正在收回${config.minerals[carried.type].label}，回到矿工处才入账`;
-    if (state.screen === "paused") feedback = "游戏已暂停，继续后再出钩";
-    if (state.screen === "result") {
-      feedback = !state.run.result.success ? "本轮挑战结束，重新挑战将从第一关开始"
-        : state.run.challenge.levelLimit === state.run.level.id ? "20 关赛程已完成，个人纪录与报告已保存" : "本关已结束，进入商店准备下一关";
+    toggleClass(elements.saveStatus, "is-error", state.saveError);
+    if (inGame) {
+      setText(elements.level, `第 ${state.run.levelId} 关`);
+      setText(elements.stage, state.run.challenge.mode === "endless" ? level.stage ? `关卡 · 进阶 ${level.stage}` : "无限 · 基础" : `${challenges.names[state.run.challenge.mode]} · ${state.run.levelId}/20`);
+      setText(elements.eventLabel, `${level.event?.name || "普通矿层"} · ${level.event?.description || "沿用普通矿层规则"}${level.eventDowngrade ? ` · ${level.eventDowngrade}` : ""}`);
+      setAttribute(elements.level, "title", `矿物收入 ×${(level.rewardScale || 1).toFixed(2)}，石头阻挡 ${level.obstacleCount || 0} 条路线`);
+      setText(elements.target, String(level.target));
+      updateLiveInterface();
     }
-    setText(elements.feedback, state.notice.seconds > 0 ? state.notice.text : feedback);
-    if (state.run.result) {
-      const result = state.run.result;
-      const completed = result.success && state.run.challenge.levelLimit === state.run.levelId;
+    if (state.screen === "result") {
+      const result = state.run.result, completed = result.success && state.run.challenge.levelLimit === state.run.levelId;
       setText(elements.resultEyebrow, `采矿报告 · 第 ${String(state.run.levelId).padStart(2, "0")} 关`);
       setText(elements.resultTitle, completed ? "20 关赛程完成！" : result.success ? `第 ${state.run.levelId} 关达标！` : "本次挑战报告");
-      setText(elements.resultDescription, result.success
-        ? completed ? "本次赛程已结束，个人纪录与报告已记录。可以重新尝试或复制分享。" : "本关收入已累计，去补给站准备下一关。更深处还有新发现。"
-        : `第 ${state.run.levelId} 关未达标，已通过 ${state.run.levelId - 1} 关。本次失败收入不计入记录。`);
+      const description = result.success ? completed ? "本次赛程已结束，个人纪录与报告已记录。可以重新尝试或复制分享。" : "本关收入已累计，去补给站准备下一关。更深处还有新发现。" : `第 ${state.run.levelId} 关未达标，已通过 ${state.run.levelId - 1} 关。本次失败收入不计入记录。`;
+      setText(elements.resultDescription, state.saveError ? `${description} 已记录，本次未能保存。` : description);
       setText(elements.restart, result.success && !completed ? "进入商店 →" : "重新挑战 ↻");
-      setText(elements.resultIncome, `¥ ${result.levelIncome}`);
-      setText(elements.resultTarget, `¥ ${result.target}`);
-      setText(elements.resultTotal, `¥ ${result.totalIncome}`);
-      setText(document.getElementById("result-achievements"), state.levelUnlocks.length ? `本关新徽章：${state.levelUnlocks.map(id => growth.definitions.find(def => def.id === id).title).join("、")}` : "");
+      setText(elements.resultIncome, `¥ ${result.levelIncome}`); setText(elements.resultTarget, `¥ ${result.target}`); setText(elements.resultTotal, `¥ ${result.totalIncome}`);
+      setText(elements.resultAchievements, state.levelUnlocks.length ? `本关新徽章：${state.levelUnlocks.map(id => growth.definitions.find(def => def.id === id).title).join("、")}` : "");
     }
-    if (state.shop) {
+    if (state.screen === "shop" && state.shop) {
       const next = state.shop.nextLevel;
       setText(elements.shopDestination, `下一站：第 ${next.id} 关 · 目标 ¥${next.target} · ${next.stage ? `进阶 ${next.stage}` : "基础档"}`);
       setText(elements.shopWallet, `¥ ${state.run.wallet}`);
-      setText(document.getElementById("shop-event"), `矿层预告：${next.event.name} · ${next.event.description}${next.eventDowngrade ? ` · ${next.eventDowngrade}` : ""}`);
+      setText(elements.shopEvent, `矿层预告：${next.event.name} · ${next.event.description}${next.eventDowngrade ? ` · ${next.eventDowngrade}` : ""}`);
       setText(elements.shopPurchaseCount, `已购买 ${state.shop.purchaseCount} / ${config.survival.maxPurchases} 件`);
       for (const button of elements.shopProducts.querySelectorAll("button[data-item]")) {
-        const item = button.dataset.item;
-        const availability = rules.purchaseAvailability(state.run, state.shop, item, config);
-        button.disabled = !availability.available;
-        setText(button, availability.reason);
+        const item = button.dataset.item, availability = rules.purchaseAvailability(state.run, state.shop, item, config);
+        setProperty(button, "disabled", !availability.available); setText(button, availability.reason);
         setText(button.previousElementSibling, item === "dynamite" ? `持有 ${state.run.bombs} / ${config.shop.dynamite.maxInventory}` : "仅下一关生效 · 限购一份");
       }
     }
+  }
+
+  function updateLiveInterface() {
+    setProperty(elements.toast, "hidden", !state.unlockQueue.length || state.screen === "paused" || state.screen === "profile");
+    if (state.unlockQueue.length) setText(elements.toastText, `徽章解锁 · ${growth.definitions.find(def => def.id === state.unlockQueue[0]).title}${state.saveError ? "（本次未能保存）" : ""}`);
+    const run = state.run, level = run.level;
+    setText(elements.income, String(run.levelIncome)); setText(elements.time, String(Math.ceil(run.remainingTime)));
+    toggleClass(elements.time, "is-urgent", run.remainingTime <= 10);
+    setText(elements.wallet, `¥ ${run.wallet}`); setText(elements.bombs, `${run.bombs} 枚`);
+    const activeEffects = [];
+    if (run.effects.strength) activeEffects.push(`力量 ×${config.shop.strength.multiplier}`);
+    if (run.effects.diamondBoost) activeEffects.push(`钻石 ×${config.shop.diamondBoost.multiplier}`);
+    if (run.effects.goldBoost) activeEffects.push("黄金 ×1.5");
+    if (run.effects.timeCoupon) activeEffects.push("延时 +10秒");
+    if (run.effects.protectionCharm) activeEffects.push("护身符 · 1次");
+    if (run.effects.luckyCharm) activeEffects.push("幸运符");
+    setText(elements.effects, activeEffects.length ? activeEffects.join("、") : "无");
+    const dynamiteReady = state.screen === "playing" && rules.canUseDynamite(run);
+    setProperty(elements.dynamite, "disabled", !dynamiteReady); toggleClass(elements.dynamite, "button-dynamite-ready", dynamiteReady); setText(elements.dynamite, `炸药 · ${run.bombs} 枚`);
+    const qualified = run.levelIncome >= level.target;
+    setText(elements.sceneLabel, qualified ? "已达标，可继续采矿" : run.remainingTime <= 10 ? "最后 10 秒！时间到，未收回的矿物不计分" : `收回矿物才入账 · 本关目标 ¥${level.target}`);
+    toggleClass(elements.sceneLabel, "is-qualified", qualified);
+    const carried = run.minerals.find(mineral => mineral.id === run.hook.carryingId);
+    let feedback = "瞄准目标，按空格或点击矿区出钩";
+    if (run.hook.phase === "extending") feedback = "出钩中，方向已锁定";
+    if (run.hook.phase === "returning-empty") feedback = "空钩回收中，稍后再试";
+    if (carried) feedback = `正在收回${config.minerals[carried.type].label}，回到矿工处才入账`;
+    if (state.screen === "paused") feedback = "游戏已暂停，继续后再出钩";
+    if (state.screen === "result") feedback = !run.result.success ? "本轮挑战结束，重新挑战将从第一关开始" : run.challenge.levelLimit === run.levelId ? state.saveError ? "20 关赛程已完成；已记录，本次未能保存" : "20 关赛程已完成，个人纪录与报告已保存" : "本关已结束，进入商店准备下一关";
+    setText(elements.feedback, state.notice.seconds > 0 ? state.notice.text : feedback);
   }
 
   function persistCheckpoint(kind) {
@@ -378,7 +414,7 @@
     state.visuals = effects.createState();
     updateInterface();
     renderScene();
-    elements.start.focus({ preventScroll: true });
+    (state.checkpoint ? elements.continue : elements.start).focus({ preventScroll: true });
   }
 
   function persistPreferences() {
@@ -432,7 +468,8 @@
     const deltaSeconds = lastTimestamp === null ? 0 : (timestamp - lastTimestamp) / 1000;
     lastTimestamp = timestamp;
     updateGame(deltaSeconds);
-    updateInterface();
+    if (state.screen === "playing") updateLiveInterface();
+    else updateInterface();
     if (state.screen === "result") elements.restart.focus({ preventScroll: true });
     renderScene();
     frameCount += 1;
@@ -535,6 +572,33 @@
     for (const region of document.querySelectorAll(".app-header, .scene-shell, .app-footer")) region.inert = false;
     updateInterface(); renderScene(); state.profileFocus?.focus({ preventScroll: true });
   }
+  function renderChallengeRecords(container) {
+    const controls = element("div", "", "record-controls"), label = element("label", "赛题筛选"), select = element("select", "");
+    select.id = "record-filter";
+    for (const [value, text] of [["all", "全部"], ["daily", "每日"], ["seed", "Seed"]]) { const option = element("option", text); option.value = value; select.append(option); }
+    select.value = state.recordFilter;
+    label.append(select);
+    const previous = element("button", "上一页", "button button-quiet"), next = element("button", "下一页", "button button-quiet"), status = element("span", ""), list = element("div", "", "record-list");
+    previous.id = "record-previous"; next.id = "record-next"; previous.type = next.type = "button";
+    status.id = "record-page-status"; status.setAttribute("role", "status"); list.id = "record-list";
+    controls.append(label, previous, status, next); container.append(controls, list);
+    function updateRecords() {
+      const records = Object.values(state.progress.profile.challengeRecords).filter(record => state.recordFilter === "all" || record.challenge.mode === state.recordFilter).sort((a, b) => Date.parse(b.updatedAt) - Date.parse(a.updatedAt));
+      const pages = Math.max(1, Math.ceil(records.length / 10)); state.recordPage = Math.max(1, Math.min(state.recordPage, pages));
+      setProperty(previous, "disabled", state.recordPage === 1); setProperty(next, "disabled", state.recordPage === pages);
+      setText(status, `第 ${state.recordPage} / ${pages} 页 · ${records.length} 条`);
+      list.replaceChildren();
+      for (const record of records.slice((state.recordPage - 1) * 10, state.recordPage * 10)) {
+        const row = element("p", `${challenges.names[record.challenge.mode]} · ${record.challenge.date || `Seed ${record.challenge.seed}`} · 规则 ${record.challenge.rulesVersion} · ${record.levelsCleared}/20 关 · ¥${record.qualifiedIncome} · ${formatDuration(record.activePlayMs)}`);
+        row.dataset.record = challenges.key(record.challenge); list.append(row);
+      }
+      if (!records.length) list.append(element("p", "暂无个人最佳。完成、失败或放弃挑战后记录。"));
+    }
+    select.addEventListener("change", () => { state.recordFilter = select.value; state.recordPage = 1; updateRecords(); });
+    previous.addEventListener("click", () => { state.recordPage--; updateRecords(); if (previous.disabled) (next.disabled ? select : next).focus({ preventScroll: true }); });
+    next.addEventListener("click", () => { state.recordPage++; updateRecords(); if (next.disabled) (previous.disabled ? select : previous).focus({ preventScroll: true }); });
+    updateRecords();
+  }
   function renderProfile() {
     const content = document.getElementById("profile-content"), profile = state.progress.profile, career = profile.career;
     content.replaceChildren();
@@ -554,7 +618,7 @@
       content.append(element("h3", "分模式生涯（无限最高纪录独立）"));
       statList(challenges.modes.map(mode => [challenges.names[mode], `通过 ${profile.modeStats[mode].levelsCleared} 关 · ¥${profile.modeStats[mode].qualifiedIncome} · ${formatDuration(profile.modeStats[mode].activePlayMs)}`]), content);
       content.append(element("h3", "挑战个人最佳（最近更新的 200 个赛题）"));
-      for (const record of Object.values(profile.challengeRecords).sort((a, b) => Date.parse(b.updatedAt) - Date.parse(a.updatedAt))) content.append(element("p", `${challenges.names[record.challenge.mode]} · ${record.challenge.date || `Seed ${record.challenge.seed}`} · 规则 ${record.challenge.rulesVersion} · ${record.levelsCleared}/20 关 · ¥${record.qualifiedIncome} · ${formatDuration(record.activePlayMs)}`));
+      renderChallengeRecords(content);
       content.append(element("h3", "最近挑战报告"));
       if (!profile.recentReports.length) content.append(element("p", "暂无报告。挑战失败或确认放弃后记录。"));
       for (const report of profile.recentReports) {
@@ -949,7 +1013,9 @@
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) pauseGame("hidden");
     else if (state.screen === "home") updateInterface();
+    syncHomeDateTimer();
   });
+  window.addEventListener("pagehide", clearHomeDateTimer);
   window.addEventListener("focus", () => { if (state.screen === "home") updateInterface(); });
   window.addEventListener("storage", event => {
     if (event.key !== preferencesStore.progressKey && event.key !== null) return;
@@ -971,6 +1037,7 @@
       return {
         screen: state.screen,
         loopRunning: frameId !== null,
+        homeDateTimerActive: homeDateTimer !== null,
         loopStarts,
         frameCount,
         soundEnabled: state.settings.soundEnabled,

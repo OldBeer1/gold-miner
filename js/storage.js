@@ -4,6 +4,7 @@
   else root.GoldMinerStorage = factory(root.GoldMinerGrowth, root.GoldMinerRules, root.GoldMinerChallenges);
 })(typeof window !== "undefined" ? window : globalThis, function (growth, rules, challenges) {
   "use strict";
+  const ruleVersion = config => config.rulesVersion ?? config.version;
   const key = "gold-miner.survival.preferences.v2";
   const previousKey = "gold-miner.survival.preferences.v1";
   const legacyKey = "gold-miner.preferences.v1";
@@ -54,7 +55,7 @@
     const effectKeys = Object.keys(config.shop).filter(item => item !== "dynamite");
     const validEffects = data => object(data) && Object.keys(data).length === effectKeys.length
       && effectKeys.every(item => typeof data[item] === "boolean");
-    if (!object(value) || value.schemaVersion !== 1 || value.rulesVersion !== config.version
+    if (!object(value) || value.schemaVersion !== 1 || value.rulesVersion !== ruleVersion(config)
       || !["level", "shop"].includes(value.kind) || !object(value.run)) return null;
     const run = value.run;
     const level = run.level;
@@ -66,7 +67,7 @@
       || !Number.isInteger(run.bombs) || run.bombs < 0 || run.bombs > config.shop.dynamite.maxInventory
       || !validEffects(run.effects)) return null;
     if (level.rewardScale !== undefined && (!Number.isFinite(level.rewardScale) || level.rewardScale < 1 || level.rewardScale > 1000)) return null;
-    if (config.version === "1.4.0") {
+    if (ruleVersion(config) === "1.4.0") {
       if (!challenges.valid(run.challenge) || run.challenge.seed !== run.runSeed || run.challenge.levelLimit && run.levelId > run.challenge.levelLimit) return null;
       if (level.event) {
         const event = config.events.definitions[level.event.id];
@@ -111,9 +112,9 @@
         || !object(run.result) || run.result.success !== true || run.result.target !== level.target
         || run.result.levelIncome !== run.levelIncome || run.result.totalIncome !== run.totalIncome
         || effectKeys.some(item => run.effects[item])) return null;
-      if (config.version === "1.4.0") {
+      if (ruleVersion(config) === "1.4.0") {
         if (run.challenge.levelLimit === run.levelId || !object(shop.nextLevel) || shop.nextLevel.id !== shop.nextLevelId) return null;
-        const next = { schemaVersion: 1, rulesVersion: config.version, kind: "level", run: { ...run, levelId: shop.nextLevelId, level: shop.nextLevel, effects: shop.effects } };
+        const next = { schemaVersion: 1, rulesVersion: ruleVersion(config), kind: "level", run: { ...run, levelId: shop.nextLevelId, level: shop.nextLevel, effects: shop.effects } };
         if (!validateCheckpoint(next, config)) return null;
       }
     }
@@ -158,7 +159,7 @@
 
   function validateProgress(value, config) {
     const data = growth.clone(value);
-    if (!growth.validateDocument(data, config.version)) return null;
+    if (!growth.validateDocument(data, ruleVersion(config))) return null;
     const active = data.activeRun;
     if (active) {
       const checkpoint = validateCheckpoint(active.checkpoint, config);
@@ -166,7 +167,7 @@
         || active.committedThroughLevel !== checkpoint.run.levelId - (checkpoint.kind === "level" ? 1 : 0)
         || checkpoint.kind === "level" && active.entryCountedForLevel !== checkpoint.run.levelId
         || active.bestReachedLevel < checkpoint.run.levelId || active.runTotals.qualifiedIncome !== checkpoint.run.totalIncome
-        || config.version === "1.4.0" && JSON.stringify(active.challenge) !== JSON.stringify(checkpoint.run.challenge)) return null;
+        || ruleVersion(config) === "1.4.0" && JSON.stringify(active.challenge) !== JSON.stringify(checkpoint.run.challenge)) return null;
       active.checkpoint = checkpoint;
     }
     return data;
@@ -174,21 +175,21 @@
 
   function adaptV110Checkpoint(value, config) {
     // v1.2 没有改变关卡数值，仍显式按旧版本校验，再复制兼容的入口/交易字段。
-    const old = validateCheckpoint(value, { ...config, version: "1.1.0" });
+    const old = validateCheckpoint(value, { ...config, version: "1.1.0", rulesVersion: "1.1.0" });
     if (!old) return null;
     const source = old.run;
     const run = { levelId: source.levelId, runSeed: source.runSeed, level: source.level, wallet: source.wallet,
       bombs: source.bombs, totalIncome: source.totalIncome, effects: source.effects };
     if (old.kind === "shop") { run.levelIncome = source.levelIncome; run.result = source.result; }
-    const checkpoint = { schemaVersion: 1, rulesVersion: config.version, kind: old.kind, run };
+    const checkpoint = { schemaVersion: 1, rulesVersion: ruleVersion(config), kind: old.kind, run };
     if (old.kind === "shop") checkpoint.shop = old.shop;
     return adaptCheckpoint(checkpoint, config);
   }
 
   function adaptCheckpoint(value, config) {
     const checkpoint = growth.clone(value);
-    checkpoint.rulesVersion = config.version;
-    checkpoint.run.challenge = challenges.create("endless", checkpoint.run.runSeed, null, config.version);
+    checkpoint.rulesVersion = ruleVersion(config);
+    checkpoint.run.challenge = challenges.create("endless", checkpoint.run.runSeed, null, ruleVersion(config));
     // 升级时保留当前布局与已支付交易；旧商店的下一关也使用普通矿层。
     checkpoint.run.level.event = { id: "none", ...config.events.definitions.none };
     if (checkpoint.kind === "shop") checkpoint.shop.nextLevel = rules.createLevel(config, checkpoint.shop.nextLevelId, checkpoint.run.runSeed, "none");
@@ -196,10 +197,10 @@
   }
 
   function adaptV120Progress(value, config) {
-    const old = validateProgress(value, { ...config, version: "1.2.0" });
+    const old = validateProgress(value, { ...config, version: "1.2.0", rulesVersion: "1.2.0" });
     if (!old) return null;
     const fresh = growth.createDocument({ soundEnabled: old.settings.soundEnabled, highScore: 0, bestClearedLevel: 0 }, old.profile.statisticsSince);
-    old.rulesVersion = config.version;
+    old.rulesVersion = ruleVersion(config);
     old.profile.modeStats = fresh.profile.modeStats;
     old.profile.modeStats.endless = growth.clone(old.profile.career);
     old.profile.challengeRecords = {};
@@ -209,7 +210,7 @@
       if (!checkpoint) return null;
       old.activeRun.checkpoint = checkpoint;
       old.activeRun.challenge = growth.clone(checkpoint.run.challenge);
-      old.activeRun.rulesetVersion = config.version;
+      old.activeRun.rulesetVersion = ruleVersion(config);
       old.activeRun.eventCounts = {};
     }
     return validateProgress(old, config);
@@ -246,9 +247,9 @@
       try {
         if (text.length > 300000) throw new Error("oversized progress");
         const raw = JSON.parse(text);
-        const document = raw.rulesVersion === "1.2.0" && config.version === "1.4.0" ? adaptV120Progress(raw, config) : validateProgress(raw, config);
+        const document = raw.rulesVersion === "1.2.0" && ruleVersion(config) === "1.4.0" ? adaptV120Progress(raw, config) : validateProgress(raw, config);
         if (!document) throw new Error("invalid progress");
-        if (raw.rulesVersion !== config.version) {
+        if (raw.rulesVersion !== ruleVersion(config)) {
           const saved = saveProgress(storage, document, config, raw.revision);
           if (saved.saved) document.revision = saved.revision;
           return { document, revision: saved.saved ? saved.revision : raw.revision, blocked: false, message: saved.saved ? "v1.2.0 档案已迁入，当前布局与交易保留。" : saved.message };

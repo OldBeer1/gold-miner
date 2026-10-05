@@ -149,7 +149,7 @@ check("v1.2.0 活动入口/商店、永久档案、报告与装备迁移；备�
     delete old.profile.modeStats; delete old.profile.challengeRecords; delete old.profile.endlessChestRewardIds; delete old.activeRun.challenge; delete old.activeRun.eventCounts;
     delete old.activeRun.checkpoint.run.challenge; delete old.activeRun.checkpoint.run.level.event;
     if (kind === "shop") delete old.activeRun.checkpoint.shop.nextLevel;
-    assert.ok(storage.validateProgress(old, { ...config, version: "1.2.0" }));
+    assert.ok(storage.validateProgress(old, { ...config, version: "1.2.0", rulesVersion: "1.2.0" }));
     const raw = JSON.stringify(old), db = database(); db.setItem(storage.progressKey, raw);
     const loaded = storage.loadProgress(db, config, now); assert.ok(!loaded.blocked); assert.ok(storage.validateProgress(loaded.document, config));
     assert.equal(db.getItem(storage.v120BackupKey), raw); assert.deepEqual(loaded.document.profile.career, old.profile.career);

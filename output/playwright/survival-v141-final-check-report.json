@@ -1,0 +1,42 @@
+{
+  "version": "1.4.1",
+  "rulesVersion": "1.4.0",
+  "result": "passed",
+  "syntaxFiles": [
+    "js/config.js",
+    "js/game.js",
+    "js/rules.js",
+    "js/storage.js",
+    "scripts/check-challenges.cjs",
+    "scripts/check-growth.cjs",
+    "scripts/check-ui-compat.cjs",
+    "output/playwright/verify-survival-release.cjs",
+    "output/playwright/verify-survival-v141-challenges.cjs",
+    "output/playwright/verify-survival-v141-experience.cjs",
+    "output/playwright/verify-survival-v141-native-pause.cjs",
+    "output/playwright/verify-survival-v141-real-run.cjs",
+    "output/playwright/verify-survival-v141-smoke.cjs"
+  ],
+  "markdownFiles": 19,
+  "localLinks": 291,
+  "anchors": 17,
+  "reportsChecked": [
+    "challenges",
+    "challenges-ui",
+    "growth",
+    "checkpoints",
+    "rules",
+    "compat",
+    "experience",
+    "native-pause",
+    "smoke",
+    "real-run",
+    "package",
+    "release-preflight"
+  ],
+  "checks": [
+    "全部 13 个修改或新增 JS/CJS 语法通过",
+    "当前文档本地链接、章节锚点与代码块闭合通过",
+    "本轮实际验收报告均 passed，错误列表为空"
+  ]
+}

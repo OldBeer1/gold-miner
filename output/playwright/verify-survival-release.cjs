@@ -4,8 +4,9 @@ const fs = require("node:fs/promises");
 const path = require("node:path");
 const { pathToFileURL } = require("node:url");
 const { chromium } = require(process.env.GOLD_PLAYWRIGHT_MODULE || "playwright");
-const root = path.resolve(process.argv[2] || "output/release/verify-v1.4.0");
-const packageVersion = require(path.join(root, "js/config.js")).version;
+const root = path.resolve(process.argv[2] || "output/release/verify-v1.4.1");
+const packageConfig = require(path.join(root, "js/config.js"));
+const packageVersion = packageConfig.version, rulesVersion = packageConfig.rulesVersion ?? packageVersion;
 const prefix = process.argv[3] || `survival-v${packageVersion.replaceAll(".", "")}-release-preflight`;
 const report = { phase: "local-release", method: "extracted player archive, file open, original game rules and real keyboard/button input; controlled browser clock; contact explosion uses an explicit four-object fixture", checks: [], errors: [] };
 const diag = page => page.evaluate(() => GoldMiner.getDiagnostics());
@@ -35,7 +36,7 @@ function installExplosionFixture() {
   for (const file of ["index.html", "styles.css", "README.md", "js/config.js", "js/growth.js", "js/rules.js", "js/game.js", "js/storage.js", "js/effects.js", "js/audio.js"]) {
     assert.ok((await fs.stat(path.join(root, file))).isFile());
   }
-  if (packageVersion === "1.4.0") assert.ok((await fs.stat(path.join(root, "js/challenges.js"))).isFile());
+  if (rulesVersion === "1.4.0") assert.ok((await fs.stat(path.join(root, "js/challenges.js"))).isFile());
   report.checks.push("玩家包包含全部运行文件与中文说明");
   const browser = await chromium.launch({ executablePath: "C:/Program Files/Google/Chrome/Application/chrome.exe", headless: true });
   try {
@@ -97,7 +98,7 @@ function installExplosionFixture() {
     await page.reload(); await page.locator("#latest-report-button").click();
     assert.match(await page.locator("#profile-content").textContent(), /本次挑战报告/);
     report.checks.push("解压包成长档案、18 成就、9 类图鉴与失败报告完整，刷新后报告可查看且结束挑战不复活");
-    if (packageVersion === "1.4.0") {
+    if (rulesVersion === "1.4.0") {
       await page.keyboard.press("Escape");
       await page.locator("#challenge-mode").selectOption("seed");
       await page.locator("#challenge-seed").fill(" 00042 ");
