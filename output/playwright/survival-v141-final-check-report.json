@@ -18,7 +18,7 @@
     "output/playwright/verify-survival-v141-smoke.cjs"
   ],
   "markdownFiles": 19,
-  "localLinks": 291,
+  "localLinks": 293,
   "anchors": 17,
   "reportsChecked": [
     "challenges",
@@ -32,7 +32,8 @@
     "smoke",
     "real-run",
     "package",
-    "release-preflight"
+    "release-preflight",
+    "published-release"
   ],
   "checks": [
     "全部 13 个修改或新增 JS/CJS 语法通过",

@@ -1,6 +1,6 @@
 # 黄金矿工：当前实施计划
 
-更新：2026-10-05。当前正式版本 **v1.4.0**，当前源码 **v1.4.1**。第 23～28 步已统一正式交付；本轮第 29 步体验优化实现与本地验收完成，完整 GitHub 交付中，规则保持 **1.4.0**。第 01～16 步归档，第 17～22 步已交付。
+更新：2026-10-05。当前正式版本与源码均为 **v1.4.1**。第 23～28 步已统一正式交付；本轮第 29 步体验优化已完成实现、验收与完整 GitHub 交付，规则保持 **1.4.0**。第 01～16 步归档，第 17～22 步已交付。
 
 当前规则见 [GAME_SPEC.md](GAME_SPEC.md)，未来需求见 [FEATURE_ROADMAP.md](FEATURE_ROADMAP.md)，实际验证见 [VALIDATION.md](VALIDATION.md)。历史步骤、发布与完整交接见 [docs/HISTORY.md](docs/HISTORY.md)。
 
@@ -22,7 +22,7 @@
 | 26 | v1.4.0 | [Seed 挑战与模式隔离](steps/26-seed-challenge-mode.md) | 25，事件验收通过 | 已完成（统一正式发布） |
 | 27 | v1.4.0 | [每日挑战与日期规则](steps/27-daily-challenge-mode.md) | 26 | 已完成（统一正式发布） |
 | 28 | v1.4.0 | [挑战模式完整验收与 GitHub 交付](steps/28-challenges-validation-delivery.md) | 27 | 已完成（统一正式发布） |
-| 29 | v1.4.1 | [体验与流畅性优化](#2026-10-05第-29-步v141-本地验收完成) | 已发布 v1.4.0 | 实现与验收完成，交付中 |
+| 29 | v1.4.1 | [体验与流畅性优化](#2026-10-05第-29-步v141-本地验收完成) | 已发布 v1.4.0 | 已完成（正式发布） |
 
 ## 2. 执行与完成要求
 
@@ -111,3 +111,11 @@ README 更新 v1.4.0 下载入口，FEATURE_ROADMAP、VALIDATION 与第 23～28 
 关键接口：updateHomeInterface／updateLiveInterface／updateInterface、syncHomeDateTimer、renderChallengeRecords；诊断新增 homeDateTimerActive。新增 check-ui-compat 与五个 v141 浏览器入口，历史证据保持。五类引擎／兼容检查及 7 组体验、9 组挑战、4 组原生暂停、4 组画面／音效、7 组独立包检查通过；真实 Seed 9 两关两店，第三关自然失败，有效成绩 1550、采矿 180000ms。测量、条件与限制见 VALIDATION。
 
 玩家包 55409 字节／11 文件，10 个运行文件匹配源码，SHA-256 为 be4870cd6bfc9fd0bed2de1c086b9f812be6a9f16228524b2771f907a26d1990。实现与本地验收无已知阻断；正式 Release、公开下载及最终远程同步待完成。沿用原生技术栈和工具，无新增依赖、难度调整或手机专项适配。
+
+### 2026-10-05：v1.4.1 完整 GitHub 交付
+
+验收源码 `6d49a6bad54e29325239a619e2d4a62e258fc947` 已推送 main，v1.4.1 标签固定在该提交；正式最新稳定 [Release](https://github.com/OldBeer1/gold-miner/releases/tag/v1.4.1) 与 [玩家 ZIP](https://github.com/OldBeer1/gold-miner/releases/download/v1.4.1/Gold-survival-v1.4.1.zip) 已发布。发行 1.4.1、规则 1.4.0；现有赛题、个人最佳和活动档案直接延续。全部有效源码、文档、检查脚本与 survival-v141-* 报告／截图随版本提交，旧版材料与 ZIP 保留。
+
+匿名下载复验 55409 字节／11 文件，SHA-256 `be4870cd6bfc9fd0bed2de1c086b9f812be6a9f16228524b2771f907a26d1990` 与验收包相同，10 个运行文件逐项匹配；安全公开元数据和核验结果见 [发布报告](output/playwright/survival-v141-published-release-report.json)。公开包与已执行七组独立浏览器检查的本地包字节一致，发布阶段只追加下载核验，不冒充一次新的完整试玩。
+
+README 更新 1.4.1 下载入口，实施计划、规划与验收同步正式完成状态；发布证据、最终文档检查和本交接最后提交推送 main，并核对远程与本地一致。版本源码标签与最终运行文件不变。没有剩余本轮实施项或已知功能阻断；手机专项适配和新玩法另立需求，单活动存档、设备离线日期及浏览器地址隔离限制保持。
