@@ -1,0 +1,7012 @@
+{
+  "version": "1.5.2",
+  "result": "passed",
+  "method": "formal geometry, controlled isolated-target recovery/save cases and Node timing; not browser or natural gameplay",
+  "checks": [
+    "新增八物覆盖八个分区，配比/深度/尺寸/间距/数量准确；每个新增物按正式钩子独立回收",
+    "v151 备份写入失败单独阻止权威升级，重试成功；已有不同备份保持原文",
+    "同输入 v151/v152 生成耗时和四种策略收益/耗时对比；原目标及收益倍率保持"
+  ],
+  "samples": [
+    {
+      "level": 1,
+      "seed": 0,
+      "previous": {
+        "generationMs": 3.1988999999999805,
+        "count": 15,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 10.05000000000007,
+            "income": 800
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 11.025000000000015,
+            "income": 800
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 8.541666666666822,
+            "income": 750
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 11.308333333333334,
+            "income": 800
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 1.2227000000000317,
+        "count": 23,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 10.05000000000007,
+            "income": 800
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 8.416666666666831,
+            "income": 650
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 6.791666666666794,
+            "income": 750
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 6.791666666666794,
+            "income": 750
+          }
+        ]
+      }
+    },
+    {
+      "level": 1,
+      "seed": 1,
+      "previous": {
+        "generationMs": 0.5511999999999944,
+        "count": 15,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 7.233333333333482,
+            "income": 800
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 6.425000000000108,
+            "income": 650
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 6.425000000000108,
+            "income": 650
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 6.425000000000108,
+            "income": 650
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 0.8168999999999187,
+        "count": 23,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 7.233333333333482,
+            "income": 800
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 11.591666666666649,
+            "income": 950
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 6.333333333333438,
+            "income": 650
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 6.333333333333438,
+            "income": 650
+          }
+        ]
+      }
+    },
+    {
+      "level": 1,
+      "seed": 2,
+      "previous": {
+        "generationMs": 0.7654999999999745,
+        "count": 15,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 10.450000000000049,
+            "income": 850
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 6.716666666666789,
+            "income": 650
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 7.275000000000151,
+            "income": 850
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 7.775000000000174,
+            "income": 900
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 0.8183999999999969,
+        "count": 23,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 10.450000000000049,
+            "income": 850
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 10.450000000000049,
+            "income": 850
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 6.758333333333458,
+            "income": 850
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 6.758333333333458,
+            "income": 850
+          }
+        ]
+      }
+    },
+    {
+      "level": 1,
+      "seed": 3,
+      "previous": {
+        "generationMs": 0.466199999999958,
+        "count": 15,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 7.80833333333351,
+            "income": 700
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 7.5000000000001625,
+            "income": 800
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 6.600000000000117,
+            "income": 750
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 7.825000000000179,
+            "income": 750
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 0.6362000000000307,
+        "count": 23,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 7.80833333333351,
+            "income": 700
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 7.5000000000001625,
+            "income": 800
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 6.600000000000117,
+            "income": 750
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 7.825000000000179,
+            "income": 750
+          }
+        ]
+      }
+    },
+    {
+      "level": 1,
+      "seed": 4,
+      "previous": {
+        "generationMs": 0.6775000000000091,
+        "count": 15,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 8.783333333333475,
+            "income": 650
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 13.099999999999897,
+            "income": 900
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 8.675000000000148,
+            "income": 800
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 8.675000000000148,
+            "income": 800
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 0.8072000000000799,
+        "count": 23,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 8.783333333333475,
+            "income": 650
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 13.099999999999897,
+            "income": 900
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 6.725000000000123,
+            "income": 700
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 6.725000000000123,
+            "income": 700
+          }
+        ]
+      }
+    },
+    {
+      "level": 1,
+      "seed": 5,
+      "previous": {
+        "generationMs": 0.3467000000000553,
+        "count": 15,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 7.250000000000148,
+            "income": 850
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 10.991666666666683,
+            "income": 900
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 10.133333333333399,
+            "income": 1050
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 6.391666666666774,
+            "income": 800
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 1.035600000000045,
+        "count": 23,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 7.250000000000148,
+            "income": 850
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 11.000000000000016,
+            "income": 900
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 6.108333333333427,
+            "income": 650
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 6.108333333333427,
+            "income": 650
+          }
+        ]
+      }
+    },
+    {
+      "level": 1,
+      "seed": 6,
+      "previous": {
+        "generationMs": 1.4640999999999167,
+        "count": 15,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 9.06666666666679,
+            "income": 700
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 15.874999999999739,
+            "income": 900
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 7.9666666666668515,
+            "income": 750
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 7.9666666666668515,
+            "income": 750
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 1.1406999999999243,
+        "count": 23,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 9.06666666666679,
+            "income": 700
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 9.341666666666777,
+            "income": 650
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 5.9166666666667505,
+            "income": 850
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 5.9166666666667505,
+            "income": 850
+          }
+        ]
+      }
+    },
+    {
+      "level": 1,
+      "seed": 7,
+      "previous": {
+        "generationMs": 0.4131999999999607,
+        "count": 15,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 8.291666666666837,
+            "income": 650
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 5.908333333333416,
+            "income": 650
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 8.550000000000157,
+            "income": 750
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 8.550000000000157,
+            "income": 750
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 0.6049000000000433,
+        "count": 23,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 8.291666666666837,
+            "income": 650
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 5.908333333333416,
+            "income": 650
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 7.033333333333472,
+            "income": 700
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 7.033333333333472,
+            "income": 700
+          }
+        ]
+      }
+    },
+    {
+      "level": 1,
+      "seed": 8,
+      "previous": {
+        "generationMs": 0.5950000000000273,
+        "count": 15,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 8.950000000000133,
+            "income": 650
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 8.391666666666831,
+            "income": 800
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 7.975000000000186,
+            "income": 750
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 7.908333333333514,
+            "income": 900
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 0.588799999999992,
+        "count": 23,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 8.950000000000133,
+            "income": 650
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 6.283333333333435,
+            "income": 650
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 8.258333333333507,
+            "income": 950
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 8.258333333333507,
+            "income": 950
+          }
+        ]
+      }
+    },
+    {
+      "level": 1,
+      "seed": 9,
+      "previous": {
+        "generationMs": 0.34619999999995343,
+        "count": 15,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 6.566666666666783,
+            "income": 800
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 10.916666666666687,
+            "income": 1000
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 6.133333333333427,
+            "income": 750
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 5.175000000000047,
+            "income": 750
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 0.4963000000000193,
+        "count": 23,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 6.566666666666783,
+            "income": 800
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 9.808333333333417,
+            "income": 750
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 7.508333333333495,
+            "income": 1000
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 4.149999999999996,
+            "income": 750
+          }
+        ]
+      }
+    },
+    {
+      "level": 1,
+      "seed": 10,
+      "previous": {
+        "generationMs": 0.5066000000000486,
+        "count": 15,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 13.291666666666552,
+            "income": 850
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 8.908333333333468,
+            "income": 650
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 8.3833333333335,
+            "income": 1100
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 8.433333333333495,
+            "income": 850
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 0.7269000000000005,
+        "count": 23,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 13.291666666666552,
+            "income": 850
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 11.616666666666648,
+            "income": 1050
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 6.775000000000126,
+            "income": 850
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 7.883333333333514,
+            "income": 850
+          }
+        ]
+      }
+    },
+    {
+      "level": 1,
+      "seed": 11,
+      "previous": {
+        "generationMs": 0.6270000000000664,
+        "count": 15,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 7.458333333333494,
+            "income": 650
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 8.883333333333471,
+            "income": 900
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 7.408333333333491,
+            "income": 850
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 7.408333333333491,
+            "income": 850
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 0.5173999999999523,
+        "count": 23,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 7.458333333333494,
+            "income": 650
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 3.4249999999999905,
+            "income": 700
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 3.4249999999999905,
+            "income": 700
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 3.4249999999999905,
+            "income": 700
+          }
+        ]
+      }
+    },
+    {
+      "level": 1,
+      "seed": 12,
+      "previous": {
+        "generationMs": 0.3584999999999354,
+        "count": 15,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 8.483333333333492,
+            "income": 650
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 11.674999999999978,
+            "income": 800
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 9.083333333333458,
+            "income": 750
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 9.75833333333342,
+            "income": 800
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 0.5457999999999856,
+        "count": 23,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 8.483333333333492,
+            "income": 650
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 7.083333333333474,
+            "income": 650
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 7.07500000000014,
+            "income": 850
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 7.07500000000014,
+            "income": 850
+          }
+        ]
+      }
+    },
+    {
+      "level": 1,
+      "seed": 13,
+      "previous": {
+        "generationMs": 0.4960999999999558,
+        "count": 15,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 9.11666666666679,
+            "income": 850
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 6.566666666666782,
+            "income": 800
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 6.341666666666772,
+            "income": 800
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 6.341666666666772,
+            "income": 800
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 0.7137000000000171,
+        "count": 23,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 9.11666666666679,
+            "income": 850
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 6.566666666666782,
+            "income": 800
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 5.058333333333374,
+            "income": 850
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 5.058333333333374,
+            "income": 850
+          }
+        ]
+      }
+    },
+    {
+      "level": 1,
+      "seed": 14,
+      "previous": {
+        "generationMs": 0.6754000000000815,
+        "count": 15,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 9.516666666666767,
+            "income": 700
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 7.441666666666826,
+            "income": 850
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 8.216666666666843,
+            "income": 850
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 8.216666666666843,
+            "income": 850
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 0.8346000000000231,
+        "count": 23,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 9.516666666666767,
+            "income": 700
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 5.150000000000046,
+            "income": 650
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 5.150000000000046,
+            "income": 650
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 5.150000000000046,
+            "income": 650
+          }
+        ]
+      }
+    },
+    {
+      "level": 1,
+      "seed": 15,
+      "previous": {
+        "generationMs": 0.5237999999999374,
+        "count": 15,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 7.875000000000181,
+            "income": 700
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 6.983333333333469,
+            "income": 800
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 6.291666666666768,
+            "income": 750
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 9.400000000000109,
+            "income": 800
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 0.3927999999999656,
+        "count": 23,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 7.875000000000181,
+            "income": 700
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 6.983333333333469,
+            "income": 800
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 6.291666666666768,
+            "income": 750
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 9.400000000000109,
+            "income": 800
+          }
+        ]
+      }
+    },
+    {
+      "level": 1,
+      "seed": 16,
+      "previous": {
+        "generationMs": 0.2943000000000211,
+        "count": 15,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 6.166666666666763,
+            "income": 800
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 8.491666666666825,
+            "income": 650
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 6.8416666666667965,
+            "income": 850
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 6.8416666666667965,
+            "income": 850
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 0.36970000000007985,
+        "count": 23,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 6.166666666666763,
+            "income": 800
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 7.858333333333513,
+            "income": 800
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 6.8416666666667965,
+            "income": 850
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 6.8416666666667965,
+            "income": 850
+          }
+        ]
+      }
+    },
+    {
+      "level": 1,
+      "seed": 17,
+      "previous": {
+        "generationMs": 0.49670000000003256,
+        "count": 15,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 10.841666666666692,
+            "income": 650
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 5.175000000000047,
+            "income": 850
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 5.175000000000047,
+            "income": 850
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 8.625000000000151,
+            "income": 850
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 0.6929999999999836,
+        "count": 23,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 10.841666666666692,
+            "income": 650
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 5.333333333333387,
+            "income": 750
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 3.933333333333322,
+            "income": 750
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 6.675000000000121,
+            "income": 850
+          }
+        ]
+      }
+    },
+    {
+      "level": 1,
+      "seed": 18,
+      "previous": {
+        "generationMs": 0.4854000000000269,
+        "count": 15,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 9.283333333333449,
+            "income": 650
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 4.508333333333346,
+            "income": 650
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 5.541666666666732,
+            "income": 850
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 6.558333333333448,
+            "income": 850
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 0.650000000000091,
+        "count": 23,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 9.283333333333449,
+            "income": 650
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 6.133333333333428,
+            "income": 650
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 5.541666666666732,
+            "income": 850
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 4.6916666666666895,
+            "income": 700
+          }
+        ]
+      }
+    },
+    {
+      "level": 1,
+      "seed": 19,
+      "previous": {
+        "generationMs": 0.6196999999999662,
+        "count": 15,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 12.099999999999955,
+            "income": 850
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 12.166666666666618,
+            "income": 850
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 7.1083333333334755,
+            "income": 1000
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 9.64166666666676,
+            "income": 800
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 0.6485999999999876,
+        "count": 23,
+        "target": 650,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 12.099999999999955,
+            "income": 850
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 12.166666666666618,
+            "income": 850
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 5.641666666666736,
+            "income": 750
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 6.891666666666799,
+            "income": 750
+          }
+        ]
+      }
+    },
+    {
+      "level": 4,
+      "seed": 0,
+      "previous": {
+        "generationMs": 0.6508000000000038,
+        "count": 18,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 17.73333333333297,
+            "income": 1220
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 8.108333333333514,
+            "income": 1300
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 8.108333333333514,
+            "income": 1300
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 9.491666666666768,
+            "income": 1350
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 1.2252999999999474,
+        "count": 26,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 17.73333333333297,
+            "income": 1220
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 13.141666666666561,
+            "income": 1350
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 11.824999999999969,
+            "income": 1350
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 13.083333333333233,
+            "income": 1200
+          }
+        ]
+      }
+    },
+    {
+      "level": 4,
+      "seed": 1,
+      "previous": {
+        "generationMs": 0.8769999999999527,
+        "count": 18,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 13.458333333333211,
+            "income": 1320
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 19.57499999999953,
+            "income": 1500
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 13.491666666666543,
+            "income": 1520
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 13.666666666666531,
+            "income": 1320
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 0.7409000000000106,
+        "count": 26,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 13.458333333333211,
+            "income": 1320
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 19.57499999999953,
+            "income": 1500
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 13.683333333333197,
+            "income": 1320
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 13.666666666666531,
+            "income": 1320
+          }
+        ]
+      }
+    },
+    {
+      "level": 4,
+      "seed": 2,
+      "previous": {
+        "generationMs": 1.0516000000000076,
+        "count": 18,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 20.699999999999466,
+            "income": 1270
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 17.67499999999964,
+            "income": 1300
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 12.591666666666592,
+            "income": 1400
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 12.591666666666592,
+            "income": 1400
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 1.7759000000000924,
+        "count": 26,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 20.699999999999466,
+            "income": 1270
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 17.699999999999637,
+            "income": 1300
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 12.616666666666594,
+            "income": 1400
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 12.616666666666594,
+            "income": 1400
+          }
+        ]
+      }
+    },
+    {
+      "level": 4,
+      "seed": 3,
+      "previous": {
+        "generationMs": 0.9092000000000553,
+        "count": 18,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 16.374999999999716,
+            "income": 1300
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 13.658333333333198,
+            "income": 1500
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 13.883333333333185,
+            "income": 1500
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 15.083333333333119,
+            "income": 1800
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 2.4628000000000156,
+        "count": 26,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 16.374999999999716,
+            "income": 1300
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 13.449999999999877,
+            "income": 1500
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 13.674999999999866,
+            "income": 1500
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 14.874999999999797,
+            "income": 1800
+          }
+        ]
+      }
+    },
+    {
+      "level": 4,
+      "seed": 4,
+      "previous": {
+        "generationMs": 1.024499999999989,
+        "count": 18,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 15.916666666666407,
+            "income": 1300
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 16.34166666666638,
+            "income": 1200
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 15.016666666666454,
+            "income": 1350
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 15.016666666666454,
+            "income": 1350
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 0.8865999999999303,
+        "count": 26,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 15.916666666666407,
+            "income": 1300
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 18.549999999999592,
+            "income": 1400
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 15.016666666666454,
+            "income": 1350
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 15.016666666666454,
+            "income": 1350
+          }
+        ]
+      }
+    },
+    {
+      "level": 4,
+      "seed": 5,
+      "previous": {
+        "generationMs": 1.5341999999999416,
+        "count": 18,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 16.433333333333046,
+            "income": 1420
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 16.291666666666384,
+            "income": 1400
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 10.80000000000003,
+            "income": 1300
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 17.491666666666315,
+            "income": 1400
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 1.8333000000000084,
+        "count": 26,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 16.433333333333046,
+            "income": 1420
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 16.291666666666384,
+            "income": 1400
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 9.95833333333341,
+            "income": 1300
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 13.549999999999873,
+            "income": 1350
+          }
+        ]
+      }
+    },
+    {
+      "level": 4,
+      "seed": 6,
+      "previous": {
+        "generationMs": 0.8002999999999929,
+        "count": 18,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 22.358333333332705,
+            "income": 1270
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 15.183333333333112,
+            "income": 1400
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 12.17499999999995,
+            "income": 1350
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 16.874999999999684,
+            "income": 1400
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 1.0714000000000397,
+        "count": 26,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 22.358333333332705,
+            "income": 1270
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 19.291666666666213,
+            "income": 1400
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 15.649999999999752,
+            "income": 1350
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 15.649999999999752,
+            "income": 1350
+          }
+        ]
+      }
+    },
+    {
+      "level": 4,
+      "seed": 7,
+      "previous": {
+        "generationMs": 1.0529999999999973,
+        "count": 18,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 15.816666666666409,
+            "income": 1250
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 16.058333333333064,
+            "income": 1450
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 12.90833333333324,
+            "income": 1400
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 16.024999999999732,
+            "income": 1450
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 1.8960000000000719,
+        "count": 26,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 15.816666666666409,
+            "income": 1250
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 16.058333333333064,
+            "income": 1450
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 10.683333333333367,
+            "income": 1300
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 12.449999999999934,
+            "income": 1400
+          }
+        ]
+      }
+    },
+    {
+      "level": 4,
+      "seed": 8,
+      "previous": {
+        "generationMs": 1.2212999999999283,
+        "count": 18,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 17.64166666666631,
+            "income": 1250
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 14.991666666666456,
+            "income": 1400
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 12.566666666666595,
+            "income": 1400
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 12.566666666666595,
+            "income": 1400
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 0.995200000000068,
+        "count": 26,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 17.64166666666631,
+            "income": 1250
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 13.92499999999985,
+            "income": 1200
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 14.341666666666493,
+            "income": 1200
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 14.341666666666493,
+            "income": 1200
+          }
+        ]
+      }
+    },
+    {
+      "level": 4,
+      "seed": 9,
+      "previous": {
+        "generationMs": 0.8984000000000378,
+        "count": 18,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 21.949999999999395,
+            "income": 1470
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 14.408333333333157,
+            "income": 1350
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 12.016666666666625,
+            "income": 1300
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 15.75833333333308,
+            "income": 1350
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 1.1300999999999704,
+        "count": 26,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 21.949999999999395,
+            "income": 1470
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 14.408333333333157,
+            "income": 1350
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 12.833333333333247,
+            "income": 1250
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 14.458333333333155,
+            "income": 1300
+          }
+        ]
+      }
+    },
+    {
+      "level": 4,
+      "seed": 10,
+      "previous": {
+        "generationMs": 1.1280000000000427,
+        "count": 18,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 16.358333333333047,
+            "income": 1300
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 14.283333333333163,
+            "income": 1250
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 11.79166666666664,
+            "income": 1300
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 14.433333333333154,
+            "income": 1250
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 1.504000000000019,
+        "count": 26,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 16.358333333333047,
+            "income": 1300
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 15.199999999999777,
+            "income": 1300
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 13.133333333333228,
+            "income": 1350
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 13.116666666666562,
+            "income": 1400
+          }
+        ]
+      }
+    },
+    {
+      "level": 4,
+      "seed": 11,
+      "previous": {
+        "generationMs": 4.718899999999962,
+        "count": 18,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 19.08333333333289,
+            "income": 1420
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 17.416666666666323,
+            "income": 1450
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 11.291666666666666,
+            "income": 1300
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 11.291666666666666,
+            "income": 1300
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 3.780599999999936,
+        "count": 26,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 19.08333333333289,
+            "income": 1420
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 10.916666666666687,
+            "income": 1200
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 9.183333333333454,
+            "income": 1300
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 9.558333333333431,
+            "income": 1300
+          }
+        ]
+      }
+    },
+    {
+      "level": 4,
+      "seed": 12,
+      "previous": {
+        "generationMs": 4.967000000000098,
+        "count": 18,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 22.66666666666602,
+            "income": 1320
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 15.766666666666413,
+            "income": 1450
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 15.766666666666413,
+            "income": 1450
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 14.749999999999805,
+            "income": 1250
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 3.885099999999966,
+        "count": 26,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 22.66666666666602,
+            "income": 1320
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 15.766666666666413,
+            "income": 1450
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 15.766666666666413,
+            "income": 1450
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 14.749999999999805,
+            "income": 1250
+          }
+        ]
+      }
+    },
+    {
+      "level": 4,
+      "seed": 13,
+      "previous": {
+        "generationMs": 4.283300000000054,
+        "count": 18,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 17.61666666666631,
+            "income": 1350
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 13.124999999999897,
+            "income": 1400
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 11.383333333333328,
+            "income": 1200
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 11.383333333333328,
+            "income": 1200
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 5.7509000000000015,
+        "count": 26,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 17.61666666666631,
+            "income": 1350
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 12.541666666666595,
+            "income": 1400
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 9.35000000000011,
+            "income": 1250
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 9.35000000000011,
+            "income": 1250
+          }
+        ]
+      }
+    },
+    {
+      "level": 4,
+      "seed": 14,
+      "previous": {
+        "generationMs": 1.3465999999999667,
+        "count": 18,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 14.974999999999792,
+            "income": 1400
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 12.408333333333271,
+            "income": 1300
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 11.433333333333326,
+            "income": 1300
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 15.633333333333088,
+            "income": 1550
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 1.4395000000000664,
+        "count": 26,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 14.974999999999792,
+            "income": 1400
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 15.041666666666453,
+            "income": 1450
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 14.516666666666483,
+            "income": 1400
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 13.274999999999888,
+            "income": 1400
+          }
+        ]
+      }
+    },
+    {
+      "level": 4,
+      "seed": 15,
+      "previous": {
+        "generationMs": 1.6154999999999973,
+        "count": 18,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 17.29999999999966,
+            "income": 1220
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 15.299999999999773,
+            "income": 1300
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 11.874999999999966,
+            "income": 1250
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 11.874999999999966,
+            "income": 1250
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 1.8636999999999944,
+        "count": 26,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 17.29999999999966,
+            "income": 1220
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 15.299999999999773,
+            "income": 1300
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 13.991666666666513,
+            "income": 1500
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 13.991666666666513,
+            "income": 1500
+          }
+        ]
+      }
+    },
+    {
+      "level": 4,
+      "seed": 16,
+      "previous": {
+        "generationMs": 1.7829999999999018,
+        "count": 18,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 19.674999999999525,
+            "income": 1350
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 16.766666666666357,
+            "income": 1250
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 17.133333333333002,
+            "income": 1450
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 16.916666666666348,
+            "income": 1250
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 3.414099999999962,
+        "count": 26,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 19.674999999999525,
+            "income": 1350
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 20.466666666666146,
+            "income": 1400
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 17.316666666666325,
+            "income": 1350
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 17.316666666666325,
+            "income": 1350
+          }
+        ]
+      }
+    },
+    {
+      "level": 4,
+      "seed": 17,
+      "previous": {
+        "generationMs": 1.5005999999998494,
+        "count": 18,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 19.008333333332896,
+            "income": 1470
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 12.45833333333327,
+            "income": 1450
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 9.900000000000079,
+            "income": 1400
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 13.583333333333204,
+            "income": 1500
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 2.572499999999991,
+        "count": 26,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 19.008333333332896,
+            "income": 1470
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 12.658333333333257,
+            "income": 1450
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 10.400000000000052,
+            "income": 1400
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 12.66666666666659,
+            "income": 1500
+          }
+        ]
+      }
+    },
+    {
+      "level": 4,
+      "seed": 18,
+      "previous": {
+        "generationMs": 1.6631999999999607,
+        "count": 18,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 21.366666666666095,
+            "income": 1320
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 16.733333333333025,
+            "income": 1300
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 16.141666666666392,
+            "income": 1250
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 16.141666666666392,
+            "income": 1250
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 2.6772000000000844,
+        "count": 26,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 21.366666666666095,
+            "income": 1320
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 17.716666666666303,
+            "income": 1450
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 17.741666666666305,
+            "income": 1450
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 17.741666666666305,
+            "income": 1450
+          }
+        ]
+      }
+    },
+    {
+      "level": 4,
+      "seed": 19,
+      "previous": {
+        "generationMs": 1.4423999999999069,
+        "count": 18,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 17.60833333333298,
+            "income": 1270
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 20.716666666666132,
+            "income": 1600
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 16.116666666666394,
+            "income": 1350
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 16.116666666666394,
+            "income": 1350
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 2.090900000000147,
+        "count": 26,
+        "target": 1200,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 17.60833333333298,
+            "income": 1270
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 18.17499999999961,
+            "income": 1400
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 15.52499999999976,
+            "income": 1350
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 15.52499999999976,
+            "income": 1350
+          }
+        ]
+      }
+    },
+    {
+      "level": 10,
+      "seed": 0,
+      "previous": {
+        "generationMs": 2.991999999999962,
+        "count": 24,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 41.491666666664955,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 28.916666666665666,
+            "income": 2200
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 23.099999999999337,
+            "income": 2300
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 34.59999999999869,
+            "income": 2190
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 5.255499999999984,
+        "count": 32,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 41.491666666664955,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 26.991666666665775,
+            "income": 2300
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 26.991666666665775,
+            "income": 2300
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 32.983333333332105,
+            "income": 2120
+          }
+        ]
+      }
+    },
+    {
+      "level": 10,
+      "seed": 1,
+      "previous": {
+        "generationMs": 3.9021999999999935,
+        "count": 24,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 43.75833333333149,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 32.18333333333215,
+            "income": 2150
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 30.99999999999888,
+            "income": 2220
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 37.991666666665154,
+            "income": 2190
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 4.832800000000134,
+        "count": 32,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 43.75833333333149,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 25.874999999999176,
+            "income": 2100
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 28.72499999999901,
+            "income": 2300
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 29.758333333332285,
+            "income": 2150
+          }
+        ]
+      }
+    },
+    {
+      "level": 10,
+      "seed": 2,
+      "previous": {
+        "generationMs": 3.5918000000001484,
+        "count": 24,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 39.516666666665074,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": false,
+            "seconds": 44.99999999999809,
+            "income": 2080
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 36.683333333331895,
+            "income": 2180
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 36.683333333331895,
+            "income": 2180
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 4.106899999999996,
+        "count": 32,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 39.516666666665074,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": false,
+            "seconds": 44.999999999998096,
+            "income": 2040
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 30.10833333333227,
+            "income": 2310
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 30.10833333333227,
+            "income": 2310
+          }
+        ]
+      }
+    },
+    {
+      "level": 10,
+      "seed": 3,
+      "previous": {
+        "generationMs": 2.9664000000000215,
+        "count": 24,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 41.8833333333316,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 32.71666666666545,
+            "income": 2220
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 30.49999999999891,
+            "income": 2120
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 36.599999999998566,
+            "income": 2160
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 3.853800000000092,
+        "count": 32,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 41.8833333333316,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 25.10833333333255,
+            "income": 2150
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 32.4749999999988,
+            "income": 2370
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 31.333333333332195,
+            "income": 2320
+          }
+        ]
+      }
+    },
+    {
+      "level": 10,
+      "seed": 4,
+      "previous": {
+        "generationMs": 3.7760000000000673,
+        "count": 24,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 41.43333333333163,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 29.808333333332286,
+            "income": 2120
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 30.049999999998935,
+            "income": 2120
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 42.133333333331585,
+            "income": 2260
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 4.748599999999897,
+        "count": 32,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 39.05833333333176,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 37.03333333333188,
+            "income": 2120
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 27.433333333332424,
+            "income": 2370
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 27.833333333332398,
+            "income": 2170
+          }
+        ]
+      }
+    },
+    {
+      "level": 10,
+      "seed": 5,
+      "previous": {
+        "generationMs": 2.240600000000086,
+        "count": 24,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 43.0249999999982,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 35.05833333333199,
+            "income": 2350
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 32.38333333333214,
+            "income": 2250
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 32.38333333333214,
+            "income": 2250
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 4.901499999999942,
+        "count": 32,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 43.0249999999982,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 27.041666666665773,
+            "income": 2300
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 26.324999999999147,
+            "income": 2300
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 26.324999999999147,
+            "income": 2300
+          }
+        ]
+      }
+    },
+    {
+      "level": 10,
+      "seed": 6,
+      "previous": {
+        "generationMs": 2.193899999999985,
+        "count": 24,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 41.241666666664976,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 35.83333333333194,
+            "income": 2270
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 25.80833333333251,
+            "income": 2100
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 25.80833333333251,
+            "income": 2100
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 2.7503999999998996,
+        "count": 32,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 41.241666666664976,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 26.024999999999164,
+            "income": 2100
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 28.374999999999037,
+            "income": 2300
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 28.374999999999037,
+            "income": 2300
+          }
+        ]
+      }
+    },
+    {
+      "level": 10,
+      "seed": 7,
+      "previous": {
+        "generationMs": 2.4385999999999513,
+        "count": 24,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 44.441666666664794,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 30.658333333332237,
+            "income": 2270
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 27.799999999999066,
+            "income": 2170
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 38.033333333331825,
+            "income": 2310
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 2.4084000000000287,
+        "count": 32,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 44.441666666664794,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 26.866666666665783,
+            "income": 2350
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 21.166666666666107,
+            "income": 2150
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 28.17499999999904,
+            "income": 2220
+          }
+        ]
+      }
+    },
+    {
+      "level": 10,
+      "seed": 8,
+      "previous": {
+        "generationMs": 2.0254999999999654,
+        "count": 24,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 40.73333333333168,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 17.50833333333298,
+            "income": 2150
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 19.89166666666618,
+            "income": 2300
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 18.01666666666629,
+            "income": 2100
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 4.603599999999915,
+        "count": 32,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 40.73333333333168,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 20.84166666666613,
+            "income": 2200
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 16.73333333333303,
+            "income": 2100
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 19.841666666666185,
+            "income": 2200
+          }
+        ]
+      }
+    },
+    {
+      "level": 10,
+      "seed": 9,
+      "previous": {
+        "generationMs": 3.5720000000001164,
+        "count": 24,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 42.433333333331575,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 38.54166666666512,
+            "income": 2220
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 36.683333333331895,
+            "income": 2340
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 36.683333333331895,
+            "income": 2340
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 3.429499999999962,
+        "count": 32,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 42.433333333331575,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 30.741666666665566,
+            "income": 2100
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 30.549999999998906,
+            "income": 2270
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 30.549999999998906,
+            "income": 2270
+          }
+        ]
+      }
+    },
+    {
+      "level": 10,
+      "seed": 10,
+      "previous": {
+        "generationMs": 6.490400000000136,
+        "count": 24,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 40.52499999999834,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": false,
+            "seconds": 44.99999999999809,
+            "income": 2060
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 38.50833333333179,
+            "income": 2360
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 42.408333333331576,
+            "income": 2160
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 2.413400000000138,
+        "count": 32,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 40.52499999999834,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 40.39166666666502,
+            "income": 2100
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 30.499999999998913,
+            "income": 2240
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 32.97499999999877,
+            "income": 2340
+          }
+        ]
+      }
+    },
+    {
+      "level": 10,
+      "seed": 11,
+      "previous": {
+        "generationMs": 3.90969999999993,
+        "count": 24,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 41.66666666666495,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 25.824999999999175,
+            "income": 2370
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 23.35833333333265,
+            "income": 2320
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 25.174999999999216,
+            "income": 2390
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 4.3267000000000735,
+        "count": 32,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 41.66666666666495,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 24.716666666665905,
+            "income": 2150
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 23.32499999999932,
+            "income": 2250
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 26.816666666665792,
+            "income": 2250
+          }
+        ]
+      }
+    },
+    {
+      "level": 10,
+      "seed": 12,
+      "previous": {
+        "generationMs": 3.6053000000001703,
+        "count": 24,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 43.46666666666485,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 41.491666666664955,
+            "income": 2140
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 41.316666666664965,
+            "income": 2140
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 41.316666666664965,
+            "income": 2140
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 5.362599999999929,
+        "count": 32,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 43.46666666666485,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 34.2249999999987,
+            "income": 2100
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 32.97499999999877,
+            "income": 2170
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 32.97499999999877,
+            "income": 2170
+          }
+        ]
+      }
+    },
+    {
+      "level": 10,
+      "seed": 13,
+      "previous": {
+        "generationMs": 2.8329999999998563,
+        "count": 24,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 44.50833333333146,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 36.84999999999855,
+            "income": 2150
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 30.249999999998924,
+            "income": 2120
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 37.63333333333184,
+            "income": 2160
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 5.858699999999999,
+        "count": 32,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 44.50833333333146,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 40.52499999999834,
+            "income": 2100
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 26.44999999999914,
+            "income": 2400
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 29.124999999998984,
+            "income": 2100
+          }
+        ]
+      }
+    },
+    {
+      "level": 10,
+      "seed": 14,
+      "previous": {
+        "generationMs": 3.2239999999999327,
+        "count": 24,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 42.716666666664885,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 34.53333333333202,
+            "income": 2120
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 27.741666666665733,
+            "income": 2120
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 27.741666666665733,
+            "income": 2120
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 3.120200000000068,
+        "count": 32,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 42.716666666664885,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 27.049999999999102,
+            "income": 2100
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 27.049999999999102,
+            "income": 2100
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 27.049999999999102,
+            "income": 2100
+          }
+        ]
+      }
+    },
+    {
+      "level": 10,
+      "seed": 15,
+      "previous": {
+        "generationMs": 3.088600000000042,
+        "count": 24,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 40.67499999999835,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 31.574999999998855,
+            "income": 2300
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 30.108333333332272,
+            "income": 2270
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 31.999999999998828,
+            "income": 2270
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 4.727900000000091,
+        "count": 32,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 40.67499999999835,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 27.233333333332432,
+            "income": 2300
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 26.549999999999134,
+            "income": 2300
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 31.099999999998875,
+            "income": 2370
+          }
+        ]
+      }
+    },
+    {
+      "level": 10,
+      "seed": 16,
+      "previous": {
+        "generationMs": 3.2313000000001466,
+        "count": 24,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 39.316666666665085,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 31.374999999998863,
+            "income": 2140
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 31.058333333332218,
+            "income": 2260
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 36.166666666665265,
+            "income": 2280
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 3.001299999999901,
+        "count": 32,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 39.316666666665085,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 30.22499999999893,
+            "income": 2220
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 30.141666666665603,
+            "income": 2340
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 30.141666666665603,
+            "income": 2340
+          }
+        ]
+      }
+    },
+    {
+      "level": 10,
+      "seed": 17,
+      "previous": {
+        "generationMs": 3.6271999999999025,
+        "count": 24,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 38.84999999999844,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 37.50833333333185,
+            "income": 2320
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 31.058333333332214,
+            "income": 2340
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 31.058333333332214,
+            "income": 2340
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 4.110300000000052,
+        "count": 32,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 38.84999999999844,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 29.949999999998944,
+            "income": 2150
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 29.574999999998962,
+            "income": 2370
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 31.016666666665547,
+            "income": 2320
+          }
+        ]
+      }
+    },
+    {
+      "level": 10,
+      "seed": 18,
+      "previous": {
+        "generationMs": 3.48050000000012,
+        "count": 24,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 38.958333333331765,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 37.81666666666517,
+            "income": 2170
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 28.674999999999013,
+            "income": 2120
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 35.6416666666653,
+            "income": 2260
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 3.99980000000005,
+        "count": 32,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 38.958333333331765,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 32.70833333333213,
+            "income": 2150
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 31.808333333332172,
+            "income": 2570
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 28.433333333332364,
+            "income": 2170
+          }
+        ]
+      }
+    },
+    {
+      "level": 10,
+      "seed": 19,
+      "previous": {
+        "generationMs": 2.9161999999998898,
+        "count": 24,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 40.95833333333165,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 28.874999999999005,
+            "income": 2270
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 30.249999999998927,
+            "income": 2290
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 24.791666666665904,
+            "income": 2120
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 2.20029999999997,
+        "count": 32,
+        "target": 2100,
+        "rewardScale": 1,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 40.95833333333165,
+            "income": 2180
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 26.666666666665794,
+            "income": 2250
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 28.03333333333239,
+            "income": 2270
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 28.499999999999027,
+            "income": 2220
+          }
+        ]
+      }
+    },
+    {
+      "level": 30,
+      "seed": 0,
+      "previous": {
+        "generationMs": 1.6834999999998672,
+        "count": 25,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 43.11666666666486,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 42.341666666664906,
+            "income": 3185
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 36.87499999999855,
+            "income": 3115
+          },
+          {
+            "strategy": "safe",
+            "success": false,
+            "seconds": 44.99999999999809,
+            "income": 2976
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 2.2643000000000484,
+        "count": 33,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 43.11666666666486,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 35.3916666666653,
+            "income": 3032
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 36.01666666666527,
+            "income": 3032
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 41.466666666664956,
+            "income": 2991
+          }
+        ]
+      }
+    },
+    {
+      "level": 30,
+      "seed": 1,
+      "previous": {
+        "generationMs": 6.7228999999999814,
+        "count": 25,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 41.18333333333164,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 32.83333333333212,
+            "income": 3031
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 30.52499999999891,
+            "income": 2989
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 40.77499999999833,
+            "income": 3157
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 7.821300000000065,
+        "count": 33,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 41.18333333333164,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 31.724999999998847,
+            "income": 3241
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 29.59166666666563,
+            "income": 3060
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 40.51666666666501,
+            "income": 3158
+          }
+        ]
+      }
+    },
+    {
+      "level": 30,
+      "seed": 2,
+      "previous": {
+        "generationMs": 5.9905999999998585,
+        "count": 25,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 44.78333333333144,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 41.12499999999831,
+            "income": 3156
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 36.17499999999859,
+            "income": 3268
+          },
+          {
+            "strategy": "safe",
+            "success": false,
+            "seconds": 44.99999999999809,
+            "income": 2975
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 11.438100000000077,
+        "count": 33,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 44.78333333333144,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 35.5916666666653,
+            "income": 3380
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 32.04166666666549,
+            "income": 3101
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 36.66666666666524,
+            "income": 2989
+          }
+        ]
+      }
+    },
+    {
+      "level": 30,
+      "seed": 3,
+      "previous": {
+        "generationMs": 1.8218999999999141,
+        "count": 25,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 44.616666666664784,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 42.20833333333158,
+            "income": 3059
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 34.43333333333203,
+            "income": 3059
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 34.43333333333203,
+            "income": 3059
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 4.768600000000106,
+        "count": 33,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 44.616666666664784,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": false,
+            "seconds": 44.99999999999809,
+            "income": 2684
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 37.68333333333184,
+            "income": 3102
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 37.68333333333184,
+            "income": 3102
+          }
+        ]
+      }
+    },
+    {
+      "level": 30,
+      "seed": 4,
+      "previous": {
+        "generationMs": 5.965599999999995,
+        "count": 25,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 42.41666666666491,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 39.633333333331734,
+            "income": 2990
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 33.92499999999872,
+            "income": 3059
+          },
+          {
+            "strategy": "safe",
+            "success": false,
+            "seconds": 44.99999999999809,
+            "income": 2599
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 4.657500000000027,
+        "count": 33,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 42.41666666666491,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 44.599999999998126,
+            "income": 3060
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 27.716666666665734,
+            "income": 3030
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 39.08333333333176,
+            "income": 3060
+          }
+        ]
+      }
+    },
+    {
+      "level": 30,
+      "seed": 5,
+      "previous": {
+        "generationMs": 7.974599999999782,
+        "count": 25,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 44.641666666664776,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 35.899999999998606,
+            "income": 3240
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 29.94166666666562,
+            "income": 3031
+          },
+          {
+            "strategy": "safe",
+            "success": false,
+            "seconds": 44.999999999998096,
+            "income": 2459
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 15.238700000000108,
+        "count": 33,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 43.98333333333148,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 33.133333333332104,
+            "income": 3631
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 31.583333333332185,
+            "income": 3631
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 29.35833333333231,
+            "income": 3422
+          }
+        ]
+      }
+    },
+    {
+      "level": 30,
+      "seed": 6,
+      "previous": {
+        "generationMs": 2.5877000000000407,
+        "count": 25,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 43.29166666666485,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 32.516666666665465,
+            "income": 3310
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 26.11666666666583,
+            "income": 3659
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 24.424999999999258,
+            "income": 2989
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 2.5342000000000553,
+        "count": 33,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 43.29166666666485,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 32.808333333332115,
+            "income": 3073
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 22.949999999999342,
+            "income": 3101
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 22.949999999999342,
+            "income": 3101
+          }
+        ]
+      }
+    },
+    {
+      "level": 30,
+      "seed": 7,
+      "previous": {
+        "generationMs": 1.727100000000064,
+        "count": 25,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 43.91666666666483,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": false,
+            "seconds": 44.99999999999809,
+            "income": 2669
+          },
+          {
+            "strategy": "efficiency",
+            "success": false,
+            "seconds": 44.99999999999809,
+            "income": 2697
+          },
+          {
+            "strategy": "safe",
+            "success": false,
+            "seconds": 44.99999999999809,
+            "income": 2697
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 4.375800000000027,
+        "count": 33,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 43.91666666666483,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 43.23333333333153,
+            "income": 2991
+          },
+          {
+            "strategy": "efficiency",
+            "success": false,
+            "seconds": 44.99999999999809,
+            "income": 2851
+          },
+          {
+            "strategy": "safe",
+            "success": false,
+            "seconds": 44.99999999999809,
+            "income": 2851
+          }
+        ]
+      }
+    },
+    {
+      "level": 30,
+      "seed": 8,
+      "previous": {
+        "generationMs": 4.128600000000006,
+        "count": 25,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 43.72499999999816,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": false,
+            "seconds": 44.99999999999809,
+            "income": 2711
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 34.54999999999868,
+            "income": 2990
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 34.54999999999868,
+            "income": 2990
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 2.38149999999996,
+        "count": 33,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 43.72499999999816,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": false,
+            "seconds": 44.99999999999809,
+            "income": 2754
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 31.99166666666549,
+            "income": 3032
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 31.99166666666549,
+            "income": 3032
+          }
+        ]
+      }
+    },
+    {
+      "level": 30,
+      "seed": 9,
+      "previous": {
+        "generationMs": 4.232899999999972,
+        "count": 25,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 42.858333333331544,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": false,
+            "seconds": 44.99999999999809,
+            "income": 2123
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 35.9999999999986,
+            "income": 2989
+          },
+          {
+            "strategy": "safe",
+            "success": false,
+            "seconds": 44.99999999999809,
+            "income": 2696
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 5.823199999999815,
+        "count": 33,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 42.858333333331544,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": false,
+            "seconds": 44.999999999998096,
+            "income": 2836
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 31.56666666666552,
+            "income": 2990
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 36.82499999999855,
+            "income": 3018
+          }
+        ]
+      }
+    },
+    {
+      "level": 30,
+      "seed": 10,
+      "previous": {
+        "generationMs": 2.257300000000214,
+        "count": 25,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 43.92499999999816,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 40.849999999998325,
+            "income": 3087
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 35.899999999998606,
+            "income": 3087
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 35.899999999998606,
+            "income": 3087
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 2.2730999999998858,
+        "count": 33,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 43.92499999999816,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": false,
+            "seconds": 44.99999999999809,
+            "income": 2879
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 34.07499999999871,
+            "income": 3199
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 34.07499999999871,
+            "income": 3199
+          }
+        ]
+      }
+    },
+    {
+      "level": 30,
+      "seed": 11,
+      "previous": {
+        "generationMs": 1.7730999999998858,
+        "count": 25,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 44.52499999999813,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 33.299999999998754,
+            "income": 3058
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 21.158333333332774,
+            "income": 3100
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 21.158333333332774,
+            "income": 3100
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 2.374200000000201,
+        "count": 33,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 44.52499999999813,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 38.68333333333178,
+            "income": 3018
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 32.499999999998806,
+            "income": 3031
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 32.499999999998806,
+            "income": 3031
+          }
+        ]
+      }
+    },
+    {
+      "level": 30,
+      "seed": 12,
+      "previous": {
+        "generationMs": 2.313100000000304,
+        "count": 25,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 41.92499999999828,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 36.424999999998576,
+            "income": 3115
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 32.99166666666544,
+            "income": 3366
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 33.916666666665385,
+            "income": 3045
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 4.387900000000172,
+        "count": 33,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 41.92499999999828,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 35.98333333333194,
+            "income": 2990
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 33.99166666666539,
+            "income": 2990
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 39.033333333331754,
+            "income": 3325
+          }
+        ]
+      }
+    },
+    {
+      "level": 30,
+      "seed": 13,
+      "previous": {
+        "generationMs": 7.351400000000012,
+        "count": 25,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 44.6249999999981,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 31.908333333332166,
+            "income": 3073
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 31.89999999999883,
+            "income": 3073
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 35.141666666665316,
+            "income": 3129
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 8.812700000000405,
+        "count": 33,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 44.6249999999981,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 30.424999999998914,
+            "income": 3073
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 29.749999999998956,
+            "income": 3171
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 37.716666666665176,
+            "income": 3339
+          }
+        ]
+      }
+    },
+    {
+      "level": 30,
+      "seed": 14,
+      "previous": {
+        "generationMs": 1.9936999999999898,
+        "count": 25,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 42.68333333333156,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 37.74166666666517,
+            "income": 3003
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 30.858333333332226,
+            "income": 3058
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 38.81666666666513,
+            "income": 3017
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 2.7924000000002707,
+        "count": 33,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 42.68333333333156,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 32.85833333333211,
+            "income": 3030
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 34.783333333332,
+            "income": 3379
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 34.274999999998705,
+            "income": 3058
+          }
+        ]
+      }
+    },
+    {
+      "level": 30,
+      "seed": 15,
+      "previous": {
+        "generationMs": 16.82250000000022,
+        "count": 25,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": true,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 43.56666666666484,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": false,
+            "seconds": 44.99999999999809,
+            "income": 2067
+          },
+          {
+            "strategy": "efficiency",
+            "success": false,
+            "seconds": 44.99999999999809,
+            "income": 2905
+          },
+          {
+            "strategy": "safe",
+            "success": false,
+            "seconds": 44.99999999999809,
+            "income": 2905
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 24.009799999999814,
+        "count": 33,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": true,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 43.56666666666484,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": false,
+            "seconds": 44.999999999998096,
+            "income": 2361
+          },
+          {
+            "strategy": "efficiency",
+            "success": false,
+            "seconds": 44.999999999998096,
+            "income": 2850
+          },
+          {
+            "strategy": "safe",
+            "success": false,
+            "seconds": 44.999999999998096,
+            "income": 2850
+          }
+        ]
+      }
+    },
+    {
+      "level": 30,
+      "seed": 16,
+      "previous": {
+        "generationMs": 2.1158000000000357,
+        "count": 25,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 40.766666666665,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 37.033333333331875,
+            "income": 3199
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 31.89999999999883,
+            "income": 3199
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 31.624999999998845,
+            "income": 3060
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 2.3279999999999745,
+        "count": 33,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 40.766666666665,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 33.54166666666541,
+            "income": 3074
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 33.87499999999872,
+            "income": 3102
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 35.84999999999861,
+            "income": 3242
+          }
+        ]
+      }
+    },
+    {
+      "level": 30,
+      "seed": 17,
+      "previous": {
+        "generationMs": 9.231400000000122,
+        "count": 25,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 43.674999999998164,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 42.67499999999822,
+            "income": 3157
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 39.97499999999839,
+            "income": 3087
+          },
+          {
+            "strategy": "safe",
+            "success": false,
+            "seconds": 44.999999999998096,
+            "income": 2836
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 9.787499999999909,
+        "count": 33,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 43.674999999998164,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": false,
+            "seconds": 44.99999999999809,
+            "income": 2293
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 29.31666666666565,
+            "income": 3059
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 36.45833333333191,
+            "income": 3088
+          }
+        ]
+      }
+    },
+    {
+      "level": 30,
+      "seed": 18,
+      "previous": {
+        "generationMs": 1.9615999999996347,
+        "count": 25,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 43.86666666666483,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 22.616666666666024,
+            "income": 3281
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 22.616666666666024,
+            "income": 3281
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 22.616666666666024,
+            "income": 3281
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 3.490600000000086,
+        "count": 33,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 43.86666666666483,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 22.616666666666024,
+            "income": 3281
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 22.616666666666024,
+            "income": 3281
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 22.616666666666024,
+            "income": 3281
+          }
+        ]
+      }
+    },
+    {
+      "level": 30,
+      "seed": 19,
+      "previous": {
+        "generationMs": 9.136600000000271,
+        "count": 25,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 42.77499999999822,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 31.71666666666551,
+            "income": 3198
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 21.191666666666105,
+            "income": 3309
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 29.999999999998945,
+            "income": 3017
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 15.597999999999956,
+        "count": 33,
+        "target": 2977,
+        "rewardScale": 1.396240625180289,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 42.77499999999822,
+            "income": 3073
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 22.774999999999352,
+            "income": 3003
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 21.449999999999424,
+            "income": 3170
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 31.483333333332187,
+            "income": 3269
+          }
+        ]
+      }
+    },
+    {
+      "level": 1000,
+      "seed": 0,
+      "previous": {
+        "generationMs": 4.38339999999971,
+        "count": 26,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 44.36666666666479,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 39.78333333333172,
+            "income": 5958
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 43.83333333333149,
+            "income": 6942
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 40.1583333333317,
+            "income": 7023
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 6.991199999999935,
+        "count": 34,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 41.12499999999831,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 28.19166666666571,
+            "income": 5852
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 27.658333333332408,
+            "income": 5905
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 39.69166666666506,
+            "income": 5825
+          }
+        ]
+      }
+    },
+    {
+      "level": 1000,
+      "seed": 1,
+      "previous": {
+        "generationMs": 4.9050000000002,
+        "count": 26,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 44.69166666666479,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 36.6583333333319,
+            "income": 6570
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 35.83333333333194,
+            "income": 5958
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 35.83333333333194,
+            "income": 5958
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 5.211199999999735,
+        "count": 34,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 44.69166666666479,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 27.52499999999908,
+            "income": 6384
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 21.824999999999402,
+            "income": 5852
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 21.824999999999402,
+            "income": 5852
+          }
+        ]
+      }
+    },
+    {
+      "level": 1000,
+      "seed": 2,
+      "previous": {
+        "generationMs": 4.912900000000263,
+        "count": 26,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 43.64166666666484,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 38.291666666665144,
+            "income": 6091
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 33.07499999999877,
+            "income": 5825
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 35.48333333333196,
+            "income": 6091
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 8.009800000000268,
+        "count": 34,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 43.64166666666484,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 42.78333333333155,
+            "income": 5905
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 40.04999999999837,
+            "income": 5825
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 40.04999999999837,
+            "income": 5825
+          }
+        ]
+      }
+    },
+    {
+      "level": 1000,
+      "seed": 3,
+      "previous": {
+        "generationMs": 4.672199999999975,
+        "count": 26,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 44.38333333333146,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 34.858333333332,
+            "income": 6171
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 34.18333333333204,
+            "income": 6171
+          },
+          {
+            "strategy": "safe",
+            "success": false,
+            "seconds": 44.99999999999809,
+            "income": 5479
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 7.303600000000188,
+        "count": 34,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 44.38333333333146,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": false,
+            "seconds": 44.999999999998096,
+            "income": 5027
+          },
+          {
+            "strategy": "efficiency",
+            "success": false,
+            "seconds": 44.999999999998096,
+            "income": 5213
+          },
+          {
+            "strategy": "safe",
+            "success": false,
+            "seconds": 44.999999999998096,
+            "income": 5213
+          }
+        ]
+      }
+    },
+    {
+      "level": 1000,
+      "seed": 4,
+      "previous": {
+        "generationMs": 6.298900000000231,
+        "count": 26,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 44.958333333331424,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": false,
+            "seconds": 44.99999999999809,
+            "income": 5213
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 40.22499999999836,
+            "income": 5878
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 40.22499999999836,
+            "income": 5878
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 5.578399999999874,
+        "count": 34,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 44.958333333331424,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 44.64999999999811,
+            "income": 6357
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 41.89999999999828,
+            "income": 6224
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 41.89999999999828,
+            "income": 6224
+          }
+        ]
+      }
+    },
+    {
+      "level": 1000,
+      "seed": 5,
+      "previous": {
+        "generationMs": 2.9622999999996864,
+        "count": 26,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 39.64999999999839,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 41.28333333333164,
+            "income": 5825
+          },
+          {
+            "strategy": "efficiency",
+            "success": false,
+            "seconds": 44.999999999998096,
+            "income": 5745
+          },
+          {
+            "strategy": "safe",
+            "success": false,
+            "seconds": 44.99999999999809,
+            "income": 5346
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 2.250300000000152,
+        "count": 34,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 39.64999999999839,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 41.30833333333163,
+            "income": 6490
+          },
+          {
+            "strategy": "efficiency",
+            "success": false,
+            "seconds": 44.99999999999809,
+            "income": 5559
+          },
+          {
+            "strategy": "safe",
+            "success": false,
+            "seconds": 44.99999999999809,
+            "income": 5293
+          }
+        ]
+      }
+    },
+    {
+      "level": 1000,
+      "seed": 6,
+      "previous": {
+        "generationMs": 6.100100000000111,
+        "count": 26,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 43.283333333331534,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 35.5166666666653,
+            "income": 6171
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 35.5166666666653,
+            "income": 6171
+          },
+          {
+            "strategy": "safe",
+            "success": false,
+            "seconds": 44.99999999999809,
+            "income": 5665
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 6.391100000000279,
+        "count": 34,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 43.283333333331534,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 40.33333333333169,
+            "income": 6038
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 35.33333333333197,
+            "income": 5985
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 39.4999999999984,
+            "income": 5905
+          }
+        ]
+      }
+    },
+    {
+      "level": 1000,
+      "seed": 7,
+      "previous": {
+        "generationMs": 2.136399999999867,
+        "count": 26,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 42.60833333333156,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 35.98333333333194,
+            "income": 6224
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 35.56666666666529,
+            "income": 6224
+          },
+          {
+            "strategy": "safe",
+            "success": false,
+            "seconds": 44.99999999999809,
+            "income": 5585
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 2.3751000000002023,
+        "count": 34,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 42.60833333333156,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 33.99166666666538,
+            "income": 6038
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 32.01666666666549,
+            "income": 5985
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 40.741666666665,
+            "income": 5825
+          }
+        ]
+      }
+    },
+    {
+      "level": 1000,
+      "seed": 8,
+      "previous": {
+        "generationMs": 2.2182000000002517,
+        "count": 26,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 43.94999999999815,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": false,
+            "seconds": 44.99999999999809,
+            "income": 5080
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 43.28333333333152,
+            "income": 6091
+          },
+          {
+            "strategy": "safe",
+            "success": false,
+            "seconds": 44.99999999999809,
+            "income": 5027
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 2.4774999999999636,
+        "count": 34,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 43.94999999999815,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 34.86666666666533,
+            "income": 5905
+          },
+          {
+            "strategy": "efficiency",
+            "success": false,
+            "seconds": 44.99999999999809,
+            "income": 5639
+          },
+          {
+            "strategy": "safe",
+            "success": false,
+            "seconds": 44.999999999998096,
+            "income": 5027
+          }
+        ]
+      }
+    },
+    {
+      "level": 1000,
+      "seed": 9,
+      "previous": {
+        "generationMs": 2.5450000000000728,
+        "count": 26,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 44.266666666664804,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 42.09166666666492,
+            "income": 6703
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 34.70833333333201,
+            "income": 6703
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 39.76666666666505,
+            "income": 6144
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 3.132999999999811,
+        "count": 34,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 44.266666666664804,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 41.64999999999829,
+            "income": 6304
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 37.98333333333182,
+            "income": 5985
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 44.90833333333143,
+            "income": 6437
+          }
+        ]
+      }
+    },
+    {
+      "level": 1000,
+      "seed": 10,
+      "previous": {
+        "generationMs": 8.183600000000297,
+        "count": 26,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 44.32499999999813,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 27.00833333333244,
+            "income": 6118
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 27.00833333333244,
+            "income": 6118
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 27.00833333333244,
+            "income": 6118
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 8.214899999999943,
+        "count": 34,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 44.32499999999813,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 30.599999999998907,
+            "income": 5985
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 28.24999999999904,
+            "income": 6384
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 28.24999999999904,
+            "income": 6384
+          }
+        ]
+      }
+    },
+    {
+      "level": 1000,
+      "seed": 11,
+      "previous": {
+        "generationMs": 1.8590000000003783,
+        "count": 26,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 42.12499999999825,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 44.549999999998114,
+            "income": 6064
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 41.408333333331626,
+            "income": 6277
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 41.408333333331626,
+            "income": 6277
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 2.2026999999998225,
+        "count": 34,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 42.12499999999825,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": false,
+            "seconds": 44.999999999998096,
+            "income": 5586
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 37.14166666666521,
+            "income": 5905
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 37.14166666666521,
+            "income": 5905
+          }
+        ]
+      }
+    },
+    {
+      "level": 1000,
+      "seed": 12,
+      "previous": {
+        "generationMs": 11.17300000000023,
+        "count": 26,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 43.616666666664834,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 30.316666666665594,
+            "income": 6038
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 30.808333333332225,
+            "income": 6038
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 37.824999999998504,
+            "income": 5958
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 18.33030000000008,
+        "count": 34,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 43.616666666664834,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 43.46666666666485,
+            "income": 6038
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 37.49166666666519,
+            "income": 6038
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 35.71666666666528,
+            "income": 6437
+          }
+        ]
+      }
+    },
+    {
+      "level": 1000,
+      "seed": 13,
+      "previous": {
+        "generationMs": 5.871599999999944,
+        "count": 26,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 44.84166666666477,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 24.474999999999252,
+            "income": 6517
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 24.866666666665896,
+            "income": 6570
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 23.383333333332647,
+            "income": 6038
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 3.6634000000003653,
+        "count": 34,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 44.84166666666477,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 29.94166666666562,
+            "income": 5852
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 22.299999999999375,
+            "income": 5985
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 25.61666666666586,
+            "income": 5852
+          }
+        ]
+      }
+    },
+    {
+      "level": 1000,
+      "seed": 14,
+      "previous": {
+        "generationMs": 3.13130000000001,
+        "count": 26,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 41.64999999999828,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 30.0916666666656,
+            "income": 5905
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 31.599999999998847,
+            "income": 6171
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 31.599999999998847,
+            "income": 6171
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 3.5819000000001324,
+        "count": 34,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 41.64999999999828,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 34.68333333333201,
+            "income": 5852
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 32.899999999998776,
+            "income": 6304
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 32.899999999998776,
+            "income": 6304
+          }
+        ]
+      }
+    },
+    {
+      "level": 1000,
+      "seed": 15,
+      "previous": {
+        "generationMs": 3.595100000000002,
+        "count": 26,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 42.308333333331575,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 37.34999999999852,
+            "income": 6570
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 29.95833333333228,
+            "income": 6437
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 34.149999999998705,
+            "income": 6224
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 3.4666000000001986,
+        "count": 34,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 42.308333333331575,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 39.75833333333172,
+            "income": 6038
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 41.04166666666499,
+            "income": 6969
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 37.45833333333185,
+            "income": 6171
+          }
+        ]
+      }
+    },
+    {
+      "level": 1000,
+      "seed": 16,
+      "previous": {
+        "generationMs": 3.296700000000328,
+        "count": 26,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 44.874999999998096,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": false,
+            "seconds": 44.99999999999809,
+            "income": 5692
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 44.32499999999813,
+            "income": 6277
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 44.32499999999813,
+            "income": 6277
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 5.401800000000094,
+        "count": 34,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 44.874999999998096,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": false,
+            "seconds": 44.99999999999809,
+            "income": 5373
+          },
+          {
+            "strategy": "efficiency",
+            "success": false,
+            "seconds": 44.999999999998096,
+            "income": 5506
+          },
+          {
+            "strategy": "safe",
+            "success": false,
+            "seconds": 44.999999999998096,
+            "income": 5506
+          }
+        ]
+      }
+    },
+    {
+      "level": 1000,
+      "seed": 17,
+      "previous": {
+        "generationMs": 2.0190999999999804,
+        "count": 26,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 42.333333333331574,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": false,
+            "seconds": 44.99999999999809,
+            "income": 5665
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 41.51666666666495,
+            "income": 5931
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 41.51666666666495,
+            "income": 5931
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 2.5214999999998327,
+        "count": 34,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 42.333333333331574,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 36.87499999999855,
+            "income": 6357
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 35.86666666666528,
+            "income": 6277
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 35.86666666666528,
+            "income": 6277
+          }
+        ]
+      }
+    },
+    {
+      "level": 1000,
+      "seed": 18,
+      "previous": {
+        "generationMs": 2.270100000000184,
+        "count": 26,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 44.958333333331424,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 32.12499999999882,
+            "income": 6491
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 27.666666666665737,
+            "income": 5826
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 35.199999999998646,
+            "income": 6012
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 3.495100000000093,
+        "count": 34,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 44.958333333331424,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 39.15833333333176,
+            "income": 6305
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 32.4749999999988,
+            "income": 7901
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 29.04166666666566,
+            "income": 6571
+          }
+        ]
+      }
+    },
+    {
+      "level": 1000,
+      "seed": 19,
+      "previous": {
+        "generationMs": 6.984899999999925,
+        "count": 26,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 41.2749999999983,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 41.94999999999826,
+            "income": 5984
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 42.633333333331564,
+            "income": 6516
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 42.633333333331564,
+            "income": 6516
+          }
+        ]
+      },
+      "current": {
+        "generationMs": 8.9975000000004,
+        "count": 34,
+        "target": 5795,
+        "rewardScale": 2.660964047443681,
+        "fallback": false,
+        "routes": [
+          {
+            "strategy": "steady",
+            "success": true,
+            "seconds": 41.2749999999983,
+            "income": 5851
+          },
+          {
+            "strategy": "value",
+            "success": true,
+            "seconds": 37.274999999998535,
+            "income": 5825
+          },
+          {
+            "strategy": "efficiency",
+            "success": true,
+            "seconds": 35.47499999999864,
+            "income": 6357
+          },
+          {
+            "strategy": "safe",
+            "success": true,
+            "seconds": 35.47499999999864,
+            "income": 6357
+          }
+        ]
+      }
+    }
+  ]
+}

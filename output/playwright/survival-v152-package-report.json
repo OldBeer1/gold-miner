@@ -1,0 +1,43 @@
+{
+    "version":  "1.5.2",
+    "rulesVersion":  "1.5.2",
+    "result":  "passed",
+    "checkedAt":  "2026-10-07T07:40:28.4785998Z",
+    "archive":  "D:\\CoDeXs\\Gold\\output\\release\\Gold-survival-v1.5.2.zip",
+    "extractedDirectory":  "D:\\CoDeXs\\Gold\\output\\release\\verify-v1.5.2-20261007-154026-26e4d04b",
+    "size":  58103,
+    "sha256":  "9fbbcd6c562b3cbc783acf6ac7b8e8610dfd8132a1e637144481b86b0c540fe7",
+    "entries":  [
+                    "index.html",
+                    "js/audio.js",
+                    "js/challenges.js",
+                    "js/config.js",
+                    "js/effects.js",
+                    "js/game.js",
+                    "js/growth.js",
+                    "js/rules.js",
+                    "js/storage.js",
+                    "README.md",
+                    "styles.css"
+                ],
+    "runtimeFilesCompared":  10,
+    "runtimeHashes":  {
+                          "index.html":  "3d18b0c185fa4f14aba63754faf9cce124a69b61c8db494603b29c7b8adf459b",
+                          "styles.css":  "69d1f5453941b10bad8a370ff59431b08dea3dd27c859904f9db3fc5481cf977",
+                          "js/config.js":  "40fc3400a698458a750782d2ce84b3f05dc966f3a06215ed362d02932f56d330",
+                          "js/challenges.js":  "279a9cb2233e1d3918fc68446359f76347a8b018e85b98eb44ff426b018e1e9a",
+                          "js/growth.js":  "c18c09694fe49317b2e7bf766fc2122b54d874709b0d171c17b47a491eac4a95",
+                          "js/rules.js":  "e52e76825580454ba7f0874c4093124aa674e04c4ce0554485c15b12d82989b8",
+                          "js/game.js":  "56736b1a5bfeb2815421d58422c96efc55dd15c9a503170e634aa93a337cd621",
+                          "js/storage.js":  "b1b0867051f58eeb3c699f6e5130dcedf17cdd55789e83cd4bf7afab4cbfec74",
+                          "js/effects.js":  "4993c3134ba7865971728d7d8e1df6480d0151c80f0538b835b0685ab5d7aed8",
+                          "js/audio.js":  "b79f5086bf79f6bed41be1354702f9e5299ac488c8fc77b5d56888ab215b2930"
+                      },
+    "checks":  [
+                   "archive size and SHA-256 match manifest",
+                   "fresh independent extraction matches exact whitelist",
+                   "ten runtime files match current source",
+                   "app version and player readme compatibility verified"
+               ],
+    "method":  "fresh independent archive extraction and file/hash comparisons; browser execution is verified separately"
+}

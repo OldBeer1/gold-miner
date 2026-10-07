@@ -1,0 +1,126 @@
+{
+  "version": "1.5.2",
+  "method": "pure engine with explicit layouts, carrying state and times; no claim of natural play",
+  "achievementChecks": [
+    {
+      "id": "first_clear",
+      "positive": "passed",
+      "negative": "passed"
+    },
+    {
+      "id": "clear_5",
+      "positive": "passed",
+      "negative": "passed"
+    },
+    {
+      "id": "clear_10",
+      "positive": "passed",
+      "negative": "passed"
+    },
+    {
+      "id": "first_recovery",
+      "positive": "passed",
+      "negative": "passed"
+    },
+    {
+      "id": "gold_recovered_10",
+      "positive": "passed",
+      "negative": "passed"
+    },
+    {
+      "id": "diamond_recovered_5",
+      "positive": "passed",
+      "negative": "passed"
+    },
+    {
+      "id": "objects_recovered_30",
+      "positive": "passed",
+      "negative": "passed"
+    },
+    {
+      "id": "level_income_1200",
+      "positive": "passed",
+      "negative": "passed"
+    },
+    {
+      "id": "career_income_5000",
+      "positive": "passed",
+      "negative": "passed"
+    },
+    {
+      "id": "recover_streak_5",
+      "positive": "passed",
+      "negative": "passed"
+    },
+    {
+      "id": "no_assistance_clear",
+      "positive": "passed",
+      "negative": "passed"
+    },
+    {
+      "id": "dynamite_ten",
+      "positive": "passed",
+      "negative": "passed"
+    },
+    {
+      "id": "recover_all_v120",
+      "positive": "passed",
+      "negative": "passed"
+    }
+  ],
+  "checks": [
+    {
+      "name": "目录稳定：13 项现行成就、9 类图鉴、8 类回收与 5/3 奖励档",
+      "result": "passed"
+    },
+    {
+      "name": "截止优先、实际扣时裁剪、时间上限与真实事件时刻",
+      "result": "passed"
+    },
+    {
+      "name": "一次长帧的回收时刻与后续计时分开，额外加时改变截止",
+      "result": "passed"
+    },
+    {
+      "name": "无效出钩/炸药不计，命中不等于回收，重复事件不累加",
+      "result": "passed"
+    },
+    {
+      "name": "入口发现、延时券只计一次；关内回滚、结算/商店不重复",
+      "result": "passed"
+    },
+    {
+      "name": "失败提交回收收入，不加有效成绩；报告与活动挑战同次保存",
+      "result": "passed"
+    },
+    {
+      "name": "图鉴全部 9 类、5/3 基础奖励；满炸药、护符、倍率不新造档位",
+      "result": "passed"
+    },
+    {
+      "name": "旧关卡与商店显式迁移、补发可证明成就、旧键保持不变",
+      "result": "passed"
+    },
+    {
+      "name": "迁移保存失败后重试不重算；拒绝存储、未知新版本、修订冲突保留原数据",
+      "result": "passed"
+    },
+    {
+      "name": "存档非法 ID、计数、关系、日期、成就状态与挑战关系拒绝",
+      "result": "passed"
+    },
+    {
+      "name": "已有入口后失败写入被拒绝，旧磁盘快照保留；重试保存一致且只提交一次",
+      "result": "passed"
+    },
+    {
+      "name": "11 份报告裁剪为 10 份；新纪录按局开始基线，放弃不提交未结算数据",
+      "result": "passed"
+    },
+    {
+      "name": "称号、检查与图鉴不消费随机数；已解锁成就不因目录未来扩展撤销",
+      "result": "passed"
+    }
+  ],
+  "result": "passed"
+}

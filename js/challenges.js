@@ -4,8 +4,8 @@
   else root.GoldMinerChallenges = factory();
 })(typeof window !== "undefined" ? window : globalThis, function () {
   "use strict";
-  const version = "1.5.1";
-  const supportedVersions = Object.freeze(["1.4.0", "1.5.0", version]);
+  const version = "1.5.2";
+  const supportedVersions = Object.freeze(["1.4.0", "1.5.0", "1.5.1", version]);
   const modes = Object.freeze(["endless", "seed", "daily"]);
   const names = Object.freeze({ endless: "无限生存", seed: "Seed 挑战", daily: "每日挑战" });
   const limit = 20;

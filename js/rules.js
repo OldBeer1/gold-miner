@@ -9,14 +9,17 @@
   const legacyConfigs = new WeakMap();
   function configForVersion(config, version) {
     if (version === ruleVersion(config)) return config;
-    if (!["1.4.0", "1.5.0"].includes(version) || !["1.5.0", "1.5.1"].includes(ruleVersion(config))) throw new Error("不支持的玩法规则");
+    if (!challenges.supportedVersions.includes(version)
+      || challenges.supportedVersions.indexOf(version) >= challenges.supportedVersions.indexOf(ruleVersion(config))) throw new Error("不支持的玩法规则");
     if (!legacyConfigs.has(config)) legacyConfigs.set(config, new Map());
     const versions = legacyConfigs.get(config);
     if (!versions.has(version)) {
       const minerals = { ...config.minerals };
       if (version === "1.4.0") for (const [type, size] of Object.entries(config.legacyMineralSizes)) minerals[type] = Object.freeze({ ...minerals[type], ...size });
       const survival = { ...config.survival };
-      delete survival.scatter;
+      survival.baseCount = 15;
+      delete survival.density;
+      if (["1.4.0", "1.5.0"].includes(version)) delete survival.scatter;
       versions.set(version, Object.freeze({ ...config, rulesVersion: version, survival: Object.freeze(survival), minerals: Object.freeze(minerals) }));
     }
     return versions.get(version);
@@ -204,11 +207,45 @@
     return layout;
   }
 
+  function makeDenseLayout(config, parameters, random, fallback, densityRandom) {
+    const density = config.survival.density;
+    const layout = makeScatterLayout(config, { ...parameters, count: parameters.count - density.types.length }, random, fallback);
+    if (!layout) return null;
+    const bases = layout.filter(mineral => mineral.safeRoute);
+    const cells = Array.from({ length: 9 }, (_, index) => index);
+    for (let i = cells.length - 1; i > 0; i--) {
+      const j = Math.floor(densityRandom() * (i + 1));
+      [cells[i], cells[j]] = [cells[j], cells[i]];
+    }
+    // 先分配受深度限制的宝石，避免其他目标占完中、深层分区。
+    const order = density.types.map((_, index) => index).sort((a, b) =>
+      Number(["diamond", "ruby"].includes(density.types[b])) - Number(["diamond", "ruby"].includes(density.types[a])));
+    for (const index of order) {
+      const type = density.types[index];
+      const minimum = parameters.difficulty >= 3 && ["diamond", "ruby"].includes(type) ? density.gemstoneMinimumY : density.y;
+      const position = cells.findIndex(cell => density.y + (Math.floor(cell / 3) + 1) * density.cellHeight > minimum);
+      if (position < 0) return null;
+      const cell = cells.splice(position, 1)[0], column = cell % 3, row = Math.floor(cell / 3);
+      const minimumY = Math.max(minimum, density.y + row * density.cellHeight);
+      const maximumY = density.y + (row + 1) * density.cellHeight;
+      let placed = false;
+      for (let attempt = 0; attempt < config.survival.placementAttempts; attempt++) {
+        const mineral = { id: `l${parameters.id}-dense${index}`, type,
+          x: density.x + (column + densityRandom()) * density.cellWidth,
+          y: minimumY + densityRandom() * (maximumY - minimumY), rewardRoll: densityRandom() };
+        if (!validPlacement(mineral, layout, config) || !protectsRoute(mineral, bases, config)) continue;
+        layout.push(mineral); placed = true; break;
+      }
+      if (!placed) return null;
+    }
+    return layout;
+  }
+
   // 与游玩共用碰撞、摆动和计时规则，生成器不靠地图总价值判断可玩性。
   function verifyRoute(config, level, strategy = "steady") {
     const run = createRun(config, level.id, { level, runSeed: 0, bombs: 0 });
     let candidates = null;
-    const scattered = ruleVersion(config) === "1.5.1";
+    const scattered = ["1.5.1", "1.5.2"].includes(ruleVersion(config));
     while (run.elapsedTime < 45 - (scattered ? 1e-9 : 0) && !run.settled && run.levelIncome < level.target) {
       if (run.hook.phase === "swinging") {
         if (!candidates) {
@@ -239,10 +276,12 @@
     const event = resolveEvent(config, eventId);
     const parameters = eventParameters(config, levelId, event);
     const random = seededRandom(runSeed, levelId, 0x4c41594f);
-    const scattered = ruleVersion(config) === "1.5.1";
-    const makeLayout = scattered ? makeScatterLayout : makeLegacyLayout;
+    const scattered = ["1.5.1", "1.5.2"].includes(ruleVersion(config));
+    const dense = ruleVersion(config) === "1.5.2";
+    const makeLayout = dense ? makeDenseLayout : scattered ? makeScatterLayout : makeLegacyLayout;
+    const densityRandom = dense ? seededRandom(runSeed, levelId, 0x44454e53) : null;
     for (let attempt = 0; attempt < config.survival.maxAttempts; attempt += 1) {
-      const layout = makeLayout(config, parameters, random, false);
+      const layout = makeLayout(config, parameters, random, false, densityRandom);
       if (!layout) continue;
       const level = { ...parameters, layout, fallback: false };
       const route = verifyRoute(config, level);
@@ -251,7 +290,8 @@
     let layout, route;
     // 固定种子定义错落模板；不依赖玩家种子，模板仍按实际档位及正式规则校验。
     for (let template = 0; template < (scattered ? config.survival.scatter.fallbackTemplates : 1); template++) {
-      const candidate = makeLayout(config, parameters, seededRandom(scattered ? template : runSeed, scattered ? 0 : levelId, 0x46414c4c), true);
+      const candidate = makeLayout(config, parameters, seededRandom(scattered ? template : runSeed, scattered ? 0 : levelId, 0x46414c4c), true,
+        dense ? seededRandom(template, 0, 0x44454e53) : null);
       if (!candidate) continue;
       const verified = verifyRoute(config, { ...parameters, layout: candidate, fallback: true });
       layout = candidate; route = verified;

@@ -277,7 +277,7 @@
   }
   function validateDocument(value, version = challenges.version) {
     try {
-      const catalog = ["1.5.0", "1.5.1"].includes(version) ? allDefinitions : historicalDefinitions;
+      const catalog = ["1.5.0", "1.5.1", "1.5.2"].includes(version) ? allDefinitions : historicalDefinitions;
       const modern = challenges.supportedVersions.includes(version);
       const compatibleRules = challenges.supportedVersions.slice(0, challenges.supportedVersions.indexOf(version) + 1);
       const validChallenge = challenge => challenge && compatibleRules.includes(challenge.rulesVersion) && challenges.valid(challenge, challenge.rulesVersion);

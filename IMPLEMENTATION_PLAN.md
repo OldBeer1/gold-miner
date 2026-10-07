@@ -1,6 +1,6 @@
 # 黄金矿工：实施状态与最新交接
 
-更新：2026-10-07。当前源码 **v1.5.1**，新挑战规则 **1.5.1**，旧活动挑战继续 **1.4.0／1.5.0**。第 30～35 步为已交付 v1.5.0；本轮第 36～40 步处理自然分散布局。
+更新：2026-10-07。当前源码 **v1.5.2**，新挑战规则 **1.5.2**，旧活动挑战继续 **1.4.0／1.5.0／1.5.1**。第 30～40 步已交付；本轮第 41～45 步增加可回收物数量。
 
 状态只在本文件维护。现行规则见 [GAME_SPEC](GAME_SPEC.md)，此次范围见 [GAMEPLAY_IMPROVEMENT_PLAN](GAMEPLAY_IMPROVEMENT_PLAN.md)，实际结果见 [VALIDATION](VALIDATION.md)。
 
@@ -8,6 +8,11 @@
 
 | 步骤 | 版本 | 内容与完成条件 | 前置 | 状态 |
 | --- | --- | --- | --- | --- |
+| 41 | v1.5.2 | [即时备份](GAMEPLAY_IMPROVEMENT_PLAN.md#step-41) | v1.5.1 | 已完成 |
+| 42 | v1.5.2 | [八物配比与分散生成](GAMEPLAY_IMPROVEMENT_PLAN.md#step-42) | 41 | 已完成（规则通过） |
+| 43 | v1.5.2 | [四套规则与原文备份](GAMEPLAY_IMPROVEMENT_PLAN.md#step-43) | 42 | 已完成（精确兼容通过） |
+| 44 | v1.5.2 | [数量／抓取／浏览器／性能](GAMEPLAY_IMPROVEMENT_PLAN.md#step-44) | 43 | 已完成 |
+| 45 | v1.5.2 | [文档／打包／完整发布](GAMEPLAY_IMPROVEMENT_PLAN.md#step-45) | 44 | 打包核验通过，待发布 |
 | 36 | v1.5.1 | [即时备份](GAMEPLAY_IMPROVEMENT_PLAN.md#step-36) | v1.5.0 | 已完成 |
 | 37 | v1.5.1 | [分散生成／路障／备用](GAMEPLAY_IMPROVEMENT_PLAN.md#step-37) | 36 | 已完成 |
 | 38 | v1.5.1 | [三套规则与兼容](GAMEPLAY_IMPROVEMENT_PLAN.md#step-38) | 37 | 已完成 |
@@ -66,3 +71,11 @@ configForVersion 缓存 1.4.0／1.5.0 配置，旧布局生成原样保留；旧
 验收源码 5356f215cb916e69ff187c1f93660c81509015ff 已完整推送 main，正式 v1.5.1 标签固定该提交；[Release](https://github.com/OldBeer1/gold-miner/releases/tag/v1.5.1) 与 [玩家 ZIP](https://github.com/OldBeer1/gold-miner/releases/download/v1.5.1/Gold-survival-v1.5.1.zip) 为最新稳定版。58264 字节／11 文件，SHA-256 5dfc86dbd5b4928f2a1585fe9fc8bf204833f3006e591aeb3a2009d66c68af74。
 
 [公开下载复验](output/playwright/survival-v151-published-release-report.json)和[源码／玩家包最终核验](output/playwright/survival-v151-final-check-report.json)通过；10 个运行文件逐字节对应当前源码、标签 Git blob 和独立解压包。发布证据和本交接另提交推送 main，标签及玩家包保持不变。36～40 无剩余功能工作；旧活动仍用原布局、浏览器／地址隔离及单页面存档边界见现行规格。即时备份只留本地，未访问个人存档，没有扩展清理或改写历史／旧资产。
+
+### 2026-10-07：v1.5.2 游戏与独立玩家包验收通过
+
+41～44 完成：新即时备份核验后新增八物，配比 4 小金块／1 钻石／1 红宝石／2 钱袋，八区分散、正式碰撞和路线保护。发行／新规则 1.5.2，旧三套规则 baseCount 恢复 15，v151 原错落生成与调用顺序保留；storage 新增 v151 原文备份和一次升级，无成就或永久数据变更。
+
+1700 普通／660 事件／60 备用、270 旧地图／270 商店、900 旧预算地图、快照／成长／碰撞／迁移／修订通过。21 浏览器布局、3 旧包数量对比、12 次真实帧间隔、原生暂停及四关四店原始计时通过；真实回收四类新增物、成绩 7500，自然 9 成就。方法与限制见 VALIDATION。
+
+玩家 ZIP 58103 字节、11 文件，SHA-256 9fbbcd6c562b3cbc783acf6ac7b8e8610dfd8132a1e637144481b86b0c540fe7，独立解压／10 运行文件／7 浏览器检查通过。备份仅留本地，本轮无清理或删除；45 待完整推送、正式发布及匿名下载复验。

@@ -1,0 +1,11 @@
+{
+  "version": "1.5.2",
+  "method": "real Chrome controls; historical baseline save fixtures and controlled clock; no claim of natural achievement play",
+  "checks": [
+    "新档案仅显示 13 项现行成就，12 项下架任务不占目录和进度分母",
+    "旧称号、历史徽章和已支付商店保留；继续旧商店及下一关均使用旧规则；浏览不写入",
+    "旧 Seed 失败后重新挑战使用新规则 1.5.2，同数字 Seed 的最佳键保持分离"
+  ],
+  "errors": [],
+  "result": "passed"
+}

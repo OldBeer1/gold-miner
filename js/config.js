@@ -2,8 +2,8 @@
   "use strict";
 
   const config = {
-    version: "1.5.1",
-    rulesVersion: "1.5.1",
+    version: "1.5.2",
+    rulesVersion: "1.5.2",
     canvas: { width: 960, height: 640 },
     mine: { x: 24, y: 160, width: 912, height: 456 },
     miner: { anchor: { x: 480, y: 112 } },
@@ -41,7 +41,7 @@
     },
     survival: {
       maxDifficulty: 9, baseTarget: 650, targetStep: 150,
-      baseCount: 15, maxAttempts: 30, placementAttempts: 100,
+      baseCount: 23, maxAttempts: 30, placementAttempts: 100,
       targets: [650, 800, 950, 1200, 1400, 1600, 1800, 1950, 2050, 2100],
       stageIncomeGrowth: .25, stageTargetBonus: 80, stageDepthBonus: 24,
       warmupPriceGrowth: .14, stagePriceGrowth: .22,
@@ -49,6 +49,8 @@
       obstacleIndices: [3, 5, 1, 7, 4],
       scatter: { minimumWidth: 560, minimumHeight: 260, minimumDistanceRange: 220,
         obstacleFraction: .62, valuableExtraMinimumY: 400, fallbackTemplates: 64 },
+      density: { types: ["smallGold", "smallGold", "smallGold", "smallGold", "diamond", "ruby", "mysteryBag", "mysteryBag"],
+        x: 60, y: 210, cellWidth: 280, cellHeight: 125, gemstoneMinimumY: 400 },
       maxTimeBonus: 20, shopSlots: 4, maxPurchases: 4,
       newTypes: ["ruby", "mysteryBag", "treasureChest", "cursedRelic", "powderKeg"],
       bagRewards: [

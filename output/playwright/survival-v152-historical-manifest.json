@@ -1,0 +1,306 @@
+{
+  "version": "1.5.2",
+  "method": "pre-change v151 evidence hashes",
+  "files": [
+    {
+      "path": "output/playwright/survival-v151-achievements-current.png",
+      "sha256": "10aa795dcd0efc52068c43d9bb9a2a7c7a5900fd5787d074846a3a2d9b4eaf42"
+    },
+    {
+      "path": "output/playwright/survival-v151-achievements-ui-report.json",
+      "sha256": "4af3fddc5efbb1f7cc406a3435acf7d1c35336b3e9ef03486aaaf5f2c183bc1d"
+    },
+    {
+      "path": "output/playwright/survival-v151-backup-report.json",
+      "sha256": "5ed719b2c1134bf943a47451098dc7d15405edffdea9bd903a0dbd624fa07d0e"
+    },
+    {
+      "path": "output/playwright/survival-v151-challenges-report.json",
+      "sha256": "ecf2e28f07cb43e70dc72df2973acf8eed0efc7ad6ea40ec0365bdb448831c04"
+    },
+    {
+      "path": "output/playwright/survival-v151-challenges-ui-report.json",
+      "sha256": "c8c0b48fdca4f7fe0bb2c259bc8db7889a03cfda4d9056a6a6a1701d56eee221"
+    },
+    {
+      "path": "output/playwright/survival-v151-checkpoints-report.json",
+      "sha256": "f9fbc30d77e8b57781042ae2361cc19ff0f9786e63864cfd7e8f48cf1e12e9d4"
+    },
+    {
+      "path": "output/playwright/survival-v151-compat-report.json",
+      "sha256": "231020e00746b7cb948701f5cadf87f439155815dc541db1e90fc0a30b4b3703"
+    },
+    {
+      "path": "output/playwright/survival-v151-completed.png",
+      "sha256": "62833433e2d7d9a92017a2ad6e25147592db1692ce70bee2266bed20457ac716"
+    },
+    {
+      "path": "output/playwright/survival-v151-event-blackMarket.png",
+      "sha256": "95fce2f1990b1f843208e405c0723a739727921d27f5df4908370720ac1042b1"
+    },
+    {
+      "path": "output/playwright/survival-v151-event-diamondVein.png",
+      "sha256": "b26a877d682660e6e3853f6ab3f45289db83dae08dde8a69f486b2479015f97a"
+    },
+    {
+      "path": "output/playwright/survival-v151-event-goldRush.png",
+      "sha256": "2628ba9c041032d4eb3730730b8e3f471e937ed71b7bcef8ae18dd2069543fb6"
+    },
+    {
+      "path": "output/playwright/survival-v151-event-sparse.png",
+      "sha256": "a9591d9ebc413f999e14ed58bbc8d753c6728e173fb9998ea1433c99fb57eab6"
+    },
+    {
+      "path": "output/playwright/survival-v151-event-unstable.png",
+      "sha256": "55a3ee830b328edfd31d3e2dbb0002931c8a544a7514f4bbaac90c1590f966b2"
+    },
+    {
+      "path": "output/playwright/survival-v151-experience-report.json",
+      "sha256": "1004d1c77c2071084ca9aa55c1783a71f335f9daed893c10ccfcf6bc8da5a623"
+    },
+    {
+      "path": "output/playwright/survival-v151-final-check-report.json",
+      "sha256": "1ac92af7ee77c958388ecec0899459ac3b49b96e950d3a431a5f5e3f08d7cc9f"
+    },
+    {
+      "path": "output/playwright/survival-v151-gameplay-report.json",
+      "sha256": "511b3a251a139c289875ee6023b8a3beddef8a148c53b57ad116d98de0c04117"
+    },
+    {
+      "path": "output/playwright/survival-v151-growth-report.json",
+      "sha256": "bfa37900c2d22484e7121b6e5b5efec1a06886d8fed924e30b87ddb084ad7f6a"
+    },
+    {
+      "path": "output/playwright/survival-v151-historical-manifest.json",
+      "sha256": "eb2cddf82a75aca1a6e21d65e3648672433954a9242608cf76e3044f79d7665d"
+    },
+    {
+      "path": "output/playwright/survival-v151-home-1280x480.png",
+      "sha256": "b6430009022d09a657b7699b9ba7fd7a95f690544086c0ff18b20b44dc19bc8b"
+    },
+    {
+      "path": "output/playwright/survival-v151-home-1280x720.png",
+      "sha256": "b1f766a559f1c8255377e38ac68605077b8c9482625cb605515d3553ba70fa27"
+    },
+    {
+      "path": "output/playwright/survival-v151-home-1920x1080.png",
+      "sha256": "ec6c180c458717dc3fb017e81276b61d3f38940199cb2c08657d776d196fd273"
+    },
+    {
+      "path": "output/playwright/survival-v151-home-active-1280x480.png",
+      "sha256": "d54f2e675b906f52f2e67192a3e6a3fbb9b1ec578db508e2d0a5af24ecc81d4f"
+    },
+    {
+      "path": "output/playwright/survival-v151-home-active-1280x720.png",
+      "sha256": "621ca63bec32b019ecc8880b0dc6259be5aeffbff413212aa188fa98a9d3ddc9"
+    },
+    {
+      "path": "output/playwright/survival-v151-home-active-1920x1080.png",
+      "sha256": "e0b40e00621cd0f5bcfe709091403237b48a85cfae0c9bbd12b6e9623f8d8e82"
+    },
+    {
+      "path": "output/playwright/survival-v151-layout-blackMarket-1280x480.png",
+      "sha256": "b94ed8ed99d7c6411763531b964979933073b7373df6c04cf1f90e159ff9b26b"
+    },
+    {
+      "path": "output/playwright/survival-v151-layout-blackMarket-1280x720.png",
+      "sha256": "6186f684b8896f4639d4cf2aa0328d2f88362840edf533f486a374044e3c1abc"
+    },
+    {
+      "path": "output/playwright/survival-v151-layout-blackMarket-1920x1080.png",
+      "sha256": "12edc7780e2b030247ef855346bbb9bfcb4ff0b774c152dd86a19b80aed2f4f2"
+    },
+    {
+      "path": "output/playwright/survival-v151-layout-diamondVein-1280x480.png",
+      "sha256": "08c48140eee62a08c26cb847e271cc349059c0222617ecd32543d41ca445a313"
+    },
+    {
+      "path": "output/playwright/survival-v151-layout-diamondVein-1280x720.png",
+      "sha256": "8a359b2b9ec1d7a23da12b3f890dd4ed7fddf0a179e7df738ea4597cb8c13e5c"
+    },
+    {
+      "path": "output/playwright/survival-v151-layout-diamondVein-1920x1080.png",
+      "sha256": "114795e83b0c74d29d14fd33e30f82e3448fad1043aaf04550d14075bd40f2b8"
+    },
+    {
+      "path": "output/playwright/survival-v151-layout-fallback-1280x480.png",
+      "sha256": "e8dc384b2915f4a8e66fa0ad6a26b62f6018bb6cbc445c815e5b9986d8c657f3"
+    },
+    {
+      "path": "output/playwright/survival-v151-layout-fallback-1280x720.png",
+      "sha256": "94eb98919a814a632d65341c5d6d64a40f60418c804be0d542eae9e4cf544032"
+    },
+    {
+      "path": "output/playwright/survival-v151-layout-fallback-1920x1080.png",
+      "sha256": "0b63a37996a6dcbba37d8c0f10e0f4bcf8d47c58e6a3f6510d659f30ded961ef"
+    },
+    {
+      "path": "output/playwright/survival-v151-layout-goldRush-1280x480.png",
+      "sha256": "604a6500884b2d4b8984410b1fd20a4025c3977fb5471e78874a38fec5f1532a"
+    },
+    {
+      "path": "output/playwright/survival-v151-layout-goldRush-1280x720.png",
+      "sha256": "51cda032f010b3c192375aa46882336d295fe3802093c9e51c831806391d19a8"
+    },
+    {
+      "path": "output/playwright/survival-v151-layout-goldRush-1920x1080.png",
+      "sha256": "7674665be8189e960f9385a2b90fc3e9f9cd4d9b86c3933d4b5b7317cd3525d2"
+    },
+    {
+      "path": "output/playwright/survival-v151-layout-none-1280x480.png",
+      "sha256": "5349b444c56315a50523d291d2f3e1653ab22ad736566c82254758ff846abd9d"
+    },
+    {
+      "path": "output/playwright/survival-v151-layout-none-1280x720.png",
+      "sha256": "62ec18fee131aeb895c763d32b9e4f6598469b4829b05e50ab5adc174af963ea"
+    },
+    {
+      "path": "output/playwright/survival-v151-layout-none-1920x1080.png",
+      "sha256": "f401c577c336cadbde22727f6e2c3f3c31ba39b1bda536c8f8cd3300d41d4789"
+    },
+    {
+      "path": "output/playwright/survival-v151-layout-sparse-1280x480.png",
+      "sha256": "2d5c9a56295f87bb03b63357df9af7171c7ebf4168cfbe5eecfbf7b2c39522ea"
+    },
+    {
+      "path": "output/playwright/survival-v151-layout-sparse-1280x720.png",
+      "sha256": "6d2f704d25285302e26dc108c41ba138201f7ed0006fcbb706c003be2125d054"
+    },
+    {
+      "path": "output/playwright/survival-v151-layout-sparse-1920x1080.png",
+      "sha256": "0b095a78e9d7dab8a210e42e0dc7e76eb0c8db0e505d1c7834c1c572a1ed8340"
+    },
+    {
+      "path": "output/playwright/survival-v151-layout-unstable-1280x480.png",
+      "sha256": "8f37091fc99d70b72035a0e8fb6a9e3e05ffdf7e6f0c6168970dadd459a1f714"
+    },
+    {
+      "path": "output/playwright/survival-v151-layout-unstable-1280x720.png",
+      "sha256": "87252cda07f4a136e5c1cd3ce64bb0d4d9a948773690f81161823f27d76cc321"
+    },
+    {
+      "path": "output/playwright/survival-v151-layout-unstable-1920x1080.png",
+      "sha256": "a83faa6a5ef43378c687487320b0fc9ea3c05d0ac959228ca54e83761503eac2"
+    },
+    {
+      "path": "output/playwright/survival-v151-layouts-report.json",
+      "sha256": "22c689387d5e1d283ca60b7c3b4a5c7c24809c6470d1b881a05549760ca0f4f6"
+    },
+    {
+      "path": "output/playwright/survival-v151-layouts-ui-report.json",
+      "sha256": "5509a4198d2b75cd6a1b5991e21df37b721c28d1ab2ab9e0de593fb41bf29250"
+    },
+    {
+      "path": "output/playwright/survival-v151-legacy-game.png",
+      "sha256": "97386110ff192621ef22849b1050639d36eef95a9aa774573012150ab6fb5f41"
+    },
+    {
+      "path": "output/playwright/survival-v151-native-auto-pause.png",
+      "sha256": "e9eb0a32139101a3df4d9d4463ca239da6bfede6122b42afc9c00f3a629b9d73"
+    },
+    {
+      "path": "output/playwright/survival-v151-native-pause-report.json",
+      "sha256": "b69a3dd0312d2da28c61adb4453a0b16c367ad26e9aa1d554b867518fee5e63a"
+    },
+    {
+      "path": "output/playwright/survival-v151-package-report.json",
+      "sha256": "efa08f5f098d87ff7338e0d72f4741766ed0ef63abde86a0a4eb0fd17ee31c6b"
+    },
+    {
+      "path": "output/playwright/survival-v151-project-report.json",
+      "sha256": "41f8fe1d0d2ccc66131fdce341ea7c8c2ae772ab4cc673a13b4be30d25856758"
+    },
+    {
+      "path": "output/playwright/survival-v151-published-release-report.json",
+      "sha256": "50db09c8d697e63e0b6e0134a685d1611a116a70b50a40c0806acdd7eb0d0d93"
+    },
+    {
+      "path": "output/playwright/survival-v151-real-level1.png",
+      "sha256": "2d04973b40f756b832cd81739edb486bdf338a3998d195957c9608a53d83d1a7"
+    },
+    {
+      "path": "output/playwright/survival-v151-real-level2.png",
+      "sha256": "6bf5ccbd20a62571043255971fb7ffd8ed8ba2a124cd5a3c6aba7010a4b4f90e"
+    },
+    {
+      "path": "output/playwright/survival-v151-real-level3.png",
+      "sha256": "95896a19175110f1ca39aedbc9ee0d4f63de4c761b94b68283ca5e46f2cb57b7"
+    },
+    {
+      "path": "output/playwright/survival-v151-real-level4.png",
+      "sha256": "005eec6feee38894a6eb3af33fe8cd3bf55734d725ae3a802e82b184a0896c35"
+    },
+    {
+      "path": "output/playwright/survival-v151-real-report.png",
+      "sha256": "4fab776a608de2c90d2cb80db18591759fd9579ce271a0019e9f3c9c67895083"
+    },
+    {
+      "path": "output/playwright/survival-v151-real-run-report.json",
+      "sha256": "23b4d7e19003679f19184dad66daf8a53d7e1bf2f75641650312e429b687e863"
+    },
+    {
+      "path": "output/playwright/survival-v151-records.png",
+      "sha256": "682f1f541365ca14ca72d4ea6c3e848039d68ab01e332fb2a8e28192d858ef2b"
+    },
+    {
+      "path": "output/playwright/survival-v151-release-preflight-explosion.png",
+      "sha256": "4e5421d9c9398ae04129ff39b79ca3d505b7476ed496b770edb0f5f0c3cd3ecd"
+    },
+    {
+      "path": "output/playwright/survival-v151-release-preflight-report.json",
+      "sha256": "748e03f70910f23ece992a6e07ad4eef271a06e31f4104d6a948a69e3354ffd9"
+    },
+    {
+      "path": "output/playwright/survival-v151-rules-report.json",
+      "sha256": "15fe7344361651acaefde11dcb48ae4481caa237caac016628ca9da2b4622df4"
+    },
+    {
+      "path": "output/playwright/survival-v151-scene-1280x480.png",
+      "sha256": "2e7c1791bee526365c7e2809ce6ebf5e19a3170950555ee93e2736fc16694e81"
+    },
+    {
+      "path": "output/playwright/survival-v151-scene-1280x720.png",
+      "sha256": "d9503c70733950f1cb39cdf66db24d0c32aca839adf6cc03671ad506b5e02dba"
+    },
+    {
+      "path": "output/playwright/survival-v151-scene-1920x1080.png",
+      "sha256": "8b9486432983d814a84b75a8cafd359320a009a96af56005b36f7f786620c731"
+    },
+    {
+      "path": "output/playwright/survival-v151-smoke-report.json",
+      "sha256": "f713707c35c7b494317baf251d54312efa08b8c5c5ff38dcb3e700b82bc3b4f9"
+    },
+    {
+      "path": "output/playwright/survival-v151-validation-report.json",
+      "sha256": "d6d1b94764b433fbbfbd56c7373927caa2f2a2cdf7a0d084e6903112757395e3"
+    },
+    {
+      "path": "output/playwright/verify-survival-v151-achievements.cjs",
+      "sha256": "62945537d0906ff546354a27026e0eb9bd6736a0fd453209ee77e1de4fb4b78a"
+    },
+    {
+      "path": "output/playwright/verify-survival-v151-challenges.cjs",
+      "sha256": "de7bd7d3a4d2f2648b9edb803ac1fbf0f51171611f059cbb450e6e7f3998c9be"
+    },
+    {
+      "path": "output/playwright/verify-survival-v151-experience.cjs",
+      "sha256": "6deffe41540c720f27b45a5dcfb6d29233cf1136d0c49aafa4da2e72b358f030"
+    },
+    {
+      "path": "output/playwright/verify-survival-v151-layouts.cjs",
+      "sha256": "3c4060d9e18e2d52b9cef5ef91fd1485820e6600ea7fcb5de26a9081c8e7dc6f"
+    },
+    {
+      "path": "output/playwright/verify-survival-v151-native-pause.cjs",
+      "sha256": "b0aead91bab2ae84bfedf4f1c76275751182554d7824abf531fc29a46f30fec6"
+    },
+    {
+      "path": "output/playwright/verify-survival-v151-real-run.cjs",
+      "sha256": "4e5af3f04bbf250600450c1bb0e08f2a725d0e6def33fdda9a5a52b5d8fccc0f"
+    },
+    {
+      "path": "output/playwright/verify-survival-v151-smoke.cjs",
+      "sha256": "e6cb7973a4e4ca3261192c1f14a28881618388d9473e78f1ef13e59fbff43d9d"
+    }
+  ]
+}

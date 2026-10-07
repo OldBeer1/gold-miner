@@ -1,0 +1,483 @@
+{
+  "version": "1.5.2",
+  "result": "passed",
+  "method": "pure logic and formal game-rule simulations; no claim of real-time 20-level gameplay",
+  "checks": [
+    "Seed 规范化：0、上限、前导零和空白；拒绝空、负、小数、科学计数、溢出",
+    "UTC+8 午夜、闰日、非法日期、时钟回退和版本派生",
+    "事件独立用途、机会边界、不连续和五种事件覆盖",
+    "660 份普通/事件地图：升档、极大关号、有界、无重叠、危险物上限、45 秒真实规则路线",
+    "强制备用和不可行事件降级可复现，最终描述与实际矿层一致",
+    "黑市报价和实际扣款；四件限购与库存上限保留",
+    "相同模式/版本/Seed 的地图、事件和商店一致；不同模式分离",
+    "Seed 和每日完整 20 关规则模拟：提交幂等、终结报告、无第 21 关、独立纪录与成就隔离",
+    "个人最佳比较按关数、有效成绩、时长；日期/Seed/版本键隔离",
+    "失败/放弃与跨日恢复保留模式日期，分享只生成内容",
+    "v1.2.0 活动入口/商店、永久档案、报告与装备迁移；备份旧原文且不重复计数",
+    "未知格式、非法事件/日期/跨模式字段与拒绝存储不覆盖数据"
+  ],
+  "generations": [
+    {
+      "eventId": "none",
+      "levelId": 5,
+      "seeds": 10,
+      "maxSeconds": 25.874999999999176,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "none",
+      "levelId": 10,
+      "seeds": 10,
+      "maxSeconds": 44.441666666664794,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "none",
+      "levelId": 19,
+      "seeds": 10,
+      "maxSeconds": 42.73333333333156,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "none",
+      "levelId": 20,
+      "seeds": 10,
+      "maxSeconds": 44.616666666664784,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "none",
+      "levelId": 29,
+      "seeds": 10,
+      "maxSeconds": 42.94166666666487,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "none",
+      "levelId": 30,
+      "seeds": 10,
+      "maxSeconds": 44.78333333333144,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "none",
+      "levelId": 39,
+      "seeds": 10,
+      "maxSeconds": 44.699999999998106,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "none",
+      "levelId": 40,
+      "seeds": 10,
+      "maxSeconds": 44.8249999999981,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "none",
+      "levelId": 100,
+      "seeds": 10,
+      "maxSeconds": 44.88333333333143,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "none",
+      "levelId": 1000,
+      "seeds": 10,
+      "maxSeconds": 44.958333333331424,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "none",
+      "levelId": 9007199254740991,
+      "seeds": 10,
+      "maxSeconds": 44.991666666664756,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "goldRush",
+      "levelId": 5,
+      "seeds": 10,
+      "maxSeconds": 25.874999999999176,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "goldRush",
+      "levelId": 10,
+      "seeds": 10,
+      "maxSeconds": 44.441666666664794,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "goldRush",
+      "levelId": 19,
+      "seeds": 10,
+      "maxSeconds": 42.73333333333156,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "goldRush",
+      "levelId": 20,
+      "seeds": 10,
+      "maxSeconds": 43.84166666666482,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "goldRush",
+      "levelId": 29,
+      "seeds": 10,
+      "maxSeconds": 42.89999999999821,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "goldRush",
+      "levelId": 30,
+      "seeds": 10,
+      "maxSeconds": 44.616666666664784,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "goldRush",
+      "levelId": 39,
+      "seeds": 10,
+      "maxSeconds": 44.699999999998106,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "goldRush",
+      "levelId": 40,
+      "seeds": 10,
+      "maxSeconds": 44.98333333333142,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "goldRush",
+      "levelId": 100,
+      "seeds": 10,
+      "maxSeconds": 44.88333333333143,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "goldRush",
+      "levelId": 1000,
+      "seeds": 10,
+      "maxSeconds": 44.41666666666479,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "goldRush",
+      "levelId": 9007199254740991,
+      "seeds": 10,
+      "maxSeconds": 44.67499999999812,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "diamondVein",
+      "levelId": 5,
+      "seeds": 10,
+      "maxSeconds": 21.308333333332776,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "diamondVein",
+      "levelId": 10,
+      "seeds": 10,
+      "maxSeconds": 43.93333333333148,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "diamondVein",
+      "levelId": 19,
+      "seeds": 10,
+      "maxSeconds": 42.21666666666493,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "diamondVein",
+      "levelId": 20,
+      "seeds": 10,
+      "maxSeconds": 44.083333333331474,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "diamondVein",
+      "levelId": 29,
+      "seeds": 10,
+      "maxSeconds": 41.91666666666494,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "diamondVein",
+      "levelId": 30,
+      "seeds": 10,
+      "maxSeconds": 44.49999999999813,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "diamondVein",
+      "levelId": 39,
+      "seeds": 10,
+      "maxSeconds": 44.54166666666478,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "diamondVein",
+      "levelId": 40,
+      "seeds": 10,
+      "maxSeconds": 44.874999999998096,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "diamondVein",
+      "levelId": 100,
+      "seeds": 10,
+      "maxSeconds": 44.841666666664764,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "diamondVein",
+      "levelId": 1000,
+      "seeds": 10,
+      "maxSeconds": 44.95833333333143,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "diamondVein",
+      "levelId": 9007199254740991,
+      "seeds": 10,
+      "maxSeconds": 44.85833333333144,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "unstable",
+      "levelId": 5,
+      "seeds": 10,
+      "maxSeconds": 25.874999999999176,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "unstable",
+      "levelId": 10,
+      "seeds": 10,
+      "maxSeconds": 44.441666666664794,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "unstable",
+      "levelId": 19,
+      "seeds": 10,
+      "maxSeconds": 42.84166666666488,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "unstable",
+      "levelId": 20,
+      "seeds": 10,
+      "maxSeconds": 43.84166666666482,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "unstable",
+      "levelId": 29,
+      "seeds": 10,
+      "maxSeconds": 42.94166666666487,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "unstable",
+      "levelId": 30,
+      "seeds": 10,
+      "maxSeconds": 44.95833333333144,
+      "fallbackCount": 1
+    },
+    {
+      "eventId": "unstable",
+      "levelId": 39,
+      "seeds": 10,
+      "maxSeconds": 44.699999999998106,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "unstable",
+      "levelId": 40,
+      "seeds": 10,
+      "maxSeconds": 44.98333333333142,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "unstable",
+      "levelId": 100,
+      "seeds": 10,
+      "maxSeconds": 44.88333333333143,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "unstable",
+      "levelId": 1000,
+      "seeds": 10,
+      "maxSeconds": 44.97499999999809,
+      "fallbackCount": 1
+    },
+    {
+      "eventId": "unstable",
+      "levelId": 9007199254740991,
+      "seeds": 10,
+      "maxSeconds": 44.79999999999809,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "blackMarket",
+      "levelId": 5,
+      "seeds": 10,
+      "maxSeconds": 25.874999999999176,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "blackMarket",
+      "levelId": 10,
+      "seeds": 10,
+      "maxSeconds": 44.441666666664794,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "blackMarket",
+      "levelId": 19,
+      "seeds": 10,
+      "maxSeconds": 42.73333333333156,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "blackMarket",
+      "levelId": 20,
+      "seeds": 10,
+      "maxSeconds": 44.616666666664784,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "blackMarket",
+      "levelId": 29,
+      "seeds": 10,
+      "maxSeconds": 42.94166666666487,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "blackMarket",
+      "levelId": 30,
+      "seeds": 10,
+      "maxSeconds": 44.78333333333144,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "blackMarket",
+      "levelId": 39,
+      "seeds": 10,
+      "maxSeconds": 44.699999999998106,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "blackMarket",
+      "levelId": 40,
+      "seeds": 10,
+      "maxSeconds": 44.8249999999981,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "blackMarket",
+      "levelId": 100,
+      "seeds": 10,
+      "maxSeconds": 44.88333333333143,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "blackMarket",
+      "levelId": 1000,
+      "seeds": 10,
+      "maxSeconds": 44.958333333331424,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "blackMarket",
+      "levelId": 9007199254740991,
+      "seeds": 10,
+      "maxSeconds": 44.991666666664756,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "sparse",
+      "levelId": 5,
+      "seeds": 10,
+      "maxSeconds": 25.874999999999176,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "sparse",
+      "levelId": 10,
+      "seeds": 10,
+      "maxSeconds": 44.441666666664794,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "sparse",
+      "levelId": 19,
+      "seeds": 10,
+      "maxSeconds": 42.73333333333156,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "sparse",
+      "levelId": 20,
+      "seeds": 10,
+      "maxSeconds": 43.84166666666482,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "sparse",
+      "levelId": 29,
+      "seeds": 10,
+      "maxSeconds": 42.94166666666487,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "sparse",
+      "levelId": 30,
+      "seeds": 10,
+      "maxSeconds": 44.40833333333145,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "sparse",
+      "levelId": 39,
+      "seeds": 10,
+      "maxSeconds": 44.7999999999981,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "sparse",
+      "levelId": 40,
+      "seeds": 10,
+      "maxSeconds": 44.98333333333142,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "sparse",
+      "levelId": 100,
+      "seeds": 10,
+      "maxSeconds": 44.88333333333143,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "sparse",
+      "levelId": 1000,
+      "seeds": 10,
+      "maxSeconds": 44.891666666664776,
+      "fallbackCount": 0
+    },
+    {
+      "eventId": "sparse",
+      "levelId": 9007199254740991,
+      "seeds": 10,
+      "maxSeconds": 44.67499999999812,
+      "fallbackCount": 0
+    }
+  ]
+}

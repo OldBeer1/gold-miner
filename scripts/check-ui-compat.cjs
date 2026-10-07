@@ -35,13 +35,13 @@ function fixture(base, mode, kind = "level", seed = 42) {
   assert.ok(base.storage.validateProgress(doc, base.config)); return doc;
 }
 if (require.main === module) {
-  const checks = [], baselines = [{version:"1.4.0",commit:baselineCommit}, {version:"1.5.0",commit:"v1.5.0"}];
+  const checks = [], baselines = [{version:"1.4.0",commit:baselineCommit}, {version:"1.5.0",commit:"v1.5.0"}, {version:"1.5.1",commit:"v1.5.1"}];
   const add = (name, action) => { action(); checks.push(name); console.log(name); };
   let layouts = 0, shops = 0;
   for (const baseline of baselines) {
   const base = loadBaseline(baseline.commit), version = baseline.version;
-  add(`新规则 1.5.1；旧 ${version} 参数精确保留`, () => {
-    assert.equal(config.version,"1.5.1"); assert.equal(config.rulesVersion,"1.5.1");
+  add(`新规则 1.5.2；旧 ${version} 参数精确保留`, () => {
+    assert.equal(config.version,"1.5.2"); assert.equal(config.rulesVersion,"1.5.2");
     const current = growth.clone(rules.configForVersion(config,version)), original = growth.clone(base.config);
     delete current.version; delete original.version;
     if (version === "1.4.0") { delete current.rulesVersion; delete current.legacyMineralSizes; assert.deepEqual(require("../docs/history/three-level-layouts.json").levels,original.levels); delete original.levels; }
@@ -64,7 +64,7 @@ if (require.main === module) {
       const document = fixture(base, mode, kind), raw = JSON.stringify(document), data = new Map([[storage.progressKey, raw]]); let writes = 0;
       const db = { getItem: key => data.get(key) ?? null, setItem: (key, value) => { writes++; data.set(key, value); } };
       const loaded = storage.loadProgress(db, config, "2026-10-05T08:00:00Z");
-      assert.equal(loaded.blocked, false); assert.equal(loaded.revision, 8); assert.equal(writes, 2); assert.equal(data.get(version === "1.4.0" ? storage.v140BackupKey : storage.v150BackupKey), raw);
+      assert.equal(loaded.blocked, false); assert.equal(loaded.revision, 8); assert.equal(writes, 2); assert.equal(data.get(version === "1.4.0" ? storage.v140BackupKey : version === "1.5.0" ? storage.v150BackupKey : storage.v151BackupKey), raw);
       assert.deepEqual(loaded.document.activeRun,document.activeRun); assert.deepEqual(loaded.document.profile.recentReports,document.profile.recentReports); assert.deepEqual(loaded.document.profile.challengeRecords,document.profile.challengeRecords);
       assert.deepEqual(storage.loadProgress(db,config).document,loaded.document); assert.equal(writes,2);
       if (document.activeRun) assert.deepEqual(rules.restoreCheckpoint(document.activeRun.checkpoint, config), base.rules.restoreCheckpoint(document.activeRun.checkpoint, base.config));
@@ -84,6 +84,6 @@ if (require.main === module) {
     assert.equal(challenges.share(fixture(base, "seed", "report").profile.recentReports[0]), base.challenges.share(fixture(base, "seed", "report").profile.recentReports[0]));
   });
   }
-  fs.writeFileSync("output/playwright/survival-v151-compat-report.json", JSON.stringify({ version: config.version, rulesVersion: config.rulesVersion, baselines, result: "passed", checks, layouts, shops, method: "legacy-rule exact comparison against committed v1.4.0 and v1.5.0; formal fixtures, not real-time gameplay" }, null, 2) + "\n");
+  fs.writeFileSync("output/playwright/survival-v152-compat-report.json", JSON.stringify({ version: config.version, rulesVersion: config.rulesVersion, baselines, result: "passed", checks, layouts, shops, method: "legacy-rule exact comparison against committed v1.4.0, v1.5.0 and v1.5.1; formal fixtures, not real-time gameplay" }, null, 2) + "\n");
 }
 module.exports = { loadBaseline, fixture, collect };

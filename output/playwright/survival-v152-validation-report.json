@@ -1,0 +1,131 @@
+{
+  "version": "1.5.2",
+  "rulesVersion": "1.5.2",
+  "result": "passed",
+  "checkedAt": "2026-10-07T07:43:48.708Z",
+  "sourceBaseline": "6fcc5dba3449b0c859fa7365b99dfa853c499864",
+  "reports": [
+    {
+      "path": "output/playwright/survival-v152-backup-report.json",
+      "result": "passed",
+      "sha256": "71abdeb3d9da70d2e09d9e8998217f6d1ba49fc07307b282e3b1ed2f2e1a2d1f"
+    },
+    {
+      "path": "output/playwright/survival-v152-rules-report.json",
+      "result": "passed",
+      "sha256": "5b81f63b04038ab1c6f7d6e8ebd660dd97d17e49e628f198d1cbe4a491d35595"
+    },
+    {
+      "path": "output/playwright/survival-v152-checkpoints-report.json",
+      "result": "passed",
+      "sha256": "c68443f1873aa686d67d86df67282b2f62e116e461764e6ed6de84aa94f29722"
+    },
+    {
+      "path": "output/playwright/survival-v152-growth-report.json",
+      "result": "passed",
+      "sha256": "015d2e4b259b34c5d0816d690b1e5832b602f96b5807599a1836cca7092a47b2"
+    },
+    {
+      "path": "output/playwright/survival-v152-challenges-report.json",
+      "result": "passed",
+      "sha256": "69c61bede111d151e332254132c90c401ca977cd262d45481948ea1f69f1c47e"
+    },
+    {
+      "path": "output/playwright/survival-v152-compat-report.json",
+      "result": "passed",
+      "sha256": "7c39652461bc8f265727fb29ecec39a3cb0aabe88f8ed74ccb1327fcedebd889"
+    },
+    {
+      "path": "output/playwright/survival-v152-layouts-report.json",
+      "result": "passed",
+      "sha256": "27b46059fde217a78d4c044de40ecfdf67c93e14ab1d3760ee74ab44801be0d1"
+    },
+    {
+      "path": "output/playwright/survival-v152-density-report.json",
+      "result": "passed",
+      "sha256": "49ddf0a0f2ef8260fe79aa7b68f3429494917263e32d4a3bc44a7f4a117ce34e"
+    },
+    {
+      "path": "output/playwright/survival-v152-legacy-budgets-report.json",
+      "result": "passed",
+      "sha256": "9134ea79912e343dd3d48c27be3af391a3bc7ee491199115ff38e68a4d5685d6"
+    },
+    {
+      "path": "output/playwright/survival-v152-gameplay-report.json",
+      "result": "passed",
+      "sha256": "d0bfaa45b6a01318a0189f2d746a33289c673bd96b58900c15ea6300b07a4ad4"
+    },
+    {
+      "path": "output/playwright/survival-v152-layouts-ui-report.json",
+      "result": "passed",
+      "sha256": "335928cff4eee51de44754746626d3f1187596ee822dc25d506156f1d2db149c"
+    },
+    {
+      "path": "output/playwright/survival-v152-experience-report.json",
+      "result": "passed",
+      "sha256": "3f9ead1de200dde65c39f9f58617ba40fac2e1dd418749890b9aa86fa7e2400a"
+    },
+    {
+      "path": "output/playwright/survival-v152-challenges-ui-report.json",
+      "result": "passed",
+      "sha256": "6ec0024ff8553c78e4f754fdc92b87a642e787550e8e6f6efff8e8642d01bb86"
+    },
+    {
+      "path": "output/playwright/survival-v152-smoke-report.json",
+      "result": "passed",
+      "sha256": "a235e5087cb1668672a8d50ee0df800f1e5bae8ff5791e68115357f82c267b73"
+    },
+    {
+      "path": "output/playwright/survival-v152-achievements-ui-report.json",
+      "result": "passed",
+      "sha256": "4ec3ec15a994b5996e4c466adbabd7b95455fac5e0227a09ec47ba5596e85633"
+    },
+    {
+      "path": "output/playwright/survival-v152-native-pause-report.json",
+      "result": "passed",
+      "sha256": "a2f041677e1839961e6471db4101d6e20fa301ab3c08ec031568f82d894229de"
+    },
+    {
+      "path": "output/playwright/survival-v152-performance-ui-report.json",
+      "result": "passed",
+      "sha256": "9a802a6821448b3c98e37cce21843d50a0623999c01aef12170f2e06c2406ee3"
+    },
+    {
+      "path": "output/playwright/survival-v152-real-run-report.json",
+      "result": "passed",
+      "sha256": "3877ca510fe2df6908d7481bba4e469758ca4cc30c66f43627fca7147deec439"
+    },
+    {
+      "path": "output/playwright/survival-v152-syntax-report.json",
+      "result": "passed",
+      "sha256": "1d85b6e6cbf6f4047cb69ab6af19e24d2cc060d81e0200a47a4e128bab1c86be"
+    },
+    {
+      "path": "output/playwright/survival-v152-package-report.json",
+      "result": "passed",
+      "sha256": "f356182ccf6f34f8bba36f7508fcd79da1238fabb9f679e748a4339b9ce2ae4d"
+    },
+    {
+      "path": "output/playwright/survival-v152-release-preflight-report.json",
+      "result": "passed",
+      "sha256": "f92c831b4a5c4e28e9d845a4abea6594ac07788900d8f0c1d51e323a45d51473"
+    }
+  ],
+  "runtimeHashes": {
+    "index.html": "3d18b0c185fa4f14aba63754faf9cce124a69b61c8db494603b29c7b8adf459b",
+    "styles.css": "69d1f5453941b10bad8a370ff59431b08dea3dd27c859904f9db3fc5481cf977",
+    "js/config.js": "40fc3400a698458a750782d2ce84b3f05dc966f3a06215ed362d02932f56d330",
+    "js/challenges.js": "279a9cb2233e1d3918fc68446359f76347a8b018e85b98eb44ff426b018e1e9a",
+    "js/growth.js": "c18c09694fe49317b2e7bf766fc2122b54d874709b0d171c17b47a491eac4a95",
+    "js/rules.js": "e52e76825580454ba7f0874c4093124aa674e04c4ce0554485c15b12d82989b8",
+    "js/game.js": "56736b1a5bfeb2815421d58422c96efc55dd15c9a503170e634aa93a337cd621",
+    "js/storage.js": "b1b0867051f58eeb3c699f6e5130dcedf17cdd55789e83cd4bf7afab4cbfec74",
+    "js/effects.js": "4993c3134ba7865971728d7d8e1df6480d0151c80f0538b835b0685ab5d7aed8",
+    "js/audio.js": "b79f5086bf79f6bed41be1354702f9e5299ac488c8fc77b5d56888ab215b2930"
+  },
+  "package": {
+    "size": 58103,
+    "sha256": "9fbbcd6c562b3cbc783acf6ac7b8e8610dfd8132a1e637144481b86b0c540fe7"
+  },
+  "method": "Actual formal, controlled browser, original real-time, timing, syntax and extracted package reports; publication verified separately"
+}

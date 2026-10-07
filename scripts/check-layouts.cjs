@@ -2,9 +2,11 @@
 const assert = require("node:assert/strict"), fs = require("node:fs"), crypto = require("node:crypto");
 const config = require("../js/config.js"), rules = require("../js/rules.js"), growth = require("../js/growth.js"), storage = require("../js/storage.js"), challenges = require("../js/challenges.js");
 const { loadBaseline, fixture } = require("./check-ui-compat.cjs");
+const { assertDensity } = require("./check-density.cjs");
 const checks = [], cases = [], minima = { width: Infinity, height: Infinity, distanceRange: Infinity }, downgrade = { previous: 0, current: 0 };
 function check(name, action) { action(); checks.push(name); console.log(name); }
 function spread(level) {
+  assertDensity(level);
   const bases = level.layout.filter(m => m.safeRoute), xs = bases.map(m => m.x), ys = bases.map(m => m.y), distances = bases.map(m => Math.hypot(m.x - 480, m.y - 112));
   const result = { width: Math.max(...xs) - Math.min(...xs), height: Math.max(...ys) - Math.min(...ys), distanceRange: Math.max(...distances) - Math.min(...distances) };
   assert.equal(bases.length, 9);
@@ -35,7 +37,7 @@ check("普通与全部事件、所有档位和极大关号：强制错落备用�
   }
 });
 check("660 个同种子/关号/请求事件对比：记录旧版及新版事件降级，分散条件始终满足", () => {
-  const old = rules.configForVersion(config,"1.5.0");
+  const old = rules.configForVersion(config,"1.5.1");
   for (const n of [1,4,5,9,10,19,20,30,40,100,1000]) for (const id of Object.keys(config.events.definitions)) for (let seed=0;seed<10;seed++) {
     const current = rules.createLevel(config,n,seed,id), previous = rules.createLevel(old,n,seed,id);
     downgrade.previous += Number(previous.event.id !== id); downgrade.current += Number(current.event.id !== id);
@@ -43,8 +45,8 @@ check("660 个同种子/关号/请求事件对比：记录旧版及新版事件�
   }
   assert.ok(downgrade.current <= downgrade.previous);
 });
-check("v1.5.0 三模式档案备份失败/重试/已有备份、外部修订、跨日和历史成果保留", () => {
-  const base = loadBaseline("v1.5.0"), now = "2026-10-08T08:00:00.000Z";
+check("v1.5.1 三模式档案备份失败/重试/已有备份、外部修订、跨日和历史成果保留", () => {
+  const base = loadBaseline("v1.5.1"), now = "2026-10-08T08:00:00.000Z";
   for (const mode of challenges.modes) {
     const document = fixture(base,mode,"shop"), raw = JSON.stringify(document), data = new Map([[storage.progressKey,raw]]);
     let denied = true;
@@ -53,28 +55,28 @@ check("v1.5.0 三模式档案备份失败/重试/已有备份、外部修订、�
     assert.equal(loaded.blocked,false); assert.match(loaded.message,/未能保存/); assert.equal(data.get(storage.progressKey),raw);
     assert.deepEqual(loaded.document.activeRun,document.activeRun); assert.deepEqual(loaded.document.profile,document.profile);
     denied = false; assert.ok(storage.saveProgress(db,loaded.document,config,loaded.revision).saved);
-    assert.equal(data.get(storage.v150BackupKey),raw);
+    assert.equal(data.get(storage.v151BackupKey),raw);
     assert.ok(storage.saveProgress(db,loaded.document,config,loaded.revision).conflict);
     const restored = storage.loadProgress(db,config,now);
     assert.deepEqual(restored.document.activeRun.challenge,document.activeRun.challenge);
-    const originalBackup = data.get(storage.v150BackupKey);
-    storage.loadProgress(db,config,now); assert.equal(data.get(storage.v150BackupKey),originalBackup);
+    const originalBackup = data.get(storage.v151BackupKey);
+    storage.loadProgress(db,config,now); assert.equal(data.get(storage.v151BackupKey),originalBackup);
     if(mode === "daily") assert.equal(restored.document.activeRun.challenge.date,"2026-10-03");
     const unknown = JSON.stringify({...restored.document,rulesVersion:"9.0.0"});data.set(storage.progressKey,unknown);
     assert.ok(storage.loadProgress(db,config,now).blocked);assert.equal(data.get(storage.progressKey),unknown);
   }
 });
-check("三套规则最佳键隔离、旧档不能接受未来规则；同模式新版生成和奖励确定", () => {
+check("四套规则最佳键隔离、旧档不能接受未来规则；同模式新版生成和奖励确定", () => {
   const doc=growth.createDocument({soundEnabled:true,highScore:0,bestClearedLevel:0},"2026-10-07T08:00:00Z");
   for(const version of challenges.supportedVersions) {
     const challenge=challenges.create("seed",42,null,version);
     doc.profile.challengeRecords[challenges.key(challenge)]={challenge,runId:"record-"+version,updatedAt:"2026-10-07T08:00:00Z",levelsCleared:1,qualifiedIncome:650,activePlayMs:60000};
   }
-  assert.equal(Object.keys(doc.profile.challengeRecords).length,3);assert.ok(storage.validateProgress(doc,config));
+  assert.equal(Object.keys(doc.profile.challengeRecords).length,4);assert.ok(storage.validateProgress(doc,config));
   const future=growth.clone(doc);future.rulesVersion="1.5.0";assert.equal(storage.validateProgress(future,rules.configForVersion(config,"1.5.0")),null);
   for(const mode of challenges.modes) {
     const challenge=challenges.create(mode,42,mode==="daily"?"2026-10-07":null);
     assert.deepEqual(rules.createRun(config,4,{challenge,runSeed:challenge.seed}),rules.createRun(config,4,{challenge,runSeed:challenge.seed}));
   }
 });
-fs.writeFileSync("output/playwright/survival-v151-layouts-report.json",JSON.stringify({version:config.version,result:"passed",method:"formal deterministic generation, route verification and controlled save fixtures; not browser or real-time gameplay",checks,minima,comparisonMaps:660,downgrade,fallbackCases:cases},null,2)+"\n");
+fs.writeFileSync("output/playwright/survival-v152-layouts-report.json",JSON.stringify({version:config.version,result:"passed",method:"formal deterministic generation, route verification and controlled save fixtures; not browser or real-time gameplay",checks,minima,comparisonMaps:660,downgrade,fallbackCases:cases},null,2)+"\n");

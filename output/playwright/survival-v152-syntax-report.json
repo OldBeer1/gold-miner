@@ -1,0 +1,11 @@
+{
+  "javascriptFiles": 27,
+  "version": "1.5.2",
+  "powershellFiles": 4,
+  "result": "passed",
+  "checks": [
+    "node syntax checks",
+    "PowerShell parser",
+    "git diff whitespace"
+  ]
+}

@@ -46,7 +46,7 @@ check("660 份普通/事件地图：升档、极大关号、有界、无重叠�
     let maxSeconds = 0, fallbackCount = 0;
     for (let seed = 0; seed < 10; seed++) {
       const level = rules.createLevel(config, n, seed, eventId), duplicate = rules.createLevel(config, n, seed, eventId);
-      assert.deepEqual(level, duplicate); assert.ok(level.count <= 29 && level.layout.length === level.count);
+      assert.deepEqual(level, duplicate); assert.ok(level.count <= 36 && level.layout.length === level.count);
       assert.ok(Number.isSafeInteger(level.target)); assert.ok(level.route.success && level.route.seconds <= 45);
       for (const m of level.layout) assert.ok(rules.validPlacement(m, level.layout.filter(other => other !== m), config));
       assert.ok(level.layout.filter(m => m.type === "powderKeg").length <= level.event.maxPowderKegs);
@@ -108,7 +108,7 @@ check("Seed 和每日完整 20 关规则模拟：提交幂等、终结报告、�
     const report = state.doc.profile.recentReports[0]; assert.equal(report.reason, "completed"); assert.equal(report.totals.levelsCleared, 20);
     assert.equal(state.doc.profile.career.bestClearedLevel, 0); assert.ok(Object.values(state.doc.profile.achievements).every(a => a.unlockedAt === null));
     assert.equal(state.doc.profile.modeStats[mode].levelsCleared, 20); assert.ok(state.doc.profile.challengeRecords[challenges.key(challenge)]);
-    assert.match(challenges.share(report), /规则：1.5.1/);
+    assert.match(challenges.share(report), /规则：1.5.2/);
   }
 });
 check("个人最佳比较按关数、有效成绩、时长；日期/Seed/版本键隔离", () => {

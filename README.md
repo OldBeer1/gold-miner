@@ -1,14 +1,14 @@
 # 黄金矿工 · 无限生存
 
-原生 HTML、CSS、JavaScript 和 Canvas 2D 像素风单机游戏，无构建步骤或第三方运行依赖。当前源码 **v1.5.1：矿物自然错落分散**，新挑战规则 **1.5.1**。普通、事件和备用地图覆盖矿区左右及不同深度，不再围着矿工排成扇形。沿用放大目标和 13 项成就；旧 1.4.0／1.5.0 活动继续原地图、后续生成和报价。功能、浏览器、独立玩家包与公开下载复验通过，正式 Release 已发布；最终交接见实施计划。
+原生 HTML、CSS、JavaScript 和 Canvas 2D 像素风单机游戏，无构建步骤或第三方运行依赖。当前源码 **v1.5.2：增加可回收物数量**，新挑战规则 **1.5.2**。每关新增四个小金块、一颗钻石、一颗红宝石、两个钱袋，普通首关 23 个、后期 32～34 个；目标保持，自然错落分散。旧 1.4.0／1.5.0／1.5.1 活动保留原数量、地图、后续关与报价。游戏、浏览器与独立玩家包验收通过；完整发布进度见实施计划。
 
-![自然分散采矿画面](output/playwright/survival-v151-layout-none-1280x720.png)
+![自然分散采矿画面](output/playwright/survival-v152-layout-none-1280x720.png)
 
 ## 游玩
 
 双击 `index.html`，使用 Chrome、Edge 等现代桌面浏览器打开。选择模式后点击“开始无限挑战”“开始 Seed 挑战”或“开始今日挑战”；已有存档时点击对应模式的继续按钮，下方会说明旧挑战的模式、关号及 Seed／每日日期。玩家包解压整个目录后直接打开，无需 Node.js 或联网。
 
-[下载 v1.5.1 玩家包](https://github.com/OldBeer1/gold-miner/releases/download/v1.5.1/Gold-survival-v1.5.1.zip) · [版本说明](https://github.com/OldBeer1/gold-miner/releases/tag/v1.5.1) · [源码仓库](https://github.com/OldBeer1/gold-miner)。本地同一玩家包为 `output/release/Gold-survival-v1.5.1.zip`，打包、独立解压及公开下载复验见 [VALIDATION.md](VALIDATION.md)。
+[下载 v1.5.2 玩家包](https://github.com/OldBeer1/gold-miner/releases/download/v1.5.2/Gold-survival-v1.5.2.zip) · [版本说明](https://github.com/OldBeer1/gold-miner/releases/tag/v1.5.2) · [源码仓库](https://github.com/OldBeer1/gold-miner)。本地同一玩家包为 `output/release/Gold-survival-v1.5.2.zip`，打包、独立解压及公开下载复验见 [VALIDATION.md](VALIDATION.md)。
 
 需要本地服务时，在项目根目录使用 **PowerShell**：
 
@@ -39,7 +39,7 @@ node .\scripts\serve.cjs
 - 返回主页保留挑战，新挑战确认覆盖，取消不改存档；正常存储时失败清挑战，最高纪录保留。
 - 保存被拒绝或数据损坏时显示真实结果，当前页面仍可玩，但关闭后不能保证最新状态。存档只属于当前浏览器与地址。
 
-成长档案、活动挑战和近期报告统一保存。合法 v1.4.0／v1.5.0 档案先备份原文后一次升级，主键保持、旧活动与历史成果保留；结算写入失败明确提示“已记录，本次未能保存”，沿用内存保留和现有重试机制。有效 v1.1.0／v1.2.0 档案显式迁入，当前布局、交易、最高纪录与永久成果保留；v1.2.0／v1.4.0／v1.5.0 原文首次升级备份，旧键保留。损坏或未知的新档案保留原数据，可临时游玩；其他页面更新档案时冻结并要求重新载入，按单页面游玩设计。键、结构及异常边界见 [现行规格的保存章节](GAME_SPEC.md#7-自动保存与历史记录)。
+成长档案、活动挑战和近期报告统一保存。合法 v1.4.0／v1.5.0／v1.5.1 档案先备份原文后一次升级，主键保持、旧活动与历史成果保留；结算写入失败明确提示“已记录，本次未能保存”，沿用内存保留和现有重试机制。有效 v1.1.0／v1.2.0 档案显式迁入，当前布局、交易、最高纪录与永久成果保留；v1.2.0／v1.4.0／v1.5.0／v1.5.1 原文首次升级备份，旧键保留。损坏或未知的新档案保留原数据，可临时游玩；其他页面更新档案时冻结并要求重新载入，按单页面游玩设计。键、结构及异常边界见 [现行规格的保存章节](GAME_SPEC.md#7-自动保存与历史记录)。
 
 ## 矿工成长档案
 
@@ -59,7 +59,7 @@ node .\scripts\serve.cjs
 
 ## 抓取与页面体验
 
-新挑战将九个主要目标随机放到不同空间分区，补充物覆盖多层，路障随目标定位；备用也采用错落布局，所有地图通过正式路线验证。继续旧挑战保留原布局，仍可能呈扇形。
+每关固定增加 8 个可回收物，分布在八个不同分区；新增类型配比与数量见现行规格。通关目标保持，增加抓取和赚钱选择；旧活动继续原数量。新挑战将九个主要目标随机放到不同空间分区，补充物覆盖多层，路障随目标定位；备用也采用错落布局，所有地图通过正式路线验证。继续旧挑战保留原布局，仍可能呈扇形。
 
 小金块、钻石、红宝石和钱袋扩大可见尺寸与正式碰撞范围；间距和边界同步校准，采用现有轮廓局部容错，石头和火药桶仍按最早碰撞阻挡。基础价值、计时、回速、概率与价格保持。首次回收、累计金块／钻石／回收数、较低收入和 10 关目标带来正常游玩反馈，完整条件见现行规格。
 
@@ -80,23 +80,26 @@ node .\scripts\check-ui-compat.cjs
 node .\scripts\check-gameplay.cjs
 node .\scripts\check-project.cjs
 node .\scripts\check-layouts.cjs
+node .\scripts\check-density.cjs
+node .\scripts\check-legacy-budgets.cjs
 ```
 
 浏览器检查需要开发环境已有 Playwright 和 Chrome；必要时用 `GOLD_PLAYWRIGHT_MODULE` 指向已有包。脚本在 `output/playwright/`，它们不属于游戏运行依赖。
 
 | 脚本 | 检查内容 |
 | --- | --- |
-| `verify-survival-v151-challenges.cjs` | 事件、三模式、20 关结束与保存重试、日期、迁移、分享、文件／HTTP 和三视口 |
-| `verify-survival-v151-experience.cjs` | 新旧 DOM 更新对比、日期定时器、模式／焦点、0／10／11／200 记录分页、保存拒绝与外部修订 |
-| `verify-survival-v151-real-run.cjs` | 原始随机无限地图真实四关四店、第五关自然失败，自然取得 8 项成就 |
-| `verify-survival-v151-native-pause.cjs` | 原生标签隐藏与恢复、主页日期定时器取消和重建 |
-| `verify-survival-v151-smoke.cjs` | 最终画面、缩放输入、文件／HTTP、七类音效与静音 |
-| `verify-survival-v151-achievements.cjs` | 现行／历史徽章与称号、旧规则商店和新规则重开 |
-| `verify-survival-v151-layouts.cjs` | 三视口普通／五事件／备用共 21 场景，旧商店继续及同 Seed 新规则重开 |
+| `verify-survival-v152-challenges.cjs` | 事件、三模式、20 关结束与保存重试、日期、迁移、分享、文件／HTTP 和三视口 |
+| `verify-survival-v152-experience.cjs` | 新旧 DOM 更新对比、日期定时器、模式／焦点、0／10／11／200 记录分页、保存拒绝与外部修订 |
+| `verify-survival-v152-real-run.cjs` | 原始随机地图真实四关四店、第五关自然失败，实际回收四类新增物 |
+| `verify-survival-v152-native-pause.cjs` | 原生标签隐藏与恢复、主页日期定时器取消和重建 |
+| `verify-survival-v152-smoke.cjs` | 最终画面、缩放输入、文件／HTTP、七类音效与静音 |
+| `verify-survival-v152-achievements.cjs` | 现行／历史徽章与称号、旧规则商店和新规则重开 |
+| `verify-survival-v152-layouts.cjs` | 三视口普通／五事件／备用共 21 场景，三套旧商店继续、前后数量截图及同 Seed 新规则重开 |
+| `verify-survival-v152-performance.cjs` | 三视口首关／高关共 12 次四秒真实帧间隔前后对比 |
 | `measure-survival-v150.cjs` | 放大目标的历史三视口尺寸测量 |
 | `verify-survival-release.cjs` | 独立解压玩家包的运行完整性，按实际能力检测挑战并读取现行成就数量 |
 
-浏览器脚本自行启动并关闭各自的本地测试服务。旧版脚本与报告保留用于历史追溯，当前验收使用上述 v1.5.1 入口；兼容检查读取已发布 v1.4.0／v1.5.0 源码标签，核对旧规则继续结果。实际结果、测试条件和局限只在 [VALIDATION.md](VALIDATION.md) 维护；纯文档修改检查内容与链接，不重复完整游戏试玩。
+浏览器脚本自行启动并关闭各自的本地测试服务。旧版脚本与报告保留用于历史追溯，当前验收使用上述 v1.5.2 入口；兼容检查读取已发布 v1.4.0／v1.5.0／v1.5.1 源码标签，核对旧规则继续结果。实际结果、测试条件和局限只在 [VALIDATION.md](VALIDATION.md) 维护；纯文档修改检查内容与链接，不重复完整游戏试玩。
 
 玩家包沿用 [package-release.ps1](scripts/package-release.ps1)，[check-player-package.ps1](scripts/check-player-package.ps1)独立解压核验，[verify-public-release.ps1](scripts/verify-public-release.ps1)核验匿名下载，使用对应实现版本号，核对运行文件、清单、SHA-256 和独立解压结果。保留旧 ZIP，排除依赖、缓存、浏览器配置和日志；每个版本验收后按 [AGENTS.md](AGENTS.md) 的完整 GitHub 交付要求执行。
 
@@ -107,12 +110,12 @@ node .\scripts\check-layouts.cjs
 | [AGENTS.md](AGENTS.md) | 接手顺序、开发与验证约定 |
 | [GAME_SPEC.md](GAME_SPEC.md) | 当前已经实现的玩法、数值与保存规则 |
 | [FEATURE_ROADMAP.md](FEATURE_ROADMAP.md) | 产品路线、设计原则和后续待定范围 |
-| [GAMEPLAY_IMPROVEMENT_PLAN.md](GAMEPLAY_IMPROVEMENT_PLAN.md) | 游戏需求、30～40 步门槛和原始提示词追溯 |
+| [GAMEPLAY_IMPROVEMENT_PLAN.md](GAMEPLAY_IMPROVEMENT_PLAN.md) | 游戏需求、30～45 步门槛和原始提示词追溯 |
 | [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md) | 当前状态、唯一分步索引和最新交接 |
 | [VALIDATION.md](VALIDATION.md) | 当前版本实际验证与限制 |
 | [docs/HISTORY.md](docs/HISTORY.md) | 旧规格、完成步骤、历史交接与验收原文索引 |
 
-第 01～29 步、旧规格／规划／交接／验收原文从历史索引查阅，17～28 独立任务合并归档。v1.5.0 的 30～35 步按先游戏验收、再备份整理执行；本轮 36～40 步为分散布局与完整交付，不扩大清理范围；实际删改范围见 [清理清单](docs/CLEANUP_V150.md)，全部任务状态只在实施计划维护。
+第 01～29 步、旧规格／规划／交接／验收原文从历史索引查阅，17～28 独立任务合并归档。v1.5.0 的 30～35 步按先游戏验收、再备份整理执行；36～40 步已交付分散布局；本轮 41～45 步为增加数量与完整交付，不扩大清理范围；实际删改范围见 [清理清单](docs/CLEANUP_V150.md)，全部任务状态只在实施计划维护。
 
 | 文件 | 实现职责 |
 | --- | --- |

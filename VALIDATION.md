@@ -1,4 +1,50 @@
-# 黄金矿工：v1.5.1 验收记录
+# 黄金矿工：v1.5.2 验收记录
+
+更新：2026-10-07。发行及新挑战规则 **1.5.2**；旧活动 **1.4.0／1.5.0／1.5.1**。每关增加八个可回收物，目标与单物参数保持；没有扩大清理。本节只记录本轮实际结果，后文保留历史证据。
+
+## v1.5.2 游戏验收
+
+| 层次 | 实际结果 | 证据 |
+| --- | --- | --- |
+| 正式规则 | 45 项／1700 普通地图，准确数量、八物配比／八区覆盖、间距、边界、确定性及 45 秒无道具达标通过；后期主要路线中位数≥35 秒 | [rules](output/playwright/survival-v152-rules-report.json) |
+| 事件与备用 | 660 普通／事件地图、60 强制备用与极高关号通过；事件降级 v151→v152 为 0→0，保留全部新增物 | [layouts](output/playwright/survival-v152-layouts-report.json)、[challenges](output/playwright/survival-v152-challenges-report.json) |
+| 新增物专项 | 八物固定配比、各横纵分区至少两个；36 地图中的 288 个新增物隔离前方物体后，保留原位置／尺寸／奖励，使用正式钩子回收通过；备份单独写失败及已有原文保留通过 | [density](output/playwright/survival-v152-density-report.json) |
+| 旧规则精确兼容 | 三套已发布规则 270 地图／270 商店、三模式入口／商店／报告、一次原文备份及历史成果保持通过 | [compat](output/playwright/survival-v152-compat-report.json) |
+| 旧难度预算 | 三套旧规则 900 地图、四种策略结果与标签源码精确一致；主要／最快中位数原 35／28 秒门槛通过 | [legacy budgets](output/playwright/survival-v152-legacy-budgets-report.json) |
+| 碰撞与保存 | 擦边、最早碰撞、石头阻挡、火药桶、截止入账、快照、成就正反、模式隔离、重复提交、迁移、拒绝保存与外部修订通过 | [gameplay](output/playwright/survival-v152-gameplay-report.json)、[checkpoints](output/playwright/survival-v152-checkpoints-report.json)、[growth](output/playwright/survival-v152-growth-report.json) |
+| 浏览器画面 | 三视口×普通／五事件／备用，共 21 场景；另有发布 v151 解压包三视口前后对比，第四关 18→26；三套旧商店继续及 Seed 新规则重开通过 | [layouts UI](output/playwright/survival-v152-layouts-ui-report.json) |
+| 页面与流程 | DOM 更新、日期、模式、焦点、0／10／11／200 记录分页、拒绝保存／重试、真实跨页面修订、三模式和 20 关终局受控检查通过 | [experience](output/playwright/survival-v152-experience-report.json)、[challenges UI](output/playwright/survival-v152-challenges-ui-report.json) |
+| 暂停及其他 UI | 原生标签隐藏 2.2 秒冻结，恢复不补算；现行／历史徽章与称号、离线／HTTP、真实输入和七类音效通过 | [native pause](output/playwright/survival-v152-native-pause-report.json)、[achievements UI](output/playwright/survival-v152-achievements-ui-report.json)、[smoke](output/playwright/survival-v152-smoke-report.json) |
+
+已目视检查 [新版第四关](output/playwright/survival-v152-layout-none-1280x720.png)、[v151 对比](output/playwright/survival-v152-before-v151-1280x720.png)、[地质不稳定 1080](output/playwright/survival-v152-layout-unstable-1920x1080.png)；小目标保持原放大尺寸，新增目标分散，不遮挡 HUD。短屏可滚动，无横向溢出。
+
+### 原始计时试玩
+
+随机无限 Seed **646681038**，原始地图／计时、真实鼠标与空格、只读诊断：四关四店，第五关不出钩自然失败。达标约 **12.75／14.89／10.06／17.93 秒**，有效成绩 **7500**，**30 次出钩／30 次回收**，实际采矿 **295000 ms**；钱袋实际扣五秒，因此未强行写成 300000 ms。新增小金块、钻石、红宝石和钱袋均在原地图实际回收，自然取得 **9 项成就**。没有使用炸药、购买增益或覆盖地图／计时／携带／结果。[real run](output/playwright/survival-v152-real-run-report.json)。
+
+### 耗时与收益对比
+
+同输入 100 份普通地图，Node 生成耗时中位数约 **2.26→2.75 ms**、P95 **8.18→11.44 ms**、最大 **16.82→24.01 ms**。此为当次本机测量，包含正式路线验证，不是通用性能保证。目标与收益倍率逐份保持，四种策略的时间／收入记录在 density 报告。
+
+三视口、首关／1000 关，新旧共 **12 次四秒**真实浏览器 RAF 测量：各场景中位约 **6.1 ms**、P95 **6.2 ms**，没有 >50 ms 帧间隔或长任务，新版最高观察帧间隔 **30.3 ms**。使用隔离正式入口、原始时钟、无输入，不等同于全部硬件或长期人工试玩帧率。[performance UI](output/playwright/survival-v152-performance-ui-report.json)。
+
+增加可回收物使部分快捷路线更快，是本轮明确目标。新版第 10／30／1000 关主要路线中位约 **41.14／43.71／43.64 秒**，四策略最快中位约 **26.90／29.05／32.53 秒**；保持 45 秒可解性和主要路线预算，不提高目标抵消新增机会。旧规则另按原 35／28 门槛回归。
+
+### 本轮备份与边界
+
+修改前新备份：`output/backups/pre-cleanup-20261007-150741-794fb54c/project-before-cleanup.zip`，**84879710 字节**，**485 项目文件／488 解压文件、7 旧玩家包**；SHA-256 `44fb6067a4d4737770aae290aa2301560ccc376f536fd8acfb1bbadeecefb373`。源文件复制及前后哈希、Git bundle、独立解压精确清单通过。[backup](output/playwright/survival-v152-backup-report.json)。恢复到新目录，按 BACKUP_MANIFEST 核验，再从 bundle 克隆并对比 project/，不盲目覆盖。备份留本地，个人浏览器存档未访问，检查均为隔离档案。
+
+27 个 JavaScript 文件、4 个 PowerShell 脚本解析与 Git 差异格式通过。[syntax](output/playwright/survival-v152-syntax-report.json)。历史 v150／v151 报告、脚本、截图及旧 ZIP 保持哈希；无删除、清理或历史重写。本机服务／原生 CDP 检查按既有环境授权在沙箱外完成；规则模拟与受控浏览器场景没有当作原始真实试玩。
+
+[本轮验收汇总](output/playwright/survival-v152-validation-report.json)记录 21 份通过报告及运行文件 SHA-256；[项目引用与历史保护](output/playwright/survival-v152-project-report.json)核对文档、锚点、HTML、打包清单及历史文件。
+
+## v1.5.2 玩家包与发布状态
+
+玩家 ZIP **58103 字节／11 文件**，SHA-256 `9fbbcd6c562b3cbc783acf6ac7b8e8610dfd8132a1e637144481b86b0c540fe7`。独立解压核对 10 个运行文件与源码一致，并通过解压包 **7 项浏览器检查**。[package](output/playwright/survival-v152-package-report.json)、[preflight](output/playwright/survival-v152-release-preflight-report.json)。游戏验收完成，正在完成正式 GitHub 发布及公开下载复验；发布事实通过后另追加。
+
+---
+
+## v1.5.1 历史验收记录
 
 更新：2026-10-07。发行及新挑战规则 **1.5.1**；旧活动规则 **1.4.0／1.5.0**。本轮仅修改自然分散生成和必要兼容，不扩大项目清理。以下为本轮实际结果，后面的 v1.5.0 记录保留为历史证据。
 
