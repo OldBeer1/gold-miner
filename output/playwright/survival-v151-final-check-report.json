@@ -1,0 +1,29 @@
+{
+  "version": "1.5.1",
+  "rulesVersion": "1.5.1",
+  "result": "passed",
+  "checkedAt": "2026-10-07T06:08:03.381Z",
+  "sourceCommit": "5356f215cb916e69ff187c1f93660c81509015ff",
+  "releaseUrl": "https://github.com/OldBeer1/gold-miner/releases/tag/v1.5.1",
+  "downloadUrl": "https://github.com/OldBeer1/gold-miner/releases/download/v1.5.1/Gold-survival-v1.5.1.zip",
+  "size": 58264,
+  "sha256": "5dfc86dbd5b4928f2a1585fe9fc8bf204833f3006e591aeb3a2009d66c68af74",
+  "runtimeHashes": {
+    "index.html": "44731170f77ef5eaa2e98db55eadc2b2376a6ea16526208ab332b70f2fd54283",
+    "styles.css": "69d1f5453941b10bad8a370ff59431b08dea3dd27c859904f9db3fc5481cf977",
+    "js/config.js": "d09fe2fee6ccd19953375ce9a6f2575aac13beec6e3edb68ee82b03c29a46abb",
+    "js/challenges.js": "48b6c7c2da5fd2e767d631e9c97f75048282de01d429b89d0236613c2d267ff1",
+    "js/growth.js": "d4e9301d5669f5a0739e9da3faae2bf5af2c87681757bea2bb164f25d72a1238",
+    "js/rules.js": "c048b29343982c9cc2b36cabdeeb78782d06af8006927bee9ab8d282f0ebe6e4",
+    "js/game.js": "56736b1a5bfeb2815421d58422c96efc55dd15c9a503170e634aa93a337cd621",
+    "js/storage.js": "c95392c988eadada2f3e675039c85c92aadc14416315bf61a45af65a06b13354",
+    "js/effects.js": "4993c3134ba7865971728d7d8e1df6480d0151c80f0538b835b0685ab5d7aed8",
+    "js/audio.js": "b79f5086bf79f6bed41be1354702f9e5299ac488c8fc77b5d56888ab215b2930"
+  },
+  "checks": [
+    "anonymous public package equals independently verified local player archive",
+    "ten runtime files exactly match raw Git tag blobs and working source",
+    "release is stable latest and tag matches validated source"
+  ],
+  "remainingFunctionalWork": []
+}

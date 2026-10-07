@@ -34,7 +34,7 @@
 
 ## v1.5.1 发布状态
 
-游戏验收与独立玩家包检查已通过；[验收汇总](output/playwright/survival-v151-validation-report.json)记录 16 份报告及运行文件 SHA-256。玩家包 58264 字节／11 文件，SHA-256：`5dfc86dbd5b4928f2a1585fe9fc8bf204833f3006e591aeb3a2009d66c68af74`；[独立解压](output/playwright/survival-v151-package-report.json)、[解压包 7 项浏览器检查](output/playwright/survival-v151-release-preflight-report.json)通过。正式 GitHub 发布、公开下载复验及最终远程核对尚在交付中。v1.5.0 的发布事实保留如下。
+游戏验收与独立玩家包检查已通过；[验收汇总](output/playwright/survival-v151-validation-report.json)记录 16 份报告及运行文件 SHA-256。玩家包 58264 字节／11 文件，SHA-256：`5dfc86dbd5b4928f2a1585fe9fc8bf204833f3006e591aeb3a2009d66c68af74`；[独立解压](output/playwright/survival-v151-package-report.json)、[解压包 7 项浏览器检查](output/playwright/survival-v151-release-preflight-report.json)通过。正式最新稳定 [Release](https://github.com/OldBeer1/gold-miner/releases/tag/v1.5.1) 与 [玩家 ZIP](https://github.com/OldBeer1/gold-miner/releases/download/v1.5.1/Gold-survival-v1.5.1.zip)已发布，标签源码 5356f215cb916e69ff187c1f93660c81509015ff。[匿名公开下载](output/playwright/survival-v151-published-release-report.json)及[最终核验](output/playwright/survival-v151-final-check-report.json)通过：大小／SHA-256／清单一致，10 个运行文件与当前源码及标签原始 Git blob 完全相同。公开字节与通过 7 项浏览器检查的本地包一致；发布阶段没有额外宣称新的完整试玩。最终证据与交接另提交推送 main。v1.5.0 的发布事实保留如下。
 
 ---
 

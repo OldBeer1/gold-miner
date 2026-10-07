@@ -12,7 +12,7 @@
 | 37 | v1.5.1 | [分散生成／路障／备用](GAMEPLAY_IMPROVEMENT_PLAN.md#step-37) | 36 | 已完成 |
 | 38 | v1.5.1 | [三套规则与兼容](GAMEPLAY_IMPROVEMENT_PLAN.md#step-38) | 37 | 已完成 |
 | 39 | v1.5.1 | [综合验收](GAMEPLAY_IMPROVEMENT_PLAN.md#step-39) | 38 | 已完成 |
-| 40 | v1.5.1 | [文档／打包／完整发布](GAMEPLAY_IMPROVEMENT_PLAN.md#step-40) | 39 | 打包／发布中 |
+| 40 | v1.5.1 | [文档／打包／完整发布](GAMEPLAY_IMPROVEMENT_PLAN.md#step-40) | 39 | 已完成（正式发布、公开下载复验） |
 | 30 | v1.5.0 | [测量与定稿](GAMEPLAY_IMPROVEMENT_PLAN.md#step-30) | v1.4.1 | 已完成 |
 | 31 | v1.5.0 | [抓取尺寸、碰撞和布局](GAMEPLAY_IMPROVEMENT_PLAN.md#step-31) | 30 | 已完成 |
 | 32 | v1.5.0 | [成就目录和判定](GAMEPLAY_IMPROVEMENT_PLAN.md#step-32) | 30 | 已完成 |
@@ -60,3 +60,9 @@
 configForVersion 缓存 1.4.0／1.5.0 配置，旧布局生成原样保留；旧活动、预告、报价和后续关卡继续旧身份。storage 新增 v150 原文备份与一次档案升级，主键／结构保持；成长校验允许合法混合规则但旧档不能接受未来身份。新开及 Seed 重开为 1.5.1。
 
 45 规则／1700 地图、660 事件、60 强制备用、180 旧地图／180 旧商店精确比较、快照／成长／碰撞／保存、21 浏览器场景、原生暂停和四关原始计时通过。后期保持既有 35／28 秒中位数门槛；事件降级 0→0。版本证据和环境／方法边界见 VALIDATION。仅同步本轮文档，没有扩展清理或修改旧证据；待完成独立 ZIP、GitHub 发布与公开下载复验。
+
+### 2026-10-07：v1.5.1 完整交付
+
+验收源码 5356f215cb916e69ff187c1f93660c81509015ff 已完整推送 main，正式 v1.5.1 标签固定该提交；[Release](https://github.com/OldBeer1/gold-miner/releases/tag/v1.5.1) 与 [玩家 ZIP](https://github.com/OldBeer1/gold-miner/releases/download/v1.5.1/Gold-survival-v1.5.1.zip) 为最新稳定版。58264 字节／11 文件，SHA-256 5dfc86dbd5b4928f2a1585fe9fc8bf204833f3006e591aeb3a2009d66c68af74。
+
+[公开下载复验](output/playwright/survival-v151-published-release-report.json)和[源码／玩家包最终核验](output/playwright/survival-v151-final-check-report.json)通过；10 个运行文件逐字节对应当前源码、标签 Git blob 和独立解压包。发布证据和本交接另提交推送 main，标签及玩家包保持不变。36～40 无剩余功能工作；旧活动仍用原布局、浏览器／地址隔离及单页面存档边界见现行规格。即时备份只留本地，未访问个人存档，没有扩展清理或改写历史／旧资产。

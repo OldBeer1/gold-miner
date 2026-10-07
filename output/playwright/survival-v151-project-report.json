@@ -3,15 +3,15 @@
   "result": "passed",
   "method": "filesystem reference/anchor/HTML/package and protected-file hash checks; no gameplay claim",
   "checks": [
-    "23 Markdown, 624 local links and 147 anchors valid",
+    "23 Markdown, 629 local links and 148 anchors valid",
     "10 runtime files, HTML references, release/rules version and removed inactive config valid",
     "Player archive whitelist includes all runtime files",
     "12 completed step files archived; 285 historical outputs/ZIPs retain exact SHA-256",
     "76 v150 historical scripts/reports/images retain exact SHA-256"
   ],
   "markdownFiles": 23,
-  "localLinks": 624,
-  "anchors": 147,
+  "localLinks": 629,
+  "anchors": 148,
   "runtimeFiles": [
     "index.html",
     "styles.css",
