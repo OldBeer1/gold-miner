@@ -277,9 +277,10 @@
   }
   function validateDocument(value, version = challenges.version) {
     try {
-      const catalog = version === "1.5.0" ? allDefinitions : historicalDefinitions;
+      const catalog = ["1.5.0", "1.5.1"].includes(version) ? allDefinitions : historicalDefinitions;
       const modern = challenges.supportedVersions.includes(version);
-      const validChallenge = challenge => challenge && (version === "1.5.0" ? challenges.supportedVersions : [version]).includes(challenge.rulesVersion) && challenges.valid(challenge, challenge.rulesVersion);
+      const compatibleRules = challenges.supportedVersions.slice(0, challenges.supportedVersions.indexOf(version) + 1);
+      const validChallenge = challenge => challenge && compatibleRules.includes(challenge.rulesVersion) && challenges.valid(challenge, challenge.rulesVersion);
       if (!object(value) || value.schemaVersion !== 1 || value.rulesVersion !== version || !integer(value.revision)
         || !object(value.settings) || typeof value.settings.soundEnabled !== "boolean") return false;
       const p = value.profile, c = p?.career;
@@ -319,14 +320,14 @@
       if (!Array.isArray(p.recentReports) || p.recentReports.length > reportLimit || new Set(p.recentReports.map(r => r.runId)).size !== p.recentReports.length) return false;
       for (const r of p.recentReports) if (!idValid(r.runId) || !date(r.startedAt) || !date(r.endedAt) || Date.parse(r.endedAt) < Date.parse(r.startedAt)
         || !["failed", "abandoned", ...(modern ? ["completed"] : [])].includes(r.reason)
-        || !(modern ? challenges.modes : ["endless"]).includes(r.mode) || !(modern ? ["1.2.0", "1.4.0", version] : [version, "1.2.0"]).includes(r.rulesetVersion)
+        || !(modern ? challenges.modes : ["endless"]).includes(r.mode) || !(modern ? ["1.2.0", ...compatibleRules] : [version, "1.2.0"]).includes(r.rulesetVersion)
         || !integer(r.runSeed) || r.runSeed > 0xffffffff || !validTotals(r.totals) || !integer(r.bestReachedLevel) || typeof r.statisticsComplete !== "boolean"
         || !Array.isArray(r.newRecords) || !r.newRecords.every(key => ["bestRunIncome", "bestClearedLevel", "bestReachedLevel"].includes(key))
         || !Array.isArray(r.newAchievementIds) || !r.newAchievementIds.every(id => p.achievements[id]?.unlockedAt)
         || r.reason === "failed" && (!object(r.failure) || !integer(r.failure.levelId) || !integer(r.failure.income) || !integer(r.failure.target) || r.failure.income >= r.failure.target)) return false;
       const active = value.activeRun;
       if (active !== null && (!object(active) || !idValid(active.runId) || !date(active.startedAt) || !(modern ? challenges.modes : ["endless"]).includes(active.mode)
-        || !(modern ? ["1.2.0", "1.4.0", version] : [version, "1.2.0"]).includes(active.rulesetVersion) || !integer(active.runSeed) || active.runSeed > 0xffffffff
+        || !(modern ? ["1.2.0", ...compatibleRules] : [version, "1.2.0"]).includes(active.rulesetVersion) || !integer(active.runSeed) || active.runSeed > 0xffffffff
         || !integer(active.committedThroughLevel) || !integer(active.entryCountedForLevel) || !integer(active.bestReachedLevel)
         || !validTotals(active.runTotals) || typeof active.statisticsComplete !== "boolean" || typeof active.importedFromV110 !== "boolean"
         || !object(active.recordsAtStart) || !["bestRunIncome", "bestClearedLevel", "bestReachedLevel"].every(key => integer(active.recordsAtStart[key]))

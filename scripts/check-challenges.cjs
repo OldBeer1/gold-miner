@@ -108,7 +108,7 @@ check("Seed 和每日完整 20 关规则模拟：提交幂等、终结报告、�
     const report = state.doc.profile.recentReports[0]; assert.equal(report.reason, "completed"); assert.equal(report.totals.levelsCleared, 20);
     assert.equal(state.doc.profile.career.bestClearedLevel, 0); assert.ok(Object.values(state.doc.profile.achievements).every(a => a.unlockedAt === null));
     assert.equal(state.doc.profile.modeStats[mode].levelsCleared, 20); assert.ok(state.doc.profile.challengeRecords[challenges.key(challenge)]);
-    assert.match(challenges.share(report), /规则：1.5.0/);
+    assert.match(challenges.share(report), /规则：1.5.1/);
   }
 });
 check("个人最佳比较按关数、有效成绩、时长；日期/Seed/版本键隔离", () => {

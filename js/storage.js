@@ -11,6 +11,7 @@
   const checkpointKey = "gold-miner.survival.checkpoint.v1";
   const progressKey = "gold-miner.survival.progress.v1";
   const v140BackupKey = "gold-miner.survival.progress.backup.v140";
+  const v150BackupKey = "gold-miner.survival.progress.backup.v150";
   const v120BackupKey = "gold-miner.survival.progress.backup.v120";
 
   function validatePreferences(value) {
@@ -51,7 +52,9 @@
   }
 
   function validateCheckpoint(value, config) {
-    if (value?.rulesVersion === "1.4.0" && ruleVersion(config) === "1.5.0") config = rules.configForVersion(config, "1.4.0");
+    if (value?.rulesVersion !== ruleVersion(config) && challenges.supportedVersions.includes(value?.rulesVersion)) {
+      try { config = rules.configForVersion(config, value.rulesVersion); } catch { return null; }
+    }
     const object = data => data && typeof data === "object" && !Array.isArray(data);
     const money = number => Number.isSafeInteger(number) && number >= 0;
     const effectKeys = Object.keys(config.shop).filter(item => item !== "dynamite");
@@ -177,7 +180,7 @@
 
   function adaptV110Checkpoint(value, config) {
     // v1.2 没有改变关卡数值，仍显式按旧版本校验，再复制兼容的入口/交易字段。
-    config = ruleVersion(config) === "1.5.0" ? rules.configForVersion(config, "1.4.0") : config;
+    config = ["1.5.0", "1.5.1"].includes(ruleVersion(config)) ? rules.configForVersion(config, "1.4.0") : config;
     const old = validateCheckpoint(value, { ...config, version: "1.1.0", rulesVersion: "1.1.0" });
     if (!old) return null;
     const source = old.run;
@@ -200,7 +203,7 @@
   }
 
   function adaptV120Progress(value, config) {
-    const compatible = ruleVersion(config) === "1.5.0" ? rules.configForVersion(config, "1.4.0") : config;
+    const compatible = ["1.5.0", "1.5.1"].includes(ruleVersion(config)) ? rules.configForVersion(config, "1.4.0") : config;
     const old = validateProgress(value, { ...compatible, version: "1.2.0", rulesVersion: "1.2.0" });
     if (!old) return null;
     const fresh = growth.createDocument({ soundEnabled: old.settings.soundEnabled, highScore: 0, bestClearedLevel: 0 }, old.profile.statisticsSince);
@@ -231,14 +234,28 @@
     return validateProgress(old, config);
   }
 
+  function adaptV150Progress(value, config) {
+    if (ruleVersion(config) !== "1.5.1") return null;
+    const old = validateProgress(value, rules.configForVersion(config, "1.5.0"));
+    if (!old) return null;
+    old.rulesVersion = ruleVersion(config);
+    return validateProgress(old, config);
+  }
+
+  function upgradedProgress(value, config, now) {
+    if (value.rulesVersion === "1.2.0") return adaptV120Progress(value, config);
+    if (value.rulesVersion === "1.4.0" && ["1.5.0", "1.5.1"].includes(ruleVersion(config))) return adaptV140Progress(value, config, now);
+    if (value.rulesVersion === "1.5.0" && ruleVersion(config) === "1.5.1") return adaptV150Progress(value, config);
+    return null;
+  }
+
   function saveProgress(source, document, config, expectedRevision) {
     try {
       const storage = typeof source === "function" ? source() : source;
       const current = storage.getItem(progressKey);
       const currentDocument = current === null ? null : JSON.parse(current);
       if (currentDocument !== null && !validateProgress(currentDocument, config)
-        && !(currentDocument.rulesVersion === "1.2.0" && adaptV120Progress(currentDocument, config))
-        && !(currentDocument.rulesVersion === "1.4.0" && ruleVersion(config) === "1.5.0" && adaptV140Progress(currentDocument, config))) return { saved: false, conflict: true, message: "磁盘档案损坏或版本不兼容，已保留原数据，请重新载入。" };
+        && !upgradedProgress(currentDocument, config)) return { saved: false, conflict: true, message: "磁盘档案损坏或版本不兼容，已保留原数据，请重新载入。" };
       const revision = currentDocument === null ? null : currentDocument.revision;
       if (revision !== expectedRevision) return { saved: false, conflict: true, message: "其他页面已更新档案，请重新载入。" };
       const candidate = growth.clone(document);
@@ -246,7 +263,8 @@
       const validated = validateProgress(candidate, config);
       if (!validated) return { saved: false, message: "档案校验失败：本次进度仅在当前页面保留。" };
       if (currentDocument?.rulesVersion === "1.2.0" && storage.getItem(v120BackupKey) === null) storage.setItem(v120BackupKey, current);
-      if (currentDocument?.rulesVersion === "1.4.0" && ruleVersion(config) === "1.5.0" && storage.getItem(v140BackupKey) === null) storage.setItem(v140BackupKey, current);
+      if (currentDocument?.rulesVersion === "1.4.0" && ["1.5.0", "1.5.1"].includes(ruleVersion(config)) && storage.getItem(v140BackupKey) === null) storage.setItem(v140BackupKey, current);
+      if (currentDocument?.rulesVersion === "1.5.0" && ruleVersion(config) === "1.5.1" && storage.getItem(v150BackupKey) === null) storage.setItem(v150BackupKey, current);
       storage.setItem(progressKey, JSON.stringify(validated));
       return { saved: true, revision: validated.revision };
     } catch {
@@ -264,7 +282,7 @@
       try {
         if (text.length > 300000) throw new Error("oversized progress");
         const raw = JSON.parse(text);
-        const document = raw.rulesVersion === "1.2.0" && challenges.supportedVersions.includes(ruleVersion(config)) ? adaptV120Progress(raw, config) : raw.rulesVersion === "1.4.0" && ruleVersion(config) === "1.5.0" ? adaptV140Progress(raw, config, now) : validateProgress(raw, config);
+        const document = validateProgress(raw, config) || upgradedProgress(raw, config, now);
         if (!document) throw new Error("invalid progress");
         if (raw.rulesVersion !== ruleVersion(config)) {
           const saved = saveProgress(storage, document, config, raw.revision);
@@ -298,5 +316,5 @@
 
   return Object.freeze({ key, previousKey, legacyKey, checkpointKey, validatePreferences, loadPreferences, savePreferences,
     highScoreAfterRun, validateCheckpoint, loadCheckpoint, saveCheckpoint, clearCheckpoint,
-    progressKey, v120BackupKey, v140BackupKey, adaptV140Progress, validateProgress, adaptV110Checkpoint, adaptV120Progress, saveProgress, loadProgress });
+    progressKey, v120BackupKey, v140BackupKey, v150BackupKey, adaptV140Progress, adaptV150Progress, validateProgress, adaptV110Checkpoint, adaptV120Progress, saveProgress, loadProgress });
 });

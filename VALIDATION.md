@@ -1,4 +1,44 @@
-# 黄金矿工：v1.5.0 验收记录
+# 黄金矿工：v1.5.1 验收记录
+
+更新：2026-10-07。发行及新挑战规则 **1.5.1**；旧活动规则 **1.4.0／1.5.0**。本轮仅修改自然分散生成和必要兼容，不扩大项目清理。以下为本轮实际结果，后面的 v1.5.0 记录保留为历史证据。
+
+## v1.5.1 游戏验收
+
+| 实际检查 | 结果与条件 | 证据 |
+| --- | --- | --- |
+| 正式规则模拟 | 45 项、1700 普通地图，分散跨度／间距／边界／45 秒无道具路线通过；后期稳健路线中位数至少 35 秒，四种有限策略中最快中位数至少 28 秒，原门槛保持 | [rules](output/playwright/survival-v151-rules-report.json) |
+| 快照、成长与挑战 | 快照 6 项、13 成就正反及 13 组成长边界、12 组挑战／660 普通事件地图；Seed 与每日各 20 关正式模拟、备用及降级通过 | [checkpoints](output/playwright/survival-v151-checkpoints-report.json)、[growth](output/playwright/survival-v151-growth-report.json)、[challenges](output/playwright/survival-v151-challenges-report.json) |
+| 分散及保存专项 | 60 个强制备用（普通／五事件、早期至极大关号）通过；660 个新旧同种子事件对比，降级旧 0／新 0；三模式 v150 备份拒绝／重试、跨日、修订、未知及规则隔离通过 | [layouts](output/playwright/survival-v151-layouts-report.json) |
+| 两套旧规则精确比较 | 对已发布 1.4.0／1.5.0 源码，合计 180 地图、180 商店精确一致；三模式旧入口／商店／报告及分享、一次升级与原文备份通过 | [compat](output/playwright/survival-v151-compat-report.json) |
+| 碰撞及历史成果 | 四类目标擦边／边缘外、最近命中、石头／桶、下架历史成果、幂等、拒绝保存和修订保护通过 | [gameplay](output/playwright/survival-v151-gameplay-report.json) |
+| Chrome 分散画面与旧存档控件 | 三视口 × 普通／五事件／备用，共 21 场景，无横向溢出，信息条不遮挡画布；旧 1.4／1.5 商店、下一关和同 Seed 新规则重开通过 | [layouts UI](output/playwright/survival-v151-layouts-ui-report.json) |
+| Chrome 页面和流程 | DOM／日期／焦点／0、10、11、200 记录分页、拒绝保存重试、HTTP 双页面外部修订；五事件／交易／迁移／三种终局／分享／三视口／文件与 HTTP 通过 | [experience](output/playwright/survival-v151-experience-report.json)、[challenges UI](output/playwright/survival-v151-challenges-ui-report.json) |
+| Chrome 成就与音效 | 13 现行／历史称号／目录、三视口缩放输入、文件与 HTTP、七类非零无削波音效通过 | [achievements UI](output/playwright/survival-v151-achievements-ui-report.json)、[smoke](output/playwright/survival-v151-smoke-report.json) |
+| 原生标签 | 真实 Chrome 隐藏 2.2 秒，时间／钩子／动画冻结，音频释放，回来仍暂停且无时间补算，主页日期计时器按可见性取消／重建 | [native pause](output/playwright/survival-v151-native-pause-report.json) |
+
+已实际查看普通、备用、事件与短屏截图，主要目标覆盖左右和不同深度，没有原固定半径圆弧。[普通 720](output/playwright/survival-v151-layout-none-1280x720.png)、[备用 720](output/playwright/survival-v151-layout-fallback-1280x720.png)、[地质不稳定 1080](output/playwright/survival-v151-layout-unstable-1920x1080.png)、[短屏](output/playwright/survival-v151-layout-none-1280x480.png)。720 及 1080 正常视口保持主要控件可用，480 短屏滚动。
+
+### 原始计时与校准依据
+
+原始随机无限 Seed **1438134658**，真实鼠标／空格、未改布局／计时／钱包／携带／结局：四关四店，第五关不出钩自然失败。四关达标约 **13.04／9.01／14.18／17.02 秒**；有效成绩 **6350**，28 次出钩、27 次回收，正式记录 **300000 ms**。自然取得 8 项成就，包含首次回收、金块累计、钻石累计、单关收入等；未将模拟 20 关写成真实赛程试玩。[real run](output/playwright/survival-v151-real-run-report.json)。
+
+初版校准发现少数路线模拟超过 45 秒约一个物理步（0.008 秒），以及浅层高价值补充物让后期捷径中位数低于既有 28 秒门槛。新版验证最后一步截断至 45 秒；额外红宝石、宝箱与古物保留一定深度，其他补充物仍覆盖浅、中、深层。最终普通、事件、备用和后期预算均通过，没有降低检查门槛或改变收益、计时、速度、概率和价格。实际参数只在 GAME_SPEC 维护。
+
+### 本轮备份与边界
+
+即时备份：`output/backups/pre-cleanup-20261007-134041-1e9dca02/project-before-cleanup.zip`，**67204909 字节**，407 项目文件／410 解压文件、6 旧玩家包；SHA-256 `ee7054ce432f8571ae1dbf5aaecfed7ba793b2fad47c0303dbb7898df5c1109f`。复制、源文件不变、Git bundle 与独立解压精确清单通过。[backup](output/playwright/survival-v151-backup-report.json)。恢复到新目录，按清单核验，再从 bundle 克隆并对比 project/，不盲目覆盖现有工作。
+
+测试全部使用隔离档案；个人浏览器存档未访问。旧挑战仍可能呈扇形，新开挑战才使用分散地图；旧内容与赛题身份保留。文件直开／HTTP 地址隔离、设备日期、单活动页面和保存权限仍为既有边界。未新增手机专项适配、FPS 基准或人工长期难度结论。
+
+浏览器文件场景正常；首次沙箱内 HTTP 与原生 CDP 连接受环境限制，在授权范围内使用沙箱外本机检查后全部通过。没有把环境连接失败当作产品通过证据。25 个 JavaScript 文件、4 个 PowerShell 脚本解析及 Git 差异格式检查通过。
+
+## v1.5.1 发布状态
+
+游戏验收与独立玩家包检查已通过；[验收汇总](output/playwright/survival-v151-validation-report.json)记录 16 份报告及运行文件 SHA-256。玩家包 58264 字节／11 文件，SHA-256：`5dfc86dbd5b4928f2a1585fe9fc8bf204833f3006e591aeb3a2009d66c68af74`；[独立解压](output/playwright/survival-v151-package-report.json)、[解压包 7 项浏览器检查](output/playwright/survival-v151-release-preflight-report.json)通过。正式 GitHub 发布、公开下载复验及最终远程核对尚在交付中。v1.5.0 的发布事实保留如下。
+
+---
+
+# 黄金矿工：v1.5.0 历史验收记录
 
 更新：2026-10-07。发行与新规则 **1.5.0**；旧活动使用 **1.4.0**。Windows、真实 Chrome 与已有 Playwright，无新增运行依赖。下表记录实际执行结果；历史 v1.1～v1.4.1 验收从 [历史索引](docs/HISTORY.md) 查阅。
 

@@ -2,8 +2,8 @@
   "use strict";
 
   const config = {
-    version: "1.5.0",
-    rulesVersion: "1.5.0",
+    version: "1.5.1",
+    rulesVersion: "1.5.1",
     canvas: { width: 960, height: 640 },
     mine: { x: 24, y: 160, width: 912, height: 456 },
     miner: { anchor: { x: 480, y: 112 } },
@@ -47,6 +47,8 @@
       warmupPriceGrowth: .14, stagePriceGrowth: .22,
       routeAngles: [-60, -45, -30, -15, 0, 15, 30, 45, 60],
       obstacleIndices: [3, 5, 1, 7, 4],
+      scatter: { minimumWidth: 560, minimumHeight: 260, minimumDistanceRange: 220,
+        obstacleFraction: .62, valuableExtraMinimumY: 400, fallbackTemplates: 64 },
       maxTimeBonus: 20, shopSlots: 4, maxPurchases: 4,
       newTypes: ["ruby", "mysteryBag", "treasureChest", "cursedRelic", "powderKeg"],
       bagRewards: [

@@ -1,0 +1,563 @@
+{
+  "version": "1.5.1",
+  "result": "passed",
+  "method": "formal deterministic generation, route verification and controlled save fixtures; not browser or real-time gameplay",
+  "checks": [
+    "普通与全部事件、所有档位和极大关号：强制错落备用模板可解且不回退圆弧",
+    "660 个同种子/关号/请求事件对比：记录旧版及新版事件降级，分散条件始终满足",
+    "v1.5.0 三模式档案备份失败/重试/已有备份、外部修订、跨日和历史成果保留",
+    "三套规则最佳键隔离、旧档不能接受未来规则；同模式新版生成和奖励确定"
+  ],
+  "minima": {
+    "width": 561.2902522319928,
+    "height": 261.8596110213548,
+    "distanceRange": 307.45555769292326
+  },
+  "comparisonMaps": 660,
+  "downgrade": {
+    "previous": 0,
+    "current": 0
+  },
+  "fallbackCases": [
+    {
+      "level": 1,
+      "event": "none",
+      "seconds": 9.191666666666785,
+      "width": 700.4163194214925,
+      "height": 325.5239980586339,
+      "distanceRange": 397.2715474266097,
+      "geometrySha256": "6ec584c5724a8fe750a3a1a7073b706bc87af787309db5dab942ab79386d8d67"
+    },
+    {
+      "level": 1,
+      "event": "goldRush",
+      "seconds": 9.191666666666785,
+      "width": 700.4163194214925,
+      "height": 325.5239980586339,
+      "distanceRange": 397.2715474266097,
+      "geometrySha256": "cabb5b437a6b193cb90f20caf2c4f84fc69206d5be7f012658daa7b3e0a2a90a"
+    },
+    {
+      "level": 1,
+      "event": "diamondVein",
+      "seconds": 6.416666666666774,
+      "width": 700.4163194214925,
+      "height": 325.5239980586339,
+      "distanceRange": 397.2715474266097,
+      "geometrySha256": "4d94544018c42c79f71cf3f794211ceec628d07d790dc74ddaacf1c6bbffdbc3"
+    },
+    {
+      "level": 1,
+      "event": "unstable",
+      "seconds": 9.191666666666785,
+      "width": 700.4163194214925,
+      "height": 325.5239980586339,
+      "distanceRange": 397.2715474266097,
+      "geometrySha256": "5ec051d0abc5a6e1df3ce36027cd9866b153953eaefa1104ebfa432efa32bd74"
+    },
+    {
+      "level": 1,
+      "event": "blackMarket",
+      "seconds": 9.191666666666785,
+      "width": 700.4163194214925,
+      "height": 325.5239980586339,
+      "distanceRange": 397.2715474266097,
+      "geometrySha256": "6ec584c5724a8fe750a3a1a7073b706bc87af787309db5dab942ab79386d8d67"
+    },
+    {
+      "level": 1,
+      "event": "sparse",
+      "seconds": 9.191666666666785,
+      "width": 700.4163194214925,
+      "height": 325.5239980586339,
+      "distanceRange": 397.2715474266097,
+      "geometrySha256": "cdd6da8cfe5bc306e4be1aa01ddcc315cacbdf3b0bdfc2cc1a00d46f2fcc5edc"
+    },
+    {
+      "level": 4,
+      "event": "none",
+      "seconds": 18.99166666666623,
+      "width": 700.4163194214925,
+      "height": 325.5239980586339,
+      "distanceRange": 396.11261207566974,
+      "geometrySha256": "9650235ef5592bb3737e0481e80a6d0eddd75447f55e7bcffe7184227f5fbe4c"
+    },
+    {
+      "level": 4,
+      "event": "goldRush",
+      "seconds": 18.99166666666623,
+      "width": 700.4163194214925,
+      "height": 325.5239980586339,
+      "distanceRange": 396.11261207566974,
+      "geometrySha256": "5767d0031950c1ddea3aeb62dc7c8a4b6262bd554b68fb5ea50448aa1fd7cdfd"
+    },
+    {
+      "level": 4,
+      "event": "diamondVein",
+      "seconds": 18.499999999999595,
+      "width": 700.4163194214925,
+      "height": 325.5239980586339,
+      "distanceRange": 396.11261207566974,
+      "geometrySha256": "b4f9717ad8a6a74ec84a31cf983c75dc13ec580aebdb651aa1e8db1a5a7a1a99"
+    },
+    {
+      "level": 4,
+      "event": "unstable",
+      "seconds": 18.99166666666623,
+      "width": 700.4163194214925,
+      "height": 325.5239980586339,
+      "distanceRange": 396.11261207566974,
+      "geometrySha256": "0db7958acd2a2d6575c4ae99a966742796a9789bf79050bad8e27a597cba6739"
+    },
+    {
+      "level": 4,
+      "event": "blackMarket",
+      "seconds": 18.99166666666623,
+      "width": 700.4163194214925,
+      "height": 325.5239980586339,
+      "distanceRange": 396.11261207566974,
+      "geometrySha256": "9650235ef5592bb3737e0481e80a6d0eddd75447f55e7bcffe7184227f5fbe4c"
+    },
+    {
+      "level": 4,
+      "event": "sparse",
+      "seconds": 18.99166666666623,
+      "width": 700.4163194214925,
+      "height": 325.5239980586339,
+      "distanceRange": 396.11261207566974,
+      "geometrySha256": "2c4d4237079270d6d157be88801216677bc658d572111fd1173a294ad6de97de"
+    },
+    {
+      "level": 5,
+      "event": "none",
+      "seconds": 24.991666666665893,
+      "width": 700.4163194214925,
+      "height": 325.5239980586339,
+      "distanceRange": 395.7275182856007,
+      "geometrySha256": "4bd63ed666ba505110b3555c0673bda5c7dbf31e562e8ebcec50525dd3b4befb"
+    },
+    {
+      "level": 5,
+      "event": "goldRush",
+      "seconds": 24.991666666665893,
+      "width": 700.4163194214925,
+      "height": 325.5239980586339,
+      "distanceRange": 395.7275182856007,
+      "geometrySha256": "8b74e90221cf018cce3ef48df582b96032c609264f5693b679dd3e902681c50c"
+    },
+    {
+      "level": 5,
+      "event": "diamondVein",
+      "seconds": 18.574999999999587,
+      "width": 700.4163194214925,
+      "height": 325.5239980586339,
+      "distanceRange": 395.7275182856007,
+      "geometrySha256": "daf77337695cfb98e741e0630e75c95c32cc19fda1cf4facc994d9e17ea0c1fb"
+    },
+    {
+      "level": 5,
+      "event": "unstable",
+      "seconds": 24.991666666665893,
+      "width": 700.4163194214925,
+      "height": 325.5239980586339,
+      "distanceRange": 395.7275182856007,
+      "geometrySha256": "84f16c581d2e32c4f1f151dc3e59927ce3b53fb35ff1b0cfa7957b972f9744d3"
+    },
+    {
+      "level": 5,
+      "event": "blackMarket",
+      "seconds": 24.991666666665893,
+      "width": 700.4163194214925,
+      "height": 325.5239980586339,
+      "distanceRange": 395.7275182856007,
+      "geometrySha256": "4bd63ed666ba505110b3555c0673bda5c7dbf31e562e8ebcec50525dd3b4befb"
+    },
+    {
+      "level": 5,
+      "event": "sparse",
+      "seconds": 24.991666666665893,
+      "width": 700.4163194214925,
+      "height": 325.5239980586339,
+      "distanceRange": 395.7275182856007,
+      "geometrySha256": "85ae58fc75cf04c7446b3f8bc0ea0fee48deb715ab1c9681f072ed041c8e2c48"
+    },
+    {
+      "level": 10,
+      "event": "none",
+      "seconds": 41.841666666664935,
+      "width": 700.4163194214925,
+      "height": 325.5239980586339,
+      "distanceRange": 393.81412145466635,
+      "geometrySha256": "32ecd0fe125ddc7b772e6099d423006a4cdc02ac653b663bfcdf0d7e15bda975"
+    },
+    {
+      "level": 10,
+      "event": "goldRush",
+      "seconds": 41.841666666664935,
+      "width": 700.4163194214925,
+      "height": 325.5239980586339,
+      "distanceRange": 393.81412145466635,
+      "geometrySha256": "f0da7f902e4afc77ffeea8f696cc98e3f0c2bfab8eb09daf012b4f75cc6baaa6"
+    },
+    {
+      "level": 10,
+      "event": "diamondVein",
+      "seconds": 41.51666666666495,
+      "width": 700.4163194214925,
+      "height": 325.5239980586339,
+      "distanceRange": 393.81412145466635,
+      "geometrySha256": "77f4c0d895f27b9b8ff7f5860a745dd4c81990cba7e4ed438dd2678faabff77c"
+    },
+    {
+      "level": 10,
+      "event": "unstable",
+      "seconds": 41.841666666664935,
+      "width": 700.4163194214925,
+      "height": 325.5239980586339,
+      "distanceRange": 393.81412145466635,
+      "geometrySha256": "982fe3cf55db29ec29858413b0af0709bd5a35e8a915650eb1d4b71678a87887"
+    },
+    {
+      "level": 10,
+      "event": "blackMarket",
+      "seconds": 41.841666666664935,
+      "width": 700.4163194214925,
+      "height": 325.5239980586339,
+      "distanceRange": 393.81412145466635,
+      "geometrySha256": "32ecd0fe125ddc7b772e6099d423006a4cdc02ac653b663bfcdf0d7e15bda975"
+    },
+    {
+      "level": 10,
+      "event": "sparse",
+      "seconds": 41.841666666664935,
+      "width": 700.4163194214925,
+      "height": 325.5239980586339,
+      "distanceRange": 393.81412145466635,
+      "geometrySha256": "a855efab387f08edac0460873652beb106e8437682001ad792a35b0d3891670b"
+    },
+    {
+      "level": 20,
+      "event": "none",
+      "seconds": 42.09166666666492,
+      "width": 700.4163194214925,
+      "height": 325.5239980586339,
+      "distanceRange": 393.6240540648787,
+      "geometrySha256": "964142fe0b5b28d602b177ea9f2ae9ab725469a121406bc0ea0eedb0daa58c53"
+    },
+    {
+      "level": 20,
+      "event": "goldRush",
+      "seconds": 42.09166666666492,
+      "width": 700.4163194214925,
+      "height": 325.5239980586339,
+      "distanceRange": 393.6240540648787,
+      "geometrySha256": "9fbbde87fc3f25e968363a7e68dacfece43b9852594dbddcd190a48d68e23b39"
+    },
+    {
+      "level": 20,
+      "event": "diamondVein",
+      "seconds": 41.583333333331616,
+      "width": 700.4163194214925,
+      "height": 325.5239980586339,
+      "distanceRange": 393.6240540648787,
+      "geometrySha256": "dd1abd8054f3d80c16cdcc4eabe40075a1708003459d1385a6a6c1a1496f9d78"
+    },
+    {
+      "level": 20,
+      "event": "unstable",
+      "seconds": 42.09166666666492,
+      "width": 700.4163194214925,
+      "height": 325.5239980586339,
+      "distanceRange": 393.6240540648787,
+      "geometrySha256": "576875efbdc93ecd2c5a7ef569d37ebf31fb92c138cc1a998eaf4d57165e9a66"
+    },
+    {
+      "level": 20,
+      "event": "blackMarket",
+      "seconds": 42.09166666666492,
+      "width": 700.4163194214925,
+      "height": 325.5239980586339,
+      "distanceRange": 393.6240540648787,
+      "geometrySha256": "964142fe0b5b28d602b177ea9f2ae9ab725469a121406bc0ea0eedb0daa58c53"
+    },
+    {
+      "level": 20,
+      "event": "sparse",
+      "seconds": 42.09166666666492,
+      "width": 700.4163194214925,
+      "height": 325.5239980586339,
+      "distanceRange": 393.6240540648787,
+      "geometrySha256": "b088842d97cbe00bb555fceb0f3c5f95df98df35c17465ba8376ca505e014c1d"
+    },
+    {
+      "level": 30,
+      "event": "none",
+      "seconds": 43.56666666666484,
+      "width": 587.0687021454796,
+      "height": 300.4099221818615,
+      "distanceRange": 329.20213187745566,
+      "geometrySha256": "abb1073d8587fb62ea06e3a5c7afc43ae12c77b7228f7aaed0d59765074b772d"
+    },
+    {
+      "level": 30,
+      "event": "goldRush",
+      "seconds": 43.56666666666484,
+      "width": 587.0687021454796,
+      "height": 300.4099221818615,
+      "distanceRange": 329.20213187745566,
+      "geometrySha256": "9c85d05027e07f05a4f12a0c7412dbc30814ed35751304c63d3eccbfa214a85e"
+    },
+    {
+      "level": 30,
+      "event": "diamondVein",
+      "seconds": 42.94166666666489,
+      "width": 587.0687021454796,
+      "height": 300.4099221818615,
+      "distanceRange": 329.20213187745566,
+      "geometrySha256": "15f5ab1e2021a80f4a4d1025589013856584666724aeaf6b95687f25ef975a52"
+    },
+    {
+      "level": 30,
+      "event": "unstable",
+      "seconds": 43.56666666666484,
+      "width": 587.0687021454796,
+      "height": 300.4099221818615,
+      "distanceRange": 329.20213187745566,
+      "geometrySha256": "774ed9ca3b29a61d02ad08fd8da3b084ce25d9a01df382cd26939ab9f624bce4"
+    },
+    {
+      "level": 30,
+      "event": "blackMarket",
+      "seconds": 43.56666666666484,
+      "width": 587.0687021454796,
+      "height": 300.4099221818615,
+      "distanceRange": 329.20213187745566,
+      "geometrySha256": "abb1073d8587fb62ea06e3a5c7afc43ae12c77b7228f7aaed0d59765074b772d"
+    },
+    {
+      "level": 30,
+      "event": "sparse",
+      "seconds": 43.849999999998154,
+      "width": 711.2027721805498,
+      "height": 294.2222388694063,
+      "distanceRange": 412.0836734392452,
+      "geometrySha256": "355d7855dc56b987a5724d644c60184441228eff2b4cc8809985c41682e2e7bb"
+    },
+    {
+      "level": 40,
+      "event": "none",
+      "seconds": 43.60833333333151,
+      "width": 587.0687021454796,
+      "height": 300.4099221818615,
+      "distanceRange": 329.19945822386654,
+      "geometrySha256": "1625b3da75f53745a81013d667e155a4b0a85396e172ca825ca4dd5aa18251ac"
+    },
+    {
+      "level": 40,
+      "event": "goldRush",
+      "seconds": 43.60833333333151,
+      "width": 587.0687021454796,
+      "height": 300.4099221818615,
+      "distanceRange": 329.19945822386654,
+      "geometrySha256": "c78fad2d276bfc827dc97249fc92910dd738933620f5729bbe064175742f5f65"
+    },
+    {
+      "level": 40,
+      "event": "diamondVein",
+      "seconds": 43.01666666666487,
+      "width": 587.0687021454796,
+      "height": 300.4099221818615,
+      "distanceRange": 329.19945822386654,
+      "geometrySha256": "795110660b2d0cacb7df65eb973eb29426189c7a29f67ff198707ca10c104d2e"
+    },
+    {
+      "level": 40,
+      "event": "unstable",
+      "seconds": 43.60833333333151,
+      "width": 587.0687021454796,
+      "height": 300.4099221818615,
+      "distanceRange": 329.19945822386654,
+      "geometrySha256": "0b09fb2cf7aff9988e1bdfd9eda9064cd037df392eb41f5a37f1b0d0860d1d3c"
+    },
+    {
+      "level": 40,
+      "event": "blackMarket",
+      "seconds": 43.60833333333151,
+      "width": 587.0687021454796,
+      "height": 300.4099221818615,
+      "distanceRange": 329.19945822386654,
+      "geometrySha256": "1625b3da75f53745a81013d667e155a4b0a85396e172ca825ca4dd5aa18251ac"
+    },
+    {
+      "level": 40,
+      "event": "sparse",
+      "seconds": 44.10833333333147,
+      "width": 711.2027721805498,
+      "height": 294.2222388694063,
+      "distanceRange": 412.01065685409634,
+      "geometrySha256": "150461146d0903d14e6169dad7f5b70898d44eca4fb90cbad8a770bb5847cd1e"
+    },
+    {
+      "level": 100,
+      "event": "none",
+      "seconds": 43.69166666666483,
+      "width": 587.0687021454796,
+      "height": 300.4099221818615,
+      "distanceRange": 329.1924506552107,
+      "geometrySha256": "27f2581006cd76d1d43cf28f4ba032cda614576117b5f1927aaa179d7afcbfde"
+    },
+    {
+      "level": 100,
+      "event": "goldRush",
+      "seconds": 43.69166666666483,
+      "width": 587.0687021454796,
+      "height": 300.4099221818615,
+      "distanceRange": 329.1924506552107,
+      "geometrySha256": "01d1f603106a39ab896f3811e95886776f088cc62386141622180adffbcd506f"
+    },
+    {
+      "level": 100,
+      "event": "diamondVein",
+      "seconds": 43.0249999999982,
+      "width": 587.0687021454796,
+      "height": 300.4099221818615,
+      "distanceRange": 329.1924506552107,
+      "geometrySha256": "8b6305052a5090b89e5e7f197cb5c7faa363ac0d3affe12531ca895ddf22f1ce"
+    },
+    {
+      "level": 100,
+      "event": "unstable",
+      "seconds": 43.69166666666483,
+      "width": 587.0687021454796,
+      "height": 300.4099221818615,
+      "distanceRange": 329.1924506552107,
+      "geometrySha256": "17bef3f00591f93d1c583d9e4ae1793d59d5137b5db222b51763f8a07b9f3f30"
+    },
+    {
+      "level": 100,
+      "event": "blackMarket",
+      "seconds": 43.69166666666483,
+      "width": 587.0687021454796,
+      "height": 300.4099221818615,
+      "distanceRange": 329.1924506552107,
+      "geometrySha256": "27f2581006cd76d1d43cf28f4ba032cda614576117b5f1927aaa179d7afcbfde"
+    },
+    {
+      "level": 100,
+      "event": "sparse",
+      "seconds": 44.1916666666648,
+      "width": 711.2027721805498,
+      "height": 294.2222388694063,
+      "distanceRange": 411.82833878242116,
+      "geometrySha256": "8fee4fcef841c61b1da82ca4f4f105b8967598039ab05acc3e982f6ea0084d2b"
+    },
+    {
+      "level": 1000,
+      "event": "none",
+      "seconds": 43.79999999999816,
+      "width": 587.0687021454796,
+      "height": 300.4099221818615,
+      "distanceRange": 329.185889751747,
+      "geometrySha256": "49f126f17d0757434a7dc8a9f41c96259e220ddc33e95bd3f61956ead8d4f9db"
+    },
+    {
+      "level": 1000,
+      "event": "goldRush",
+      "seconds": 43.79999999999816,
+      "width": 587.0687021454796,
+      "height": 300.4099221818615,
+      "distanceRange": 329.185889751747,
+      "geometrySha256": "f40273d2656d7b7e97935e9b245bb30a054263624e8dfe145b272d535460ca8a"
+    },
+    {
+      "level": 1000,
+      "event": "diamondVein",
+      "seconds": 43.108333333331544,
+      "width": 587.0687021454796,
+      "height": 300.4099221818615,
+      "distanceRange": 329.185889751747,
+      "geometrySha256": "16d3673fa5252eb9842d120e2641d8242cd8f082508b437cb21538dd5d157fca"
+    },
+    {
+      "level": 1000,
+      "event": "unstable",
+      "seconds": 43.79999999999816,
+      "width": 587.0687021454796,
+      "height": 300.4099221818615,
+      "distanceRange": 329.185889751747,
+      "geometrySha256": "c14339076dd93731439978f5b9a4463a86d03781c5e6bdd6db224f8e7fab304f"
+    },
+    {
+      "level": 1000,
+      "event": "blackMarket",
+      "seconds": 43.79999999999816,
+      "width": 587.0687021454796,
+      "height": 300.4099221818615,
+      "distanceRange": 329.185889751747,
+      "geometrySha256": "49f126f17d0757434a7dc8a9f41c96259e220ddc33e95bd3f61956ead8d4f9db"
+    },
+    {
+      "level": 1000,
+      "event": "sparse",
+      "seconds": 44.04166666666481,
+      "width": 711.2027721805498,
+      "height": 294.2222388694063,
+      "distanceRange": 411.66773679425626,
+      "geometrySha256": "6b8cae53e18d743106eb728916514da932448f420f1de4d68c42f73f5bce8fb2"
+    },
+    {
+      "level": 9007199254740991,
+      "event": "none",
+      "seconds": 43.81666666666483,
+      "width": 587.0687021454796,
+      "height": 300.4099221818615,
+      "distanceRange": 329.1849885720802,
+      "geometrySha256": "0cde31e37abdf14898fced6733e7956cdba2d24ee6df0878680b8e4fb7fad43e"
+    },
+    {
+      "level": 9007199254740991,
+      "event": "goldRush",
+      "seconds": 43.81666666666483,
+      "width": 587.0687021454796,
+      "height": 300.4099221818615,
+      "distanceRange": 329.1849885720802,
+      "geometrySha256": "5c19652467808aa809c6a764a524f6ae90d0c917cde263ce612f907e62eb2eac"
+    },
+    {
+      "level": 9007199254740991,
+      "event": "diamondVein",
+      "seconds": 43.11666666666487,
+      "width": 587.0687021454796,
+      "height": 300.4099221818615,
+      "distanceRange": 329.1849885720802,
+      "geometrySha256": "1ecd0480476f2200d86daa35afe96e09cd6407e2c52a9c52e9be802773d65bf6"
+    },
+    {
+      "level": 9007199254740991,
+      "event": "unstable",
+      "seconds": 43.81666666666483,
+      "width": 587.0687021454796,
+      "height": 300.4099221818615,
+      "distanceRange": 329.1849885720802,
+      "geometrySha256": "91f9679afce101d709b477ac979352bfacc8c4c5bcf0102cca66d88d4280074b"
+    },
+    {
+      "level": 9007199254740991,
+      "event": "blackMarket",
+      "seconds": 43.81666666666483,
+      "width": 587.0687021454796,
+      "height": 300.4099221818615,
+      "distanceRange": 329.1849885720802,
+      "geometrySha256": "0cde31e37abdf14898fced6733e7956cdba2d24ee6df0878680b8e4fb7fad43e"
+    },
+    {
+      "level": 9007199254740991,
+      "event": "sparse",
+      "seconds": 43.81666666666483,
+      "width": 587.0687021454796,
+      "height": 300.4099221818615,
+      "distanceRange": 329.1849885720802,
+      "geometrySha256": "15c127f6540ad025c392022e63eb0786676f7a09b84f9f5afcaf554e1ed2ff38"
+    }
+  ]
+}

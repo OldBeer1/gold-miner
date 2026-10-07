@@ -1,0 +1,20 @@
+{
+  "result": "passed",
+  "checkedAt": "2026-10-07T05:40:54.8325808Z",
+  "sourceCommit": "33630221e19475455898300bd2ee6c2f731be604",
+  "backupDirectory": "D:\\CoDeXs\\Gold\\output\\backups\\pre-cleanup-20261007-134041-1e9dca02",
+  "archive": "D:\\CoDeXs\\Gold\\output\\backups\\pre-cleanup-20261007-134041-1e9dca02\\project-before-cleanup.zip",
+  "bytes": 67204909,
+  "sha256": "ee7054ce432f8571ae1dbf5aaecfed7ba793b2fad47c0303dbb7898df5c1109f",
+  "projectFiles": 407,
+  "archiveFiles": 410,
+  "playerArchives": 6,
+  "historyBundleVerified": true,
+  "uncommittedWorkIncluded": true,
+  "checks": [
+    "source files copied with matching hashes",
+    "Git history bundle verified",
+    "independent extraction exactly matches manifest",
+    "source files unchanged during backup"
+  ]
+}

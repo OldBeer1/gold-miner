@@ -1,0 +1,43 @@
+{
+  "version": "1.5.1",
+  "rulesVersion": "1.5.1",
+  "method": "real Chrome controls, DOM MutationObserver and controlled clock; committed baseline source and explicit valid records; no FPS benchmark claim",
+  "checks": [
+    "v1.4.0 原文备份与单次档案升级，模式/Seed 初始化，继续不重复成果且保留用户选择与返回焦点",
+    "同一受控 5 秒：隐藏主页和固定信息/按钮无重复 DOM 写入，采矿帧循环和计时保留",
+    "主页 UTC+8 午夜自动换日、时钟回退、说明单文字节点，无采矿循环或时间推进",
+    "0/10/11/200 记录筛选与分页边界，只更新记录区域，浏览不写档案",
+    "拒绝保存的失败说明准确、原文保留；恢复写入并重试保存完整内存报告",
+    "三视口活动存档主页、矿层条与画布不重叠，资料焦点循环与暂停隔离",
+    "HTTP 两页面真实 storage 修订事件冻结旧页面，重载恢复最新档案"
+  ],
+  "errors": [],
+  "mutations": {
+    "v140": {
+      "frames": 312,
+      "elapsedSeconds": 4.990000000000004,
+      "changes": {
+        "#home-screen": 2496,
+        "#hud-target": 312,
+        "#hud-wallet": 312,
+        "#pause-button": 312,
+        "#dynamite-button": 312,
+        "#sound-button": 624
+      }
+    },
+    "v151": {
+      "frames": 312,
+      "elapsedSeconds": 4.990000000000004,
+      "changes": {
+        "#home-screen": 0,
+        "#hud-target": 0,
+        "#hud-wallet": 0,
+        "#pause-button": 0,
+        "#dynamite-button": 0,
+        "#sound-button": 0
+      }
+    }
+  },
+  "browser": "154.0.8037.98",
+  "result": "passed"
+}

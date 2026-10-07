@@ -63,4 +63,4 @@ check("旧/新个人最佳同时保留且键隔离，混合版本报告和商店
   assert.match(challenges.share(p.recentReports[0]),/规则：1\.4\.0/);
   const wrong=growth.clone(loaded);wrong.profile.recentReports[0].challenge.rulesVersion="1.5.0";assert.equal(storage.validateProgress(wrong,config),null);
 });
-fs.writeFileSync("output/playwright/survival-v150-gameplay-report.json",JSON.stringify({version:config.version,rulesVersion:config.rulesVersion,method:"formal collision tests and controlled committed-baseline save fixtures; not real-time play",checks,result:"passed"},null,2)+"\n");
+fs.writeFileSync("output/playwright/survival-v151-gameplay-report.json",JSON.stringify({version:config.version,rulesVersion:config.rulesVersion,method:"formal collision tests and controlled committed-baseline save fixtures; not real-time play",checks,result:"passed"},null,2)+"\n");

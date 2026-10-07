@@ -35,6 +35,11 @@ check("1700 份布局均可见、可达、无重叠并在 45 秒内无道具达�
       assert.equal(new Set(level.layout.map(m => m.id)).size, level.layout.length);
       assert.ok(Object.isFrozen(level) && Object.isFrozen(level.layout));
       const bases = level.layout.filter(m => m.safeRoute);
+      const xs = bases.map(m => m.x), ys = bases.map(m => m.y), distances = bases.map(m => Math.hypot(m.x - 480, m.y - 112));
+      assert.equal(bases.length, 9);
+      assert.ok(Math.max(...xs) - Math.min(...xs) >= config.survival.scatter.minimumWidth);
+      assert.ok(Math.max(...ys) - Math.min(...ys) >= config.survival.scatter.minimumHeight);
+      assert.ok(Math.max(...distances) - Math.min(...distances) >= config.survival.scatter.minimumDistanceRange);
       for (const mineral of level.layout) {
         assert.ok(rules.validPlacement(mineral, level.layout.filter(m => m !== mineral), config));
         if (!mineral.safeRoute && !mineral.routeObstacle) assert.ok(rules.protectsRoute(mineral, bases, config));
@@ -55,7 +60,7 @@ check("1700 份布局均可见、可达、无重叠并在 45 秒内无道具达�
     }
     const stats = numbers => { const sorted = [...numbers].sort((a,b) => a-b); return { minimum: sorted[0], median: sorted[50], maximum: sorted[99] }; };
     generations.push({ levelId, seeds: 100, maximumSeconds, fallbackCount, steady: stats(steadySeconds), fastestFound: stats(fastestFound), strategySuccesses });
-    if (levelId >= 10) { assert.ok(stats(steadySeconds).median >= 35); assert.ok(stats(fastestFound).median >= 28); }
+    if (levelId >= 10) { assert.ok(stats(steadySeconds).median >= 35, `level ${levelId}: steady median ${stats(steadySeconds).median}`); assert.ok(stats(fastestFound).median >= 28, `level ${levelId}: fastest median ${stats(fastestFound).median}`); }
   }
 });
 check("不同种子生成不同布局，强制失败使用有效备用布局", () => {

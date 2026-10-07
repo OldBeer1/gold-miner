@@ -9,13 +9,17 @@
   const legacyConfigs = new WeakMap();
   function configForVersion(config, version) {
     if (version === ruleVersion(config)) return config;
-    if (version !== "1.4.0" || ruleVersion(config) !== "1.5.0") throw new Error("不支持的玩法规则");
-    if (!legacyConfigs.has(config)) {
+    if (!["1.4.0", "1.5.0"].includes(version) || !["1.5.0", "1.5.1"].includes(ruleVersion(config))) throw new Error("不支持的玩法规则");
+    if (!legacyConfigs.has(config)) legacyConfigs.set(config, new Map());
+    const versions = legacyConfigs.get(config);
+    if (!versions.has(version)) {
       const minerals = { ...config.minerals };
-      for (const [type, size] of Object.entries(config.legacyMineralSizes)) minerals[type] = Object.freeze({ ...minerals[type], ...size });
-      legacyConfigs.set(config, Object.freeze({ ...config, rulesVersion: version, minerals: Object.freeze(minerals) }));
+      if (version === "1.4.0") for (const [type, size] of Object.entries(config.legacyMineralSizes)) minerals[type] = Object.freeze({ ...minerals[type], ...size });
+      const survival = { ...config.survival };
+      delete survival.scatter;
+      versions.set(version, Object.freeze({ ...config, rulesVersion: version, survival: Object.freeze(survival), minerals: Object.freeze(minerals) }));
     }
-    return legacyConfigs.get(config);
+    return versions.get(version);
   }
 
   function seededRandom(seed, levelId, purpose) {
@@ -90,7 +94,8 @@
     return Object.freeze(level);
   }
 
-  function makeLayout(config, parameters, random, fallback) {
+  // 旧赛题的随机调用次序和几何原样保留，恢复后续关卡也走这一分支。
+  function makeLegacyLayout(config, parameters, random, fallback) {
     const types = ["largeGold", "diamond", "smallGold", "diamond", "largeGold", "diamond", "smallGold", "diamond", "largeGold"];
     if (parameters.event?.id === "diamondVein") { types[2] = "diamond"; types[6] = "diamond"; }
     const offset = fallback ? 0 : random() * 6 - 3;
@@ -141,11 +146,70 @@
     return layout;
   }
 
+  function makeScatterLayout(config, parameters, random, fallback) {
+    const types = ["largeGold", "diamond", "smallGold", "diamond", "largeGold", "diamond", "smallGold", "diamond", "largeGold"];
+    if (parameters.event.id === "diamondVein") { types[2] = "diamond"; types[6] = "diamond"; }
+    const cells = Array.from({ length: 9 }, (_, index) => index);
+    for (let i = cells.length - 1; i > 0; i--) {
+      const j = Math.floor(random() * (i + 1));
+      [cells[i], cells[j]] = [cells[j], cells[i]];
+    }
+    const shift = Math.min(22, parameters.difficulty * 2 + parameters.pressure * 4);
+    const layout = types.map((type, index) => {
+      const cell = cells[index], column = cell % 3, row = Math.floor(cell / 3);
+      return { id: `l${parameters.id}-safe${index}`, type,
+        x: 95 + column * 290 + random() * 180, y: 235 + row * 140 + random() * 65 + shift,
+        safeRoute: true, rewardRoll: random() };
+    });
+    const xs = layout.map(m => m.x), ys = layout.map(m => m.y);
+    const distances = layout.map(m => Math.hypot(m.x - config.miner.anchor.x, m.y - config.miner.anchor.y));
+    const limits = config.survival.scatter;
+    if (Math.max(...xs) - Math.min(...xs) < limits.minimumWidth
+      || Math.max(...ys) - Math.min(...ys) < limits.minimumHeight
+      || Math.max(...distances) - Math.min(...distances) < limits.minimumDistanceRange
+      || !layout.every((m, i) => validPlacement(m, layout.filter((_, j) => i !== j), config))) return null;
+    const bases = layout.slice();
+    for (const index of config.survival.obstacleIndices.slice(0, parameters.obstacleCount)) {
+      const base = bases[index], fraction = limits.obstacleFraction;
+      const stone = { id: `l${parameters.id}-block${index}`, type: "stone", routeObstacle: true,
+        x: config.miner.anchor.x + (base.x - config.miner.anchor.x) * fraction,
+        y: config.miner.anchor.y + (base.y - config.miner.anchor.y) * fraction };
+      if (!validPlacement(stone, layout, config)) return null;
+      layout.push(stone);
+    }
+    const newTypes = config.survival.newTypes.filter(type => config.minerals[type]);
+    const firstNew = Math.floor(random() * newTypes.length);
+    let required = fallback ? ["mysteryBag", "treasureChest"]
+      : [newTypes[firstNew], newTypes[(firstNew + 1 + Math.floor(random() * (newTypes.length - 1))) % newTypes.length]];
+    if (parameters.event.id === "goldRush") required = ["largeGold", "stone", ...required];
+    if (parameters.event.id === "unstable") required = ["powderKeg", "powderKeg", "mysteryBag", "treasureChest"];
+    const available = parameters.difficulty >= 3 ? ["stone", "stone", "stone", "smallGold", "mysteryBag", "treasureChest", "ruby", "cursedRelic", "powderKeg"] : Object.keys(config.minerals);
+    const extraCount = parameters.count - layout.length;
+    for (let i = 0; i < extraCount; i++) {
+      const pool = available.filter(type => !["powderKeg", "cursedRelic"].includes(type)
+        || layout.filter(m => m.type === type).length < (type === "powderKeg" ? parameters.event.maxPowderKegs : 2));
+      const type = required[i] || (fallback ? "stone" : pool[Math.floor(random() * pool.length)]);
+      let placed = false;
+      // 高价值补充物仍可分布在中、深层，避免浅层奖品抹去后期清障成本。
+      const minimumY = parameters.difficulty >= 3 && ["ruby", "treasureChest", "cursedRelic"].includes(type)
+        ? limits.valuableExtraMinimumY : 210;
+      for (let attempt = 0; attempt < config.survival.placementAttempts; attempt++) {
+        const mineral = { id: `l${parameters.id}-extra${i}`, type,
+          x: 60 + random() * 840, y: minimumY + random() * (585 - minimumY), rewardRoll: random() };
+        if (!validPlacement(mineral, layout, config) || !protectsRoute(mineral, bases, config)) continue;
+        layout.push(mineral); placed = true; break;
+      }
+      if (!placed) return null;
+    }
+    return layout;
+  }
+
   // 与游玩共用碰撞、摆动和计时规则，生成器不靠地图总价值判断可玩性。
   function verifyRoute(config, level, strategy = "steady") {
     const run = createRun(config, level.id, { level, runSeed: 0, bombs: 0 });
     let candidates = null;
-    while (run.elapsedTime < 45 && !run.settled && run.levelIncome < level.target) {
+    const scattered = ruleVersion(config) === "1.5.1";
+    while (run.elapsedTime < 45 - (scattered ? 1e-9 : 0) && !run.settled && run.levelIncome < level.target) {
       if (run.hook.phase === "swinging") {
         if (!candidates) {
           const available = run.minerals.filter(mineral => mineral.status === "available" && mineral.type !== "powderKeg");
@@ -166,7 +230,7 @@
         const next = candidates.find(mineral => Math.abs(Math.atan2(mineral.x - config.miner.anchor.x, mineral.y - config.miner.anchor.y) * 180 / Math.PI - run.hook.angle) <= .5);
         if (next) { launchHook(run); candidates = null; }
       }
-      advanceRun(run, 1 / 120, config);
+      advanceRun(run, scattered ? Math.min(1 / 120, 45 - run.elapsedTime) : 1 / 120, config);
     }
     return { strategy, success: run.levelIncome >= level.target, seconds: run.elapsedTime, income: run.levelIncome };
   }
@@ -175,6 +239,8 @@
     const event = resolveEvent(config, eventId);
     const parameters = eventParameters(config, levelId, event);
     const random = seededRandom(runSeed, levelId, 0x4c41594f);
+    const scattered = ruleVersion(config) === "1.5.1";
+    const makeLayout = scattered ? makeScatterLayout : makeLegacyLayout;
     for (let attempt = 0; attempt < config.survival.maxAttempts; attempt += 1) {
       const layout = makeLayout(config, parameters, random, false);
       if (!layout) continue;
@@ -182,13 +248,21 @@
       const route = verifyRoute(config, level);
       if (route.success) return freezeLevel({ ...level, route });
     }
-    const layout = makeLayout(config, parameters, seededRandom(runSeed, levelId, 0x46414c4c), true);
+    let layout, route;
+    // 固定种子定义错落模板；不依赖玩家种子，模板仍按实际档位及正式规则校验。
+    for (let template = 0; template < (scattered ? config.survival.scatter.fallbackTemplates : 1); template++) {
+      const candidate = makeLayout(config, parameters, seededRandom(scattered ? template : runSeed, scattered ? 0 : levelId, 0x46414c4c), true);
+      if (!candidate) continue;
+      const verified = verifyRoute(config, { ...parameters, layout: candidate, fallback: true });
+      layout = candidate; route = verified;
+      if (verified.success) break;
+    }
     if (!layout) {
       if (eventId !== "none") return freezeLevel({ ...createLevel(config, levelId, runSeed, "none"), requestedEventId: eventId, eventDowngrade: "事件备用布局不可用，恢复普通矿层" });
       throw new Error("备用布局配置无效");
     }
     const level = { ...parameters, layout, fallback: true };
-    const route = verifyRoute(config, level);
+    route ||= verifyRoute(config, level);
     if (!route.success) {
       if (eventId !== "none") return freezeLevel({ ...createLevel(config, levelId, runSeed, "none"), requestedEventId: eventId, eventDowngrade: "事件预算不满足，恢复普通矿层" });
       throw new Error("备用布局没有可达标路线");
