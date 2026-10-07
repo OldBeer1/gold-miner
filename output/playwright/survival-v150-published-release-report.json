@@ -1,0 +1,42 @@
+{
+    "version":  "1.5.0",
+    "rulesVersion":  "1.5.0",
+    "result":  "passed",
+    "checkedAt":  "2026-10-07T05:17:04.1551900Z",
+    "sourceCommit":  "018dfce235b3c2851a7b429c17c5a95d5b32ea88",
+    "releaseUrl":  "https://github.com/OldBeer1/gold-miner/releases/tag/v1.5.0",
+    "downloadUrl":  "https://github.com/OldBeer1/gold-miner/releases/download/v1.5.0/Gold-survival-v1.5.0.zip",
+    "releaseId":  405402065,
+    "assetId":  617653568,
+    "draft":  false,
+    "prerelease":  false,
+    "publicLatestVerified":  true,
+    "anonymousDownload":  true,
+    "size":  56259,
+    "sha256":  "2c0980689e386212c25adf0a35976aa603959536ae66c9b0f4e3492f12513991",
+    "assetDigest":  "sha256:2c0980689e386212c25adf0a35976aa603959536ae66c9b0f4e3492f12513991",
+    "entries":  [
+                    "index.html",
+                    "js/audio.js",
+                    "js/challenges.js",
+                    "js/config.js",
+                    "js/effects.js",
+                    "js/game.js",
+                    "js/growth.js",
+                    "js/rules.js",
+                    "js/storage.js",
+                    "README.md",
+                    "styles.css"
+                ],
+    "runtimeFilesCompared":  10,
+    "archive":  "D:\\CoDeXs\\Gold\\output\\release\\public-v1.5.0-20261007-131700-774a381d.zip",
+    "extractedDirectory":  "D:\\CoDeXs\\Gold\\output\\release\\public-v1.5.0-20261007-131700-774a381d",
+    "checks":  [
+                   "public release stable latest",
+                   "tag targets validated source",
+                   "anonymous download size and SHA-256 match",
+                   "exact file list matches",
+                   "ten runtime files match source"
+               ],
+    "runtimeVerification":  "Public bytes exactly match independently extracted local package and passed browser preflight; no new full gameplay claim."
+}

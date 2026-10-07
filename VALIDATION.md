@@ -51,12 +51,14 @@
 
 清理后六类引擎／兼容检查，以及体验、挑战、历史成就、原生标签暂停和画面／音效浏览器检查全部再次通过；JavaScript、PowerShell 语法与差异格式检查通过。[回归汇总](output/playwright/survival-v150-regression-report.json)记录报告和当前运行文件哈希。游戏阶段报告已原样另存 feature 前缀，清理前门槛与清理后结果可分别追溯。
 
-[项目检查](output/playwright/survival-v150-project-report.json)：22 份 Markdown、587 本地链接、140 章节锚点，HTML、模块和打包清单通过；285 份历史输出／旧包 SHA-256 不变。
+[项目检查](output/playwright/survival-v150-project-report.json)：22 份 Markdown、593 本地链接、140 章节锚点，HTML、模块和打包清单通过；285 份历史输出／旧包 SHA-256 不变。
 
-玩家 ZIP **56259 字节／11 文件**，SHA-256：`2c0980689e386212c25adf0a35976aa603959536ae66c9b0f4e3492f12513991`。[独立解压核验](output/playwright/survival-v150-package-report.json)确认 10 个运行文件逐项与源码一致；[解压包浏览器检查](output/playwright/survival-v150-release-preflight-report.json)通过 7 组，包括真实输入、爆炸、暂停、保存、13 项成就、图鉴／报告、Seed／每日与本地资源加载。GitHub 正式发布与匿名下载复验待完成。
+玩家 ZIP **56259 字节／11 文件**，SHA-256：`2c0980689e386212c25adf0a35976aa603959536ae66c9b0f4e3492f12513991`。[独立解压核验](output/playwright/survival-v150-package-report.json)确认 10 个运行文件逐项与源码一致；[解压包浏览器检查](output/playwright/survival-v150-release-preflight-report.json)通过 7 组，包括真实输入、爆炸、暂停、保存、13 项成就、图鉴／报告、Seed／每日与本地资源加载。正式最新稳定 [v1.5.0 Release](https://github.com/OldBeer1/gold-miner/releases/tag/v1.5.0) 与 [玩家 ZIP](https://github.com/OldBeer1/gold-miner/releases/download/v1.5.0/Gold-survival-v1.5.0.zip) 已发布，源码标签为 `018dfce235b3c2851a7b429c17c5a95d5b32ea88`。[公开下载报告](output/playwright/survival-v150-published-release-report.json)确认匿名下载 56259 字节／11 文件，SHA-256 与独立包相同。10 个运行文件同时与当前源码、解压包和标签 Git blob 逐字节一致，见 [最终核验](output/playwright/survival-v150-final-check-report.json)。发布证据和最终交接最后提交推送 main；标签固定在验收源码，最后文档提交不修改运行文件。
 
 ## 条件与限制
 
 纯引擎模拟、受控浏览器时钟／历史样本、原始计时试玩各自注明。没有用受控 20 关宣称人工或真实计时完整赛程，没有新增性能基准或手机专项验收。
 
 个人浏览器存档未访问；测试使用隔离页面、合成合法档案与保留原文的迁移样本。旧活动继续 1.4.0 的小尺寸，新挑战才使用新尺寸与赛题；这保证旧布局／报价不被静默改变。档案升级后旧程序不保证可读取，降级应先导出或使用原文备份。离线每日依赖设备时钟；localStorage 受浏览器／地址／权限影响，单页面修订检查不提供并发原子锁。这些为既有边界，未发现本轮阻断问题。
+
+发布阶段未声称新的完整试玩：公开包与通过 7 组浏览器检查的本地包字节一致，额外执行的是匿名下载、元数据、Git blob 和清单核验。清理后阶段的项目检查快照另存 [regression project](output/playwright/survival-v150-regression-project-report.json)，当前引用报告随最终文档重新检查；原阶段报告哈希可追溯。

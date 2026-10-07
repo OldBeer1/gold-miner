@@ -60,7 +60,7 @@
       "sha256": "dad23d3d7cd131e8d935c1b8b866a4e86d5139c3a1c6e1ddd6810e89acae4e15"
     },
     {
-      "path": "output/playwright/survival-v150-project-report.json",
+      "path": "output/playwright/survival-v150-regression-project-report.json",
       "result": "passed",
       "sha256": "1d0afd57f656e355c5b628a581395f592cb915d7b55b0635a31579d8d6a80515"
     },

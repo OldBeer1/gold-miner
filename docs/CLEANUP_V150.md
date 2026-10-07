@@ -20,3 +20,5 @@
 具体原文件 SHA-256、归档映射及保护清单见 [清理清单报告](../output/playwright/survival-v150-cleanup-manifest.json)。整合时校验文件链接、章节锚点、HTML 引用、运行模块与包清单；清理后回归结果统一见 [VALIDATION](../VALIDATION.md)。
 
 恢复时把任一备份解压到**新的目录**，按 `BACKUP_MANIFEST.json` 校验；需要历史仓库时从 `repository-history.bundle` 克隆，再在独立目录对照 `project/` 文件。不要直接覆盖有未提交工作的当前目录。备份不包含真实浏览器 localStorage；本轮使用隔离测试档案，未读取或迁移个人存档。
+
+整合、删除、引用与功能回归均已通过，正式 v1.5.0 玩家包和公开下载复验完成。完整结果见根 VALIDATION，旧文件 SHA-256 保护与实际归档映射保留在清单报告中。

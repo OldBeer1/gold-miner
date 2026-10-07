@@ -1,0 +1,77 @@
+{
+  "version": "1.5.0",
+  "rulesVersion": "1.5.0",
+  "result": "passed",
+  "checkedAt": "2026-10-07T05:19:38.365Z",
+  "method": "public release/download verification plus exact Git source blob and working runtime checksum comparison; documentation references checked separately",
+  "sourceCommit": "018dfce235b3c2851a7b429c17c5a95d5b32ea88",
+  "releaseUrl": "https://github.com/OldBeer1/gold-miner/releases/tag/v1.5.0",
+  "downloadUrl": "https://github.com/OldBeer1/gold-miner/releases/download/v1.5.0/Gold-survival-v1.5.0.zip",
+  "archive": {
+    "size": 56259,
+    "sha256": "2c0980689e386212c25adf0a35976aa603959536ae66c9b0f4e3492f12513991",
+    "entries": [
+      "index.html",
+      "js/audio.js",
+      "js/challenges.js",
+      "js/config.js",
+      "js/effects.js",
+      "js/game.js",
+      "js/growth.js",
+      "js/rules.js",
+      "js/storage.js",
+      "README.md",
+      "styles.css"
+    ]
+  },
+  "runtime": [
+    {
+      "path": "index.html",
+      "sha256": "2fc1c74eddb3846b8bfa7120583e4e3d47757e66e3ebf84c1b9b3a1302d5acbb"
+    },
+    {
+      "path": "styles.css",
+      "sha256": "69d1f5453941b10bad8a370ff59431b08dea3dd27c859904f9db3fc5481cf977"
+    },
+    {
+      "path": "js/config.js",
+      "sha256": "481d1fdc0dcfb348a258b4df52e9212408f44ad90d488c8ae10d5d3bcacd0ae9"
+    },
+    {
+      "path": "js/challenges.js",
+      "sha256": "ea3fe6d0ecbbca306f835179efa0cc7317ee9251171f40d899b307d5f0a4351a"
+    },
+    {
+      "path": "js/growth.js",
+      "sha256": "940a8143a458b8ac250a76fb78c889c9d00e4d56af9c855e4c449751b81da0b3"
+    },
+    {
+      "path": "js/rules.js",
+      "sha256": "da4f49afe42ed83e60b24a551a69831c99f4b7b6bb39a41da3e506306fe0f79f"
+    },
+    {
+      "path": "js/game.js",
+      "sha256": "56736b1a5bfeb2815421d58422c96efc55dd15c9a503170e634aa93a337cd621"
+    },
+    {
+      "path": "js/storage.js",
+      "sha256": "9caa38bcb8553df742e017f1643ef5ccde67ca89c7dfbbcd6256311eaab1a929"
+    },
+    {
+      "path": "js/effects.js",
+      "sha256": "4993c3134ba7865971728d7d8e1df6480d0151c80f0538b835b0685ab5d7aed8"
+    },
+    {
+      "path": "js/audio.js",
+      "sha256": "b79f5086bf79f6bed41be1354702f9e5299ac488c8fc77b5d56888ab215b2930"
+    }
+  ],
+  "checks": [
+    "stable latest Release and anonymous download verified",
+    "public archive identical to independently extracted and browser-verified package",
+    "ten runtime files exactly match tagged Git blobs and current source",
+    "feature and regression evidence retain distinct stage records",
+    "historical outputs and old player archives preserved"
+  ],
+  "remainingFunctionalWork": []
+}
