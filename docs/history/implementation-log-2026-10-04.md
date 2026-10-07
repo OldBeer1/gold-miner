@@ -12,18 +12,18 @@
 
 | 分步 | 目标版本 | 任务文件 | 前置 | 当前状态 |
 | --- | --- | --- | --- | --- |
-| 17 | v1.2.0 | [成长数据定义与规则事件](../../steps/17-growth-data-events.md) | 已完成的 16 | 待开始 |
-| 18 | v1.2.0 | [生涯统计与成长存档](../../steps/18-career-progress-storage.md) | 17 | 待开始 |
-| 19 | v1.2.0 | [成就判定与奖励状态](../../steps/19-achievement-engine.md) | 18 | 待开始 |
-| 20 | v1.2.0 | [矿井图鉴数据与解锁](../../steps/20-mining-collection.md) | 19 | 待开始 |
-| 21 | v1.2.0 | [资料页面与单局报告](../../steps/21-career-pages-run-report.md) | 20 | 待开始 |
-| 22 | v1.2.0 | [成长系统完整验收与本地交付](../../steps/22-growth-validation-delivery.md) | 21 | 待开始 |
-| 23 | v1.3.0 | [随机事件规则与生成](../../steps/23-random-event-rules.md) | 22，v1.2.0 完成 | 后续规划 |
-| 24 | v1.3.0 | [事件流程、商店与存档](../../steps/24-random-event-flow-save.md) | 23 | 后续规划 |
-| 25 | v1.3.0 | [随机事件完整验收与本地交付](../../steps/25-events-validation-delivery.md) | 24 | 后续规划 |
-| 26 | v1.4.0 | [Seed 挑战与模式隔离](../../steps/26-seed-challenge-mode.md) | 25，v1.3.0 完成 | 后续规划 |
-| 27 | v1.4.0 | [每日挑战与日期规则](../../steps/27-daily-challenge-mode.md) | 26 | 后续规划 |
-| 28 | v1.4.0 | [挑战模式完整验收与本地交付](../../steps/28-challenges-validation-delivery.md) | 27 | 后续规划 |
+| 17 | v1.2.0 | [成长数据定义与规则事件](completed-steps-17-28.md#step-17) | 已完成的 16 | 待开始 |
+| 18 | v1.2.0 | [生涯统计与成长存档](completed-steps-17-28.md#step-18) | 17 | 待开始 |
+| 19 | v1.2.0 | [成就判定与奖励状态](completed-steps-17-28.md#step-19) | 18 | 待开始 |
+| 20 | v1.2.0 | [矿井图鉴数据与解锁](completed-steps-17-28.md#step-20) | 19 | 待开始 |
+| 21 | v1.2.0 | [资料页面与单局报告](completed-steps-17-28.md#step-21) | 20 | 待开始 |
+| 22 | v1.2.0 | [成长系统完整验收与本地交付](completed-steps-17-28.md#step-22) | 21 | 待开始 |
+| 23 | v1.3.0 | [随机事件规则与生成](completed-steps-17-28.md#step-23) | 22，v1.2.0 完成 | 后续规划 |
+| 24 | v1.3.0 | [事件流程、商店与存档](completed-steps-17-28.md#step-24) | 23 | 后续规划 |
+| 25 | v1.3.0 | [随机事件完整验收与本地交付](completed-steps-17-28.md#step-25) | 24 | 后续规划 |
+| 26 | v1.4.0 | [Seed 挑战与模式隔离](completed-steps-17-28.md#step-26) | 25，v1.3.0 完成 | 后续规划 |
+| 27 | v1.4.0 | [每日挑战与日期规则](completed-steps-17-28.md#step-27) | 26 | 后续规划 |
+| 28 | v1.4.0 | [挑战模式完整验收与本地交付](completed-steps-17-28.md#step-28) | 27 | 后续规划 |
 
 当前下一步为 **17**。v1.2.0 按 **17 → 18 → 19 → 20 → 21 → 22** 完成；后续两个版本分别按 **23 → 24 → 25**、**26 → 27 → 28** 推进。每步末尾有执行提示词，可单独用于新会话；用户明确要求连续推进时按依赖执行，无需每步重新询问。前置不完整时先补齐，实际实现与验证后才标记完成，远程提交、推送和发布按当次授权处理。
 

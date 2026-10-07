@@ -1,0 +1,47 @@
+{
+  "version": "1.5.0",
+  "result": "passed",
+  "method": "two independently extracted project snapshots, manifest hashes and available Git history verification",
+  "backups": [
+    {
+      "result": "passed",
+      "checkedAt": "2026-10-07T04:38:49.1240350Z",
+      "sourceCommit": "daf02c1748ebc2472c0be51ede950b8cf8fb3bd8",
+      "backupDirectory": "D:\\CoDeXs\\Gold\\output\\backups\\pre-cleanup-20261007-123837-b458f4fe",
+      "archive": "D:\\CoDeXs\\Gold\\output\\backups\\pre-cleanup-20261007-123837-b458f4fe\\project-before-cleanup.zip",
+      "bytes": 56026842,
+      "sha256": "2b4c3d70a7b22fe10a8652daa6c25111bfe8172642566b3550691e03a331a819",
+      "projectFiles": 330,
+      "archiveFiles": 333,
+      "playerArchives": 5,
+      "historyBundleVerified": true,
+      "uncommittedWorkIncluded": true,
+      "checks": [
+        "source files copied with matching hashes",
+        "Git history bundle verified",
+        "independent extraction exactly matches manifest",
+        "source files unchanged during backup"
+      ]
+    },
+    {
+      "result": "passed",
+      "checkedAt": "2026-10-07T04:56:17.6851550Z",
+      "sourceCommit": "daf02c1748ebc2472c0be51ede950b8cf8fb3bd8",
+      "backupDirectory": "D:\\CoDeXs\\Gold\\output\\backups\\pre-cleanup-20261007-125608-edc22080",
+      "archive": "D:\\CoDeXs\\Gold\\output\\backups\\pre-cleanup-20261007-125608-edc22080\\project-before-cleanup.zip",
+      "bytes": 61662213,
+      "sha256": "e8262f973587ff3e622a3dede74f60ae3ab0266e9b48f0295bd9fc5208171a54",
+      "projectFiles": 383,
+      "archiveFiles": 386,
+      "playerArchives": 5,
+      "historyBundleVerified": true,
+      "uncommittedWorkIncluded": true,
+      "checks": [
+        "source files copied with matching hashes",
+        "Git history bundle verified",
+        "independent extraction exactly matches manifest",
+        "source files unchanged during backup"
+      ]
+    }
+  ]
+}

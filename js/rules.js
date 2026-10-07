@@ -6,6 +6,18 @@
   "use strict";
   const ruleVersion = config => config.rulesVersion ?? config.version;
 
+  const legacyConfigs = new WeakMap();
+  function configForVersion(config, version) {
+    if (version === ruleVersion(config)) return config;
+    if (version !== "1.4.0" || ruleVersion(config) !== "1.5.0") throw new Error("不支持的玩法规则");
+    if (!legacyConfigs.has(config)) {
+      const minerals = { ...config.minerals };
+      for (const [type, size] of Object.entries(config.legacyMineralSizes)) minerals[type] = Object.freeze({ ...minerals[type], ...size });
+      legacyConfigs.set(config, Object.freeze({ ...config, rulesVersion: version, minerals: Object.freeze(minerals) }));
+    }
+    return legacyConfigs.get(config);
+  }
+
   function seededRandom(seed, levelId, purpose) {
     let value = ((seed >>> 0) ^ Math.imul(levelId, 0x9e3779b1) ^ purpose) >>> 0;
     return function () {
@@ -36,7 +48,7 @@
 
   function selectEvent(config, levelId, runSeed) {
     levelParameters(config, levelId);
-    if (!config.events || ruleVersion(config) !== "1.4.0" || levelId < config.events.firstLevel || levelId % config.events.interval !== 0) return "none";
+    if (!config.events || !challenges.supportedVersions.includes(ruleVersion(config)) || levelId < config.events.firstLevel || levelId % config.events.interval !== 0) return "none";
     const random = seededRandom(runSeed, levelId, 0x45564e54);
     if (random() >= config.events.probability) return "none";
     const ids = Object.keys(config.events.definitions).filter(id => id !== "none");
@@ -203,6 +215,7 @@
   }
 
   function createRun(config, levelId = 1, entry = {}) {
+    config = configForVersion(config, entry.challenge?.rulesVersion || ruleVersion(config));
     const runSeed = entry.runSeed ?? 0;
     const challenge = entry.challenge || challenges.create("endless", runSeed, null, ruleVersion(config));
     if (!challenges.valid(challenge, ruleVersion(config)) || challenge.seed !== runSeed) throw new Error("挑战身份无效");
@@ -250,6 +263,7 @@
   }
 
   function createShop(run, config) {
+    config = configForVersion(config, run.challenge?.rulesVersion || ruleVersion(config));
     if (!run.result?.success || run.challenge?.levelLimit === run.levelId) return null;
     if (run.shop) return run.shop;
     const random = seededRandom(challenges.generationSeed(run.challenge), run.levelId, 0x53484f50);
@@ -272,6 +286,7 @@
   }
 
   function captureCheckpoint(run, kind, config) {
+    config = configForVersion(config, run.challenge?.rulesVersion || ruleVersion(config));
     const checkpoint = { schemaVersion: 1, rulesVersion: ruleVersion(config), kind,
       run: JSON.parse(JSON.stringify(captureEntrySnapshot(run))) };
     if (kind === "shop") {
@@ -557,6 +572,7 @@
   }
 
   function advanceRun(run, elapsedSeconds, config) {
+    config = configForVersion(config, run.challenge?.rulesVersion || ruleVersion(config));
     const events = [];
     if (run.settled || !Number.isFinite(elapsedSeconds) || elapsedSeconds <= 0) return events;
     let left = elapsedSeconds;
@@ -579,7 +595,7 @@
     return events;
   }
 
-  return Object.freeze({ createLevel, levelParameters, selectEvent, resolveEvent, eventParameters, verifyRoute, validPlacement, protectsRoute, resolveReward, createRun,
+  return Object.freeze({ configForVersion, createLevel, levelParameters, selectEvent, resolveEvent, eventParameters, verifyRoute, validPlacement, protectsRoute, resolveReward, createRun,
     captureEntrySnapshot, restoreEntrySnapshot, captureCheckpoint, restoreCheckpoint, createShop, shopPrice, purchaseAvailability,
     purchaseItem, canUseDynamite, useDynamite, hookPoint, maximumLength, segmentCircle, segmentRectangle, firstHit, launchHook, advanceRun });
 });

@@ -1,0 +1,93 @@
+{
+  "version": "1.4.1",
+  "rulesVersion": "1.4.0",
+  "method": "original map and browser layout measurement; no performance claim",
+  "views": [
+    {
+      "width": 1280,
+      "height": 720,
+      "canvas": {
+        "x": 315,
+        "y": 173.6875,
+        "width": 650,
+        "height": 433.328125
+      },
+      "targets": {
+        "smallGold": {
+          "width": 18.958333333333336,
+          "height": 18.958333333333336
+        },
+        "diamond": {
+          "width": 13.541666666666668,
+          "height": 16.25
+        },
+        "ruby": {
+          "width": 13.541666666666668,
+          "height": 16.25
+        },
+        "mysteryBag": {
+          "width": 16.25,
+          "height": 18.958333333333336
+        }
+      }
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "canvas": {
+        "x": 482,
+        "y": 173.6875,
+        "width": 956,
+        "height": 637.328125
+      },
+      "targets": {
+        "smallGold": {
+          "width": 27.883333333333333,
+          "height": 27.883333333333333
+        },
+        "diamond": {
+          "width": 19.916666666666668,
+          "height": 23.9
+        },
+        "ruby": {
+          "width": 19.916666666666668,
+          "height": 23.9
+        },
+        "mysteryBag": {
+          "width": 23.9,
+          "height": 27.883333333333333
+        }
+      }
+    },
+    {
+      "width": 1280,
+      "height": 480,
+      "canvas": {
+        "x": 162,
+        "y": 173.6875,
+        "width": 956,
+        "height": 637.328125
+      },
+      "targets": {
+        "smallGold": {
+          "width": 27.883333333333333,
+          "height": 27.883333333333333
+        },
+        "diamond": {
+          "width": 19.916666666666668,
+          "height": 23.9
+        },
+        "ruby": {
+          "width": 19.916666666666668,
+          "height": 23.9
+        },
+        "mysteryBag": {
+          "width": 23.9,
+          "height": 27.883333333333333
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "result": "passed"
+}

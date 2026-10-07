@@ -29,7 +29,7 @@ check("UTC+8 午夜、闰日、非法日期、时钟回退和版本派生", () =
   assert.equal(challenges.dailyDate("2026-10-03T15:59:59Z"), "2026-10-03"); assert.equal(challenges.dailyDate("2026-10-03T16:00:00Z"), "2026-10-04");
   assert.equal(challenges.dailyDate("2026-10-04T00:00:00+08:00"), "2026-10-04");
   assert.ok(challenges.validDate("2024-02-29")); assert.ok(!challenges.validDate("2026-02-29")); assert.throws(() => challenges.dailySeed("2026-13-01"));
-  assert.notEqual(challenges.dailySeed("2026-10-04"), challenges.dailySeed("2026-10-03")); assert.notEqual(challenges.dailySeed("2026-10-04"), challenges.dailySeed("2026-10-04", "1.5.0"));
+  assert.notEqual(challenges.dailySeed("2026-10-04"), challenges.dailySeed("2026-10-03")); assert.notEqual(challenges.dailySeed("2026-10-04"), challenges.dailySeed("2026-10-04", "1.6.0"));
   assert.equal(challenges.dailyDate("2026-10-03T00:00:00Z"), "2026-10-03");
 });
 check("事件独立用途、机会边界、不连续和五种事件覆盖", () => {
@@ -108,7 +108,7 @@ check("Seed 和每日完整 20 关规则模拟：提交幂等、终结报告、�
     const report = state.doc.profile.recentReports[0]; assert.equal(report.reason, "completed"); assert.equal(report.totals.levelsCleared, 20);
     assert.equal(state.doc.profile.career.bestClearedLevel, 0); assert.ok(Object.values(state.doc.profile.achievements).every(a => a.unlockedAt === null));
     assert.equal(state.doc.profile.modeStats[mode].levelsCleared, 20); assert.ok(state.doc.profile.challengeRecords[challenges.key(challenge)]);
-    assert.match(challenges.share(report), /规则：1.4.0/);
+    assert.match(challenges.share(report), /规则：1.5.0/);
   }
 });
 check("个人最佳比较按关数、有效成绩、时长；日期/Seed/版本键隔离", () => {
@@ -117,7 +117,7 @@ check("个人最佳比较按关数、有效成绩、时长；日期/Seed/版本�
   assert.ok(challenges.better({ ...previous, activePlayMs: 299999 }, previous)); assert.ok(!challenges.better(previous, previous));
   assert.ok(!challenges.better({ ...previous, levelsCleared: 4, qualifiedIncome: 9000 }, previous));
   const a = challenges.create("daily", 0, "2026-10-04"), b = challenges.create("daily", 0, "2026-10-03"); assert.notEqual(challenges.key(a), challenges.key(b));
-  assert.notEqual(challenges.key(a), challenges.key(challenges.create("daily", 0, "2026-10-04", "1.5.0")));
+  assert.notEqual(challenges.key(a), challenges.key(challenges.create("daily", 0, "2026-10-04", "1.4.0")));
   const state = init(challenges.create("seed", 201));
   for (let seed = 0; seed < 200; seed++) {
     const challenge = challenges.create("seed", seed);
@@ -146,10 +146,12 @@ check("v1.2.0 活动入口/商店、永久档案、报告与装备迁移；备�
     const state = init(challenges.create("endless", 42));
     if (kind === "shop") { collect(state.run); growth.settleLevel(state.doc, state.run, rules.captureCheckpoint(state.run, "shop", config), now); }
     const old = growth.clone(state.doc); old.rulesVersion = "1.2.0"; old.activeRun.rulesetVersion = "1.2.0"; old.activeRun.checkpoint.rulesVersion = "1.2.0";
+    for (const def of growth.definitions) if (!growth.historicalDefinitions.some(oldDef => oldDef.id === def.id)) delete old.profile.achievements[def.id];
+    old.activeRun.newAchievementIds = old.activeRun.newAchievementIds.filter(id => old.profile.achievements[id]);
     delete old.profile.modeStats; delete old.profile.challengeRecords; delete old.profile.endlessChestRewardIds; delete old.activeRun.challenge; delete old.activeRun.eventCounts;
     delete old.activeRun.checkpoint.run.challenge; delete old.activeRun.checkpoint.run.level.event;
     if (kind === "shop") delete old.activeRun.checkpoint.shop.nextLevel;
-    assert.ok(storage.validateProgress(old, { ...config, version: "1.2.0", rulesVersion: "1.2.0" }));
+    assert.ok(storage.validateProgress(old, { ...rules.configForVersion(config, "1.4.0"), version: "1.2.0", rulesVersion: "1.2.0" }));
     const raw = JSON.stringify(old), db = database(); db.setItem(storage.progressKey, raw);
     const loaded = storage.loadProgress(db, config, now); assert.ok(!loaded.blocked); assert.ok(storage.validateProgress(loaded.document, config));
     assert.equal(db.getItem(storage.v120BackupKey), raw); assert.deepEqual(loaded.document.profile.career, old.profile.career);

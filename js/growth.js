@@ -8,7 +8,7 @@
   // v1.2 收藏成就固定八类；未来图鉴扩展不能增加这个成就的要求。
   const recoverableTypes = Object.freeze(["smallGold", "largeGold", "stone", "diamond", "ruby", "mysteryBag", "treasureChest", "cursedRelic"]);
   const rewardIds = Object.freeze({ mysteryBag: ["coins_50", "coins_200", "bomb_1", "time_plus_5", "time_minus_5"], treasureChest: ["coins_150", "coins_450", "coins_800"] });
-  const definitions = Object.freeze([
+  const historicalDefinitions = Object.freeze([
     ["first_clear", "开工大吉", "进度", "普通", 1, "正式通过第 1 关"],
     ["clear_5", "初出茅庐", "进度", "普通", 5, "正式通过第 5 关"],
     ["clear_20", "老练矿工", "进度", "稀有", 20, "正式通过第 20 关", false, "老练矿工"],
@@ -31,6 +31,20 @@
     id, title, category, rarity, target, description, hidden, hint: "在危急时刻，抓住一线生机。", conditionVersion: 1,
     modes: ["endless"], reward: { badge: id, title: rewardTitle },
   })));
+  const retiredIds = new Set(["clear_20", "reach_50", "level_income_5000", "career_income_100000", "perfect_level", "last_second_target", "blast_four", "penalty_twice", "lucky_streak_3", "chest_all_rewards", "last_second_rescue", "charm_rescue"]);
+  const additions = [
+    ["first_recovery", "第一份收获", "收集", 1, "首次成功回收任意物体"],
+    ["gold_recovered_10", "小有金山", "累计", 10, "累计成功回收 10 块金块"],
+    ["diamond_recovered_5", "闪闪发光", "累计", 5, "累计成功回收 5 颗钻石"],
+    ["objects_recovered_30", "勤劳矿工", "累计", 30, "累计成功回收 30 个物体"],
+    ["level_income_1200", "收获颇丰", "收入", 1200, "一个成功关收入达到 ¥1200"],
+    ["clear_10", "稳步深入", "进度", 10, "正式通过第 10 关"],
+    ["career_income_5000", "积少成多", "累计", 5000, "累计有效成绩达到 ¥5000"],
+  ].map(([id, title, category, target, description]) => Object.freeze({ id, title, category, rarity: target <= 10 ? "普通" : "稀有", target,
+    description, hidden: false, hint: "", conditionVersion: 1, modes: ["endless"], reward: { badge: id, title: id === "clear_10" ? "稳步深入" : null } }));
+  const definitions = Object.freeze([...historicalDefinitions.filter(def => !retiredIds.has(def.id)), ...additions]);
+  const retiredDefinitions = Object.freeze(historicalDefinitions.filter(def => retiredIds.has(def.id)));
+  const allDefinitions = Object.freeze([...historicalDefinitions, ...additions]);
   const reportLimit = 10;
   const sumKeys = Object.freeze(["levelsCleared", "qualifiedIncome", "recoveredIncome", "failedLevelIncome", "hooksLaunched", "hooksHit", "objectsRecovered", "dynamiteUsed", "objectsDestroyedByDynamite", "barrelsDetonated", "objectsDestroyedByBarrel", "bagGoodLuck", "bagBadLuck", "chestTopRewards", "timeAddedMs", "cursedTimeLostMs", "penaltiesBlocked", "activePlayMs"]);
   const clone = value => JSON.parse(JSON.stringify(value));
@@ -47,7 +61,7 @@
       profile: { statisticsSince: now, legacyRecords: { source: "preferences.v2", highScore: preferences.highScore, bestClearedLevel: preferences.bestClearedLevel },
         career: { ...totals(), runsStarted: 0, runsImported: 0, runsFailed: 0, runsAbandoned: 0, bestReachedLevel: 0,
           bestClearedLevel: preferences.bestClearedLevel, bestRunIncome: preferences.highScore, bestLevelIncome: 0 },
-        achievements: Object.fromEntries(definitions.map(def => [def.id, { progress: 0, unlockedAt: null, unlockedRunId: null }])),
+        achievements: Object.fromEntries(allDefinitions.map(def => [def.id, { progress: 0, unlockedAt: null, unlockedRunId: null }])),
         collection: Object.fromEntries(types.map(type => [type, collectionEntry()])), equippedTitleId: null, recentReports: [] }, activeRun: null };
     document.profile.modeStats = Object.fromEntries(challenges.modes.map(mode => [mode, mode === "endless" ? clone(document.profile.career) : { ...totals(), runsStarted: 0, runsImported: 0, runsFailed: 0, runsAbandoned: 0, bestReachedLevel: 0, bestClearedLevel: 0, bestRunIncome: 0, bestLevelIncome: 0 }]));
     document.profile.challengeRecords = {};
@@ -127,33 +141,32 @@
     target.bestRecoveryValue = Math.max(target.bestRecoveryValue, delta.bestRecoveryValue);
     for (const type of types) target.recoveredByType[type] += delta.recoveredByType[type];
   }
-  function evaluate(document, run, now, legacy = false) {
-    if (document.activeRun && document.activeRun.mode !== "endless") return [];
+  function evaluate(document, run, now, legacy = false, backfill = false) {
+    if (!backfill && document.activeRun && document.activeRun.mode !== "endless") return [];
     const profile = document.profile, career = profile.career, stats = run?.growth;
     const success = Boolean(run?.result?.success);
     const progress = {
-      first_clear: career.bestClearedLevel, clear_5: career.bestClearedLevel, clear_20: career.bestClearedLevel,
-      reach_50: career.bestReachedLevel, level_income_5000: career.bestLevelIncome, career_income_100000: career.qualifiedIncome,
+      first_clear: career.bestClearedLevel, clear_5: career.bestClearedLevel,
       dynamite_ten: career.dynamiteUsed - (profile.modeStats?.seed.dynamiteUsed || 0) - (profile.modeStats?.daily.dynamiteUsed || 0),
       recover_all_v120: recoverableTypes.filter(type => profile.collection[type].recovered - (profile.modeStats?.seed.recoveredByType[type] || 0) - (profile.modeStats?.daily.recoveredByType[type] || 0) > 0).length,
-      chest_all_rewards: profile.endlessChestRewardIds?.length ?? profile.collection.treasureChest.rewardIds.length,
     };
-    progress.career_income_100000 -= (profile.modeStats?.seed.qualifiedIncome || 0) + (profile.modeStats?.daily.qualifiedIncome || 0);
-    if (stats) Object.assign(progress, { recover_streak_5: stats.bestRecoveryStreak, blast_four: stats.maxBlastOthers,
-      penalty_twice: stats.bestPenaltyStreak, lucky_streak_3: stats.bestLuckyStreak,
-      perfect_level: success && stats.objectsRecovered === stats.hooksLaunched ? stats.hooksLaunched : 0,
-      last_second_target: Number(success && stats.targetTime > 0 && stats.targetTime <= 1),
-      no_assistance_clear: Number(success && !stats.entryAssisted && stats.dynamiteUsed === 0),
-      last_second_rescue: Number(success && stats.lastSecondRescue), charm_rescue: Number(success && stats.charmRescue) });
+    if (stats) Object.assign(progress, { recover_streak_5: stats.bestRecoveryStreak,
+      no_assistance_clear: Number(success && !stats.entryAssisted && stats.dynamiteUsed === 0) });
+    const endless = profile.modeStats?.endless || career;
+    Object.assign(progress, {
+      first_recovery: endless.objectsRecovered, gold_recovered_10: endless.recoveredByType.smallGold + endless.recoveredByType.largeGold,
+      diamond_recovered_5: endless.recoveredByType.diamond, objects_recovered_30: endless.objectsRecovered,
+      level_income_1200: career.bestLevelIncome, clear_10: career.bestClearedLevel, career_income_5000: endless.qualifiedIncome,
+    });
     const unlocked = [];
     for (const def of definitions) {
-      if (legacy && !["first_clear", "clear_5", "clear_20"].includes(def.id)) continue;
+      if (legacy && !["first_clear", "clear_5", "clear_10"].includes(def.id)) continue;
       const item = profile.achievements[def.id];
       item.progress = Math.max(item.progress, Math.min(def.target, progress[def.id] || 0));
       if (!item.unlockedAt && item.progress >= def.target) {
-        item.unlockedAt = now; item.unlockedRunId = document.activeRun?.runId || "legacy-records";
+        item.unlockedAt = now; item.unlockedRunId = backfill ? "upgrade-statistics" : document.activeRun?.runId || "legacy-records";
         unlocked.push(def.id);
-        if (document.activeRun && !document.activeRun.newAchievementIds.includes(def.id)) document.activeRun.newAchievementIds.push(def.id);
+        if (!backfill && document.activeRun && !document.activeRun.newAchievementIds.includes(def.id)) document.activeRun.newAchievementIds.push(def.id);
       }
     }
     return unlocked;
@@ -258,12 +271,15 @@
   }
   function equipTitle(document, id) {
     if (id === null) { document.profile.equippedTitleId = null; return true; }
-    const def = definitions.find(item => item.id === id);
+    const def = allDefinitions.find(item => item.id === id);
     if (!def?.reward.title || !document.profile.achievements[id].unlockedAt) return false;
     document.profile.equippedTitleId = id; return true;
   }
   function validateDocument(value, version = challenges.version) {
     try {
+      const catalog = version === "1.5.0" ? allDefinitions : historicalDefinitions;
+      const modern = challenges.supportedVersions.includes(version);
+      const validChallenge = challenge => challenge && (version === "1.5.0" ? challenges.supportedVersions : [version]).includes(challenge.rulesVersion) && challenges.valid(challenge, challenge.rulesVersion);
       if (!object(value) || value.schemaVersion !== 1 || value.rulesVersion !== version || !integer(value.revision)
         || !object(value.settings) || typeof value.settings.soundEnabled !== "boolean") return false;
       const p = value.profile, c = p?.career;
@@ -277,8 +293,8 @@
         || !["runsStarted", "runsImported", "runsFailed", "runsAbandoned", "bestReachedLevel", "bestClearedLevel", "bestRunIncome", "bestLevelIncome"].every(key => integer(c[key]))
         || c.recoveredIncome !== c.qualifiedIncome + c.failedLevelIncome || !object(p.legacyRecords)
         || !integer(p.legacyRecords.highScore) || !integer(p.legacyRecords.bestClearedLevel)) return false;
-      if (!object(p.achievements) || Object.keys(p.achievements).some(id => !definitions.some(def => def.id === id))) return false;
-      for (const def of definitions) {
+      if (!object(p.achievements) || Object.keys(p.achievements).some(id => !catalog.some(def => def.id === id))) return false;
+      for (const def of catalog) {
         p.achievements[def.id] ||= { progress: 0, unlockedAt: null, unlockedRunId: null };
         const a = p.achievements[def.id];
         if (!integer(a.progress) || a.progress > def.target || (a.unlockedAt !== null && (!date(a.unlockedAt) || a.progress !== def.target || !idValid(a.unlockedRunId)))
@@ -299,38 +315,38 @@
         || types.reduce((sum, type) => sum + p.collection[type].destroyedByBarrel, 0) !== c.objectsDestroyedByBarrel + c.barrelsDetonated
         || p.collection.powderKeg.detonated !== c.barrelsDetonated || p.collection.powderKeg.recovered !== 0
         || c.runsFailed + c.runsAbandoned > c.runsStarted + c.runsImported) return false;
-      if (p.equippedTitleId !== null && (!definitions.some(def => def.id === p.equippedTitleId && def.reward.title) || !p.achievements[p.equippedTitleId].unlockedAt)) return false;
+      if (p.equippedTitleId !== null && (!catalog.some(def => def.id === p.equippedTitleId && def.reward.title) || !p.achievements[p.equippedTitleId].unlockedAt)) return false;
       if (!Array.isArray(p.recentReports) || p.recentReports.length > reportLimit || new Set(p.recentReports.map(r => r.runId)).size !== p.recentReports.length) return false;
       for (const r of p.recentReports) if (!idValid(r.runId) || !date(r.startedAt) || !date(r.endedAt) || Date.parse(r.endedAt) < Date.parse(r.startedAt)
-        || !["failed", "abandoned", ...(version === "1.4.0" ? ["completed"] : [])].includes(r.reason)
-        || !(version === "1.4.0" ? challenges.modes : ["endless"]).includes(r.mode) || ![version, "1.2.0"].includes(r.rulesetVersion)
+        || !["failed", "abandoned", ...(modern ? ["completed"] : [])].includes(r.reason)
+        || !(modern ? challenges.modes : ["endless"]).includes(r.mode) || !(modern ? ["1.2.0", "1.4.0", version] : [version, "1.2.0"]).includes(r.rulesetVersion)
         || !integer(r.runSeed) || r.runSeed > 0xffffffff || !validTotals(r.totals) || !integer(r.bestReachedLevel) || typeof r.statisticsComplete !== "boolean"
         || !Array.isArray(r.newRecords) || !r.newRecords.every(key => ["bestRunIncome", "bestClearedLevel", "bestReachedLevel"].includes(key))
         || !Array.isArray(r.newAchievementIds) || !r.newAchievementIds.every(id => p.achievements[id]?.unlockedAt)
         || r.reason === "failed" && (!object(r.failure) || !integer(r.failure.levelId) || !integer(r.failure.income) || !integer(r.failure.target) || r.failure.income >= r.failure.target)) return false;
       const active = value.activeRun;
-      if (active !== null && (!object(active) || !idValid(active.runId) || !date(active.startedAt) || !(version === "1.4.0" ? challenges.modes : ["endless"]).includes(active.mode)
-        || ![version, "1.2.0"].includes(active.rulesetVersion) || !integer(active.runSeed) || active.runSeed > 0xffffffff
+      if (active !== null && (!object(active) || !idValid(active.runId) || !date(active.startedAt) || !(modern ? challenges.modes : ["endless"]).includes(active.mode)
+        || !(modern ? ["1.2.0", "1.4.0", version] : [version, "1.2.0"]).includes(active.rulesetVersion) || !integer(active.runSeed) || active.runSeed > 0xffffffff
         || !integer(active.committedThroughLevel) || !integer(active.entryCountedForLevel) || !integer(active.bestReachedLevel)
         || !validTotals(active.runTotals) || typeof active.statisticsComplete !== "boolean" || typeof active.importedFromV110 !== "boolean"
         || !object(active.recordsAtStart) || !["bestRunIncome", "bestClearedLevel", "bestReachedLevel"].every(key => integer(active.recordsAtStart[key]))
         || !Array.isArray(active.newAchievementIds) || !active.newAchievementIds.every(id => p.achievements[id]?.unlockedAt))) return false;
-      if (version === "1.4.0") {
+      if (modern) {
         if (!object(p.modeStats) || Object.keys(p.modeStats).length !== 3 || !challenges.modes.every(mode => validTotals(p.modeStats[mode])
           && ["runsStarted", "runsImported", "runsFailed", "runsAbandoned", "bestReachedLevel", "bestClearedLevel", "bestRunIncome", "bestLevelIncome"].every(key => integer(p.modeStats[mode][key])))) return false;
         for (const key of sumKeys) if (challenges.modes.reduce((sum, mode) => sum + p.modeStats[mode][key], 0) !== c[key]) return false;
         if (!Array.isArray(p.endlessChestRewardIds) || !p.endlessChestRewardIds.every(id => rewardIds.treasureChest.includes(id))
           || !object(p.challengeRecords) || Object.keys(p.challengeRecords).length > 200) return false;
         const validEventCounts = counts => object(counts) && Object.entries(counts).every(([id, n]) => ["none", "goldRush", "diamondVein", "unstable", "blackMarket", "sparse"].includes(id) && integer(n));
-        for (const [key, r] of Object.entries(p.challengeRecords)) if (!challenges.valid(r.challenge) || r.challenge.mode === "endless" || key !== challenges.key(r.challenge)
+        for (const [key, r] of Object.entries(p.challengeRecords)) if (!validChallenge(r.challenge) || r.challenge.mode === "endless" || key !== challenges.key(r.challenge)
           || !idValid(r.runId) || !date(r.updatedAt) || !integer(r.levelsCleared) || r.levelsCleared > challenges.limit || !integer(r.qualifiedIncome) || !integer(r.activePlayMs)) return false;
-        for (const r of p.recentReports) if (r.rulesetVersion === version && (!challenges.valid(r.challenge) || r.challenge.mode !== r.mode || r.challenge.seed !== r.runSeed
+        for (const r of p.recentReports) if (challenges.supportedVersions.includes(r.rulesetVersion) && (!validChallenge(r.challenge) || r.rulesetVersion !== r.challenge.rulesVersion || r.challenge.mode !== r.mode || r.challenge.seed !== r.runSeed
           || !validEventCounts(r.eventCounts) || r.reason === "completed" && (r.mode === "endless" || r.totals.levelsCleared !== challenges.limit))) return false;
-        if (active && (!challenges.valid(active.challenge) || active.mode !== active.challenge.mode || active.runSeed !== active.challenge.seed || !validEventCounts(active.eventCounts))) return false;
+        if (active && (!validChallenge(active.challenge) || active.rulesetVersion !== active.challenge.rulesVersion || active.mode !== active.challenge.mode || active.runSeed !== active.challenge.seed || !validEventCounts(active.eventCounts))) return false;
       }
       return true;
     } catch { return false; }
   }
-  return Object.freeze({ types, recoverableTypes, rewardIds, definitions, reportLimit, sumKeys, totals, clone,
+  return Object.freeze({ types, recoverableTypes, rewardIds, definitions, retiredDefinitions, historicalDefinitions, allDefinitions, reportLimit, sumKeys, totals, clone,
     createDocument, createLevelStats, rewardId, recordEvent, evaluate, createActive, enterLevel, settleLevel, abandon, equipTitle, validateDocument });
 });

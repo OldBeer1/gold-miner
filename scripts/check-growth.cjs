@@ -47,25 +47,6 @@ function achievement(id, positive, negative) {
   achievementChecks.push({ id, positive: "passed", negative: "passed" });
 }
 function cleared(levelId, target = 1) { const t = make(["largeGold"], { levelId, target }); bank(t.run, 0); finish(t); return t; }
-check("目录稳定：18 项成就、9 类图鉴、8 类回收与 5/3 奖励档", () => {
-  assert.equal(growth.definitions.length, 18); assert.equal(new Set(growth.definitions.map(d => d.id)).size, 18);
-  assert.equal(growth.types.length, 9); assert.equal(growth.recoverableTypes.length, 8);
-  assert.equal(growth.rewardIds.mysteryBag.length, 5); assert.equal(growth.rewardIds.treasureChest.length, 3);
-});
-for (const [id, n] of [["first_clear", 1], ["clear_5", 5], ["clear_20", 20]]) achievement(id, () => cleared(n), () => cleared(n, 1000));
-achievement("reach_50", () => make(["largeGold"], { levelId: 50 }), () => make(["largeGold"], { levelId: 49 }));
-achievement("level_income_5000", () => { const t = make(["smallGold"], { scale: 50 }); bank(t.run, 0); finish(t); return t; }, () => { const t = make(["smallGold"], { scale: 49.99 }); bank(t.run, 0); finish(t); return t; });
-achievement("career_income_100000", () => {
-  const t = make(); t.doc.profile.career.qualifiedIncome = 100000; growth.evaluate(t.doc, null, now); return t;
-}, () => { const t = make(); t.doc.profile.career.qualifiedIncome = 99999; growth.evaluate(t.doc, null, now); return t; });
-achievement("recover_streak_5", () => { const t = make(Array(5).fill("smallGold")); for (let i = 0; i < 5; i++) bank(t.run, i); finish(t); return t; }, () => {
-  const t = make(Array(5).fill("smallGold")); for (let i = 0; i < 5; i++) { bank(t.run, i); if (i === 2) { rules.launchHook(t.run); growth.recordEvent(t.run, { type: "empty-returned" }); t.run.hook.phase = "swinging"; } } finish(t); return t;
-});
-achievement("perfect_level", () => { const t = make(Array(8).fill("smallGold")); for (let i = 0; i < 8; i++) bank(t.run, i); finish(t); return t; }, () => {
-  const t = make(Array(8).fill("smallGold")); for (let i = 0; i < 8; i++) bank(t.run, i); rules.launchHook(t.run); finish(t); return t;
-});
-achievement("last_second_target", () => { const t = make(); bank(t.run, 0, .5); finish(t); return t; }, () => { const t = make(); bank(t.run, 0, 1.01); finish(t); return t; });
-achievement("no_assistance_clear", () => cleared(1), () => { const t = make(["largeGold"], { effects: { luckyCharm: true } }); bank(t.run, 0); finish(t); return t; });
 function blast(count) {
   const t = make(["powderKeg", ...Array(count).fill("smallGold")]);
   rules.launchHook(t.run);
@@ -74,25 +55,23 @@ function blast(count) {
   const event = { type: "exploded", id: ids[0], mineralType: "powderKeg", destroyedIds: [...ids, ids[1]] };
   growth.recordEvent(t.run, event); growth.recordEvent(t.run, event); finish(t); return t;
 }
-achievement("blast_four", () => blast(4), () => blast(3));
-achievement("dynamite_ten", () => { const t = make(); t.doc.profile.career.dynamiteUsed = 10; growth.evaluate(t.doc, null, now); return t; }, () => { const t = make(); t.doc.profile.career.dynamiteUsed = 9; growth.evaluate(t.doc, null, now); return t; });
-achievement("penalty_twice", () => { const t = make(["cursedRelic", "cursedRelic"], { target: 5000 }); bank(t.run, 0); bank(t.run, 1); finish(t); return t; }, () => {
-  const t = make(["cursedRelic", "smallGold", "cursedRelic"]); bank(t.run, 0); bank(t.run, 1); bank(t.run, 2); finish(t); return t;
+check("目录稳定：13 项现行成就、9 类图鉴、8 类回收与 5/3 奖励档", () => {
+  assert.equal(growth.definitions.length, 13); assert.equal(new Set(growth.definitions.map(d => d.id)).size, 13);
+  assert.equal(growth.types.length, 9); assert.equal(growth.recoverableTypes.length, 8);
+  assert.equal(growth.rewardIds.mysteryBag.length, 5); assert.equal(growth.rewardIds.treasureChest.length, 3);
 });
-achievement("lucky_streak_3", () => {
-  const t = make(["mysteryBag", "smallGold", "treasureChest", "mysteryBag"], { rolls: [.4, 0, .9, .4] }); for (let i = 0; i < 4; i++) bank(t.run, i); finish(t); return t;
-}, () => { const t = make(["treasureChest", "treasureChest", "treasureChest"], { rolls: [.9, .4, .9], scale: 10 }); for (let i = 0; i < 3; i++) bank(t.run, i); finish(t); return t; });
+for (const [id, n] of [["first_clear", 1], ["clear_5", 5], ["clear_10", 10]]) achievement(id, () => cleared(n), () => cleared(n, 1000));
+achievement("first_recovery", () => cleared(1), () => { const t=make(); finish(t); return t; });
+achievement("gold_recovered_10", () => { const t=make(Array(10).fill("smallGold")); for(let i=0;i<10;i++) bank(t.run,i); finish(t); return t; }, () => { const t=make(Array(9).fill("smallGold")); for(let i=0;i<9;i++) bank(t.run,i); finish(t); return t; });
+achievement("diamond_recovered_5", () => { const t=make(Array(5).fill("diamond")); for(let i=0;i<5;i++) bank(t.run,i); finish(t); return t; }, () => { const t=make(Array(4).fill("diamond")); for(let i=0;i<4;i++) bank(t.run,i); finish(t); return t; });
+achievement("objects_recovered_30", () => { const t=make(); t.doc.profile.modeStats.endless.objectsRecovered=30; growth.evaluate(t.doc,null,now); return t; }, () => { const t=make(); t.doc.profile.modeStats.endless.objectsRecovered=29; growth.evaluate(t.doc,null,now); return t; });
+achievement("level_income_1200", () => { const t=make(Array(4).fill("largeGold")); for(let i=0;i<4;i++) bank(t.run,i); finish(t); return t; }, () => { const t=make(Array(3).fill("largeGold")); for(let i=0;i<3;i++) bank(t.run,i); finish(t); return t; });
+achievement("career_income_5000", () => { const t=make(); t.doc.profile.modeStats.endless.qualifiedIncome=5000; growth.evaluate(t.doc,null,now); return t; }, () => { const t=make(); t.doc.profile.modeStats.endless.qualifiedIncome=4999; growth.evaluate(t.doc,null,now); return t; });
+achievement("recover_streak_5", () => { const t=make(Array(5).fill("smallGold")); for(let i=0;i<5;i++) bank(t.run,i); finish(t); return t; }, () => { const t=make(Array(4).fill("smallGold")); for(let i=0;i<4;i++) bank(t.run,i); finish(t); return t; });
+achievement("no_assistance_clear", () => cleared(1), () => { const t=make(["largeGold"], { effects:{luckyCharm:true} }); bank(t.run,0); finish(t); return t; });
+achievement("dynamite_ten", () => { const t=make(); t.doc.profile.career.dynamiteUsed=10; growth.evaluate(t.doc,null,now); return t; }, () => { const t=make(); t.doc.profile.career.dynamiteUsed=9; growth.evaluate(t.doc,null,now); return t; });
 achievement("recover_all_v120", () => { const t = make(growth.recoverableTypes); for (let i = 0; i < 8; i++) bank(t.run, i); finish(t); return t; }, () => {
   const t = make(growth.recoverableTypes.slice(0, 7)); for (let i = 0; i < 7; i++) bank(t.run, i); finish(t); return t;
-});
-achievement("chest_all_rewards", () => { const t = make(Array(3).fill("treasureChest"), { rolls: [.1, .6, .9] }); for (let i = 0; i < 3; i++) bank(t.run, i); finish(t); return t; }, () => {
-  const t = make(Array(3).fill("treasureChest"), { rolls: [.1, .6, .6], scale: 10 }); for (let i = 0; i < 3; i++) bank(t.run, i); finish(t); return t;
-});
-achievement("last_second_rescue", () => { const t = make(["largeGold", "mysteryBag"], { rolls: [0, .91] }); bank(t.run, 0); bank(t.run, 1, .5); finish(t); return t; }, () => {
-  const t = make(["largeGold", "mysteryBag"], { rolls: [0, .91] }); bank(t.run, 0); t.run.timeBonusUsed = 20; bank(t.run, 1, .5); finish(t); return t;
-});
-achievement("charm_rescue", () => { const t = make(["cursedRelic"], { effects: { protectionCharm: true } }); bank(t.run, 0, 5); finish(t); return t; }, () => {
-  const t = make(["cursedRelic"], { effects: { protectionCharm: true } }); bank(t.run, 0, 5.01); finish(t); return t;
 });
 check("截止优先、实际扣时裁剪、时间上限与真实事件时刻", () => {
   const t = make(["cursedRelic"]); const event = bank(t.run, 0, 2);
@@ -150,7 +129,7 @@ check("图鉴全部 9 类、5/3 基础奖励；满炸药、护符、倍率不新
 });
 check("旧关卡与商店显式迁移、补发可证明成就、旧键保持不变", () => {
   for (const kind of ["level", "shop"]) {
-    const oldConfig = { ...config, version: "1.1.0", rulesVersion: "1.1.0" }, run = rules.createRun(oldConfig, 20, { runSeed: 123, wallet: 4000, totalIncome: 5000 });
+    const oldConfig = { ...rules.configForVersion(config, "1.4.0"), version: "1.1.0", rulesVersion: "1.1.0" }, run = rules.createRun(oldConfig, 20, { runSeed: 123, wallet: 4000, totalIncome: 5000 });
     if (kind === "shop") { run.levelIncome = 6000; run.wallet += 6000; rules.advanceRun(run, 61, oldConfig); rules.purchaseItem(run, rules.createShop(run, oldConfig), "dynamite", oldConfig); }
     const cp = rules.captureCheckpoint(run, kind, oldConfig), db = database();
     const oldText = JSON.stringify(cp), prefs = JSON.stringify({ soundEnabled: false, highScore: 12000, bestClearedLevel: 20 });
@@ -162,7 +141,8 @@ check("旧关卡与商店显式迁移、补发可证明成就、旧键保持不�
     assert.deepEqual(imported.document.activeRun.checkpoint.run.level, cp.run.level);
     assert.equal(imported.document.activeRun.checkpoint.run.wallet, cp.run.wallet);
     if (kind === "shop") assert.deepEqual(imported.document.activeRun.checkpoint.shop, cp.shop);
-    for (const id of ["first_clear", "clear_5", "clear_20"]) assert.ok(imported.document.profile.achievements[id].unlockedAt);
+    for (const id of ["first_clear", "clear_5", "clear_10"]) assert.ok(imported.document.profile.achievements[id].unlockedAt);
+    assert.equal(imported.document.profile.achievements.clear_20.unlockedAt, null);
     assert.equal(imported.document.profile.achievements.reach_50.unlockedAt, null);
     assert.deepEqual(storage.loadProgress(db, config, now).document, imported.document);
     assert.equal(db.getItem(storage.checkpointKey), oldText); assert.equal(db.getItem(storage.key), prefs);
@@ -220,9 +200,9 @@ check("11 份报告裁剪为 10 份；新纪录按局开始基线，放弃不提
   assert.equal(t.doc.profile.career.qualifiedIncome, 300); assert.ok(storage.validateProgress(t.doc, config));
 });
 check("称号、检查与图鉴不消费随机数；已解锁成就不因目录未来扩展撤销", () => {
-  const before = rules.createRun(config, 50, { runSeed: 78 }); const t = cleared(20);
-  assert.ok(growth.equipTitle(t.doc, "clear_20")); const unlocked = growth.clone(t.doc.profile.achievements.clear_20);
-  growth.evaluate(t.doc, null, now); assert.deepEqual(t.doc.profile.achievements.clear_20, unlocked);
+  const before = rules.createRun(config, 50, { runSeed: 78 }); const t = cleared(10);
+  assert.ok(growth.equipTitle(t.doc, "clear_10")); const unlocked = growth.clone(t.doc.profile.achievements.clear_10);
+  growth.evaluate(t.doc, null, now); assert.deepEqual(t.doc.profile.achievements.clear_10, unlocked);
   assert.deepEqual(rules.createRun(config, 50, { runSeed: 78 }).level, before.level);
 });
 fs.writeFileSync(`output/playwright/survival-v${config.version.replaceAll(".", "")}-growth-report.json`, JSON.stringify({ version: config.version,

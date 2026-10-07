@@ -37,16 +37,17 @@ function fixture(base, mode, kind = "level", seed = 42) {
 if (require.main === module) {
   const base = loadBaseline(), checks = [];
   const add = (name, action) => { action(); checks.push(name); console.log(name); };
-  add("发行 1.4.1 / 规则 1.4.0 分离，玩法参数逐项与验收源码一致", () => {
-    assert.equal(config.version, "1.4.1"); assert.equal(config.rulesVersion, "1.4.0");
-    const current = growth.clone(config), original = growth.clone(base.config); delete current.version; delete current.rulesVersion; delete original.version;
+  add("发行与新规则 1.5.0；旧规则配置精确保留 v1.4.0 参数", () => {
+    assert.equal(config.version, "1.5.0"); assert.equal(config.rulesVersion, "1.5.0");
+    const current = growth.clone(rules.configForVersion(config,"1.4.0")), original = growth.clone(base.config); delete current.version; delete current.rulesVersion; delete current.legacyMineralSizes; delete original.version;
+    assert.equal(config.levels,undefined); assert.deepEqual(require("../docs/history/three-level-layouts.json").levels,original.levels); delete original.levels;
     assert.deepEqual(current, original);
   });
   let layouts = 0, shops = 0;
   add("三模式 90 组固定种子/关号：地图、事件、奖励值、目标、收益和商店精确一致", () => {
     for (const mode of challenges.modes) for (const [index, seed] of [0, 9, 42, 123, 0xffffffff].entries()) for (const n of [1, 4, 5, 10, 19, 20]) {
       const date = mode === "daily" ? ["2024-02-29", "2026-10-03", "2026-10-04", "2026-10-05", "2026-12-31"][index] : null;
-      const challenge = challenges.create(mode, seed, date);
+      const challenge = challenges.create(mode, seed, date, "1.4.0");
       assert.deepEqual(challenge, base.challenges.create(mode, seed, date));
       const entry = { challenge, runSeed: challenge.seed, wallet: 20000 }, a = rules.createRun(config, n, entry), b = base.rules.createRun(base.config, n, entry);
       assert.deepEqual(a.level, b.level); layouts++;
@@ -55,26 +56,30 @@ if (require.main === module) {
       assert.deepEqual(rules.createShop(a, config), base.rules.createShop(b, base.config)); shops++;
     }
   });
-  add("v1.4.0 三模式入口/商店/报告直接读取，修订/原文/个人最佳不写入或迁移", () => {
+  add("v1.4.0 三模式入口/商店/报告：备份原文并仅升级档案，旧规则和报价精确保留", () => {
     for (const mode of challenges.modes) for (const kind of ["level", "shop", "report"]) {
       const document = fixture(base, mode, kind), raw = JSON.stringify(document), data = new Map([[storage.progressKey, raw]]); let writes = 0;
       const db = { getItem: key => data.get(key) ?? null, setItem: (key, value) => { writes++; data.set(key, value); } };
       const loaded = storage.loadProgress(db, config, "2026-10-05T08:00:00Z");
-      assert.equal(loaded.blocked, false); assert.equal(loaded.revision, 7); assert.deepEqual(loaded.document, document); assert.equal(writes, 0); assert.equal(data.get(storage.progressKey), raw);
+      assert.equal(loaded.blocked, false); assert.equal(loaded.revision, 8); assert.equal(writes, 2); assert.equal(data.get(storage.v140BackupKey), raw);
+      assert.deepEqual(loaded.document.activeRun,document.activeRun); assert.deepEqual(loaded.document.profile.recentReports,document.profile.recentReports); assert.deepEqual(loaded.document.profile.challengeRecords,document.profile.challengeRecords);
+      assert.deepEqual(storage.loadProgress(db,config).document,loaded.document); assert.equal(writes,2);
       if (document.activeRun) assert.deepEqual(rules.restoreCheckpoint(document.activeRun.checkpoint, config), base.rules.restoreCheckpoint(document.activeRun.checkpoint, base.config));
       assert.equal(data.get(storage.v120BackupKey), undefined);
     }
   });
-  add("旧配置无 rulesVersion 仍回退 version，现行日期派生/记录键/分享不换规则", () => {
-    const fallback = { ...config }; delete fallback.rulesVersion; fallback.version = "1.4.0";
-    assert.deepEqual(rules.createLevel(fallback, 5, 42), rules.createLevel(config, 5, 42));
+  add("旧配置无 rulesVersion 仍回退 version；旧日期/键/分享保留，新规则赛题分离", () => {
+    const fallback = { ...rules.configForVersion(config,"1.4.0") }; delete fallback.rulesVersion; fallback.version = "1.4.0";
+    assert.deepEqual(rules.createLevel(fallback, 5, 42), base.rules.createLevel(base.config, 5, 42));
     assert.ok(storage.validateProgress(fixture(base, "seed"), fallback));
     for (const date of ["2024-02-29", "2026-10-03", "2026-10-05"]) {
-      assert.equal(challenges.dailySeed(date), base.challenges.dailySeed(date));
-      assert.equal(challenges.key(challenges.create("daily", 0, date)), base.challenges.key(base.challenges.create("daily", 0, date)));
+      assert.equal(challenges.dailySeed(date,"1.4.0"), base.challenges.dailySeed(date));
+      assert.equal(challenges.key(challenges.create("daily", 0, date,"1.4.0")), base.challenges.key(base.challenges.create("daily", 0, date)));
+      assert.notEqual(challenges.dailySeed(date),base.challenges.dailySeed(date));
+      assert.notEqual(challenges.key(challenges.create("daily",0,date)),challenges.key(challenges.create("daily",0,date,"1.4.0")));
     }
     assert.equal(challenges.share(fixture(base, "seed", "report").profile.recentReports[0]), base.challenges.share(fixture(base, "seed", "report").profile.recentReports[0]));
   });
-  fs.writeFileSync("output/playwright/survival-v141-compat-report.json", JSON.stringify({ version: config.version, rulesVersion: config.rulesVersion, baselineCommit, result: "passed", checks, layouts, shops, method: "exact comparison against committed v1.4.0 source; formal fixtures, not gameplay performance claims" }, null, 2) + "\n");
+  fs.writeFileSync("output/playwright/survival-v150-compat-report.json", JSON.stringify({ version: config.version, rulesVersion: config.rulesVersion, baselineCommit, result: "passed", checks, layouts, shops, method: "legacy-rule exact comparison against committed v1.4.0 source; formal fixtures, not gameplay performance claims" }, null, 2) + "\n");
 }
 module.exports = { loadBaseline, fixture, collect };

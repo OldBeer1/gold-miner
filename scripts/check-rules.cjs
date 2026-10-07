@@ -202,8 +202,8 @@ check("爆炸半径按圆形和矩形轮廓判断，边界外保留且已回收�
   const layout = [{ id: "keg", type: "powderKeg", x: 480, y: 300 },
     { id: "circle-edge", type: "stone", x: 583, y: 300 },
     { id: "circle-out", type: "stone", x: 583.01, y: 300 },
-    { id: "rectangle-edge", type: "ruby", x: 570, y: 300 },
-    { id: "rectangle-out", type: "ruby", x: 570.01, y: 300 },
+    { id: "rectangle-edge", type: "ruby", x: 560 + config.minerals.ruby.width / 2, y: 300 },
+    { id: "rectangle-out", type: "ruby", x: 560.01 + config.minerals.ruby.width / 2, y: 300 },
     { id: "banked", type: "diamond", x: 500, y: 300 }];
   const run = fresh({ level: { ...fixture, layout } }); run.minerals.at(-1).status = "banked";
   rules.launchHook(run); const event = rules.advanceRun(run, .23, config)[0];

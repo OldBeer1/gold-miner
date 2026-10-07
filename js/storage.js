@@ -10,6 +10,7 @@
   const legacyKey = "gold-miner.preferences.v1";
   const checkpointKey = "gold-miner.survival.checkpoint.v1";
   const progressKey = "gold-miner.survival.progress.v1";
+  const v140BackupKey = "gold-miner.survival.progress.backup.v140";
   const v120BackupKey = "gold-miner.survival.progress.backup.v120";
 
   function validatePreferences(value) {
@@ -50,6 +51,7 @@
   }
 
   function validateCheckpoint(value, config) {
+    if (value?.rulesVersion === "1.4.0" && ruleVersion(config) === "1.5.0") config = rules.configForVersion(config, "1.4.0");
     const object = data => data && typeof data === "object" && !Array.isArray(data);
     const money = number => Number.isSafeInteger(number) && number >= 0;
     const effectKeys = Object.keys(config.shop).filter(item => item !== "dynamite");
@@ -67,8 +69,8 @@
       || !Number.isInteger(run.bombs) || run.bombs < 0 || run.bombs > config.shop.dynamite.maxInventory
       || !validEffects(run.effects)) return null;
     if (level.rewardScale !== undefined && (!Number.isFinite(level.rewardScale) || level.rewardScale < 1 || level.rewardScale > 1000)) return null;
-    if (ruleVersion(config) === "1.4.0") {
-      if (!challenges.valid(run.challenge) || run.challenge.seed !== run.runSeed || run.challenge.levelLimit && run.levelId > run.challenge.levelLimit) return null;
+    if (challenges.supportedVersions.includes(ruleVersion(config))) {
+      if (!challenges.valid(run.challenge, ruleVersion(config)) || run.challenge.seed !== run.runSeed || run.challenge.levelLimit && run.levelId > run.challenge.levelLimit) return null;
       if (level.event) {
         const event = config.events.definitions[level.event.id];
         if (!event || Object.keys(level.event).length !== Object.keys(event).length + 1 || Object.entries(event).some(([key, entry]) => level.event[key] !== entry)) return null;
@@ -112,7 +114,7 @@
         || !object(run.result) || run.result.success !== true || run.result.target !== level.target
         || run.result.levelIncome !== run.levelIncome || run.result.totalIncome !== run.totalIncome
         || effectKeys.some(item => run.effects[item])) return null;
-      if (ruleVersion(config) === "1.4.0") {
+      if (challenges.supportedVersions.includes(ruleVersion(config))) {
         if (run.challenge.levelLimit === run.levelId || !object(shop.nextLevel) || shop.nextLevel.id !== shop.nextLevelId) return null;
         const next = { schemaVersion: 1, rulesVersion: ruleVersion(config), kind: "level", run: { ...run, levelId: shop.nextLevelId, level: shop.nextLevel, effects: shop.effects } };
         if (!validateCheckpoint(next, config)) return null;
@@ -167,7 +169,7 @@
         || active.committedThroughLevel !== checkpoint.run.levelId - (checkpoint.kind === "level" ? 1 : 0)
         || checkpoint.kind === "level" && active.entryCountedForLevel !== checkpoint.run.levelId
         || active.bestReachedLevel < checkpoint.run.levelId || active.runTotals.qualifiedIncome !== checkpoint.run.totalIncome
-        || ruleVersion(config) === "1.4.0" && JSON.stringify(active.challenge) !== JSON.stringify(checkpoint.run.challenge)) return null;
+        || challenges.supportedVersions.includes(ruleVersion(config)) && JSON.stringify(active.challenge) !== JSON.stringify(checkpoint.run.challenge)) return null;
       active.checkpoint = checkpoint;
     }
     return data;
@@ -175,6 +177,7 @@
 
   function adaptV110Checkpoint(value, config) {
     // v1.2 没有改变关卡数值，仍显式按旧版本校验，再复制兼容的入口/交易字段。
+    config = ruleVersion(config) === "1.5.0" ? rules.configForVersion(config, "1.4.0") : config;
     const old = validateCheckpoint(value, { ...config, version: "1.1.0", rulesVersion: "1.1.0" });
     if (!old) return null;
     const source = old.run;
@@ -197,7 +200,8 @@
   }
 
   function adaptV120Progress(value, config) {
-    const old = validateProgress(value, { ...config, version: "1.2.0", rulesVersion: "1.2.0" });
+    const compatible = ruleVersion(config) === "1.5.0" ? rules.configForVersion(config, "1.4.0") : config;
+    const old = validateProgress(value, { ...compatible, version: "1.2.0", rulesVersion: "1.2.0" });
     if (!old) return null;
     const fresh = growth.createDocument({ soundEnabled: old.settings.soundEnabled, highScore: 0, bestClearedLevel: 0 }, old.profile.statisticsSince);
     old.rulesVersion = ruleVersion(config);
@@ -206,13 +210,24 @@
     old.profile.challengeRecords = {};
     old.profile.endlessChestRewardIds = [...old.profile.collection.treasureChest.rewardIds];
     if (old.activeRun) {
-      const checkpoint = adaptCheckpoint(old.activeRun.checkpoint, config);
+      const checkpoint = adaptCheckpoint(old.activeRun.checkpoint, compatible);
       if (!checkpoint) return null;
       old.activeRun.checkpoint = checkpoint;
       old.activeRun.challenge = growth.clone(checkpoint.run.challenge);
-      old.activeRun.rulesetVersion = ruleVersion(config);
+      old.activeRun.rulesetVersion = checkpoint.rulesVersion;
       old.activeRun.eventCounts = {};
     }
+    if (!growth.validateDocument(old, ruleVersion(config))) return null;
+    growth.evaluate(old, null, new Date().toISOString(), false, true);
+    return validateProgress(old, config);
+  }
+
+  function adaptV140Progress(value, config, now = new Date().toISOString()) {
+    const old = validateProgress(value, rules.configForVersion(config, "1.4.0"));
+    if (!old) return null;
+    old.rulesVersion = ruleVersion(config);
+    if (!growth.validateDocument(old, ruleVersion(config))) return null;
+    growth.evaluate(old, null, now, false, true);
     return validateProgress(old, config);
   }
 
@@ -222,7 +237,8 @@
       const current = storage.getItem(progressKey);
       const currentDocument = current === null ? null : JSON.parse(current);
       if (currentDocument !== null && !validateProgress(currentDocument, config)
-        && !(currentDocument.rulesVersion === "1.2.0" && adaptV120Progress(currentDocument, config))) return { saved: false, conflict: true, message: "磁盘档案损坏或版本不兼容，已保留原数据，请重新载入。" };
+        && !(currentDocument.rulesVersion === "1.2.0" && adaptV120Progress(currentDocument, config))
+        && !(currentDocument.rulesVersion === "1.4.0" && ruleVersion(config) === "1.5.0" && adaptV140Progress(currentDocument, config))) return { saved: false, conflict: true, message: "磁盘档案损坏或版本不兼容，已保留原数据，请重新载入。" };
       const revision = currentDocument === null ? null : currentDocument.revision;
       if (revision !== expectedRevision) return { saved: false, conflict: true, message: "其他页面已更新档案，请重新载入。" };
       const candidate = growth.clone(document);
@@ -230,6 +246,7 @@
       const validated = validateProgress(candidate, config);
       if (!validated) return { saved: false, message: "档案校验失败：本次进度仅在当前页面保留。" };
       if (currentDocument?.rulesVersion === "1.2.0" && storage.getItem(v120BackupKey) === null) storage.setItem(v120BackupKey, current);
+      if (currentDocument?.rulesVersion === "1.4.0" && ruleVersion(config) === "1.5.0" && storage.getItem(v140BackupKey) === null) storage.setItem(v140BackupKey, current);
       storage.setItem(progressKey, JSON.stringify(validated));
       return { saved: true, revision: validated.revision };
     } catch {
@@ -247,12 +264,12 @@
       try {
         if (text.length > 300000) throw new Error("oversized progress");
         const raw = JSON.parse(text);
-        const document = raw.rulesVersion === "1.2.0" && ruleVersion(config) === "1.4.0" ? adaptV120Progress(raw, config) : validateProgress(raw, config);
+        const document = raw.rulesVersion === "1.2.0" && challenges.supportedVersions.includes(ruleVersion(config)) ? adaptV120Progress(raw, config) : raw.rulesVersion === "1.4.0" && ruleVersion(config) === "1.5.0" ? adaptV140Progress(raw, config, now) : validateProgress(raw, config);
         if (!document) throw new Error("invalid progress");
         if (raw.rulesVersion !== ruleVersion(config)) {
           const saved = saveProgress(storage, document, config, raw.revision);
           if (saved.saved) document.revision = saved.revision;
-          return { document, revision: saved.saved ? saved.revision : raw.revision, blocked: false, message: saved.saved ? "v1.2.0 档案已迁入，当前布局与交易保留。" : saved.message };
+          return { document, revision: saved.saved ? saved.revision : raw.revision, blocked: false, message: saved.saved ? "档案已升级，旧挑战按原规则继续，历史成果已保留。" : saved.message };
         }
         return { document, revision: document.revision, blocked: false, message: "" };
       } catch {
@@ -281,5 +298,5 @@
 
   return Object.freeze({ key, previousKey, legacyKey, checkpointKey, validatePreferences, loadPreferences, savePreferences,
     highScoreAfterRun, validateCheckpoint, loadCheckpoint, saveCheckpoint, clearCheckpoint,
-    progressKey, v120BackupKey, validateProgress, adaptV110Checkpoint, adaptV120Progress, saveProgress, loadProgress });
+    progressKey, v120BackupKey, v140BackupKey, adaptV140Progress, validateProgress, adaptV110Checkpoint, adaptV120Progress, saveProgress, loadProgress });
 });

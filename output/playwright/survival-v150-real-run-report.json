@@ -1,0 +1,423 @@
+{
+  "version": "1.5.0",
+  "method": "original randomly generated endless maps, original real clock, real mouse and Space input; diagnostics only read; no map, clock, money, carrying or outcome overrides",
+  "levels": [
+    {
+      "levelId": 1,
+      "target": 650,
+      "income": 1600,
+      "qualifiedAt": 8.4188304,
+      "settledAt": 60.0002048,
+      "trace": [
+        {
+          "id": "l1-safe3",
+          "type": "diamond",
+          "income": 250,
+          "realSeconds": 1.7090362000000001
+        },
+        {
+          "id": "l1-safe2",
+          "type": "smallGold",
+          "income": 350,
+          "realSeconds": 3.6275934000000003
+        },
+        {
+          "id": "l1-safe1",
+          "type": "diamond",
+          "income": 600,
+          "realSeconds": 5.1198095
+        },
+        {
+          "id": "l1-safe0",
+          "type": "largeGold",
+          "income": 900,
+          "realSeconds": 8.418819599999999
+        },
+        {
+          "id": "l1-safe4",
+          "type": "largeGold",
+          "income": 1200,
+          "realSeconds": 11.8974356
+        },
+        {
+          "id": "l1-safe6",
+          "type": "smallGold",
+          "income": 1300,
+          "realSeconds": 14.069429399999999
+        },
+        {
+          "id": "l1-safe8",
+          "type": "largeGold",
+          "income": 1600,
+          "realSeconds": 17.206795200000002
+        }
+      ],
+      "newAchievementIds": [
+        "first_clear",
+        "recover_streak_5",
+        "no_assistance_clear",
+        "first_recovery",
+        "level_income_1200"
+      ]
+    },
+    {
+      "levelId": 2,
+      "target": 800,
+      "income": 1700,
+      "qualifiedAt": 8.905781299999996,
+      "settledAt": 60.01614060000001,
+      "trace": [
+        {
+          "id": "l2-safe3",
+          "type": "diamond",
+          "income": 250,
+          "realSeconds": 1.799193299999999
+        },
+        {
+          "id": "l2-safe2",
+          "type": "smallGold",
+          "income": 350,
+          "realSeconds": 3.756307399999998
+        },
+        {
+          "id": "l2-safe1",
+          "type": "diamond",
+          "income": 600,
+          "realSeconds": 5.4361476000000035
+        },
+        {
+          "id": "l2-safe0",
+          "type": "largeGold",
+          "income": 900,
+          "realSeconds": 8.905776399999995
+        },
+        {
+          "id": "l2-safe4",
+          "type": "largeGold",
+          "income": 1200,
+          "realSeconds": 12.737008399999999
+        },
+        {
+          "id": "l2-safe5",
+          "type": "diamond",
+          "income": 1450,
+          "realSeconds": 14.446959699999999
+        },
+        {
+          "id": "l2-safe7",
+          "type": "diamond",
+          "income": 1700,
+          "realSeconds": 16.250879200000004
+        }
+      ],
+      "newAchievementIds": [
+        "first_clear",
+        "recover_streak_5",
+        "no_assistance_clear",
+        "first_recovery",
+        "level_income_1200",
+        "diamond_recovered_5"
+      ]
+    },
+    {
+      "levelId": 3,
+      "target": 950,
+      "income": 1550,
+      "qualifiedAt": 11.8303269,
+      "settledAt": 60.07326970000002,
+      "trace": [
+        {
+          "id": "l3-safe4",
+          "type": "largeGold",
+          "income": 300,
+          "realSeconds": 3.0269331999999993
+        },
+        {
+          "id": "l3-safe3",
+          "type": "diamond",
+          "income": 550,
+          "realSeconds": 4.888505000000005
+        },
+        {
+          "id": "l3-safe2",
+          "type": "smallGold",
+          "income": 650,
+          "realSeconds": 6.937723400000003
+        },
+        {
+          "id": "l3-safe1",
+          "type": "diamond",
+          "income": 900,
+          "realSeconds": 8.591292300000001
+        },
+        {
+          "id": "l3-safe0",
+          "type": "largeGold",
+          "income": 1200,
+          "realSeconds": 11.830324200000017
+        },
+        {
+          "id": "l3-safe6",
+          "type": "smallGold",
+          "income": 1300,
+          "realSeconds": 15.316479800000016
+        },
+        {
+          "id": "l3-safe7",
+          "type": "diamond",
+          "income": 1550,
+          "realSeconds": 17.058524900000005
+        }
+      ],
+      "newAchievementIds": [
+        "first_clear",
+        "recover_streak_5",
+        "no_assistance_clear",
+        "first_recovery",
+        "level_income_1200",
+        "diamond_recovered_5",
+        "gold_recovered_10"
+      ]
+    },
+    {
+      "levelId": 4,
+      "target": 1200,
+      "income": 1570,
+      "qualifiedAt": 16.156847500000005,
+      "settledAt": 60.0183205,
+      "trace": [
+        {
+          "id": "l4-block3",
+          "type": "stone",
+          "income": 20,
+          "realSeconds": 3.382071800000005
+        },
+        {
+          "id": "l4-safe2",
+          "type": "smallGold",
+          "income": 120,
+          "realSeconds": 5.478494600000006
+        },
+        {
+          "id": "l4-safe1",
+          "type": "diamond",
+          "income": 370,
+          "realSeconds": 7.270439600000012
+        },
+        {
+          "id": "l4-safe0",
+          "type": "largeGold",
+          "income": 670,
+          "realSeconds": 10.546174100000004
+        },
+        {
+          "id": "l4-safe3",
+          "type": "diamond",
+          "income": 920,
+          "realSeconds": 13.146657000000006
+        },
+        {
+          "id": "l4-safe4",
+          "type": "largeGold",
+          "income": 1220,
+          "realSeconds": 16.1568413
+        },
+        {
+          "id": "l4-safe5",
+          "type": "diamond",
+          "income": 1470,
+          "realSeconds": 18.0149547
+        },
+        {
+          "id": "l4-safe6",
+          "type": "smallGold",
+          "income": 1570,
+          "realSeconds": 19.9150552
+        }
+      ],
+      "newAchievementIds": [
+        "first_clear",
+        "recover_streak_5",
+        "no_assistance_clear",
+        "first_recovery",
+        "level_income_1200",
+        "diamond_recovered_5",
+        "gold_recovered_10",
+        "career_income_5000"
+      ]
+    }
+  ],
+  "shops": [
+    {
+      "afterLevel": 1,
+      "offers": [
+        "dynamite",
+        "diamondBoost",
+        "goldBoost",
+        "luckyCharm"
+      ]
+    },
+    {
+      "afterLevel": 2,
+      "offers": [
+        "dynamite",
+        "strength",
+        "timeCoupon",
+        "goldBoost"
+      ]
+    },
+    {
+      "afterLevel": 3,
+      "offers": [
+        "dynamite",
+        "luckyCharm",
+        "strength",
+        "goldBoost"
+      ]
+    },
+    {
+      "afterLevel": 4,
+      "offers": [
+        "dynamite",
+        "timeCoupon",
+        "luckyCharm",
+        "protectionCharm"
+      ]
+    }
+  ],
+  "errors": [],
+  "browser": "154.0.8037.98",
+  "runSeed": 1109182553,
+  "unlocked": [
+    "first_clear",
+    "recover_streak_5",
+    "no_assistance_clear",
+    "first_recovery",
+    "gold_recovered_10",
+    "diamond_recovered_5",
+    "level_income_1200",
+    "career_income_5000"
+  ],
+  "growth": {
+    "career": {
+      "levelsCleared": 4,
+      "qualifiedIncome": 6420,
+      "recoveredIncome": 6420,
+      "failedLevelIncome": 0,
+      "hooksLaunched": 29,
+      "hooksHit": 29,
+      "objectsRecovered": 29,
+      "dynamiteUsed": 0,
+      "objectsDestroyedByDynamite": 0,
+      "barrelsDetonated": 0,
+      "objectsDestroyedByBarrel": 0,
+      "bagGoodLuck": 0,
+      "bagBadLuck": 0,
+      "chestTopRewards": 0,
+      "timeAddedMs": 0,
+      "cursedTimeLostMs": 0,
+      "penaltiesBlocked": 0,
+      "activePlayMs": 300000,
+      "bestRecoveryValue": 300,
+      "recoveredByType": {
+        "smallGold": 7,
+        "largeGold": 9,
+        "stone": 1,
+        "diamond": 12,
+        "ruby": 0,
+        "mysteryBag": 0,
+        "treasureChest": 0,
+        "cursedRelic": 0,
+        "powderKeg": 0
+      },
+      "runsStarted": 1,
+      "runsImported": 0,
+      "runsFailed": 1,
+      "runsAbandoned": 0,
+      "bestReachedLevel": 5,
+      "bestClearedLevel": 4,
+      "bestRunIncome": 6420,
+      "bestLevelIncome": 1700
+    },
+    "report": {
+      "runId": "a578f3c7-a017-424d-84d3-435c0cf04e76",
+      "mode": "endless",
+      "rulesetVersion": "1.5.0",
+      "challenge": {
+        "mode": "endless",
+        "seed": 1109182553,
+        "date": null,
+        "rulesVersion": "1.5.0",
+        "levelLimit": null
+      },
+      "eventCounts": {
+        "none": 5
+      },
+      "runSeed": 1109182553,
+      "startedAt": "2026-10-07T04:48:46.890Z",
+      "endedAt": "2026-10-07T04:53:47.735Z",
+      "reason": "failed",
+      "statisticsComplete": true,
+      "bestReachedLevel": 5,
+      "totals": {
+        "levelsCleared": 4,
+        "qualifiedIncome": 6420,
+        "recoveredIncome": 6420,
+        "failedLevelIncome": 0,
+        "hooksLaunched": 29,
+        "hooksHit": 29,
+        "objectsRecovered": 29,
+        "dynamiteUsed": 0,
+        "objectsDestroyedByDynamite": 0,
+        "barrelsDetonated": 0,
+        "objectsDestroyedByBarrel": 0,
+        "bagGoodLuck": 0,
+        "bagBadLuck": 0,
+        "chestTopRewards": 0,
+        "timeAddedMs": 0,
+        "cursedTimeLostMs": 0,
+        "penaltiesBlocked": 0,
+        "activePlayMs": 300000,
+        "bestRecoveryValue": 300,
+        "recoveredByType": {
+          "smallGold": 7,
+          "largeGold": 9,
+          "stone": 1,
+          "diamond": 12,
+          "ruby": 0,
+          "mysteryBag": 0,
+          "treasureChest": 0,
+          "cursedRelic": 0,
+          "powderKeg": 0
+        }
+      },
+      "failure": {
+        "levelId": 5,
+        "income": 0,
+        "target": 1400,
+        "eventId": "none"
+      },
+      "newAchievementIds": [
+        "first_clear",
+        "recover_streak_5",
+        "no_assistance_clear",
+        "first_recovery",
+        "level_income_1200",
+        "diamond_recovered_5",
+        "gold_recovered_10",
+        "career_income_5000"
+      ],
+      "newRecords": [
+        "bestRunIncome",
+        "bestClearedLevel",
+        "bestReachedLevel"
+      ]
+    }
+  },
+  "failure": {
+    "levelId": 5,
+    "realSeconds": 60.190468400000015
+  },
+  "mouseUsed": true,
+  "result": "passed"
+}

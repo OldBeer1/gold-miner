@@ -1,0 +1,93 @@
+{
+  "version": "1.5.0",
+  "rulesVersion": "1.5.0",
+  "method": "original map and browser layout measurement; no performance claim",
+  "views": [
+    {
+      "width": 1280,
+      "height": 720,
+      "canvas": {
+        "x": 315,
+        "y": 173.6875,
+        "width": 650,
+        "height": 433.328125
+      },
+      "targets": {
+        "smallGold": {
+          "width": 27.083333333333336,
+          "height": 27.083333333333336
+        },
+        "diamond": {
+          "width": 20.3125,
+          "height": 24.375
+        },
+        "ruby": {
+          "width": 20.3125,
+          "height": 24.375
+        },
+        "mysteryBag": {
+          "width": 24.375,
+          "height": 28.4375
+        }
+      }
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "canvas": {
+        "x": 482,
+        "y": 173.6875,
+        "width": 956,
+        "height": 637.328125
+      },
+      "targets": {
+        "smallGold": {
+          "width": 39.833333333333336,
+          "height": 39.833333333333336
+        },
+        "diamond": {
+          "width": 29.875,
+          "height": 35.85
+        },
+        "ruby": {
+          "width": 29.875,
+          "height": 35.85
+        },
+        "mysteryBag": {
+          "width": 35.85,
+          "height": 41.825
+        }
+      }
+    },
+    {
+      "width": 1280,
+      "height": 480,
+      "canvas": {
+        "x": 162,
+        "y": 173.6875,
+        "width": 956,
+        "height": 637.328125
+      },
+      "targets": {
+        "smallGold": {
+          "width": 39.833333333333336,
+          "height": 39.833333333333336
+        },
+        "diamond": {
+          "width": 29.875,
+          "height": 35.85
+        },
+        "ruby": {
+          "width": 29.875,
+          "height": 35.85
+        },
+        "mysteryBag": {
+          "width": 35.85,
+          "height": 41.825
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "result": "passed"
+}

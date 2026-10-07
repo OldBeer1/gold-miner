@@ -1,0 +1,115 @@
+{
+  "version": "1.5.0",
+  "stage": "post-cleanup-regression-and-independent-player-package",
+  "completedAt": "2026-10-07T05:10:38.983Z",
+  "result": "passed",
+  "reports": [
+    {
+      "path": "output/playwright/survival-v150-rules-report.json",
+      "result": "passed",
+      "sha256": "21def522c0046420082bfe5637834a876f84a44407eee94081a73ca35490f953"
+    },
+    {
+      "path": "output/playwright/survival-v150-checkpoints-report.json",
+      "result": "passed",
+      "sha256": "a7383474a119f3d388881cc33db5f665fbafe8c27547d52e50229ee7279b28da"
+    },
+    {
+      "path": "output/playwright/survival-v150-growth-report.json",
+      "result": "passed",
+      "sha256": "67531e30cbf666bd9e268e600ae719f3a765c7c54bf4a218cab878c8e9471ac5"
+    },
+    {
+      "path": "output/playwright/survival-v150-challenges-report.json",
+      "result": "passed",
+      "sha256": "564e1a6efb98036c2f8accd7ef6d290d9c0b2fd5553121f4dd6ae5c399ad0ee7"
+    },
+    {
+      "path": "output/playwright/survival-v150-compat-report.json",
+      "result": "passed",
+      "sha256": "2068d08ec5487d44d599cdf995fd0e0935e624c9e729d1b4094aab61da1189d4"
+    },
+    {
+      "path": "output/playwright/survival-v150-gameplay-report.json",
+      "result": "passed",
+      "sha256": "91d73a3142dd862b2f323144ba1a3b10ad3f9cb71a2441705fa97f933a50ea45"
+    },
+    {
+      "path": "output/playwright/survival-v150-experience-report.json",
+      "result": "passed",
+      "sha256": "617a0ef11046c1ba1634472bfcfb0bdac26f814896584a3c7c0dae015f674f43"
+    },
+    {
+      "path": "output/playwright/survival-v150-challenges-ui-report.json",
+      "result": "passed",
+      "sha256": "6359589b368ca71201052c5293d588d96aff1218a791186b9106c79c9dbcb224"
+    },
+    {
+      "path": "output/playwright/survival-v150-achievements-ui-report.json",
+      "result": "passed",
+      "sha256": "b8f71d1daffbfb3f1363d94a80385ee557dcb1dbbb626ce101f66b951d99d495"
+    },
+    {
+      "path": "output/playwright/survival-v150-native-pause-report.json",
+      "result": "passed",
+      "sha256": "d4c63354eca3316bc10ef3906dd310a6ad7fae05c9f3136a51402c9400bcb928"
+    },
+    {
+      "path": "output/playwright/survival-v150-smoke-report.json",
+      "result": "passed",
+      "sha256": "dad23d3d7cd131e8d935c1b8b866a4e86d5139c3a1c6e1ddd6810e89acae4e15"
+    },
+    {
+      "path": "output/playwright/survival-v150-project-report.json",
+      "result": "passed",
+      "sha256": "1d0afd57f656e355c5b628a581395f592cb915d7b55b0635a31579d8d6a80515"
+    },
+    {
+      "path": "output/playwright/survival-v150-package-report.json",
+      "result": "passed",
+      "sha256": "25845b0ab6de6bcea16a5f0d0e84db8be21268797f16c3c0e6572bedbd1113db"
+    },
+    {
+      "path": "output/playwright/survival-v150-release-preflight-report.json",
+      "result": "passed",
+      "sha256": "9a94ff38cdc1f709e07790241276a1f3085209d958a556d48043087ce57c2361"
+    }
+  ],
+  "sourceHashes": {
+    "index.html": "2fc1c74eddb3846b8bfa7120583e4e3d47757e66e3ebf84c1b9b3a1302d5acbb",
+    "styles.css": "69d1f5453941b10bad8a370ff59431b08dea3dd27c859904f9db3fc5481cf977",
+    "js/config.js": "481d1fdc0dcfb348a258b4df52e9212408f44ad90d488c8ae10d5d3bcacd0ae9",
+    "js/challenges.js": "ea3fe6d0ecbbca306f835179efa0cc7317ee9251171f40d899b307d5f0a4351a",
+    "js/growth.js": "940a8143a458b8ac250a76fb78c889c9d00e4d56af9c855e4c449751b81da0b3",
+    "js/rules.js": "da4f49afe42ed83e60b24a551a69831c99f4b7b6bb39a41da3e506306fe0f79f",
+    "js/game.js": "56736b1a5bfeb2815421d58422c96efc55dd15c9a503170e634aa93a337cd621",
+    "js/storage.js": "9caa38bcb8553df742e017f1643ef5ccde67ca89c7dfbbcd6256311eaab1a929",
+    "js/effects.js": "4993c3134ba7865971728d7d8e1df6480d0151c80f0538b835b0685ab5d7aed8",
+    "js/audio.js": "b79f5086bf79f6bed41be1354702f9e5299ac488c8fc77b5d56888ab215b2930"
+  },
+  "playerArchive": {
+    "size": 56259,
+    "sha256": "2c0980689e386212c25adf0a35976aa603959536ae66c9b0f4e3492f12513991",
+    "entries": [
+      "index.html",
+      "js/audio.js",
+      "js/challenges.js",
+      "js/config.js",
+      "js/effects.js",
+      "js/game.js",
+      "js/growth.js",
+      "js/rules.js",
+      "js/storage.js",
+      "README.md",
+      "styles.css"
+    ]
+  },
+  "checks": [
+    "all affected engine and browser checks rerun after cleanup",
+    "game feature reports preserved separately",
+    "document and package references verified",
+    "historical outputs and old archives preserve checksums",
+    "independent player archive passed browser preflight"
+  ],
+  "remaining": "GitHub commit/push, tag, formal release, anonymous download verification and final evidence push"
+}

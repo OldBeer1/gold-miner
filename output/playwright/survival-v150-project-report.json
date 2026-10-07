@@ -1,0 +1,27 @@
+{
+  "version": "1.5.0",
+  "result": "passed",
+  "method": "filesystem reference/anchor/HTML/package and protected-file hash checks; no gameplay claim",
+  "checks": [
+    "22 Markdown, 587 local links and 140 anchors valid",
+    "10 runtime files, HTML references, release/rules version and removed inactive config valid",
+    "Player archive whitelist includes all runtime files",
+    "12 completed step files archived; 285 historical outputs/ZIPs retain exact SHA-256"
+  ],
+  "markdownFiles": 22,
+  "localLinks": 587,
+  "anchors": 140,
+  "runtimeFiles": [
+    "index.html",
+    "styles.css",
+    "js/config.js",
+    "js/challenges.js",
+    "js/growth.js",
+    "js/rules.js",
+    "js/storage.js",
+    "js/effects.js",
+    "js/audio.js",
+    "js/game.js"
+  ],
+  "protectedFiles": 285
+}

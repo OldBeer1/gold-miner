@@ -4,7 +4,8 @@
   else root.GoldMinerChallenges = factory();
 })(typeof window !== "undefined" ? window : globalThis, function () {
   "use strict";
-  const version = "1.4.0";
+  const version = "1.5.0";
+  const supportedVersions = Object.freeze(["1.4.0", version]);
   const modes = Object.freeze(["endless", "seed", "daily"]);
   const names = Object.freeze({ endless: "无限生存", seed: "Seed 挑战", daily: "每日挑战" });
   const limit = 20;
@@ -55,5 +56,5 @@
     const challenge = report.challenge || create("endless", report.runSeed, null, report.rulesetVersion);
     return `黄金矿工 · ${names[challenge.mode]}${challenge.date ? ` · ${challenge.date}（UTC+8）` : ""}\nSeed：${challenge.seed}\n规则：${challenge.rulesVersion}\n通过：${report.totals.levelsCleared}${challenge.levelLimit ? `/${challenge.levelLimit}` : ""} 关 · 有效成绩 ¥${report.totals.qualifiedIncome}\n有效采矿：${(report.totals.activePlayMs / 1000).toFixed(1)} 秒`;
   }
-  return Object.freeze({ version, modes, names, limit, normalizeSeed, dailyDate, dailySeed, validDate, hash, create, valid, key, generationSeed, better, share });
+  return Object.freeze({ version, supportedVersions, modes, names, limit, normalizeSeed, dailyDate, dailySeed, validDate, hash, create, valid, key, generationSeed, better, share });
 });

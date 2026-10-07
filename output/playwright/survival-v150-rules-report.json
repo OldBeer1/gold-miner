@@ -1,0 +1,658 @@
+{
+  "phase": "rules-regression",
+  "version": "1.5.0",
+  "result": "passed",
+  "count": 45,
+  "checks": [
+    {
+      "name": "1700 份布局均可见、可达、无重叠并在 45 秒内无道具达标，比较四种策略",
+      "result": "passed"
+    },
+    {
+      "name": "不同种子生成不同布局，强制失败使用有效备用布局",
+      "result": "passed"
+    },
+    {
+      "name": "拒绝非法关号，各次运行状态独立",
+      "result": "passed"
+    },
+    {
+      "name": "圆形和矩形线段碰撞及首个命中",
+      "result": "passed"
+    },
+    {
+      "name": "长帧不穿透近物、出钩锁向且忙碌拒绝重复出钩",
+      "result": "passed"
+    },
+    {
+      "name": "空钩到边界后恢复摆动，摆动始终在角度范围内",
+      "result": "passed"
+    },
+    {
+      "name": "smallGold 收回才入账且只有一次，力量回收速度正确",
+      "result": "passed"
+    },
+    {
+      "name": "炸药销毁 smallGold 不触发奖励或惩罚",
+      "result": "passed"
+    },
+    {
+      "name": "largeGold 收回才入账且只有一次，力量回收速度正确",
+      "result": "passed"
+    },
+    {
+      "name": "炸药销毁 largeGold 不触发奖励或惩罚",
+      "result": "passed"
+    },
+    {
+      "name": "stone 收回才入账且只有一次，力量回收速度正确",
+      "result": "passed"
+    },
+    {
+      "name": "炸药销毁 stone 不触发奖励或惩罚",
+      "result": "passed"
+    },
+    {
+      "name": "diamond 收回才入账且只有一次，力量回收速度正确",
+      "result": "passed"
+    },
+    {
+      "name": "炸药销毁 diamond 不触发奖励或惩罚",
+      "result": "passed"
+    },
+    {
+      "name": "ruby 收回才入账且只有一次，力量回收速度正确",
+      "result": "passed"
+    },
+    {
+      "name": "炸药销毁 ruby 不触发奖励或惩罚",
+      "result": "passed"
+    },
+    {
+      "name": "mysteryBag 收回才入账且只有一次，力量回收速度正确",
+      "result": "passed"
+    },
+    {
+      "name": "炸药销毁 mysteryBag 不触发奖励或惩罚",
+      "result": "passed"
+    },
+    {
+      "name": "treasureChest 收回才入账且只有一次，力量回收速度正确",
+      "result": "passed"
+    },
+    {
+      "name": "炸药销毁 treasureChest 不触发奖励或惩罚",
+      "result": "passed"
+    },
+    {
+      "name": "cursedRelic 收回才入账且只有一次，力量回收速度正确",
+      "result": "passed"
+    },
+    {
+      "name": "炸药销毁 cursedRelic 不触发奖励或惩罚",
+      "result": "passed"
+    },
+    {
+      "name": "两种增值剂只影响指定矿物，不影响红宝石或随机奖励",
+      "result": "passed"
+    },
+    {
+      "name": "力量不改变摆动、伸出和空钩回收，空钩/无库存/结算后不可用炸药",
+      "result": "passed"
+    },
+    {
+      "name": "达标不提前结束，长帧计时完整，成功只累计一次",
+      "result": "passed"
+    },
+    {
+      "name": "截止时刻在途和恰好到达物体不入账，稍早到达可入账",
+      "result": "passed"
+    },
+    {
+      "name": "失败不累计、不进店，新轮初始资源重置",
+      "result": "passed"
+    },
+    {
+      "name": "时间奖励改变长帧截止点，初始延时及累计上限 20 秒",
+      "result": "passed"
+    },
+    {
+      "name": "古物先入账再扣时间并立即结算；护符只抵消一次",
+      "result": "passed"
+    },
+    {
+      "name": "钩尖碰到火药桶立即爆炸并清除附近物体，空钩回收且不扣时间或消耗资源",
+      "result": "passed"
+    },
+    {
+      "name": "爆炸半径按圆形和矩形轮廓判断，边界外保留且已回收物不受影响",
+      "result": "passed"
+    },
+    {
+      "name": "附近火药桶直接销毁不连锁引爆，先撞到普通物体不会隔空引爆桶",
+      "result": "passed"
+    },
+    {
+      "name": "截止时才碰到火药桶或关卡已结束，不触发爆炸",
+      "result": "passed"
+    },
+    {
+      "name": "钱袋炸药满库存转 100 金币；普通非金币奖励不计收入",
+      "result": "passed"
+    },
+    {
+      "name": "随机奖励概率与边界正确，幸运只影响奖励且开局已确定",
+      "result": "passed"
+    },
+    {
+      "name": "100 个种子商店四种不重复，固定炸药、重进不刷新或重置限购",
+      "result": "passed"
+    },
+    {
+      "name": "四件限购、炸药上限、拒绝交易无扣款",
+      "result": "passed"
+    },
+    {
+      "name": "全部增益可购买且仅下一关生效、同种不叠加",
+      "result": "passed"
+    },
+    {
+      "name": "第 3、10、1000 关成功后均可继续，钱包与收入跨关保留",
+      "result": "passed"
+    },
+    {
+      "name": "新版记录独立校验，旧版只继承音效且不改写旧键",
+      "result": "passed"
+    },
+    {
+      "name": "损坏、不可读、不可写存储安全回退，失败不更新记录",
+      "result": "passed"
+    },
+    {
+      "name": "收获、爆炸和特殊浮字有数量/寿命上限，零时间冻结",
+      "result": "passed"
+    },
+    {
+      "name": "10～19/20～29 同档，20/30/40 提升；极大关号仍有限并有当前档备用路线",
+      "result": "passed"
+    },
+    {
+      "name": "倍率覆盖固定/随机金币、满炸药替代收益与增值组合，非金币不放大",
+      "result": "passed"
+    },
+    {
+      "name": "动态报价按下一关同档一致且升档涨价，实际扣款和保存报价一致",
+      "result": "passed"
+    }
+  ],
+  "generations": [
+    {
+      "levelId": 1,
+      "seeds": 100,
+      "maximumSeconds": 8.166666666666844,
+      "fallbackCount": 0,
+      "steady": {
+        "minimum": 5.875000000000082,
+        "median": 6.3500000000001044,
+        "maximum": 8.166666666666844
+      },
+      "fastestFound": {
+        "minimum": 4.633333333333352,
+        "median": 6.225000000000099,
+        "maximum": 7.85000000000018
+      },
+      "strategySuccesses": {
+        "value": 100,
+        "efficiency": 100,
+        "safe": 100
+      }
+    },
+    {
+      "levelId": 2,
+      "seeds": 100,
+      "maximumSeconds": 8.533333333333491,
+      "fallbackCount": 0,
+      "steady": {
+        "minimum": 7.708333333333505,
+        "median": 8.133333333333512,
+        "maximum": 8.533333333333491
+      },
+      "fastestFound": {
+        "minimum": 4.833333333333362,
+        "median": 7.858333333333514,
+        "maximum": 8.533333333333491
+      },
+      "strategySuccesses": {
+        "value": 100,
+        "efficiency": 100,
+        "safe": 100
+      }
+    },
+    {
+      "levelId": 3,
+      "seeds": 100,
+      "maximumSeconds": 13.0249999999999,
+      "fallbackCount": 0,
+      "steady": {
+        "minimum": 10.975000000000017,
+        "median": 11.59166666666665,
+        "maximum": 13.0249999999999
+      },
+      "fastestFound": {
+        "minimum": 4.700000000000022,
+        "median": 9.016666666666797,
+        "maximum": 11.21666666666667
+      },
+      "strategySuccesses": {
+        "value": 100,
+        "efficiency": 100,
+        "safe": 100
+      }
+    },
+    {
+      "levelId": 4,
+      "seeds": 100,
+      "maximumSeconds": 16.69166666666636,
+      "fallbackCount": 0,
+      "steady": {
+        "minimum": 11.44999999999999,
+        "median": 14.741666666666475,
+        "maximum": 16.69166666666636
+      },
+      "fastestFound": {
+        "minimum": 8.266666666666838,
+        "median": 12.033333333333292,
+        "maximum": 14.491666666666484
+      },
+      "strategySuccesses": {
+        "value": 100,
+        "efficiency": 100,
+        "safe": 100
+      }
+    },
+    {
+      "levelId": 9,
+      "seeds": 100,
+      "maximumSeconds": 34.2999999999987,
+      "fallbackCount": 0,
+      "steady": {
+        "minimum": 33.25833333333209,
+        "median": 33.88333333333206,
+        "maximum": 34.2999999999987
+      },
+      "fastestFound": {
+        "minimum": 18.533333333332923,
+        "median": 26.091666666665827,
+        "maximum": 34.05833333333205
+      },
+      "strategySuccesses": {
+        "value": 100,
+        "efficiency": 100,
+        "safe": 99
+      }
+    },
+    {
+      "levelId": 10,
+      "seeds": 100,
+      "maximumSeconds": 38.083333333331815,
+      "fallbackCount": 0,
+      "steady": {
+        "minimum": 36.916666666665215,
+        "median": 37.56666666666518,
+        "maximum": 38.083333333331815
+      },
+      "fastestFound": {
+        "minimum": 21.349999999999437,
+        "median": 31.608333333332183,
+        "maximum": 37.808333333331824
+      },
+      "strategySuccesses": {
+        "value": 94,
+        "efficiency": 98,
+        "safe": 93
+      }
+    },
+    {
+      "levelId": 11,
+      "seeds": 100,
+      "maximumSeconds": 38.07499999999848,
+      "fallbackCount": 0,
+      "steady": {
+        "minimum": 37.008333333331876,
+        "median": 37.558333333331845,
+        "maximum": 38.07499999999848
+      },
+      "fastestFound": {
+        "minimum": 19.624999999999527,
+        "median": 31.599999999998847,
+        "maximum": 37.99999999999849
+      },
+      "strategySuccesses": {
+        "value": 98,
+        "efficiency": 100,
+        "safe": 95
+      }
+    },
+    {
+      "levelId": 19,
+      "seeds": 100,
+      "maximumSeconds": 38.09999999999848,
+      "fallbackCount": 0,
+      "steady": {
+        "minimum": 37.183333333331866,
+        "median": 37.558333333331845,
+        "maximum": 38.09999999999848
+      },
+      "fastestFound": {
+        "minimum": 20.641666666666136,
+        "median": 32.21666666666548,
+        "maximum": 38.083333333331815
+      },
+      "strategySuccesses": {
+        "value": 99,
+        "efficiency": 99,
+        "safe": 97
+      }
+    },
+    {
+      "levelId": 20,
+      "seeds": 100,
+      "maximumSeconds": 39.624999999998394,
+      "fallbackCount": 0,
+      "steady": {
+        "minimum": 37.65833333333184,
+        "median": 38.27499999999847,
+        "maximum": 39.624999999998394
+      },
+      "fastestFound": {
+        "minimum": 21.32499999999943,
+        "median": 32.583333333332135,
+        "maximum": 39.24166666666508
+      },
+      "strategySuccesses": {
+        "value": 97,
+        "efficiency": 99,
+        "safe": 90
+      }
+    },
+    {
+      "levelId": 21,
+      "seeds": 100,
+      "maximumSeconds": 39.63333333333173,
+      "fallbackCount": 0,
+      "steady": {
+        "minimum": 37.60833333333185,
+        "median": 38.26666666666515,
+        "maximum": 39.63333333333173
+      },
+      "fastestFound": {
+        "minimum": 21.258333333332768,
+        "median": 32.56666666666547,
+        "maximum": 39.5749999999984
+      },
+      "strategySuccesses": {
+        "value": 97,
+        "efficiency": 98,
+        "safe": 90
+      }
+    },
+    {
+      "levelId": 29,
+      "seeds": 100,
+      "maximumSeconds": 39.64999999999839,
+      "fallbackCount": 0,
+      "steady": {
+        "minimum": 37.74166666666517,
+        "median": 38.21666666666514,
+        "maximum": 39.64999999999839
+      },
+      "fastestFound": {
+        "minimum": 22.149999999999384,
+        "median": 33.58333333333207,
+        "maximum": 39.20833333333175
+      },
+      "strategySuccesses": {
+        "value": 95,
+        "efficiency": 97,
+        "safe": 89
+      }
+    },
+    {
+      "levelId": 30,
+      "seeds": 100,
+      "maximumSeconds": 42.21666666666491,
+      "fallbackCount": 0,
+      "steady": {
+        "minimum": 41.18333333333164,
+        "median": 41.72499999999828,
+        "maximum": 42.21666666666491
+      },
+      "fastestFound": {
+        "minimum": 23.758333333332633,
+        "median": 35.749999999998614,
+        "maximum": 42.21666666666491
+      },
+      "strategySuccesses": {
+        "value": 90,
+        "efficiency": 90,
+        "safe": 71
+      }
+    },
+    {
+      "levelId": 31,
+      "seeds": 100,
+      "maximumSeconds": 42.20833333333159,
+      "fallbackCount": 0,
+      "steady": {
+        "minimum": 41.116666666664976,
+        "median": 41.74999999999827,
+        "maximum": 42.20833333333159
+      },
+      "fastestFound": {
+        "minimum": 24.333333333332593,
+        "median": 35.71666666666529,
+        "maximum": 42.1333333333316
+      },
+      "strategySuccesses": {
+        "value": 82,
+        "efficiency": 88,
+        "safe": 71
+      }
+    },
+    {
+      "levelId": 39,
+      "seeds": 100,
+      "maximumSeconds": 42.224999999998246,
+      "fallbackCount": 0,
+      "steady": {
+        "minimum": 41.36666666666496,
+        "median": 41.79999999999827,
+        "maximum": 42.224999999998246
+      },
+      "fastestFound": {
+        "minimum": 18.508333333332928,
+        "median": 34.3749999999987,
+        "maximum": 42.02499999999826
+      },
+      "strategySuccesses": {
+        "value": 93,
+        "efficiency": 98,
+        "safe": 80
+      }
+    },
+    {
+      "levelId": 40,
+      "seeds": 100,
+      "maximumSeconds": 42.566666666664894,
+      "fallbackCount": 0,
+      "steady": {
+        "minimum": 41.54166666666495,
+        "median": 41.99999999999826,
+        "maximum": 42.566666666664894
+      },
+      "fastestFound": {
+        "minimum": 21.849999999999405,
+        "median": 35.53333333333197,
+        "maximum": 42.291666666664916
+      },
+      "strategySuccesses": {
+        "value": 88,
+        "efficiency": 90,
+        "safe": 75
+      }
+    },
+    {
+      "levelId": 100,
+      "seeds": 100,
+      "maximumSeconds": 43.208333333331524,
+      "fallbackCount": 0,
+      "steady": {
+        "minimum": 42.049999999998256,
+        "median": 42.66666666666489,
+        "maximum": 43.208333333331524
+      },
+      "fastestFound": {
+        "minimum": 23.116666666665996,
+        "median": 37.124999999998536,
+        "maximum": 43.124999999998195
+      },
+      "strategySuccesses": {
+        "value": 88,
+        "efficiency": 90,
+        "safe": 70
+      }
+    },
+    {
+      "levelId": 1000,
+      "seeds": 100,
+      "maximumSeconds": 43.79999999999816,
+      "fallbackCount": 0,
+      "steady": {
+        "minimum": 42.70833333333155,
+        "median": 43.15833333333153,
+        "maximum": 43.79999999999816
+      },
+      "fastestFound": {
+        "minimum": 19.874999999999513,
+        "median": 37.28333333333186,
+        "maximum": 43.79999999999816
+      },
+      "strategySuccesses": {
+        "value": 78,
+        "efficiency": 77,
+        "safe": 53
+      }
+    }
+  ],
+  "budgets": [
+    {
+      "nextLevel": 2,
+      "offers": [
+        "dynamite",
+        "goldBoost",
+        "strength",
+        "luckyCharm"
+      ],
+      "prices": {
+        "dynamite": 120,
+        "goldBoost": 290,
+        "strength": 230,
+        "luckyCharm": 260
+      },
+      "oneOfEachCart": 900,
+      "targetIncome": 800,
+      "cartToIncome": 1.125
+    },
+    {
+      "nextLevel": 10,
+      "offers": [
+        "dynamite",
+        "luckyCharm",
+        "strength",
+        "timeCoupon"
+      ],
+      "prices": {
+        "dynamite": 170,
+        "luckyCharm": 630,
+        "strength": 570,
+        "timeCoupon": 850
+      },
+      "oneOfEachCart": 2220,
+      "targetIncome": 2100,
+      "cartToIncome": 1.0571428571428572
+    },
+    {
+      "nextLevel": 20,
+      "offers": [
+        "dynamite",
+        "goldBoost",
+        "luckyCharm",
+        "diamondBoost"
+      ],
+      "prices": {
+        "dynamite": 350,
+        "goldBoost": 870,
+        "luckyCharm": 760,
+        "diamondBoost": 690
+      },
+      "oneOfEachCart": 2670,
+      "targetIncome": 2650,
+      "cartToIncome": 1.0075471698113208
+    },
+    {
+      "nextLevel": 30,
+      "offers": [
+        "dynamite",
+        "strength",
+        "diamondBoost",
+        "timeCoupon"
+      ],
+      "prices": {
+        "dynamite": 430,
+        "strength": 860,
+        "diamondBoost": 860,
+        "timeCoupon": 1280
+      },
+      "oneOfEachCart": 3430,
+      "targetIncome": 2977,
+      "cartToIncome": 1.1521666106818946
+    },
+    {
+      "nextLevel": 100,
+      "offers": [
+        "dynamite",
+        "protectionCharm",
+        "strength",
+        "diamondBoost"
+      ],
+      "prices": {
+        "dynamite": 720,
+        "protectionCharm": 1290,
+        "strength": 1440,
+        "diamondBoost": 1440
+      },
+      "oneOfEachCart": 4890,
+      "targetIncome": 3954,
+      "cartToIncome": 1.236722306525038
+    },
+    {
+      "nextLevel": 1000,
+      "offers": [
+        "dynamite",
+        "diamondBoost",
+        "goldBoost",
+        "protectionCharm"
+      ],
+      "prices": {
+        "dynamite": 1490,
+        "diamondBoost": 2970,
+        "goldBoost": 3710,
+        "protectionCharm": 2670
+      },
+      "oneOfEachCart": 10840,
+      "targetIncome": 5795,
+      "cartToIncome": 1.8705780845556514
+    }
+  ],
+  "strategyLimit": "Four finite heuristics, not a global optimum proof"
+}

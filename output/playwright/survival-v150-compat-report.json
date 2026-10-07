@@ -1,0 +1,15 @@
+{
+  "version": "1.5.0",
+  "rulesVersion": "1.5.0",
+  "baselineCommit": "9a82b3a21b82752dba77743d144614075020970a",
+  "result": "passed",
+  "checks": [
+    "发行与新规则 1.5.0；旧规则配置精确保留 v1.4.0 参数",
+    "三模式 90 组固定种子/关号：地图、事件、奖励值、目标、收益和商店精确一致",
+    "v1.4.0 三模式入口/商店/报告：备份原文并仅升级档案，旧规则和报价精确保留",
+    "旧配置无 rulesVersion 仍回退 version；旧日期/键/分享保留，新规则赛题分离"
+  ],
+  "layouts": 90,
+  "shops": 90,
+  "method": "legacy-rule exact comparison against committed v1.4.0 source; formal fixtures, not gameplay performance claims"
+}

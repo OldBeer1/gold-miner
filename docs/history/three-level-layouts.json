@@ -1,0 +1,312 @@
+{
+  "source": "config.levels, archived before removal on 2026-10-07",
+  "historicalOnly": true,
+  "levels": [
+    {
+      "id": 1,
+      "target": 650,
+      "counts": {
+        "smallGold": 5,
+        "largeGold": 3,
+        "stone": 3,
+        "diamond": 1
+      },
+      "layout": [
+        {
+          "id": "l1-g1",
+          "type": "smallGold",
+          "x": 290,
+          "y": 225
+        },
+        {
+          "id": "l1-g2",
+          "type": "smallGold",
+          "x": 635,
+          "y": 240
+        },
+        {
+          "id": "l1-g3",
+          "type": "smallGold",
+          "x": 195,
+          "y": 350
+        },
+        {
+          "id": "l1-g4",
+          "type": "smallGold",
+          "x": 740,
+          "y": 380
+        },
+        {
+          "id": "l1-g5",
+          "type": "smallGold",
+          "x": 425,
+          "y": 430
+        },
+        {
+          "id": "l1-big1",
+          "type": "largeGold",
+          "x": 390,
+          "y": 305
+        },
+        {
+          "id": "l1-big2",
+          "type": "largeGold",
+          "x": 550,
+          "y": 410
+        },
+        {
+          "id": "l1-big3",
+          "type": "largeGold",
+          "x": 305,
+          "y": 525
+        },
+        {
+          "id": "l1-r1",
+          "type": "stone",
+          "x": 520,
+          "y": 255
+        },
+        {
+          "id": "l1-r2",
+          "type": "stone",
+          "x": 660,
+          "y": 480
+        },
+        {
+          "id": "l1-r3",
+          "type": "stone",
+          "x": 815,
+          "y": 500
+        },
+        {
+          "id": "l1-d1",
+          "type": "diamond",
+          "x": 475,
+          "y": 550
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "target": 1000,
+      "counts": {
+        "smallGold": 4,
+        "largeGold": 3,
+        "stone": 5,
+        "diamond": 3
+      },
+      "layout": [
+        {
+          "id": "l2-g1",
+          "type": "smallGold",
+          "x": 270,
+          "y": 235
+        },
+        {
+          "id": "l2-g2",
+          "type": "smallGold",
+          "x": 730,
+          "y": 300
+        },
+        {
+          "id": "l2-g3",
+          "type": "smallGold",
+          "x": 530,
+          "y": 365
+        },
+        {
+          "id": "l2-g4",
+          "type": "smallGold",
+          "x": 820,
+          "y": 540
+        },
+        {
+          "id": "l2-big1",
+          "type": "largeGold",
+          "x": 330,
+          "y": 360
+        },
+        {
+          "id": "l2-big2",
+          "type": "largeGold",
+          "x": 610,
+          "y": 440
+        },
+        {
+          "id": "l2-big3",
+          "type": "largeGold",
+          "x": 390,
+          "y": 545
+        },
+        {
+          "id": "l2-r1",
+          "type": "stone",
+          "x": 480,
+          "y": 260
+        },
+        {
+          "id": "l2-r2",
+          "type": "stone",
+          "x": 300,
+          "y": 455
+        },
+        {
+          "id": "l2-r3",
+          "type": "stone",
+          "x": 690,
+          "y": 370
+        },
+        {
+          "id": "l2-r4",
+          "type": "stone",
+          "x": 170,
+          "y": 380
+        },
+        {
+          "id": "l2-r5",
+          "type": "stone",
+          "x": 570,
+          "y": 550
+        },
+        {
+          "id": "l2-d1",
+          "type": "diamond",
+          "x": 650,
+          "y": 235
+        },
+        {
+          "id": "l2-d2",
+          "type": "diamond",
+          "x": 765,
+          "y": 425
+        },
+        {
+          "id": "l2-d3",
+          "type": "diamond",
+          "x": 190,
+          "y": 500
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "target": 1400,
+      "counts": {
+        "smallGold": 4,
+        "largeGold": 4,
+        "stone": 6,
+        "diamond": 4
+      },
+      "layout": [
+        {
+          "id": "l3-g1",
+          "type": "smallGold",
+          "x": 285,
+          "y": 240
+        },
+        {
+          "id": "l3-g2",
+          "type": "smallGold",
+          "x": 725,
+          "y": 295
+        },
+        {
+          "id": "l3-g3",
+          "type": "smallGold",
+          "x": 355,
+          "y": 300
+        },
+        {
+          "id": "l3-g4",
+          "type": "smallGold",
+          "x": 555,
+          "y": 600
+        },
+        {
+          "id": "l3-big1",
+          "type": "largeGold",
+          "x": 295,
+          "y": 405
+        },
+        {
+          "id": "l3-big2",
+          "type": "largeGold",
+          "x": 625,
+          "y": 450
+        },
+        {
+          "id": "l3-big3",
+          "type": "largeGold",
+          "x": 425,
+          "y": 565
+        },
+        {
+          "id": "l3-big4",
+          "type": "largeGold",
+          "x": 745,
+          "y": 555
+        },
+        {
+          "id": "l3-r1",
+          "type": "stone",
+          "x": 475,
+          "y": 250
+        },
+        {
+          "id": "l3-r2",
+          "type": "stone",
+          "x": 635,
+          "y": 350
+        },
+        {
+          "id": "l3-r3",
+          "type": "stone",
+          "x": 190,
+          "y": 430
+        },
+        {
+          "id": "l3-r4",
+          "type": "stone",
+          "x": 380,
+          "y": 465
+        },
+        {
+          "id": "l3-r5",
+          "type": "stone",
+          "x": 805,
+          "y": 425
+        },
+        {
+          "id": "l3-r6",
+          "type": "stone",
+          "x": 590,
+          "y": 535
+        },
+        {
+          "id": "l3-d1",
+          "type": "diamond",
+          "x": 650,
+          "y": 240
+        },
+        {
+          "id": "l3-d2",
+          "type": "diamond",
+          "x": 210,
+          "y": 320
+        },
+        {
+          "id": "l3-d3",
+          "type": "diamond",
+          "x": 535,
+          "y": 350
+        },
+        {
+          "id": "l3-d4",
+          "type": "diamond",
+          "x": 175,
+          "y": 565
+        }
+      ]
+    }
+  ]
+}

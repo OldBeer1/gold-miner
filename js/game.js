@@ -166,7 +166,7 @@
     setText(elements.challengeInfo, state.challengeError || description);
     setAttribute(elements.challengeInfo, "title", "每日使用 UTC+8 的设备日期，离线成绩不提供防作弊保证。个人最佳最多保留最近更新的 200 个赛题。");
     setProperty(elements.latestReport, "hidden", !state.progress.profile.recentReports.length);
-    const title = growth.definitions.find(def => def.id === state.progress.profile.equippedTitleId)?.reward.title;
+    const title = growth.allDefinitions.find(def => def.id === state.progress.profile.equippedTitleId)?.reward.title;
     setText(elements.equippedTitle, title ? `称号 · ${title}` : "矿工档案 · 成就记录你的经历");
     setText(elements.highScore, `¥ ${state.highScore}`);
     setText(elements.bestClearedLevel, `${state.bestClearedLevel} 关`);
@@ -179,7 +179,7 @@
     if (state.checkpoint) {
       const challenge = state.checkpoint.run.challenge;
       setText(elements.continue, `继续${challenges.names[challenge.mode]} →`);
-      setText(elements.checkpointDescription, `已保存：${challenges.names[challenge.mode]} · ${challenge.date || `Seed ${challenge.seed}`} · 第 ${state.checkpoint.run.levelId} 关${state.checkpoint.kind === "shop" ? "后的商店" : "起点"}`);
+      setText(elements.checkpointDescription, `已保存：${challenges.names[challenge.mode]} · ${challenge.date || `Seed ${challenge.seed}`} · 规则 ${challenge.rulesVersion} · 第 ${state.checkpoint.run.levelId} 关${state.checkpoint.kind === "shop" ? "后的商店" : "起点"}`);
     }
   }
 
@@ -191,7 +191,7 @@
     syncHomeDateTimer();
     setProperty(elements.reload, "hidden", !state.externalChange);
     setProperty(elements.toast, "hidden", !state.unlockQueue.length || state.screen === "paused" || state.screen === "profile");
-    if (state.unlockQueue.length) setText(elements.toastText, `徽章解锁 · ${growth.definitions.find(def => def.id === state.unlockQueue[0]).title}${state.saveError ? "（本次未能保存）" : ""}`);
+    if (state.unlockQueue.length) setText(elements.toastText, `徽章解锁 · ${growth.allDefinitions.find(def => def.id === state.unlockQueue[0]).title}${state.saveError ? "（本次未能保存）" : ""}`);
     setProperty(elements.pause, "disabled", !["playing", "paused"].includes(state.screen));
     for (const button of [elements.start, elements.continue, elements.restart, elements.nextLevel, elements.resume]) setProperty(button, "disabled", state.externalChange);
     setAttribute(elements.pause, "aria-pressed", String(state.screen === "paused"));
@@ -218,7 +218,7 @@
       setText(elements.resultDescription, state.saveError ? `${description} 已记录，本次未能保存。` : description);
       setText(elements.restart, result.success && !completed ? "进入商店 →" : "重新挑战 ↻");
       setText(elements.resultIncome, `¥ ${result.levelIncome}`); setText(elements.resultTarget, `¥ ${result.target}`); setText(elements.resultTotal, `¥ ${result.totalIncome}`);
-      setText(elements.resultAchievements, state.levelUnlocks.length ? `本关新徽章：${state.levelUnlocks.map(id => growth.definitions.find(def => def.id === id).title).join("、")}` : "");
+      setText(elements.resultAchievements, state.levelUnlocks.length ? `本关新徽章：${state.levelUnlocks.map(id => growth.allDefinitions.find(def => def.id === id).title).join("、")}` : "");
     }
     if (state.screen === "shop" && state.shop) {
       const next = state.shop.nextLevel;
@@ -236,7 +236,7 @@
 
   function updateLiveInterface() {
     setProperty(elements.toast, "hidden", !state.unlockQueue.length || state.screen === "paused" || state.screen === "profile");
-    if (state.unlockQueue.length) setText(elements.toastText, `徽章解锁 · ${growth.definitions.find(def => def.id === state.unlockQueue[0]).title}${state.saveError ? "（本次未能保存）" : ""}`);
+    if (state.unlockQueue.length) setText(elements.toastText, `徽章解锁 · ${growth.allDefinitions.find(def => def.id === state.unlockQueue[0]).title}${state.saveError ? "（本次未能保存）" : ""}`);
     const run = state.run, level = run.level;
     setText(elements.income, String(run.levelIncome)); setText(elements.time, String(Math.ceil(run.remainingTime)));
     toggleClass(elements.time, "is-urgent", run.remainingTime <= 10);
@@ -397,7 +397,7 @@
   function resultAction() {
     if (state.screen !== "result") return;
     if (!state.run.result.success || state.run.challenge.levelLimit === state.run.levelId) startGame(state.run.challenge.mode === "endless" ? null
-      : state.run.challenge.mode === "daily" ? challenges.create("daily", 0, challenges.dailyDate()) : state.run.challenge);
+      : state.run.challenge.mode === "daily" ? challenges.create("daily", 0, challenges.dailyDate()) : challenges.create("seed", state.run.challenge.seed));
     else openShop();
   }
 
@@ -558,7 +558,7 @@
     statList([["最高到达关", report.bestReachedLevel], ...totalsRows(report.totals), ["种子", report.runSeed], ["开始时间", formatDate(report.startedAt)], ["结束时间", formatDate(report.endedAt)]], container);
     const records = { bestRunIncome: "最高有效成绩", bestClearedLevel: "最高通过关", bestReachedLevel: "最高到达关" };
     container.append(element("p", `本局新纪录：${report.newRecords.map(key => records[key]).join("、") || "暂无"}`));
-    container.append(element("p", `本局新徽章：${report.newAchievementIds.map(id => growth.definitions.find(def => def.id === id).title).join("、") || "暂无"}`));
+    container.append(element("p", `本局新徽章：${report.newAchievementIds.map(id => growth.allDefinitions.find(def => def.id === id).title).join("、") || "暂无"}`));
   }
   function openProfile(page = "career") {
     if (state.screen === "playing") pauseGame();
@@ -640,10 +640,13 @@
       }
       content.append(filters);
       const grid = element("div", "", "profile-grid");
-      for (const def of growth.definitions) {
+      const historical = growth.retiredDefinitions.filter(def => profile.achievements[def.id].unlockedAt);
+      if (historical.length) content.append(element("p", "历史徽章：已下架任务的既有成果仍保留，下方历史卡片可查看／装备称号，不计当前进度。"));
+      for (const def of [...growth.definitions, ...historical]) {
         const item = profile.achievements[def.id], unlocked = Boolean(item.unlockedAt);
         if (state.filter_status === "已解锁" && !unlocked || state.filter_status === "未解锁" && unlocked || state.filter_category && state.filter_category !== "全部" && state.filter_category !== def.category) continue;
         const card = element("article", "", "profile-card"); card.dataset.achievement = def.id;
+        if (growth.retiredDefinitions.includes(def)) card.append(element("p", "历史徽章（任务已下架）"));
         const hidden = def.hidden && !unlocked;
         card.append(element("h3", hidden ? "？？？" : `${unlocked ? "◆ " : "◇ "}${def.title}`));
         card.append(element("p", `${def.rarity} · ${def.category} · ${unlocked ? "已解锁" : "未解锁"}`));
@@ -832,7 +835,7 @@
     const rect = (...args) => fill(...args, surface);
     const shape = (...args) => polygon(...args, surface);
     const { x, y, type } = mineral;
-    const definition = config.minerals[type];
+    const definition = (surface === context ? rules.configForVersion(config, state.run.challenge.rulesVersion) : config).minerals[type];
     if (type === "diamond" || type === "ruby") {
       const halfWidth = definition.width / 2;
       const halfHeight = definition.height / 2;
@@ -847,13 +850,14 @@
       return;
     }
     if (type === "mysteryBag") {
+      surface.save(); surface.translate(x, y); surface.scale(definition.width / 24, definition.height / 28); surface.translate(-x, -y);
       rect(colors.goldShadow, x - 7, y - 14, 14, 6);
       rect(colors.wood, x - 12, y - 5, 24, 17);
       rect(colors.goldLight, x - 8, y - 4, 7, 13);
       rect(colors.dark, x - 8, y - 8, 16, 3);
       rect(colors.dark, x + 2, y + 2, 5, 3);
       rect(colors.dark, x + 4, y + 7, 3, 3);
-      return;
+      surface.restore(); return;
     }
     if (type === "treasureChest") {
       rect(colors.woodShadow, x - 17, y - 14, 34, 28);

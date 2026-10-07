@@ -26,3 +26,15 @@
 根目录两份扩展规格已整合进 GAME_SPEC；其原文保留在历史目录。第 01～16 步独立文件合并为一份历史文档。旧交接和旧验收移出当前入口，分步状态只在当前实施计划维护。
 
 归档保留原文事实并重新定位本地链接；当前源码、历史证据、玩家包和浏览器数据未由文档整理改动。远程版本与下载链接未在本轮重新联网核验，发布事实以保留的历史记录为依据。
+
+## 2026-10-07：v1.5.0 整理归档
+
+- [截至 v1.4.1 的规划原文](history/feature-roadmap-through-v141.md)：18 项旧成就、成长字段、事件／每日／Seed 与体验范围。
+- [整理前实施快照](history/implementation-through-v141.md)：17～29 完整交接和 30～34 游戏完成记录。
+- [截至 v1.4.1 的验收原文](history/validation-through-v141.md)：旧证据与发布复验。
+- [v1.4.1 现行规格快照](history/game-spec-v141.md)：原尺寸和规则。
+- [原始游戏／清理需求及提示词](history/gameplay-improvement-request.md)：候选与执行顺序，含本轮游戏阶段定稿。
+- [第 17～28 步合并原文](history/completed-steps-17-28.md)：已完成的 12 个独立入口归档。
+- [旧固定三关数组](history/three-level-layouts.json)：从运行配置退出，完整数据留存。
+
+历史脚本只证明其标注版本，三关 verify-step02 等应在对应历史源码运行；当前检查使用 README 的 v150 入口。旧 ZIP、JSON、PNG 与 GitHub 发布资产保留原处。整理理由和恢复方式见 [本轮清单](CLEANUP_V150.md)，当前实际回归见 [VALIDATION](../VALIDATION.md)。

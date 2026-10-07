@@ -8,11 +8,11 @@
 2. 读 [GAME_SPEC.md](GAME_SPEC.md)：当前已实现的规则、参数和存档边界。
 3. 读 [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md) 的状态表与最新交接：确认前置和剩余事项。
 4. 读 [VALIDATION.md](VALIDATION.md)：实际证据、条件与限制。
-5. 实施第 17～28 步时，读 [FEATURE_ROADMAP.md](FEATURE_ROADMAP.md) 对应章节和该 `steps/` 文件，再检查相关实现。
+5. 继续第 30～35 步或调整抓取／成就／整理范围时，读 [GAMEPLAY_IMPROVEMENT_PLAN.md](GAMEPLAY_IMPROVEMENT_PLAN.md) 的对应步骤，再检查实现；新功能范围读 [FEATURE_ROADMAP.md](FEATURE_ROADMAP.md)。
 
 文档职责分开：现行规则只在 GAME_SPEC 维护，未来产品要求在 FEATURE_ROADMAP，任务状态在 IMPLEMENTATION_PLAN，测试结果在 VALIDATION。发现不一致时结合代码定位并修正文档，不把规划当作已实现能力。
 
-第 01～16 步已经完成，原文和旧规格集中到 [docs/HISTORY.md](docs/HISTORY.md)。需要查旧参数、设计原因、发布记录或历史证据时再读归档；当前工作从实施计划的下一步继续。
+第 01～29 步已经完成，旧规格、规划、步骤和交接从 [docs/HISTORY.md](docs/HISTORY.md) 查阅。需要查旧参数、设计原因、发布记录或历史证据时再读归档；当前工作从实施计划的下一步继续。归档提示词仅供追溯。
 
 ## 环境与实现
 
@@ -34,6 +34,8 @@
 
 - 规则或参数变更：针对性检查，然后运行 `scripts/check-rules.cjs`。
 - 保存变更：相关检查及 `scripts/check-checkpoints.cjs`。
+- 成长／挑战变更：`scripts/check-growth.cjs`、`scripts/check-challenges.cjs`；新旧玩法兼容运行 `scripts/check-ui-compat.cjs` 和 `scripts/check-gameplay.cjs`。
+- 文档整合／删除后：`scripts/check-project.cjs` 核对本地引用、锚点、运行入口和受保护历史材料。
 - JavaScript 变更：`node --check <文件路径>`。
 - 页面、输入、声音或流程变更：真实浏览器交互、未处理错误与相关已有脚本。
 - 纯文档变更：核对实现、引用、链接与格式；不用重新跑完整试玩。

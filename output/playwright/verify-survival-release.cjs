@@ -4,9 +4,11 @@ const fs = require("node:fs/promises");
 const path = require("node:path");
 const { pathToFileURL } = require("node:url");
 const { chromium } = require(process.env.GOLD_PLAYWRIGHT_MODULE || "playwright");
-const root = path.resolve(process.argv[2] || "output/release/verify-v1.4.1");
+const root = path.resolve(process.argv[2] || "output/release/verify-v1.5.0");
 const packageConfig = require(path.join(root, "js/config.js"));
 const packageVersion = packageConfig.version, rulesVersion = packageConfig.rulesVersion ?? packageVersion;
+const hasChallenges = Object.keys(packageConfig.events?.definitions || {}).length > 0;
+const achievementCount = require(path.join(root,"js/growth.js")).definitions.length;
 const prefix = process.argv[3] || `survival-v${packageVersion.replaceAll(".", "")}-release-preflight`;
 const report = { phase: "local-release", method: "extracted player archive, file open, original game rules and real keyboard/button input; controlled browser clock; contact explosion uses an explicit four-object fixture", checks: [], errors: [] };
 const diag = page => page.evaluate(() => GoldMiner.getDiagnostics());
@@ -36,7 +38,7 @@ function installExplosionFixture() {
   for (const file of ["index.html", "styles.css", "README.md", "js/config.js", "js/growth.js", "js/rules.js", "js/game.js", "js/storage.js", "js/effects.js", "js/audio.js"]) {
     assert.ok((await fs.stat(path.join(root, file))).isFile());
   }
-  if (rulesVersion === "1.4.0") assert.ok((await fs.stat(path.join(root, "js/challenges.js"))).isFile());
+  if (hasChallenges) assert.ok((await fs.stat(path.join(root, "js/challenges.js"))).isFile());
   report.checks.push("玩家包包含全部运行文件与中文说明");
   const browser = await chromium.launch({ executablePath: "C:/Program Files/Google/Chrome/Application/chrome.exe", headless: true });
   try {
@@ -91,14 +93,14 @@ function installExplosionFixture() {
     for (const name of ["career", "achievements", "collection"]) {
       await page.locator(`[data-profile="${name}"]`).filter({ visible: true }).first().click();
       assert.equal(await page.locator("#profile-screen").isVisible(), true);
-      if (name === "achievements") assert.equal(await page.locator("[data-achievement]").count(), 18);
+      if (name === "achievements") assert.equal(await page.locator("[data-achievement]").count(), achievementCount);
       if (name === "collection") assert.equal(await page.locator("[data-mineral]").count(), 9);
       await page.keyboard.press("Escape");
     }
     await page.reload(); await page.locator("#latest-report-button").click();
     assert.match(await page.locator("#profile-content").textContent(), /本次挑战报告/);
-    report.checks.push("解压包成长档案、18 成就、9 类图鉴与失败报告完整，刷新后报告可查看且结束挑战不复活");
-    if (rulesVersion === "1.4.0") {
+    report.checks.push(`解压包成长档案、${achievementCount} 成就、9 类图鉴与失败报告完整，刷新后报告可查看且结束挑战不复活`);
+    if (hasChallenges) {
       await page.keyboard.press("Escape");
       await page.locator("#challenge-mode").selectOption("seed");
       await page.locator("#challenge-seed").fill(" 00042 ");
@@ -112,7 +114,7 @@ function installExplosionFixture() {
       await page.locator("#challenge-mode").selectOption("daily");
       await page.locator("#start-button").click();
       const daily = (await diag(page)).run.challenge;
-      assert.equal(daily.mode, "daily"); assert.equal(daily.rulesVersion, "1.4.0");
+      assert.equal(daily.mode, "daily"); assert.equal(daily.rulesVersion, rulesVersion);
       assert.equal(daily.date, await page.evaluate(() => GoldMinerChallenges.dailyDate()));
       assert.equal(daily.levelLimit, 20);
       report.checks.push("解压包 Seed 规范化、20 关元数据和刷新恢复、每日 UTC+8 日期与版本一致");
