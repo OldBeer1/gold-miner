@@ -1,0 +1,60 @@
+{
+  "version": "1.5.2",
+  "result": "passed",
+  "checkedAt": "2026-10-07T07:50:52.198Z",
+  "sourceCommit": "311ec3579fa1bc17fd52268dac7c82d69b7f717c",
+  "releaseUrl": "https://github.com/OldBeer1/gold-miner/releases/tag/v1.5.2",
+  "downloadUrl": "https://github.com/OldBeer1/gold-miner/releases/download/v1.5.2/Gold-survival-v1.5.2.zip",
+  "size": 58103,
+  "sha256": "9fbbcd6c562b3cbc783acf6ac7b8e8610dfd8132a1e637144481b86b0c540fe7",
+  "reportsVerified": 21,
+  "runtime": [
+    {
+      "path": "index.html",
+      "sha256": "3d18b0c185fa4f14aba63754faf9cce124a69b61c8db494603b29c7b8adf459b"
+    },
+    {
+      "path": "styles.css",
+      "sha256": "69d1f5453941b10bad8a370ff59431b08dea3dd27c859904f9db3fc5481cf977"
+    },
+    {
+      "path": "js/config.js",
+      "sha256": "40fc3400a698458a750782d2ce84b3f05dc966f3a06215ed362d02932f56d330"
+    },
+    {
+      "path": "js/challenges.js",
+      "sha256": "279a9cb2233e1d3918fc68446359f76347a8b018e85b98eb44ff426b018e1e9a"
+    },
+    {
+      "path": "js/growth.js",
+      "sha256": "c18c09694fe49317b2e7bf766fc2122b54d874709b0d171c17b47a491eac4a95"
+    },
+    {
+      "path": "js/rules.js",
+      "sha256": "e52e76825580454ba7f0874c4093124aa674e04c4ce0554485c15b12d82989b8"
+    },
+    {
+      "path": "js/game.js",
+      "sha256": "56736b1a5bfeb2815421d58422c96efc55dd15c9a503170e634aa93a337cd621"
+    },
+    {
+      "path": "js/storage.js",
+      "sha256": "b1b0867051f58eeb3c699f6e5130dcedf17cdd55789e83cd4bf7afab4cbfec74"
+    },
+    {
+      "path": "js/effects.js",
+      "sha256": "4993c3134ba7865971728d7d8e1df6480d0151c80f0538b835b0685ab5d7aed8"
+    },
+    {
+      "path": "js/audio.js",
+      "sha256": "b79f5086bf79f6bed41be1354702f9e5299ac488c8fc77b5d56888ab215b2930"
+    }
+  ],
+  "checks": [
+    "all 21 original validation report hashes unchanged",
+    "ten runtime files match raw tag Git blobs, working source, local extraction and anonymous public extraction",
+    "published player ZIP size, SHA-256 and exact list verified",
+    "old evidence protected by project check"
+  ],
+  "method": "Exact byte/hash consistency and completed publication checks; no additional gameplay claim"
+}

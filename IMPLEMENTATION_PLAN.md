@@ -12,7 +12,7 @@
 | 42 | v1.5.2 | [八物配比与分散生成](GAMEPLAY_IMPROVEMENT_PLAN.md#step-42) | 41 | 已完成（规则通过） |
 | 43 | v1.5.2 | [四套规则与原文备份](GAMEPLAY_IMPROVEMENT_PLAN.md#step-43) | 42 | 已完成（精确兼容通过） |
 | 44 | v1.5.2 | [数量／抓取／浏览器／性能](GAMEPLAY_IMPROVEMENT_PLAN.md#step-44) | 43 | 已完成 |
-| 45 | v1.5.2 | [文档／打包／完整发布](GAMEPLAY_IMPROVEMENT_PLAN.md#step-45) | 44 | 打包核验通过，待发布 |
+| 45 | v1.5.2 | [文档／打包／完整发布](GAMEPLAY_IMPROVEMENT_PLAN.md#step-45) | 44 | 已完成（正式发布、公开下载复验） |
 | 36 | v1.5.1 | [即时备份](GAMEPLAY_IMPROVEMENT_PLAN.md#step-36) | v1.5.0 | 已完成 |
 | 37 | v1.5.1 | [分散生成／路障／备用](GAMEPLAY_IMPROVEMENT_PLAN.md#step-37) | 36 | 已完成 |
 | 38 | v1.5.1 | [三套规则与兼容](GAMEPLAY_IMPROVEMENT_PLAN.md#step-38) | 37 | 已完成 |
@@ -79,3 +79,11 @@ configForVersion 缓存 1.4.0／1.5.0 配置，旧布局生成原样保留；旧
 1700 普通／660 事件／60 备用、270 旧地图／270 商店、900 旧预算地图、快照／成长／碰撞／迁移／修订通过。21 浏览器布局、3 旧包数量对比、12 次真实帧间隔、原生暂停及四关四店原始计时通过；真实回收四类新增物、成绩 7500，自然 9 成就。方法与限制见 VALIDATION。
 
 玩家 ZIP 58103 字节、11 文件，SHA-256 9fbbcd6c562b3cbc783acf6ac7b8e8610dfd8132a1e637144481b86b0c540fe7，独立解压／10 运行文件／7 浏览器检查通过。备份仅留本地，本轮无清理或删除；45 待完整推送、正式发布及匿名下载复验。
+
+### 2026-10-07：v1.5.2 完整交付
+
+验收源码 311ec3579fa1bc17fd52268dac7c82d69b7f717c 已推送 main，正式 v1.5.2 标签固定该提交；最新稳定 [Release](https://github.com/OldBeer1/gold-miner/releases/tag/v1.5.2) 与 [玩家 ZIP](https://github.com/OldBeer1/gold-miner/releases/download/v1.5.2/Gold-survival-v1.5.2.zip) 已发布。58103 字节／11 文件，SHA-256 9fbbcd6c562b3cbc783acf6ac7b8e8610dfd8132a1e637144481b86b0c540fe7。
+
+[匿名下载](output/playwright/survival-v152-published-release-report.json)与[最终一致性](output/playwright/survival-v152-final-check-report.json)通过，10 运行文件与本地／公开解压及标签原始 Git blob 完全相同；21 份验收报告哈希保持。最终发布证据和交接另提交推送，远程与本地核对一致，标签／玩家包不变。
+
+41～45 无剩余功能工作。旧挑战保持原数量，新开挑战才有新增八物；备份路径与恢复方式见 VALIDATION。未触碰真实个人档案，没有清理、依赖变更、旧资产删除或历史改写；剩余边界为既有浏览器／地址隔离、设备日期与单活动页面，性能观察仅代表当次本机条件。

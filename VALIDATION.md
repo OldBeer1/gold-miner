@@ -40,7 +40,7 @@
 
 ## v1.5.2 玩家包与发布状态
 
-玩家 ZIP **58103 字节／11 文件**，SHA-256 `9fbbcd6c562b3cbc783acf6ac7b8e8610dfd8132a1e637144481b86b0c540fe7`。独立解压核对 10 个运行文件与源码一致，并通过解压包 **7 项浏览器检查**。[package](output/playwright/survival-v152-package-report.json)、[preflight](output/playwright/survival-v152-release-preflight-report.json)。游戏验收完成，正在完成正式 GitHub 发布及公开下载复验；发布事实通过后另追加。
+玩家 ZIP **58103 字节／11 文件**，SHA-256 `9fbbcd6c562b3cbc783acf6ac7b8e8610dfd8132a1e637144481b86b0c540fe7`。独立解压核对 10 个运行文件与源码一致，并通过解压包 **7 项浏览器检查**。[package](output/playwright/survival-v152-package-report.json)、[preflight](output/playwright/survival-v152-release-preflight-report.json)。正式最新稳定 [v1.5.2 Release](https://github.com/OldBeer1/gold-miner/releases/tag/v1.5.2) 与 [玩家 ZIP](https://github.com/OldBeer1/gold-miner/releases/download/v1.5.2/Gold-survival-v1.5.2.zip) 已发布，源码标签固定 311ec3579fa1bc17fd52268dac7c82d69b7f717c，Release ID 405510993／资产 ID 617987567。[匿名公开下载](output/playwright/survival-v152-published-release-report.json)及[最终一致性](output/playwright/survival-v152-final-check-report.json)通过：大小、SHA-256、11 文件一致；10 个运行文件同时对应源码、标签原始 Git blob、本地与公开解压包。21 份原始验收报告哈希保持。发布证据与最终交接另提交推送 main，标签和玩家包保持不变。
 
 ---
 
