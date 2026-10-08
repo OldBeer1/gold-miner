@@ -1,0 +1,43 @@
+{
+  "version": "1.5.4",
+  "rulesVersion": "1.5.3",
+  "result": "passed",
+  "checkedAt": "2026-10-08T01:04:44.3946057Z",
+  "archive": "D:\\CoDeXs\\Gold\\output\\release\\Gold-survival-v1.5.4.zip",
+  "extractedDirectory": "D:\\CoDeXs\\Gold\\output\\release\\verify-v1.5.4-20261008-090443-6874772a",
+  "size": 59741,
+  "sha256": "5869672865e4c344c12b12bf19e06a05227db64c31655b7c2cc426929924a53a",
+  "entries": [
+    "index.html",
+    "js/audio.js",
+    "js/challenges.js",
+    "js/config.js",
+    "js/effects.js",
+    "js/game.js",
+    "js/growth.js",
+    "js/rules.js",
+    "js/storage.js",
+    "README.md",
+    "styles.css"
+  ],
+  "runtimeFilesCompared": 10,
+  "runtimeHashes": {
+    "index.html": "4fbf4c052a141a59c151c50f7d9d8f4cbc923204cc63c1227360929c71e31e31",
+    "styles.css": "69d1f5453941b10bad8a370ff59431b08dea3dd27c859904f9db3fc5481cf977",
+    "js/config.js": "987246f886b5ce1a7b02d5164b4ff9ea105f61e5f30103737bc69e05019eefd8",
+    "js/challenges.js": "42bf3d60e595a6e240b338a273567ccf9d9a66b495d0518986193f731726385e",
+    "js/growth.js": "a7b038fdaee874fa98a9f57de5caf6aa62ae8baafe5347e58d67fcd1385eb056",
+    "js/rules.js": "307d04183eae986fdf633a1fa30609cb585936b73dcb19c6ed46850da07b2885",
+    "js/game.js": "1e0c4aaa6268f015873cbd536252fcb0eaa32d21a57066ab9b25cb63b698584c",
+    "js/storage.js": "5655b6618bab4a878467dd380341efa68a8d936a279928ded5a0782cafb38252",
+    "js/effects.js": "4993c3134ba7865971728d7d8e1df6480d0151c80f0538b835b0685ab5d7aed8",
+    "js/audio.js": "b79f5086bf79f6bed41be1354702f9e5299ac488c8fc77b5d56888ab215b2930"
+  },
+  "checks": [
+    "archive size and SHA-256 match manifest",
+    "fresh independent extraction matches exact whitelist",
+    "ten runtime files match current source",
+    "app version and player readme compatibility verified"
+  ],
+  "method": "fresh independent archive extraction and file/hash comparisons; browser execution is verified separately"
+}

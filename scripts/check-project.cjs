@@ -23,9 +23,11 @@ const historical=JSON.parse(fs.readFileSync(path.join(root,"output/playwright/su
 for(const item of historical.files)assert.equal(hash(item.path),item.sha256,`Preserved v150 evidence ${item.path}`);checks.push(`${historical.files.length} v150 historical scripts/reports/images retain exact SHA-256`);
 const previous=JSON.parse(fs.readFileSync(path.join(root,"output/playwright/survival-v152-historical-manifest.json"),"utf8"));
 for(const item of previous.files)assert.equal(hash(item.path),item.sha256,`Preserved v151 evidence ${item.path}`);checks.push(`${previous.files.length} v151 historical scripts/reports/images retain exact SHA-256`);
-const latest=JSON.parse(fs.readFileSync(path.join(root,"output/playwright/survival-v154-historical-manifest.json"),"utf8"));
+const latest=JSON.parse(fs.readFileSync(path.join(root,"output/playwright/survival-v153-historical-manifest.json"),"utf8"));
 for(const item of latest.files)assert.equal(hash(item.path),item.sha256,`Preserved v152 evidence ${item.path}`);checks.push(`${latest.files.length} v152 historical scripts/reports/images retain exact SHA-256`);
 const preserved=JSON.parse(fs.readFileSync(path.join(root,"output/playwright/survival-v154-historical-manifest.json"),"utf8"));
 for(const item of preserved.files)assert.equal(hash(item.path),item.sha256,`Preserved v153 evidence ${item.path}`);checks.push(`${preserved.files.length} v153 historical artifacts retain exact SHA-256`);
+const cleanup=JSON.parse(fs.readFileSync(path.join(root,"output/playwright/survival-v154-cleanup-manifest.json"),"utf8"));
+for(const item of cleanup.archives)assert.equal(hash(item.destination),item.archiveSha256);assert.deepEqual(cleanup.deletedFiles,[]);assert.deepEqual(cleanup.deletedCode,[]);checks.push("Two completed-status/evidence documents archived with hashes; no runtime or historical removals");
 const report={version:config.version,result:"passed",method:"filesystem reference/anchor/HTML/package and protected-file hash checks; no gameplay claim",checks,markdownFiles:files.length,localLinks:links,localOnlyReferences,anchors:fragments,runtimeFiles:runtime,protectedFiles:manifest.protectedFiles.length};
 fs.writeFileSync(path.resolve(root,process.argv[2]||"output/playwright/survival-v154-project-report.json"),JSON.stringify(report,null,2)+"\n");console.log(checks.join("\n"));

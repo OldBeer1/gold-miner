@@ -37,4 +37,12 @@
 - [第 17～28 步合并原文](history/completed-steps-17-28.md)：已完成的 12 个独立入口归档。
 - [旧固定三关数组](history/three-level-layouts.json)：从运行配置退出，完整数据留存。
 
-历史脚本只证明其标注版本，三关 verify-step02 等应在对应历史源码运行；当前检查使用 README 的 v150 入口。旧 ZIP、JSON、PNG 与 GitHub 发布资产保留原处。整理理由和恢复方式见 [本轮清单](CLEANUP_V150.md)，当前实际回归见 [VALIDATION](../VALIDATION.md)。
+历史脚本只证明其标注版本，三关 verify-step02 等应在对应历史源码运行；该阶段检查使用 README 当时的 v150 入口；当前检查版本见现行 README。旧 ZIP、JSON、PNG 与 GitHub 发布资产保留原处。整理理由和恢复方式见 [本轮清单](CLEANUP_V150.md)，当前实际回归见 [VALIDATION](../VALIDATION.md)。
+
+## 2026-10-08：v1.5.4 整合入口
+
+- [截至 v1.5.3 的实施状态与完整交接](history/implementation-through-v153.md)：30～50 步、各版阶段状态和最终发布事实。
+- [截至 v1.5.3 的验收原文](history/validation-through-v153.md)：v150～v153 游戏、备份、性能、兼容与公开发布证据。
+- [v1.5.4 问题、测量和整理清单](OPTIMIZATION_V154.md)：先完成游戏验收，再整合当前文档；没有确认可删除的运行代码。
+
+本轮根实施计划与 VALIDATION 只维护当前任务与实际验证，旧记录保留在上述归档。历史文中的“本轮／最新”仅指其对应版本。当前检查入口以 README 为准；旧报告与 ZIP 不删。历史本地备份引用的两份缺失文件单列说明，不属于可克隆的运行资源。

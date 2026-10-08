@@ -1,0 +1,10 @@
+{
+  "version": "1.5.4",
+  "result": "passed",
+  "checkedAt": "2026-10-08T01:04:42.666Z",
+  "method": "post-document-consolidation runtime, sealed-report and archive-provenance hash verification; game files unchanged so no redundant complete playthrough",
+  "runtimeFilesCompared": 10,
+  "reportsCompared": 26,
+  "archiveOriginsVerifiedAgainst": "6b794aa",
+  "projectReport": "output/playwright/survival-v154-regression-project-report.json"
+}

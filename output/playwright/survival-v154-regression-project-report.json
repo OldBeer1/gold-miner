@@ -1,0 +1,44 @@
+{
+  "version": "1.5.4",
+  "result": "passed",
+  "method": "filesystem reference/anchor/HTML/package and protected-file hash checks; no gameplay claim",
+  "checks": [
+    "28 Markdown, 758 available local links and 169 anchors valid; 2 absent local-only historical backup links reported separately",
+    "10 runtime files, HTML references, release/rules version and removed inactive config valid",
+    "Player archive whitelist includes all runtime files",
+    "12 completed step files archived; 285 historical outputs/ZIPs retain exact SHA-256",
+    "76 v150 historical scripts/reports/images retain exact SHA-256",
+    "75 v151 historical scripts/reports/images retain exact SHA-256",
+    "83 v152 historical scripts/reports/images retain exact SHA-256",
+    "108 v153 historical artifacts retain exact SHA-256",
+    "Two completed-status/evidence documents archived with hashes; no runtime or historical removals"
+  ],
+  "markdownFiles": 28,
+  "localLinks": 760,
+  "localOnlyReferences": [
+    {
+      "document": "docs/history/gameplay-improvement-request.md",
+      "target": "output/backups/pre-cleanup-20261005-162647-f6c32ac1/project-before-cleanup.zip",
+      "status": "absent local-only historical backup; not a tracked project resource"
+    },
+    {
+      "document": "docs/history/gameplay-improvement-request.md",
+      "target": "output/backups/pre-cleanup-20261005-162647-f6c32ac1/verification.json",
+      "status": "absent local-only historical backup; not a tracked project resource"
+    }
+  ],
+  "anchors": 169,
+  "runtimeFiles": [
+    "index.html",
+    "styles.css",
+    "js/config.js",
+    "js/challenges.js",
+    "js/growth.js",
+    "js/rules.js",
+    "js/storage.js",
+    "js/effects.js",
+    "js/audio.js",
+    "js/game.js"
+  ],
+  "protectedFiles": 285
+}

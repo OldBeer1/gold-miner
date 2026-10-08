@@ -1,0 +1,29 @@
+{
+  "version": "1.5.4",
+  "gameGateCommit": "07df26d",
+  "method": "document consolidation after sealed game acceptance; no project copies, backup ZIP or bundles",
+  "archives": [
+    {
+      "source": "IMPLEMENTATION_PLAN.md",
+      "sourceSha256": "d3ca0918d46b7c11b0b8fb305aef264cfdd0f0295093ff5f6c83e80e2b8cb142",
+      "destination": "docs/history/implementation-through-v153.md",
+      "archiveSha256": "cfaf50c369478a5099f0dadb5c805b9b0c660f94f724a1949eaffc7923623d50",
+      "reason": "completed v150-v153 status and evidence retained; active entry rewritten for v154"
+    },
+    {
+      "source": "VALIDATION.md",
+      "sourceSha256": "83301530b1d714caff6957e30589bdfe363f353953e085ecc2362808d0b16057",
+      "destination": "docs/history/validation-through-v153.md",
+      "archiveSha256": "8815f23448251275962e63485c882d43227129f295786157f5a9916825f6b6af",
+      "reason": "completed v150-v153 status and evidence retained; active entry rewritten for v154"
+    }
+  ],
+  "deletedFiles": [],
+  "deletedCode": [],
+  "preserved": [
+    "all ten runtime files and legacy compatibility paths",
+    "all historical reports, screenshots, old player ZIPs and GitHub assets",
+    "existing local backups and personal data"
+  ],
+  "note": "no confirmed unused code found; no runtime/module removal"
+}

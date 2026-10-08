@@ -1,6 +1,6 @@
 # 黄金矿工：产品路线
 
-更新：2026-10-08。v1.5.3 已正式发布并通过匿名公开下载复验；旧版本历史与当前状态见实施计划。此文件维护产品目标与后续范围；已经实现的数值、成就和兼容边界统一在 [GAME_SPEC](GAME_SPEC.md)，任务状态在 [IMPLEMENTATION_PLAN](IMPLEMENTATION_PLAN.md)，实际结果在 [VALIDATION](VALIDATION.md)。
+更新：2026-10-08。v1.5.4 游戏优化验收通过，沿用规则 1.5.3，正在完成整理与发布；实际交付状态见实施计划。此文件维护产品目标与后续范围；已经实现的数值、成就和兼容边界统一在 [GAME_SPEC](GAME_SPEC.md)，任务状态在 [IMPLEMENTATION_PLAN](IMPLEMENTATION_PLAN.md)，实际结果在 [VALIDATION](VALIDATION.md)。
 
 ## 已完成路线
 
@@ -13,6 +13,7 @@
 | v1.5.1 | 普通／事件／备用矿物自然分散，保留三套规则与旧活动 | [分散需求与分步](GAMEPLAY_IMPROVEMENT_PLAN.md#step-36) |
 | v1.5.2 | 每关新增八个可回收物，目标保持、四套规则与旧档案保留 | [数量需求与分步](GAMEPLAY_IMPROVEMENT_PLAN.md#step-41) |
 | v1.5.3 | 钩尖半径八、圆角接触、障碍和桶统一最早接触、五套规则兼容 | [抓钩需求与分步](GAMEPLAY_IMPROVEMENT_PLAN.md#step-46) |
+| v1.5.4 | 静态绘制／求交计算优化、发行显示与称号焦点修复、验收后整合文档；规则保持 1.5.3 | [优化范围与分步](GAMEPLAY_IMPROVEMENT_PLAN.md#step-51) |
 
 ## 保持的设计原则
 
