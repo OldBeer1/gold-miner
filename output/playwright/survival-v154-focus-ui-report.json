@@ -1,0 +1,33 @@
+{
+  "version": "1.5.4",
+  "method": "isolated real Chrome keyboard Enter/Tab on valid unlocked-title fixture; controlled data, no gameplay claim",
+  "scenes": [
+    {
+      "label": "previous",
+      "afterEquip": {
+        "tag": "BODY",
+        "id": "",
+        "top": 0,
+        "screen": "profile",
+        "title": "clear_10"
+      },
+      "afterClear": null
+    },
+    {
+      "label": "current",
+      "afterEquip": {
+        "tag": "BUTTON",
+        "id": "unequip-title-button",
+        "top": 221.59375,
+        "screen": "profile",
+        "title": "clear_10"
+      },
+      "afterClear": {
+        "id": "unequip-title-button",
+        "title": null
+      }
+    }
+  ],
+  "errors": [],
+  "result": "passed"
+}

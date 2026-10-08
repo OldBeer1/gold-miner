@@ -1,0 +1,81 @@
+{
+  "phase": "44",
+  "version": "1.5.4",
+  "method": "original game, layout/input checks and actual offline audio rendering",
+  "checks": [
+    "开始页完整显示、桌面画布与按钮可见、短屏无横向溢出、缩放输入准确、返回停止循环",
+    "文件直开且无远程素材或运行依赖",
+    "七类音效非零波形、无削波、节点释放",
+    "本地服务启动、音频初始化与静音释放"
+  ],
+  "errors": [],
+  "viewports": [
+    {
+      "width": 1280,
+      "height": 720,
+      "result": "passed"
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "result": "passed"
+    },
+    {
+      "width": 1280,
+      "height": 480,
+      "result": "passed"
+    }
+  ],
+  "waveforms": [
+    {
+      "name": "button",
+      "accepted": true,
+      "peak": 0.04143639653921127,
+      "nonzero": 3076,
+      "activeAfterEnd": 0
+    },
+    {
+      "name": "launch",
+      "accepted": true,
+      "peak": 0.04120476543903351,
+      "nonzero": 7322,
+      "activeAfterEnd": 0
+    },
+    {
+      "name": "grab",
+      "accepted": true,
+      "peak": 0.039033494889736176,
+      "nonzero": 3983,
+      "activeAfterEnd": 0
+    },
+    {
+      "name": "harvest",
+      "accepted": true,
+      "peak": 0.04363415017724037,
+      "nonzero": 13600,
+      "activeAfterEnd": 0
+    },
+    {
+      "name": "explode",
+      "accepted": true,
+      "peak": 0.04904616251587868,
+      "nonzero": 13545,
+      "activeAfterEnd": 0
+    },
+    {
+      "name": "success",
+      "accepted": true,
+      "peak": 0.0429222546517849,
+      "nonzero": 26714,
+      "activeAfterEnd": 0
+    },
+    {
+      "name": "failure",
+      "accepted": true,
+      "peak": 0.042622845619916916,
+      "nonzero": 22602,
+      "activeAfterEnd": 0
+    }
+  ],
+  "result": "passed"
+}

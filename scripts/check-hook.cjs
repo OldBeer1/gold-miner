@@ -65,4 +65,4 @@ check("四套旧规则全部碰撞返回值逐项匹配已发布源码，包含�
     }
   }
 });
-fs.writeFileSync("output/playwright/survival-v153-hook-report.json",JSON.stringify({version:config.version,result:"passed",method:"analytical collision boundaries, controlled formal engine cases and 400 old-rule rays; not browser or natural play",checks},null,2)+"\n");
+fs.writeFileSync("output/playwright/survival-v154-hook-report.json",JSON.stringify({version:config.version,result:"passed",method:"analytical collision boundaries, controlled formal engine cases and 400 old-rule rays; not browser or natural play",checks},null,2)+"\n");

@@ -1,0 +1,28 @@
+{
+  "version": "1.5.4",
+  "method": "isolated real Chrome keyboard Enter/Tab on valid unlocked-title fixture; controlled data, no gameplay claim",
+  "scenes": [
+    {
+      "label": "previous",
+      "afterEquip": {
+        "tag": "BODY",
+        "id": "",
+        "screen": "profile",
+        "title": "clear_10"
+      },
+      "afterClear": null
+    },
+    {
+      "label": "current",
+      "afterEquip": {
+        "tag": "BODY",
+        "id": "",
+        "screen": "profile",
+        "title": "clear_10"
+      },
+      "afterClear": null
+    }
+  ],
+  "errors": [],
+  "result": "passed"
+}

@@ -1,0 +1,485 @@
+{
+  "version": "1.5.4",
+  "method": "real Chrome render/input with isolated formally generated entry fixtures and controlled browser clock; not real-time gameplay",
+  "scenes": [
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "event": "none",
+      "fallback": false,
+      "screenshot": "survival-v154-layout-none-1280x720.png",
+      "measures": {
+        "horizontalOverflow": false,
+        "canvas": {
+          "x": 315,
+          "y": 173.6875,
+          "width": 650,
+          "height": 433.328125
+        },
+        "banner": {
+          "bottom": 173.6875
+        }
+      }
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "event": "goldRush",
+      "fallback": false,
+      "screenshot": "survival-v154-layout-goldRush-1280x720.png",
+      "measures": {
+        "horizontalOverflow": false,
+        "canvas": {
+          "x": 315,
+          "y": 173.6875,
+          "width": 650,
+          "height": 433.328125
+        },
+        "banner": {
+          "bottom": 173.6875
+        }
+      }
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "event": "diamondVein",
+      "fallback": false,
+      "screenshot": "survival-v154-layout-diamondVein-1280x720.png",
+      "measures": {
+        "horizontalOverflow": false,
+        "canvas": {
+          "x": 315,
+          "y": 173.6875,
+          "width": 650,
+          "height": 433.328125
+        },
+        "banner": {
+          "bottom": 173.6875
+        }
+      }
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "event": "unstable",
+      "fallback": false,
+      "screenshot": "survival-v154-layout-unstable-1280x720.png",
+      "measures": {
+        "horizontalOverflow": false,
+        "canvas": {
+          "x": 315,
+          "y": 173.6875,
+          "width": 650,
+          "height": 433.328125
+        },
+        "banner": {
+          "bottom": 173.6875
+        }
+      }
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "event": "blackMarket",
+      "fallback": false,
+      "screenshot": "survival-v154-layout-blackMarket-1280x720.png",
+      "measures": {
+        "horizontalOverflow": false,
+        "canvas": {
+          "x": 315,
+          "y": 173.6875,
+          "width": 650,
+          "height": 433.328125
+        },
+        "banner": {
+          "bottom": 173.6875
+        }
+      }
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "event": "sparse",
+      "fallback": false,
+      "screenshot": "survival-v154-layout-sparse-1280x720.png",
+      "measures": {
+        "horizontalOverflow": false,
+        "canvas": {
+          "x": 315,
+          "y": 173.6875,
+          "width": 650,
+          "height": 433.328125
+        },
+        "banner": {
+          "bottom": 173.6875
+        }
+      }
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "event": "none",
+      "fallback": true,
+      "screenshot": "survival-v154-layout-fallback-1280x720.png",
+      "measures": {
+        "horizontalOverflow": false,
+        "canvas": {
+          "x": 315,
+          "y": 173.6875,
+          "width": 650,
+          "height": 433.328125
+        },
+        "banner": {
+          "bottom": 173.6875
+        }
+      }
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "event": "none",
+      "fallback": false,
+      "screenshot": "survival-v154-layout-none-1920x1080.png",
+      "measures": {
+        "horizontalOverflow": false,
+        "canvas": {
+          "x": 482,
+          "y": 173.6875,
+          "width": 956,
+          "height": 637.328125
+        },
+        "banner": {
+          "bottom": 173.6875
+        }
+      }
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "event": "goldRush",
+      "fallback": false,
+      "screenshot": "survival-v154-layout-goldRush-1920x1080.png",
+      "measures": {
+        "horizontalOverflow": false,
+        "canvas": {
+          "x": 482,
+          "y": 173.6875,
+          "width": 956,
+          "height": 637.328125
+        },
+        "banner": {
+          "bottom": 173.6875
+        }
+      }
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "event": "diamondVein",
+      "fallback": false,
+      "screenshot": "survival-v154-layout-diamondVein-1920x1080.png",
+      "measures": {
+        "horizontalOverflow": false,
+        "canvas": {
+          "x": 482,
+          "y": 173.6875,
+          "width": 956,
+          "height": 637.328125
+        },
+        "banner": {
+          "bottom": 173.6875
+        }
+      }
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "event": "unstable",
+      "fallback": false,
+      "screenshot": "survival-v154-layout-unstable-1920x1080.png",
+      "measures": {
+        "horizontalOverflow": false,
+        "canvas": {
+          "x": 482,
+          "y": 173.6875,
+          "width": 956,
+          "height": 637.328125
+        },
+        "banner": {
+          "bottom": 173.6875
+        }
+      }
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "event": "blackMarket",
+      "fallback": false,
+      "screenshot": "survival-v154-layout-blackMarket-1920x1080.png",
+      "measures": {
+        "horizontalOverflow": false,
+        "canvas": {
+          "x": 482,
+          "y": 173.6875,
+          "width": 956,
+          "height": 637.328125
+        },
+        "banner": {
+          "bottom": 173.6875
+        }
+      }
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "event": "sparse",
+      "fallback": false,
+      "screenshot": "survival-v154-layout-sparse-1920x1080.png",
+      "measures": {
+        "horizontalOverflow": false,
+        "canvas": {
+          "x": 482,
+          "y": 173.6875,
+          "width": 956,
+          "height": 637.328125
+        },
+        "banner": {
+          "bottom": 173.6875
+        }
+      }
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "event": "none",
+      "fallback": true,
+      "screenshot": "survival-v154-layout-fallback-1920x1080.png",
+      "measures": {
+        "horizontalOverflow": false,
+        "canvas": {
+          "x": 482,
+          "y": 173.6875,
+          "width": 956,
+          "height": 637.328125
+        },
+        "banner": {
+          "bottom": 173.6875
+        }
+      }
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 480
+      },
+      "event": "none",
+      "fallback": false,
+      "screenshot": "survival-v154-layout-none-1280x480.png",
+      "measures": {
+        "horizontalOverflow": false,
+        "canvas": {
+          "x": 162,
+          "y": 173.6875,
+          "width": 956,
+          "height": 637.328125
+        },
+        "banner": {
+          "bottom": 173.6875
+        }
+      }
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 480
+      },
+      "event": "goldRush",
+      "fallback": false,
+      "screenshot": "survival-v154-layout-goldRush-1280x480.png",
+      "measures": {
+        "horizontalOverflow": false,
+        "canvas": {
+          "x": 162,
+          "y": 173.6875,
+          "width": 956,
+          "height": 637.328125
+        },
+        "banner": {
+          "bottom": 173.6875
+        }
+      }
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 480
+      },
+      "event": "diamondVein",
+      "fallback": false,
+      "screenshot": "survival-v154-layout-diamondVein-1280x480.png",
+      "measures": {
+        "horizontalOverflow": false,
+        "canvas": {
+          "x": 162,
+          "y": 173.6875,
+          "width": 956,
+          "height": 637.328125
+        },
+        "banner": {
+          "bottom": 173.6875
+        }
+      }
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 480
+      },
+      "event": "unstable",
+      "fallback": false,
+      "screenshot": "survival-v154-layout-unstable-1280x480.png",
+      "measures": {
+        "horizontalOverflow": false,
+        "canvas": {
+          "x": 162,
+          "y": 173.6875,
+          "width": 956,
+          "height": 637.328125
+        },
+        "banner": {
+          "bottom": 173.6875
+        }
+      }
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 480
+      },
+      "event": "blackMarket",
+      "fallback": false,
+      "screenshot": "survival-v154-layout-blackMarket-1280x480.png",
+      "measures": {
+        "horizontalOverflow": false,
+        "canvas": {
+          "x": 162,
+          "y": 173.6875,
+          "width": 956,
+          "height": 637.328125
+        },
+        "banner": {
+          "bottom": 173.6875
+        }
+      }
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 480
+      },
+      "event": "sparse",
+      "fallback": false,
+      "screenshot": "survival-v154-layout-sparse-1280x480.png",
+      "measures": {
+        "horizontalOverflow": false,
+        "canvas": {
+          "x": 162,
+          "y": 173.6875,
+          "width": 956,
+          "height": 637.328125
+        },
+        "banner": {
+          "bottom": 173.6875
+        }
+      }
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 480
+      },
+      "event": "none",
+      "fallback": true,
+      "screenshot": "survival-v154-layout-fallback-1280x480.png",
+      "measures": {
+        "horizontalOverflow": false,
+        "canvas": {
+          "x": 162,
+          "y": 173.6875,
+          "width": 956,
+          "height": 637.328125
+        },
+        "banner": {
+          "bottom": 173.6875
+        }
+      }
+    }
+  ],
+  "comparison": [
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "previousCount": 26,
+      "currentCount": 26,
+      "screenshot": "survival-v154-before-v152-1280x720.png",
+      "previousRuntime": "independently extracted released v1.5.2 player package"
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "previousCount": 26,
+      "currentCount": 26,
+      "screenshot": "survival-v154-before-v152-1920x1080.png",
+      "previousRuntime": "independently extracted released v1.5.2 player package"
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 480
+      },
+      "previousCount": 26,
+      "currentCount": 26,
+      "screenshot": "survival-v154-before-v152-1280x480.png",
+      "previousRuntime": "independently extracted released v1.5.2 player package"
+    }
+  ],
+  "checks": [
+    "21 scenes: three desktop viewports, normal/five events/forced fallback, real Canvas and no horizontal overflow",
+    "All four legacy versions keep paid shop/map/next generation; restarting the same Seed creates a new 1.5.3 challenge"
+  ],
+  "errors": [],
+  "result": "passed"
+}

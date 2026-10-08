@@ -3,7 +3,7 @@ const assert = require("node:assert/strict"), fs = require("node:fs/promises"), 
 const { chromium } = require(process.env.GOLD_PLAYWRIGHT_MODULE || "playwright");
 const { loadBaseline, fixture } = require("../../scripts/check-ui-compat.cjs");
 const baseline = loadBaseline("v1.5.3"), config = require("../../js/config.js");
-const report = { version: config.version, rulesVersion: config.rulesVersion, method: "isolated Chrome; identical original v153 entry and controlled 1000 ms clock; visible Canvas call counts and exact PNG equality, not real-time gameplay or FPS", scenes: [], errors: [] };
+const report = { version: config.version, rulesVersion: config.rulesVersion, method: "isolated Chrome; identical original v153 entry, manual RAF/performance clock 60 frames at 1/60 s; visible Canvas call counts and exact PNG equality, not real-time gameplay or FPS", scenes: [], errors: [] };
 (async () => {
   const pkg = JSON.parse(await fs.readFile(path.join(__dirname, "survival-v153-package-report.json"), "utf8"));
   const browser = await chromium.launch({ executablePath: "C:/Program Files/Google/Chrome/Application/chrome.exe", headless: true });
@@ -20,7 +20,7 @@ const report = { version: config.version, rulesVersion: config.rulesVersion, met
             CanvasRenderingContext2D.prototype[name] = function(...args) { if (this.canvas.id === "game-canvas") __draws[name]++; return original.apply(this,args); };
           }
         }, {key:baseline.storage.progressKey,doc});
-        
+
         await page.goto(pathToFileURL(target).href); await page.evaluate(() => document.getElementById("continue-button").click());
         const before = await page.evaluate(() => { __draws.fillRect=__draws.drawImage=0; return GoldMiner.getDiagnostics().frameCount; });
         await page.evaluate(() => {for(let n=1;n<=60;n++){__now=n*1000/60;const callbacks=[...__raf.values()];__raf.clear();callbacks.forEach(callback=>callback(__now));}});

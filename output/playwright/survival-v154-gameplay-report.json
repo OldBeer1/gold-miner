@@ -1,0 +1,32 @@
+{
+  "version": "1.5.4",
+  "rulesVersion": "1.5.3",
+  "method": "formal collision tests and controlled committed-baseline save fixtures; not real-time play",
+  "checks": [
+    {
+      "name": "四类小物放大、基础价值/回速/钩子/计时/事件/商店不变",
+      "result": "passed"
+    },
+    {
+      "name": "新轮廓擦边可抓、旧轮廓外路径改善；边界外无远距离吸附",
+      "result": "passed"
+    },
+    {
+      "name": "最近碰撞优先、石头阻挡、火药桶风险与顺序无关",
+      "result": "passed"
+    },
+    {
+      "name": "历史 12 项退出可解锁目录，旧徽章/称号/报告保留，升级补发幂等",
+      "result": "passed"
+    },
+    {
+      "name": "迁移拒绝写入保留旧原文，恢复重试成功；外部修订和未知格式保护",
+      "result": "passed"
+    },
+    {
+      "name": "旧/新个人最佳同时保留且键隔离，混合版本报告和商店合法",
+      "result": "passed"
+    }
+  ],
+  "result": "passed"
+}

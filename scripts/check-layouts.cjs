@@ -79,4 +79,4 @@ check("五套规则最佳键隔离、旧档不能接受未来规则；同模式�
     assert.deepEqual(rules.createRun(config,4,{challenge,runSeed:challenge.seed}),rules.createRun(config,4,{challenge,runSeed:challenge.seed}));
   }
 });
-fs.writeFileSync("output/playwright/survival-v153-layouts-report.json",JSON.stringify({version:config.version,result:"passed",method:"formal deterministic generation, route verification and controlled save fixtures; not browser or real-time gameplay",checks,minima,comparisonMaps:660,downgrade,fallbackCases:cases},null,2)+"\n");
+fs.writeFileSync("output/playwright/survival-v154-layouts-report.json",JSON.stringify({version:config.version,result:"passed",method:"formal deterministic generation, route verification and controlled save fixtures; not browser or real-time gameplay",checks,minima,comparisonMaps:660,downgrade,fallbackCases:cases},null,2)+"\n");

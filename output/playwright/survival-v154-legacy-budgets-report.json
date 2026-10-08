@@ -1,0 +1,112 @@
+{
+  "version": "1.5.4",
+  "result": "passed",
+  "method": "1500 old-rule maps and all four route strategies compared exactly to five released tags; formal simulation",
+  "samples": [
+    {
+      "version": "1.4.0",
+      "level": 10,
+      "seeds": 100,
+      "steadyMedian": 37.79999999999851,
+      "fastestMedian": 31.608333333332183
+    },
+    {
+      "version": "1.4.0",
+      "level": 30,
+      "seeds": 100,
+      "steadyMedian": 41.94999999999827,
+      "fastestMedian": 34.99999999999866
+    },
+    {
+      "version": "1.4.0",
+      "level": 1000,
+      "seeds": 100,
+      "steadyMedian": 43.38333333333152,
+      "fastestMedian": 37.94999999999849
+    },
+    {
+      "version": "1.5.0",
+      "level": 10,
+      "seeds": 100,
+      "steadyMedian": 37.56666666666518,
+      "fastestMedian": 31.608333333332183
+    },
+    {
+      "version": "1.5.0",
+      "level": 30,
+      "seeds": 100,
+      "steadyMedian": 41.72499999999828,
+      "fastestMedian": 35.749999999998614
+    },
+    {
+      "version": "1.5.0",
+      "level": 1000,
+      "seeds": 100,
+      "steadyMedian": 43.15833333333153,
+      "fastestMedian": 37.28333333333186
+    },
+    {
+      "version": "1.5.1",
+      "level": 10,
+      "seeds": 100,
+      "steadyMedian": 41.241666666664976,
+      "fastestMedian": 28.674999999999013
+    },
+    {
+      "version": "1.5.1",
+      "level": 30,
+      "seeds": 100,
+      "steadyMedian": 43.674999999998164,
+      "fastestMedian": 32.99166666666544
+    },
+    {
+      "version": "1.5.1",
+      "level": 1000,
+      "seeds": 100,
+      "steadyMedian": 43.67499999999817,
+      "fastestMedian": 34.883333333332
+    },
+    {
+      "version": "1.5.2",
+      "level": 10,
+      "seeds": 100,
+      "steadyMedian": 41.141666666664975,
+      "fastestMedian": 26.899999999999114
+    },
+    {
+      "version": "1.5.2",
+      "level": 30,
+      "seeds": 100,
+      "steadyMedian": 43.708333333331495,
+      "fastestMedian": 29.04999999999899
+    },
+    {
+      "version": "1.5.2",
+      "level": 1000,
+      "seeds": 100,
+      "steadyMedian": 43.64166666666484,
+      "fastestMedian": 32.53333333333213
+    },
+    {
+      "version": "1.5.3",
+      "level": 10,
+      "seeds": 100,
+      "steadyMedian": 40.40833333333169,
+      "fastestMedian": 27.108333333332435
+    },
+    {
+      "version": "1.5.3",
+      "level": 30,
+      "seeds": 100,
+      "steadyMedian": 43.11666666666486,
+      "fastestMedian": 30.324999999998923
+    },
+    {
+      "version": "1.5.3",
+      "level": 1000,
+      "seeds": 100,
+      "steadyMedian": 43.22499999999819,
+      "fastestMedian": 33.31666666666542
+    }
+  ]
+}

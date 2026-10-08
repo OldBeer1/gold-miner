@@ -1,0 +1,75 @@
+{
+  "version": "1.5.4",
+  "rulesVersion": "1.5.3",
+  "method": "deterministic exact differential rays and interleaved warmed Node generation timing; same rules, not a browser FPS claim",
+  "rays": 40054,
+  "samples": [],
+  "rounds": [
+    {
+      "round": 0,
+      "previous": {
+        "medianMs": 5.175000000000182,
+        "p95Ms": 13.263100000000122,
+        "totalMs": 548.2687000000006
+      },
+      "current": {
+        "medianMs": 1.9524999999998727,
+        "p95Ms": 4.2456999999999425,
+        "totalMs": 189.13359999999852
+      }
+    },
+    {
+      "round": 1,
+      "current": {
+        "medianMs": 1.8885000000000218,
+        "p95Ms": 4.1871000000001,
+        "totalMs": 178.0011999999997
+      },
+      "previous": {
+        "medianMs": 4.4845000000000255,
+        "p95Ms": 10.213999999999942,
+        "totalMs": 418.75689999999986
+      }
+    },
+    {
+      "round": 2,
+      "previous": {
+        "medianMs": 4.517100000000028,
+        "p95Ms": 11.191899999999805,
+        "totalMs": 446.657700000002
+      },
+      "current": {
+        "medianMs": 1.909900000000107,
+        "p95Ms": 4.321600000000217,
+        "totalMs": 195.78760000000239
+      }
+    },
+    {
+      "round": 3,
+      "current": {
+        "medianMs": 1.9531000000001768,
+        "p95Ms": 6.655099999999948,
+        "totalMs": 268.4051999999988
+      },
+      "previous": {
+        "medianMs": 4.704099999999926,
+        "p95Ms": 15.47589999999991,
+        "totalMs": 568.7242000000028
+      }
+    },
+    {
+      "round": 4,
+      "previous": {
+        "medianMs": 4.072000000000116,
+        "p95Ms": 9.865499999999884,
+        "totalMs": 489.75580000000264
+      },
+      "current": {
+        "medianMs": 1.6855999999997948,
+        "p95Ms": 5.482300000000578,
+        "totalMs": 204.93409999999403
+      }
+    }
+  ],
+  "result": "passed"
+}

@@ -1,7 +1,7 @@
 {
   "version": "1.5.3",
   "rulesVersion": "1.5.3",
-  "method": "isolated Chrome; identical original v153 entry and controlled 1000 ms clock; visible Canvas call counts and exact PNG equality, not real-time gameplay or FPS",
+  "method": "isolated Chrome; identical original v153 entry, manual RAF/performance clock 60 frames at 1/60 s; visible Canvas call counts and exact PNG equality, not real-time gameplay or FPS",
   "scenes": [
     {
       "viewport": {

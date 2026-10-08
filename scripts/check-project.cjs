@@ -13,7 +13,7 @@ for(const p of files){const text=fs.readFileSync(path.join(root,p),"utf8");for(c
 }if(pieces.length&&relative.endsWith(".md")){fragments++;const id=decodeURIComponent(pieces.join("#"));if(!anchors.get(relative)?.has(id))failures.push(`${p}: missing anchor ${relative}#${id}`);}}}
 assert.deepEqual(failures,[],"Document links and anchors");checks.push(`${files.length} Markdown, ${links-localOnlyReferences.length} available local links and ${fragments} anchors valid; ${localOnlyReferences.length} absent local-only historical backup links reported separately`);
 const html=fs.readFileSync(path.join(root,"index.html"),"utf8"),resources=[...html.matchAll(/<(?:script|link)\b[^>]*(?:src|href)="([^"]+)"/g)].map(m=>m[1]).filter(p=>!p.startsWith("data:"));for(const p of resources)assert.ok(fs.existsSync(path.join(root,p)),`HTML resource ${p}`);
-const runtime=["index.html","styles.css",...resources.filter(p=>p.endsWith(".js"))];assert.equal(new Set(runtime).size,10);assert.equal(config.version,"1.5.3");assert.equal(config.rulesVersion,"1.5.3");assert.equal(config.levels,undefined);checks.push("10 runtime files, HTML references, release/rules version and removed inactive config valid");
+const runtime=["index.html","styles.css",...resources.filter(p=>p.endsWith(".js"))];assert.equal(new Set(runtime).size,10);assert.equal(config.version,"1.5.4");assert.equal(config.rulesVersion,"1.5.3");assert.equal(config.levels,undefined);checks.push("10 runtime files, HTML references, release/rules version and removed inactive config valid");
 const packageScript=fs.readFileSync(path.join(root,"scripts/package-release.ps1"),"utf8");for(const p of runtime)assert.ok(packageScript.includes("'"+p+"'"),`Package includes ${p}`);checks.push("Player archive whitelist includes all runtime files");
 const manifest=JSON.parse(fs.readFileSync(path.join(root,"output/playwright/survival-v150-cleanup-manifest.json"),"utf8"));
 for(const p of manifest.deletedStepPaths)assert.equal(fs.existsSync(path.join(root,p)),false);
@@ -23,7 +23,9 @@ const historical=JSON.parse(fs.readFileSync(path.join(root,"output/playwright/su
 for(const item of historical.files)assert.equal(hash(item.path),item.sha256,`Preserved v150 evidence ${item.path}`);checks.push(`${historical.files.length} v150 historical scripts/reports/images retain exact SHA-256`);
 const previous=JSON.parse(fs.readFileSync(path.join(root,"output/playwright/survival-v152-historical-manifest.json"),"utf8"));
 for(const item of previous.files)assert.equal(hash(item.path),item.sha256,`Preserved v151 evidence ${item.path}`);checks.push(`${previous.files.length} v151 historical scripts/reports/images retain exact SHA-256`);
-const latest=JSON.parse(fs.readFileSync(path.join(root,"output/playwright/survival-v153-historical-manifest.json"),"utf8"));
+const latest=JSON.parse(fs.readFileSync(path.join(root,"output/playwright/survival-v154-historical-manifest.json"),"utf8"));
 for(const item of latest.files)assert.equal(hash(item.path),item.sha256,`Preserved v152 evidence ${item.path}`);checks.push(`${latest.files.length} v152 historical scripts/reports/images retain exact SHA-256`);
+const preserved=JSON.parse(fs.readFileSync(path.join(root,"output/playwright/survival-v154-historical-manifest.json"),"utf8"));
+for(const item of preserved.files)assert.equal(hash(item.path),item.sha256,`Preserved v153 evidence ${item.path}`);checks.push(`${preserved.files.length} v153 historical artifacts retain exact SHA-256`);
 const report={version:config.version,result:"passed",method:"filesystem reference/anchor/HTML/package and protected-file hash checks; no gameplay claim",checks,markdownFiles:files.length,localLinks:links,localOnlyReferences,anchors:fragments,runtimeFiles:runtime,protectedFiles:manifest.protectedFiles.length};
-fs.writeFileSync(path.resolve(root,process.argv[2]||"output/playwright/survival-v153-project-report.json"),JSON.stringify(report,null,2)+"\n");console.log(checks.join("\n"));
+fs.writeFileSync(path.resolve(root,process.argv[2]||"output/playwright/survival-v154-project-report.json"),JSON.stringify(report,null,2)+"\n");console.log(checks.join("\n"));

@@ -528,6 +528,10 @@
   // A swept circular hook meets a rectangle's rounded expansion, not its square bounding box.
   function segmentRoundedRectangle(start, end, center, width, height, radius) {
     if (radius === 0) return segmentRectangle(start, end, center, width, height);
+    // 保守包围框只排除不可能接触的运动段；命中仍使用原来的圆角求交及顺序。
+    const halfWidth = width / 2 + radius, halfHeight = height / 2 + radius;
+    if (Math.max(start.x, end.x) < center.x - halfWidth || Math.min(start.x, end.x) > center.x + halfWidth
+      || Math.max(start.y, end.y) < center.y - halfHeight || Math.min(start.y, end.y) > center.y + halfHeight) return null;
     let nearest = null;
     const include = t => { if (t !== null && (nearest === null || t < nearest)) nearest = t; };
     include(segmentRectangle(start, end, center, width + 2 * radius, height));

@@ -40,17 +40,17 @@ if (require.main === module) {
     denied=false;assert.ok(storage.saveProgress(db,loaded.document,config,loaded.revision).saved);assert.equal(data.get(storage.v152BackupKey),raw);
     data.set(storage.progressKey,raw);data.set(storage.v152BackupKey,"previous backup retained");const restored=storage.loadProgress(db,config,now);assert.equal(restored.blocked,false);assert.equal(data.get(storage.v152BackupKey),"previous backup retained");assert.deepEqual(restored.document.profile,old.profile);
   });
-  check("同输入 v152/v153 生成耗时和四种策略收益/耗时对比；原目标及收益倍率保持", () => {
-    const old=rules.configForVersion(config,"1.5.2");
+  check("同输入 v153/v154 生成耗时和四种策略收益/耗时对比；原目标及收益倍率保持", () => {
+    const old=loadBaseline("v1.5.3");
     for(const n of [1,4,10,30,1000])for(let seed=0;seed<20;seed++){
       const sample={level:n,seed};
-      for(const [name,cfg] of [["previous",old],["current",config]]){
-        const started=performance.now(),level=rules.createLevel(cfg,n,seed,"none");
-        sample[name]={generationMs:performance.now()-started,count:level.count,target:level.target,rewardScale:level.rewardScale,fallback:level.fallback,routes:["steady","value","efficiency","safe"].map(s=>rules.verifyRoute(cfg,level,s))};
+      for(const [name,engine] of [["previous",old],["current",{config,rules}]]){
+        const started=performance.now(),level=engine.rules.createLevel(engine.config,n,seed,"none");
+        sample[name]={generationMs:performance.now()-started,count:level.count,target:level.target,rewardScale:level.rewardScale,fallback:level.fallback,routes:["steady","value","efficiency","safe"].map(s=>engine.rules.verifyRoute(engine.config,level,s))};
       }
       assert.equal(sample.current.count-sample.previous.count,0);assert.equal(sample.current.target,sample.previous.target);assert.equal(sample.current.rewardScale,sample.previous.rewardScale);samples.push(sample);
     }
   });
-  fs.writeFileSync("output/playwright/survival-v153-density-report.json",JSON.stringify({version:config.version,result:"passed",method:"formal geometry, controlled isolated-target recovery/save cases and Node timing; not browser or natural gameplay",checks,samples},null,2)+"\n");
+  fs.writeFileSync("output/playwright/survival-v154-density-report.json",JSON.stringify({version:config.version,result:"passed",method:"formal geometry, controlled isolated-target recovery/save cases and Node timing; not browser or natural gameplay",checks,samples},null,2)+"\n");
 }
 module.exports={assertDensity};

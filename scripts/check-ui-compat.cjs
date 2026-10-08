@@ -35,13 +35,13 @@ function fixture(base, mode, kind = "level", seed = 42) {
   assert.ok(base.storage.validateProgress(doc, base.config)); return doc;
 }
 if (require.main === module) {
-  const checks = [], baselines = [{version:"1.4.0",commit:baselineCommit}, {version:"1.5.0",commit:"v1.5.0"}, {version:"1.5.1",commit:"v1.5.1"}, {version:"1.5.2",commit:"v1.5.2"}];
+  const checks = [], baselines = [{version:"1.4.0",commit:baselineCommit}, {version:"1.5.0",commit:"v1.5.0"}, {version:"1.5.1",commit:"v1.5.1"}, {version:"1.5.2",commit:"v1.5.2"}, {version:"1.5.3",commit:"v1.5.3"}];
   const add = (name, action) => { action(); checks.push(name); console.log(name); };
   let layouts = 0, shops = 0;
   for (const baseline of baselines) {
   const base = loadBaseline(baseline.commit), version = baseline.version;
   add(`新规则 1.5.3；旧 ${version} 参数精确保留`, () => {
-    assert.equal(config.version,"1.5.3"); assert.equal(config.rulesVersion,"1.5.3");
+    assert.equal(config.version,"1.5.4"); assert.equal(config.rulesVersion,"1.5.3");
     const current = growth.clone(rules.configForVersion(config,version)), original = growth.clone(base.config);
     delete current.version; delete original.version;
     if (version === "1.4.0") { delete current.rulesVersion; delete current.legacyMineralSizes; assert.deepEqual(require("../docs/history/three-level-layouts.json").levels,original.levels); delete original.levels; }
@@ -59,31 +59,39 @@ if (require.main === module) {
       assert.deepEqual(rules.createShop(a, config), base.rules.createShop(b, base.config)); shops++;
     }
   });
-  add(`${version} 三模式入口/商店/报告：先备份原文，升级幂等且不改变活动/报价/历史`, () => {
+  add(`${version} 三模式入口/商店/报告：按实际规则升级或直接读取，幂等且不改变活动/报价/历史`, () => {
     for (const mode of challenges.modes) for (const kind of ["level", "shop", "report"]) {
       const document = fixture(base, mode, kind), raw = JSON.stringify(document), data = new Map([[storage.progressKey, raw]]); let writes = 0;
       const db = { getItem: key => data.get(key) ?? null, setItem: (key, value) => { writes++; data.set(key, value); } };
       const loaded = storage.loadProgress(db, config, "2026-10-05T08:00:00Z");
-      assert.equal(loaded.blocked, false); assert.equal(loaded.revision, 8); assert.equal(writes, 2); assert.equal(data.get(version === "1.4.0" ? storage.v140BackupKey : version === "1.5.0" ? storage.v150BackupKey : version === "1.5.1" ? storage.v151BackupKey : storage.v152BackupKey), raw);
+      const sameRules = version === config.rulesVersion, expectedWrites = sameRules ? 0 : 2;
+      assert.equal(loaded.blocked, false); assert.equal(loaded.revision, sameRules ? 7 : 8); assert.equal(writes, expectedWrites);
+      if (sameRules) assert.equal(data.get(storage.progressKey), raw);
+      else assert.equal(data.get(version === "1.4.0" ? storage.v140BackupKey : version === "1.5.0" ? storage.v150BackupKey : version === "1.5.1" ? storage.v151BackupKey : storage.v152BackupKey), raw);
       assert.deepEqual(loaded.document.activeRun,document.activeRun); assert.deepEqual(loaded.document.profile.recentReports,document.profile.recentReports); assert.deepEqual(loaded.document.profile.challengeRecords,document.profile.challengeRecords);
-      assert.deepEqual(storage.loadProgress(db,config).document,loaded.document); assert.equal(writes,2);
+      assert.deepEqual(storage.loadProgress(db,config).document,loaded.document); assert.equal(writes,expectedWrites);
       if (document.activeRun) assert.deepEqual(rules.restoreCheckpoint(document.activeRun.checkpoint, config), base.rules.restoreCheckpoint(document.activeRun.checkpoint, base.config));
       assert.equal(data.get(storage.v120BackupKey), undefined);
     }
   });
-  add(`${version} 无 rulesVersion 回退 version；旧日期/键/分享保留，新赛题分离`, () => {
+  add(`${version} 无 rulesVersion 回退 version；旧日期/键/分享保留，同规则赛题不变`, () => {
     const fallback = { ...rules.configForVersion(config,version) }; delete fallback.rulesVersion; fallback.version = version;
     assert.deepEqual(rules.createLevel(fallback, 5, 42), base.rules.createLevel(base.config, 5, 42));
     assert.ok(storage.validateProgress(fixture(base, "seed"), fallback));
     for (const date of ["2024-02-29", "2026-10-03", "2026-10-05"]) {
       assert.equal(challenges.dailySeed(date,version), base.challenges.dailySeed(date));
       assert.equal(challenges.key(challenges.create("daily", 0, date,version)), base.challenges.key(base.challenges.create("daily", 0, date)));
-      assert.notEqual(challenges.dailySeed(date),base.challenges.dailySeed(date));
-      assert.notEqual(challenges.key(challenges.create("daily",0,date)),challenges.key(challenges.create("daily",0,date,version)));
+      if (version === config.rulesVersion) {
+        assert.equal(challenges.dailySeed(date),base.challenges.dailySeed(date));
+        assert.equal(challenges.key(challenges.create("daily",0,date)),challenges.key(challenges.create("daily",0,date,version)));
+      } else {
+        assert.notEqual(challenges.dailySeed(date),base.challenges.dailySeed(date));
+        assert.notEqual(challenges.key(challenges.create("daily",0,date)),challenges.key(challenges.create("daily",0,date,version)));
+      }
     }
     assert.equal(challenges.share(fixture(base, "seed", "report").profile.recentReports[0]), base.challenges.share(fixture(base, "seed", "report").profile.recentReports[0]));
   });
   }
-  fs.writeFileSync("output/playwright/survival-v153-compat-report.json", JSON.stringify({ version: config.version, rulesVersion: config.rulesVersion, baselines, result: "passed", checks, layouts, shops, method: "legacy-rule exact comparison against committed v1.4.0, v1.5.0, v1.5.1 and v1.5.2; formal fixtures, not real-time gameplay" }, null, 2) + "\n");
+  fs.writeFileSync("output/playwright/survival-v154-compat-report.json", JSON.stringify({ version: config.version, rulesVersion: config.rulesVersion, baselines, result: "passed", checks, layouts, shops, method: "legacy-rule exact comparison against committed v1.4.0, v1.5.0, v1.5.1, v1.5.2 and v1.5.3; formal fixtures, not real-time gameplay" }, null, 2) + "\n");
 }
 module.exports = { loadBaseline, fixture, collect };

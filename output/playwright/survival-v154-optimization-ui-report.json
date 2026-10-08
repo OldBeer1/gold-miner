@@ -1,0 +1,87 @@
+{
+  "version": "1.5.4",
+  "rulesVersion": "1.5.3",
+  "method": "isolated Chrome; identical original v153 entry, manual RAF/performance clock 60 frames at 1/60 s; visible Canvas call counts and exact PNG equality, not real-time gameplay or FPS",
+  "scenes": [
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "previous": {
+        "calls": {
+          "fillRect": 15980,
+          "drawImage": 0
+        },
+        "frames": 60,
+        "pngSha256": "433a7bf2cab2d0534522063ab098d04f25d28e154295478f9c0ae0f507bfac5b",
+        "footer": "v1.5.2 · 复古像素，简单快乐",
+        "elapsedTime": 0.9999999999999987
+      },
+      "current": {
+        "calls": {
+          "fillRect": 4640,
+          "drawImage": 60
+        },
+        "frames": 60,
+        "pngSha256": "433a7bf2cab2d0534522063ab098d04f25d28e154295478f9c0ae0f507bfac5b",
+        "footer": "v1.5.4 · 复古像素，简单快乐",
+        "elapsedTime": 0.9999999999999987
+      }
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "previous": {
+        "calls": {
+          "fillRect": 15980,
+          "drawImage": 0
+        },
+        "frames": 60,
+        "pngSha256": "433a7bf2cab2d0534522063ab098d04f25d28e154295478f9c0ae0f507bfac5b",
+        "footer": "v1.5.2 · 复古像素，简单快乐",
+        "elapsedTime": 0.9999999999999987
+      },
+      "current": {
+        "calls": {
+          "fillRect": 4640,
+          "drawImage": 60
+        },
+        "frames": 60,
+        "pngSha256": "433a7bf2cab2d0534522063ab098d04f25d28e154295478f9c0ae0f507bfac5b",
+        "footer": "v1.5.4 · 复古像素，简单快乐",
+        "elapsedTime": 0.9999999999999987
+      }
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 480
+      },
+      "previous": {
+        "calls": {
+          "fillRect": 15980,
+          "drawImage": 0
+        },
+        "frames": 60,
+        "pngSha256": "433a7bf2cab2d0534522063ab098d04f25d28e154295478f9c0ae0f507bfac5b",
+        "footer": "v1.5.2 · 复古像素，简单快乐",
+        "elapsedTime": 0.9999999999999987
+      },
+      "current": {
+        "calls": {
+          "fillRect": 4640,
+          "drawImage": 60
+        },
+        "frames": 60,
+        "pngSha256": "433a7bf2cab2d0534522063ab098d04f25d28e154295478f9c0ae0f507bfac5b",
+        "footer": "v1.5.4 · 复古像素，简单快乐",
+        "elapsedTime": 0.9999999999999987
+      }
+    }
+  ],
+  "errors": [],
+  "result": "passed"
+}

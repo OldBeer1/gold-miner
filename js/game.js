@@ -14,6 +14,7 @@
   const context = canvas.getContext("2d");
   const elements = {
     app: document.querySelector(".app"),
+    version: document.getElementById("app-version"),
     homeActions: document.querySelector(".home-actions"),
     profile: document.getElementById("profile-screen"),
     latestReport: document.getElementById("latest-report-button"),
@@ -119,6 +120,12 @@
   canvas.width = config.canvas.width;
   canvas.height = config.canvas.height;
   context.imageSmoothingEnabled = false;
+  elements.version.textContent = `v${config.version} · 复古像素，简单快乐`;
+  // 固定天空和土层只绘制一次；矿物、抓钩、矿工与特效仍按原节奏更新。
+  const background = document.createElement("canvas");
+  background.width = canvas.width;
+  background.height = canvas.height;
+  drawBackground(background.getContext("2d"));
 
   function createRun(challenge = null) {
     const seed = new Uint32Array(1);
@@ -628,8 +635,8 @@
     }
     if (state.profilePage === "achievements") {
       content.append(element("p", `已解锁 ${growth.definitions.filter(def => profile.achievements[def.id].unlockedAt).length} / ${growth.definitions.length}。徽章和称号只作纪念，不改变采矿能力。`));
-      const clearTitle = element("button", "卸下称号", "button button-quiet"); clearTitle.type = "button";
-      clearTitle.addEventListener("click", () => { growth.equipTitle(state.progress, null); persistProgress("称号已保存"); updateInterface(); renderProfile(); }); content.append(clearTitle);
+      const clearTitle = element("button", "卸下称号", "button button-quiet"); clearTitle.type = "button"; clearTitle.id = "unequip-title-button";
+      clearTitle.addEventListener("click", () => { growth.equipTitle(state.progress, null); persistProgress("称号已保存"); updateInterface(); renderProfile(); document.getElementById("unequip-title-button").focus(); }); content.append(clearTitle);
       const filters = element("div", "", "profile-filters");
       for (const [key, label, values] of [["status", "解锁状态", ["全部", "已解锁", "未解锁"]], ["category", "分类", ["全部", ...new Set(growth.definitions.map(def => def.category))]]]) {
         const control = element("label", label), select = document.createElement("select"); select.id = `achievement-${key}`;
@@ -659,7 +666,7 @@
           card.append(element("p", `徽章已获得 · ${formatDate(item.unlockedAt)}`));
           if (def.reward.title) {
             const button = element("button", profile.equippedTitleId === def.id ? `已装备：${def.reward.title}` : `装备称号：${def.reward.title}`, "button button-quiet"); button.type = "button"; button.disabled = profile.equippedTitleId === def.id;
-            button.addEventListener("click", () => { growth.equipTitle(state.progress, def.id); persistProgress("称号已保存"); updateInterface(); renderProfile(); }); card.append(button);
+            button.addEventListener("click", () => { growth.equipTitle(state.progress, def.id); persistProgress("称号已保存"); updateInterface(); renderProfile(); document.getElementById("unequip-title-button").focus(); }); card.append(button);
           }
         }
         grid.append(card);
@@ -751,35 +758,35 @@
     surface.fill();
   }
 
-  function drawBackground() {
-    fill(colors.sky, 0, 0, 960, 112);
-    fill(colors.skyLight, 70, 22, 90, 12);
-    fill(colors.skyLight, 96, 14, 40, 8);
-    fill(colors.skyLight, 710, 34, 116, 12);
-    polygon(colors.mountain, [[0, 108], [90, 52], [155, 90], [230, 60], [320, 112]]);
-    polygon(colors.mountain, [[700, 112], [805, 68], [856, 83], [900, 53], [960, 100], [960, 112]]);
-    fill(colors.surface, 0, 112, 960, 48);
-    fill(colors.grass, 0, 108, 960, 12);
-    for (let x = 0; x < 960; x += 32) fill(colors.grassLight, x, 108, 20, 4);
-    fill(colors.soil, 0, 160, 960, 480);
-    polygon(colors.strata, [[0, 180], [148, 180], [148, 200], [324, 200], [324, 192], [568, 192], [568, 180], [804, 180], [804, 204], [960, 204], [960, 224], [0, 224]]);
-    polygon(colors.soilDeep, [[0, 530], [180, 530], [180, 566], [400, 566], [400, 548], [652, 548], [652, 590], [820, 590], [820, 570], [960, 570], [960, 640], [0, 640]]);
+  function drawBackground(surface) {
+    fill(colors.sky, 0, 0, 960, 112, surface);
+    fill(colors.skyLight, 70, 22, 90, 12, surface);
+    fill(colors.skyLight, 96, 14, 40, 8, surface);
+    fill(colors.skyLight, 710, 34, 116, 12, surface);
+    polygon(colors.mountain, [[0, 108], [90, 52], [155, 90], [230, 60], [320, 112]], surface);
+    polygon(colors.mountain, [[700, 112], [805, 68], [856, 83], [900, 53], [960, 100], [960, 112]], surface);
+    fill(colors.surface, 0, 112, 960, 48, surface);
+    fill(colors.grass, 0, 108, 960, 12, surface);
+    for (let x = 0; x < 960; x += 32) fill(colors.grassLight, x, 108, 20, 4, surface);
+    fill(colors.soil, 0, 160, 960, 480, surface);
+    polygon(colors.strata, [[0, 180], [148, 180], [148, 200], [324, 200], [324, 192], [568, 192], [568, 180], [804, 180], [804, 204], [960, 204], [960, 224], [0, 224]], surface);
+    polygon(colors.soilDeep, [[0, 530], [180, 530], [180, 566], [400, 566], [400, 548], [652, 548], [652, 590], [820, 590], [820, 570], [960, 570], [960, 640], [0, 640]], surface);
     for (let row = 0; row < 6; row += 1) {
       for (let column = 0; column < 12; column += 1) {
         const x = column * 82 + ((row * 19 + column * 7) % 38);
         const y = 174 + row * 73 + ((column * 11) % 40);
-        fill(row > 4 ? colors.soil : colors.strata, x, y, 12, 4);
-        fill(colors.soilDeep, x + 18, y + 26, 4, 4);
+        fill(row > 4 ? colors.soil : colors.strata, x, y, 12, 4, surface);
+        fill(colors.soilDeep, x + 18, y + 26, 4, 4, surface);
       }
     }
-    fill(colors.woodShadow, 70, 72, 12, 64);
-    fill(colors.woodShadow, 186, 72, 12, 64);
-    fill(colors.wood, 62, 68, 144, 12);
-    fill(colors.wood, 80, 84, 108, 8);
-    fill(colors.woodShadow, 786, 87, 78, 36);
-    fill(colors.wood, 782, 82, 86, 8);
-    fill(colors.wood, 798, 90, 6, 28);
-    fill(colors.wood, 848, 90, 6, 28);
+    fill(colors.woodShadow, 70, 72, 12, 64, surface);
+    fill(colors.woodShadow, 186, 72, 12, 64, surface);
+    fill(colors.wood, 62, 68, 144, 12, surface);
+    fill(colors.wood, 80, 84, 108, 8, surface);
+    fill(colors.woodShadow, 786, 87, 78, 36, surface);
+    fill(colors.wood, 782, 82, 86, 8, surface);
+    fill(colors.wood, 798, 90, 6, 28, surface);
+    fill(colors.wood, 848, 90, 6, 28, surface);
   }
 
   function drawMiner() {
@@ -900,7 +907,7 @@
 
   function renderScene() {
     context.clearRect(0, 0, canvas.width, canvas.height);
-    drawBackground();
+    context.drawImage(background, 0, 0);
     state.run.minerals.forEach((mineral) => {
       if (mineral.status === "available") drawMineral(mineral);
     });

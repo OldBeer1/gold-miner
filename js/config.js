@@ -2,7 +2,7 @@
   "use strict";
 
   const config = {
-    version: "1.5.3",
+    version: "1.5.4",
     rulesVersion: "1.5.3",
     canvas: { width: 960, height: 640 },
     mine: { x: 24, y: 160, width: 912, height: 456 },
