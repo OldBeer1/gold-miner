@@ -1,4 +1,4 @@
-param([string]$Version = '1.5.2')
+param([string]$Version = '1.5.3')
 
 $ErrorActionPreference = 'Stop'
 if ($Version -notmatch '^\d+\.\d+\.\d+$') { throw 'Invalid release version.' }

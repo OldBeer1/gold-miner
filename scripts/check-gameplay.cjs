@@ -10,14 +10,15 @@ check("四类小物放大、基础价值/回速/钩子/计时/事件/商店不�
     assert.deepEqual(config.minerals[type],{...base.config.minerals[type],...expected});
   }
   for(const type of growth.types.filter(t=>!config.legacyMineralSizes[t])) assert.deepEqual(config.minerals[type],base.config.minerals[type]);
-  for(const key of ["hook","levelDuration","simulation","initialRun","events","shop","mine","canvas"]) assert.deepEqual(config[key],base.config[key]);
+  assert.equal(config.hook.captureRadius,8); const oldHook={...config.hook};delete oldHook.captureRadius;assert.deepEqual(oldHook,base.config.hook);
+  for(const key of ["levelDuration","simulation","initialRun","events","shop","mine","canvas"]) assert.deepEqual(config[key],base.config[key]);
 });
 check("新轮廓擦边可抓、旧轮廓外路径改善；边界外无远距离吸附",()=>{
   for(const type of Object.keys(config.legacyMineralSizes)) {
     const d=config.minerals[type], half=d.radius||d.width/2, m={id:type,type,x:480,y:360,status:"available"};
     const ray=offset=>[{x:480+offset,y:112},{x:480+offset,y:616}];
     assert.equal(rules.firstHit(...ray(half),[m],config)?.mineral.id,type);
-    assert.equal(rules.firstHit(...ray(half+.01),[m],config),null);
+    assert.equal(rules.firstHit(...ray(half+8+.01),[m],config),null);
     const offset=((oldConfig.minerals[type].radius||oldConfig.minerals[type].width/2)+half)/2;
     assert.equal(rules.firstHit(...ray(offset),[m],oldConfig),null); assert.ok(rules.firstHit(...ray(offset),[m],config));
   }
@@ -63,4 +64,4 @@ check("旧/新个人最佳同时保留且键隔离，混合版本报告和商店
   assert.match(challenges.share(p.recentReports[0]),/规则：1\.4\.0/);
   const wrong=growth.clone(loaded);wrong.profile.recentReports[0].challenge.rulesVersion="1.5.0";assert.equal(storage.validateProgress(wrong,config),null);
 });
-fs.writeFileSync("output/playwright/survival-v152-gameplay-report.json",JSON.stringify({version:config.version,rulesVersion:config.rulesVersion,method:"formal collision tests and controlled committed-baseline save fixtures; not real-time play",checks,result:"passed"},null,2)+"\n");
+fs.writeFileSync("output/playwright/survival-v153-gameplay-report.json",JSON.stringify({version:config.version,rulesVersion:config.rulesVersion,method:"formal collision tests and controlled committed-baseline save fixtures; not real-time play",checks,result:"passed"},null,2)+"\n");

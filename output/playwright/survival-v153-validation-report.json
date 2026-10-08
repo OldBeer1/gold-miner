@@ -1,0 +1,146 @@
+{
+  "version": "1.5.3",
+  "rulesVersion": "1.5.3",
+  "result": "passed",
+  "checkedAt": "2026-10-08T00:37:16.511Z",
+  "sourceBaseline": "032887608566bd9d84eb618f3ed7c5aec4d0bb28",
+  "reports": [
+    {
+      "path": "output/playwright/survival-v153-backup-report.json",
+      "result": "passed",
+      "sha256": "bd923c9efaafcedb67757e8265c1d161a1c096695f5c607a1f956d2ed34907b5"
+    },
+    {
+      "path": "output/playwright/survival-v153-rules-report.json",
+      "result": "passed",
+      "sha256": "648bda2deac3e352569835292215ea5e8976277b65abd9d64f1eb34409adb11e"
+    },
+    {
+      "path": "output/playwright/survival-v153-checkpoints-report.json",
+      "result": "passed",
+      "sha256": "a9aa3bbc85dfeead356ce2b0941e837c58c3613dc6affda6c6d64b1319987d7d"
+    },
+    {
+      "path": "output/playwright/survival-v153-growth-report.json",
+      "result": "passed",
+      "sha256": "ff84f22d25276bfcc7ad133c8171193538ed5dca05c322bf05899d71d9783eb2"
+    },
+    {
+      "path": "output/playwright/survival-v153-challenges-report.json",
+      "result": "passed",
+      "sha256": "1a47bb8e5b25c8d08a0a3ba77529956d1c403c4788f761dce702396f24e1bdee"
+    },
+    {
+      "path": "output/playwright/survival-v153-compat-report.json",
+      "result": "passed",
+      "sha256": "a765b9fe3df93d5d1c435c941a3da6c029164cf23a39db24c0f990d0a2bd2ea8"
+    },
+    {
+      "path": "output/playwright/survival-v153-gameplay-report.json",
+      "result": "passed",
+      "sha256": "f92b9a604fc5649388875ed459306909962be984bc53ad4b15fc883378a9add5"
+    },
+    {
+      "path": "output/playwright/survival-v153-layouts-report.json",
+      "result": "passed",
+      "sha256": "a783549b07abf2159e05bb9ba566a489f69f18a1a5edd129ca5be61016ddd8b4"
+    },
+    {
+      "path": "output/playwright/survival-v153-density-report.json",
+      "result": "passed",
+      "sha256": "1e79cad46bc30a41dd3b5882d6d45ee754215ec1726359d771b2db05669a7e53"
+    },
+    {
+      "path": "output/playwright/survival-v153-legacy-budgets-report.json",
+      "result": "passed",
+      "sha256": "a5f7727d999160a5f83b9e788a08d8e774df8d6684b8f2a34834e9e556d04a23"
+    },
+    {
+      "path": "output/playwright/survival-v153-hook-report.json",
+      "result": "passed",
+      "sha256": "5e494dff1504bb45982398cd5112019590886540a9541063216fd5ea73351d47"
+    },
+    {
+      "path": "output/playwright/survival-v153-hook-ui-report.json",
+      "result": "passed",
+      "sha256": "092ec00d28376d61bde3c7b384d096aeae33cd4040ca82855e1341914ffee02f"
+    },
+    {
+      "path": "output/playwright/survival-v153-layouts-ui-report.json",
+      "result": "passed",
+      "sha256": "1ae28681aa1e435e8ef60d52a60d1889f94d5d532e4adfda30535df0e6def3a9"
+    },
+    {
+      "path": "output/playwright/survival-v153-achievements-ui-report.json",
+      "result": "passed",
+      "sha256": "4a667db8e434175f26dcb115c2aecdf5a4911099380860b714e4287960907222"
+    },
+    {
+      "path": "output/playwright/survival-v153-experience-report.json",
+      "result": "passed",
+      "sha256": "224e7666531f4504c951c7285c250dbbe0e048bfec308d803dde3ec13c26e4c4"
+    },
+    {
+      "path": "output/playwright/survival-v153-challenges-ui-report.json",
+      "result": "passed",
+      "sha256": "b3907f9f2bf227bfc9cdb469c78951bd62ae92c401cbb6835dcee52b8ab0102b"
+    },
+    {
+      "path": "output/playwright/survival-v153-smoke-report.json",
+      "result": "passed",
+      "sha256": "c34076d66969c64e860ccf2b701b3c2f54ed87d7739149418652e79e6b6ec920"
+    },
+    {
+      "path": "output/playwright/survival-v153-native-pause-report.json",
+      "result": "passed",
+      "sha256": "5d869efdd9e9b88d3bfb0837e851606c9528fadd6f421d3e03a06ce007688b77"
+    },
+    {
+      "path": "output/playwright/survival-v153-real-run-report.json",
+      "result": "passed",
+      "sha256": "94af16ac157fd14f23d9a68aa55bb0c557b31082326cf7b746007306a7bf9c60"
+    },
+    {
+      "path": "output/playwright/survival-v153-performance-ui-report.json",
+      "result": "passed",
+      "sha256": "457ab375a013cebad82a0885c658c0b748e2ebfdf495a20c231d375616a54f66"
+    },
+    {
+      "path": "output/playwright/survival-v153-syntax-report.json",
+      "result": "passed",
+      "sha256": "9ebdffe6e5011e7cf4acdc51d78b253470a8d6be80d4f2e90186b25a0fec64f9"
+    },
+    {
+      "path": "output/playwright/survival-v153-project-report.json",
+      "result": "passed",
+      "sha256": "04b33c1dc81e261d5980c8929b4fe7728dd13b63e7bfedfc15c3921e3fd923fe"
+    },
+    {
+      "path": "output/playwright/survival-v153-package-report.json",
+      "result": "passed",
+      "sha256": "e36c03cc465e61e6339b75043bf3f18fcbe61a7b3e9d408213998449d0d9ae74"
+    },
+    {
+      "path": "output/playwright/survival-v153-release-preflight-report.json",
+      "result": "passed",
+      "sha256": "b77a68ad74a26a9d29cefd63bda642b116b01d4efa93a552d351d752a982a922"
+    }
+  ],
+  "runtimeHashes": {
+    "index.html": "3d18b0c185fa4f14aba63754faf9cce124a69b61c8db494603b29c7b8adf459b",
+    "styles.css": "69d1f5453941b10bad8a370ff59431b08dea3dd27c859904f9db3fc5481cf977",
+    "js/config.js": "c59d3970f90d3710043be0f138ec3942f6f3727a9236364da804c768e5749212",
+    "js/challenges.js": "42bf3d60e595a6e240b338a273567ccf9d9a66b495d0518986193f731726385e",
+    "js/growth.js": "a7b038fdaee874fa98a9f57de5caf6aa62ae8baafe5347e58d67fcd1385eb056",
+    "js/rules.js": "4360ef3af2d9ef680d1341300ab1f228af78092f40cd8222b59f375b6b94757e",
+    "js/game.js": "56736b1a5bfeb2815421d58422c96efc55dd15c9a503170e634aa93a337cd621",
+    "js/storage.js": "5655b6618bab4a878467dd380341efa68a8d936a279928ded5a0782cafb38252",
+    "js/effects.js": "4993c3134ba7865971728d7d8e1df6480d0151c80f0538b835b0685ab5d7aed8",
+    "js/audio.js": "b79f5086bf79f6bed41be1354702f9e5299ac488c8fc77b5d56888ab215b2930"
+  },
+  "package": {
+    "size": 59254,
+    "sha256": "ad465fedeb3bff670d5e2f4cc0bf8a7cda25ea2785fff292e77913115d1be27f"
+  },
+  "method": "Actual formal, controlled browser, original real-time, local timing, syntax, references and independently extracted package reports; publication verified separately"
+}

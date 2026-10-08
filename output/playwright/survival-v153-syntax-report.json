@@ -1,0 +1,7 @@
+{
+  "version": "1.5.3",
+  "result": "passed",
+  "javascriptFiles": 29,
+  "powershellFiles": 4,
+  "method": "Node syntax and PowerShell AST parsing; no execution claim"
+}

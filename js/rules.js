@@ -17,10 +17,14 @@
       const minerals = { ...config.minerals };
       if (version === "1.4.0") for (const [type, size] of Object.entries(config.legacyMineralSizes)) minerals[type] = Object.freeze({ ...minerals[type], ...size });
       const survival = { ...config.survival };
-      survival.baseCount = 15;
-      delete survival.density;
+      if (["1.4.0", "1.5.0", "1.5.1"].includes(version)) {
+        survival.baseCount = 15;
+        delete survival.density;
+      }
       if (["1.4.0", "1.5.0"].includes(version)) delete survival.scatter;
-      versions.set(version, Object.freeze({ ...config, rulesVersion: version, survival: Object.freeze(survival), minerals: Object.freeze(minerals) }));
+      const hook = { ...config.hook };
+      delete hook.captureRadius;
+      versions.set(version, Object.freeze({ ...config, rulesVersion: version, hook: Object.freeze(hook), survival: Object.freeze(survival), minerals: Object.freeze(minerals) }));
     }
     return versions.get(version);
   }
@@ -86,7 +90,7 @@
   }
 
   function protectsRoute(mineral, bases, config) {
-    const radius = boundingRadius(config.minerals[mineral.type]) + 6;
+    const radius = boundingRadius(config.minerals[mineral.type]) + 6 + (config.hook.captureRadius ?? 0);
     return bases.every(base => segmentCircle(config.miner.anchor, base, mineral, radius) === null);
   }
 
@@ -245,7 +249,7 @@
   function verifyRoute(config, level, strategy = "steady") {
     const run = createRun(config, level.id, { level, runSeed: 0, bombs: 0 });
     let candidates = null;
-    const scattered = ["1.5.1", "1.5.2"].includes(ruleVersion(config));
+    const scattered = ["1.5.1", "1.5.2", "1.5.3"].includes(ruleVersion(config));
     while (run.elapsedTime < 45 - (scattered ? 1e-9 : 0) && !run.settled && run.levelIncome < level.target) {
       if (run.hook.phase === "swinging") {
         if (!candidates) {
@@ -276,8 +280,8 @@
     const event = resolveEvent(config, eventId);
     const parameters = eventParameters(config, levelId, event);
     const random = seededRandom(runSeed, levelId, 0x4c41594f);
-    const scattered = ["1.5.1", "1.5.2"].includes(ruleVersion(config));
-    const dense = ruleVersion(config) === "1.5.2";
+    const scattered = ["1.5.1", "1.5.2", "1.5.3"].includes(ruleVersion(config));
+    const dense = ["1.5.2", "1.5.3"].includes(ruleVersion(config));
     const makeLayout = dense ? makeDenseLayout : scattered ? makeScatterLayout : makeLegacyLayout;
     const densityRandom = dense ? seededRandom(runSeed, levelId, 0x44454e53) : null;
     for (let attempt = 0; attempt < config.survival.maxAttempts; attempt += 1) {
@@ -521,14 +525,28 @@
     return entry;
   }
 
+  // A swept circular hook meets a rectangle's rounded expansion, not its square bounding box.
+  function segmentRoundedRectangle(start, end, center, width, height, radius) {
+    if (radius === 0) return segmentRectangle(start, end, center, width, height);
+    let nearest = null;
+    const include = t => { if (t !== null && (nearest === null || t < nearest)) nearest = t; };
+    include(segmentRectangle(start, end, center, width + 2 * radius, height));
+    include(segmentRectangle(start, end, center, width, height + 2 * radius));
+    for (const x of [-1, 1]) for (const y of [-1, 1]) {
+      include(segmentCircle(start, end, { x: center.x + x * width / 2, y: center.y + y * height / 2 }, radius));
+    }
+    return nearest;
+  }
+
   function firstHit(start, end, minerals, config) {
     let nearest = null;
+    const radius = config.hook.captureRadius ?? 0;
     for (const mineral of minerals) {
       if (mineral.status !== "available") continue;
       const definition = config.minerals[mineral.type];
       const t = definition.radius
-        ? segmentCircle(start, end, mineral, definition.radius)
-        : segmentRectangle(start, end, mineral, definition.width, definition.height);
+        ? segmentCircle(start, end, mineral, definition.radius + radius)
+        : segmentRoundedRectangle(start, end, mineral, definition.width, definition.height, radius);
       if (t !== null && (!nearest || t < nearest.t)) nearest = { mineral, t };
     }
     return nearest;

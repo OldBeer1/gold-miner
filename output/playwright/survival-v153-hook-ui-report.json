@@ -1,0 +1,239 @@
+{
+  "version": "1.5.3",
+  "method": "real Chrome mouse/keyboard on isolated controlled layouts and controlled browser clock; original live gameplay is a separate report",
+  "scenes": [
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "scenario": "previous-miss",
+      "rulesVersion": "1.5.2",
+      "income": 0,
+      "status": "available",
+      "screenshot": "survival-v153-hook-previous-miss-1280x720.png"
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "scenario": "current-graze",
+      "rulesVersion": "1.5.3",
+      "income": 100,
+      "status": "banked",
+      "screenshot": "survival-v153-hook-current-graze-1280x720.png"
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "scenario": "outside-miss",
+      "rulesVersion": "1.5.3",
+      "income": 0,
+      "status": "available",
+      "screenshot": "survival-v153-hook-outside-miss-1280x720.png"
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "scenario": "gem-graze",
+      "rulesVersion": "1.5.3",
+      "income": 250,
+      "status": "banked",
+      "screenshot": "survival-v153-hook-gem-graze-1280x720.png"
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "scenario": "bag-graze",
+      "rulesVersion": "1.5.3",
+      "income": 50,
+      "status": "banked",
+      "screenshot": "survival-v153-hook-bag-graze-1280x720.png"
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "scenario": "stone-blocks",
+      "rulesVersion": "1.5.3",
+      "income": 20,
+      "status": "banked",
+      "screenshot": "survival-v153-hook-stone-blocks-1280x720.png"
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "scenario": "keg-graze",
+      "rulesVersion": "1.5.3",
+      "income": 0,
+      "status": "destroyed",
+      "screenshot": "survival-v153-hook-keg-graze-1280x720.png"
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "scenario": "previous-miss",
+      "rulesVersion": "1.5.2",
+      "income": 0,
+      "status": "available",
+      "screenshot": "survival-v153-hook-previous-miss-1920x1080.png"
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "scenario": "current-graze",
+      "rulesVersion": "1.5.3",
+      "income": 100,
+      "status": "banked",
+      "screenshot": "survival-v153-hook-current-graze-1920x1080.png"
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "scenario": "outside-miss",
+      "rulesVersion": "1.5.3",
+      "income": 0,
+      "status": "available",
+      "screenshot": "survival-v153-hook-outside-miss-1920x1080.png"
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "scenario": "gem-graze",
+      "rulesVersion": "1.5.3",
+      "income": 250,
+      "status": "banked",
+      "screenshot": "survival-v153-hook-gem-graze-1920x1080.png"
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "scenario": "bag-graze",
+      "rulesVersion": "1.5.3",
+      "income": 50,
+      "status": "banked",
+      "screenshot": "survival-v153-hook-bag-graze-1920x1080.png"
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "scenario": "stone-blocks",
+      "rulesVersion": "1.5.3",
+      "income": 20,
+      "status": "banked",
+      "screenshot": "survival-v153-hook-stone-blocks-1920x1080.png"
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "scenario": "keg-graze",
+      "rulesVersion": "1.5.3",
+      "income": 0,
+      "status": "destroyed",
+      "screenshot": "survival-v153-hook-keg-graze-1920x1080.png"
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 480
+      },
+      "scenario": "previous-miss",
+      "rulesVersion": "1.5.2",
+      "income": 0,
+      "status": "available",
+      "screenshot": "survival-v153-hook-previous-miss-1280x480.png"
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 480
+      },
+      "scenario": "current-graze",
+      "rulesVersion": "1.5.3",
+      "income": 100,
+      "status": "banked",
+      "screenshot": "survival-v153-hook-current-graze-1280x480.png"
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 480
+      },
+      "scenario": "outside-miss",
+      "rulesVersion": "1.5.3",
+      "income": 0,
+      "status": "available",
+      "screenshot": "survival-v153-hook-outside-miss-1280x480.png"
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 480
+      },
+      "scenario": "gem-graze",
+      "rulesVersion": "1.5.3",
+      "income": 250,
+      "status": "banked",
+      "screenshot": "survival-v153-hook-gem-graze-1280x480.png"
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 480
+      },
+      "scenario": "bag-graze",
+      "rulesVersion": "1.5.3",
+      "income": 50,
+      "status": "banked",
+      "screenshot": "survival-v153-hook-bag-graze-1280x480.png"
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 480
+      },
+      "scenario": "stone-blocks",
+      "rulesVersion": "1.5.3",
+      "income": 20,
+      "status": "banked",
+      "screenshot": "survival-v153-hook-stone-blocks-1280x480.png"
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 480
+      },
+      "scenario": "keg-graze",
+      "rulesVersion": "1.5.3",
+      "income": 0,
+      "status": "destroyed",
+      "screenshot": "survival-v153-hook-keg-graze-1280x480.png"
+    }
+  ],
+  "errors": [],
+  "result": "passed"
+}

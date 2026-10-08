@@ -1,4 +1,4 @@
-param([string]$Version = '1.5.2')
+param([string]$Version = '1.5.3')
 
 $ErrorActionPreference = 'Stop'
 if ($Version -notmatch '^\d+\.\d+\.\d+$') { throw 'Version must use major.minor.patch.' }
@@ -25,7 +25,8 @@ $goldRulesVersion = $Version
 if ($goldConfig -match 'rulesVersion:\s*"([^"]+)"') { $goldRulesVersion = $Matches[1] }
 $goldReadme = Get-Content -LiteralPath (Join-Path $goldExtract 'README.md') -Raw -Encoding UTF8
 if ($goldReadme -notmatch '13' -or $goldReadme -notmatch [regex]::Escape($goldRulesVersion) -or $goldReadme -notmatch '1.4.0') { throw 'Player readme lacks current achievement or compatibility information.' }
-if ($Version -eq '1.5.2' -and ($goldReadme -notmatch '8' -or $goldReadme -notmatch '23' -or $goldReadme -notmatch '1.5.1')) { throw 'Player readme lacks density or old-challenge information.' }
+if ($Version -in @('1.5.2', '1.5.3') -and ($goldReadme -notmatch '8' -or $goldReadme -notmatch '23' -or $goldReadme -notmatch '1.5.1')) { throw 'Player readme lacks density or old-challenge information.' }
+if ($Version -eq '1.5.3' -and ($goldReadme -notmatch '半径 8' -or $goldReadme -notmatch '1.5.2' -or $goldReadme -notmatch '最早接触')) { throw 'Player readme lacks hook radius or old collision compatibility.' }
 $goldReport = [ordered]@{
     version = $Version; rulesVersion = $goldRulesVersion; result = 'passed'; checkedAt = [DateTime]::UtcNow.ToString('o')
     archive = $goldArchive; extractedDirectory = $goldExtract; size = $goldManifest.size; sha256 = $goldHash

@@ -1,6 +1,6 @@
 # 黄金矿工：产品路线
 
-更新：2026-10-07。v1.5.2 已正式发布并通过匿名公开下载复验；旧版本历史与当前状态见实施计划。此文件维护产品目标与后续范围；已经实现的数值、成就和兼容边界统一在 [GAME_SPEC](GAME_SPEC.md)，任务状态在 [IMPLEMENTATION_PLAN](IMPLEMENTATION_PLAN.md)，实际结果在 [VALIDATION](VALIDATION.md)。
+更新：2026-10-08。v1.5.2 已正式交付，v1.5.3 抓钩范围优化验收通过、正在交付；旧版本历史与当前状态见实施计划。此文件维护产品目标与后续范围；已经实现的数值、成就和兼容边界统一在 [GAME_SPEC](GAME_SPEC.md)，任务状态在 [IMPLEMENTATION_PLAN](IMPLEMENTATION_PLAN.md)，实际结果在 [VALIDATION](VALIDATION.md)。
 
 ## 已完成路线
 
@@ -12,6 +12,7 @@
 | v1.5.0 | 小目标抓取、成就难度、功能验收后备份与项目整合 | [此次需求与分步](GAMEPLAY_IMPROVEMENT_PLAN.md) |
 | v1.5.1 | 普通／事件／备用矿物自然分散，保留三套规则与旧活动 | [分散需求与分步](GAMEPLAY_IMPROVEMENT_PLAN.md#step-36) |
 | v1.5.2 | 每关新增八个可回收物，目标保持、四套规则与旧档案保留 | [数量需求与分步](GAMEPLAY_IMPROVEMENT_PLAN.md#step-41) |
+| v1.5.3 | 钩尖半径八、圆角接触、障碍和桶统一最早接触、五套规则兼容 | [抓钩需求与分步](GAMEPLAY_IMPROVEMENT_PLAN.md#step-46) |
 
 ## 保持的设计原则
 
@@ -25,6 +26,8 @@
 **v1.5.1 自然错落分散：** 普通、事件与备用地图一起调整，目标覆盖左右和不同深度；保留原物体大小、数值及成就，新旧规则与赛题分开。旧挑战继续原布局，新开挑战使用新版。[分步范围](GAMEPLAY_IMPROVEMENT_PLAN.md#5-v151-新增需求矿物自然错落分散)。
 
 **v1.5.2 增加可回收物：** 每关新增八个、全部可回收；保持目标与单物数值、自然分散，四套规则和旧成果保留。[分步范围](GAMEPLAY_IMPROVEMENT_PLAN.md#step-41)。
+
+**v1.5.3 扩大抓钩范围：** 半径八改善擦边，所有物体统一接触判定，旧四套活动保留原范围、数量和地图；当前参数及实际证据分别查规格和验收记录。[分步范围](GAMEPLAY_IMPROVEMENT_PLAN.md#step-46)。
 
 ## 后续范围
 

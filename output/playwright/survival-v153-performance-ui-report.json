@@ -1,0 +1,170 @@
+{
+  "version": "1.5.3",
+  "method": "real headless Chrome requestAnimationFrame intervals over four seconds per scene; isolated formal entry fixtures, no clock overrides; local comparison, not a general hardware/FPS guarantee",
+  "scenes": [
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "levelId": 1,
+      "previous": {
+        "count": 23,
+        "frames": 659,
+        "medianMs": 6.099999999999909,
+        "p95Ms": 6.200000000000273,
+        "p99Ms": 6.300000000000182,
+        "maximumMs": 8.800000000000182,
+        "over50ms": 0,
+        "longTasks": []
+      },
+      "current": {
+        "count": 23,
+        "frames": 660,
+        "medianMs": 6.099999999999909,
+        "p95Ms": 6.2000000000000455,
+        "p99Ms": 6.5,
+        "maximumMs": 6.600000000000364,
+        "over50ms": 0,
+        "longTasks": []
+      }
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "levelId": 1000,
+      "previous": {
+        "count": 34,
+        "frames": 662,
+        "medianMs": 6.099999999999909,
+        "p95Ms": 6.299999999999727,
+        "p99Ms": 6.5,
+        "maximumMs": 6.900000000000091,
+        "over50ms": 0,
+        "longTasks": []
+      },
+      "current": {
+        "count": 34,
+        "frames": 660,
+        "medianMs": 6.099999999999909,
+        "p95Ms": 6.299999999999727,
+        "p99Ms": 6.5,
+        "maximumMs": 6.699999999999818,
+        "over50ms": 0,
+        "longTasks": []
+      }
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "levelId": 1,
+      "previous": {
+        "count": 23,
+        "frames": 659,
+        "medianMs": 6.099999999999909,
+        "p95Ms": 6.300000000000182,
+        "p99Ms": 6.5,
+        "maximumMs": 12.099999999999994,
+        "over50ms": 0,
+        "longTasks": []
+      },
+      "current": {
+        "count": 23,
+        "frames": 659,
+        "medianMs": 6.099999999999909,
+        "p95Ms": 6.2999999999999545,
+        "p99Ms": 6.5,
+        "maximumMs": 6.7000000000000455,
+        "over50ms": 0,
+        "longTasks": []
+      }
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "levelId": 1000,
+      "previous": {
+        "count": 34,
+        "frames": 662,
+        "medianMs": 6.099999999999909,
+        "p95Ms": 6.200000000000728,
+        "p99Ms": 6.5,
+        "maximumMs": 7.400000000000091,
+        "over50ms": 0,
+        "longTasks": []
+      },
+      "current": {
+        "count": 34,
+        "frames": 659,
+        "medianMs": 6.099999999999909,
+        "p95Ms": 6.300000000000182,
+        "p99Ms": 6.600000000000023,
+        "maximumMs": 6.700000000000273,
+        "over50ms": 0,
+        "longTasks": []
+      }
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 480
+      },
+      "levelId": 1,
+      "previous": {
+        "count": 23,
+        "frames": 661,
+        "medianMs": 6.099999999999909,
+        "p95Ms": 6.300000000000182,
+        "p99Ms": 6.5,
+        "maximumMs": 6.800000000000182,
+        "over50ms": 0,
+        "longTasks": []
+      },
+      "current": {
+        "count": 23,
+        "frames": 661,
+        "medianMs": 6.099999999999909,
+        "p95Ms": 6.300000000000182,
+        "p99Ms": 6.5,
+        "maximumMs": 6.600000000000023,
+        "over50ms": 0,
+        "longTasks": []
+      }
+    },
+    {
+      "viewport": {
+        "width": 1280,
+        "height": 480
+      },
+      "levelId": 1000,
+      "previous": {
+        "count": 34,
+        "frames": 651,
+        "medianMs": 6.099999999999909,
+        "p95Ms": 6.200000000000273,
+        "p99Ms": 6.399999999999977,
+        "maximumMs": 7,
+        "over50ms": 0,
+        "longTasks": []
+      },
+      "current": {
+        "count": 34,
+        "frames": 661,
+        "medianMs": 6.099999999999909,
+        "p95Ms": 6.2000000000000455,
+        "p99Ms": 6.300000000000182,
+        "maximumMs": 6.700000000000273,
+        "over50ms": 0,
+        "longTasks": []
+      }
+    }
+  ],
+  "errors": [],
+  "result": "passed"
+}

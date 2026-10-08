@@ -62,7 +62,7 @@ check("1700 份布局均可见、可达、无重叠并在 45 秒内无道具达�
     }
     const stats = numbers => { const sorted = [...numbers].sort((a,b) => a-b); return { minimum: sorted[0], median: sorted[50], maximum: sorted[99] }; };
     generations.push({ levelId, seeds: 100, maximumSeconds, fallbackCount, steady: stats(steadySeconds), fastestFound: stats(fastestFound), strategySuccesses });
-    if (levelId >= 10) { assert.ok(stats(steadySeconds).median >= 35, `level ${levelId}: steady median ${stats(steadySeconds).median}`); if (config.rulesVersion !== "1.5.2") assert.ok(stats(fastestFound).median >= 28, `level ${levelId}: fastest median ${stats(fastestFound).median}`); }
+    if (levelId >= 10) { assert.ok(stats(steadySeconds).median >= 35, `level ${levelId}: steady median ${stats(steadySeconds).median}`); if (!["1.5.2", "1.5.3"].includes(config.rulesVersion)) assert.ok(stats(fastestFound).median >= 28, `level ${levelId}: fastest median ${stats(fastestFound).median}`); }
   }
 });
 check("不同种子生成不同布局，强制失败使用有效备用布局", () => {
@@ -190,10 +190,11 @@ check("钩尖碰到火药桶立即爆炸并清除附近物体，空钩回收且�
       { id: "far", type: "ruby", x: 650, y: 300 }];
     const run = fresh({ level: { ...fixture, layout }, wallet: 200, bombs: 2, effects: { protectionCharm } });
     rules.launchHook(run);
-    assert.deepEqual(rules.advanceRun(run, .2, config), []);
+    const contactTime = (300 - config.miner.anchor.y - config.minerals.powderKeg.height / 2 - (config.hook.captureRadius ?? 0) - config.hook.restLength) / config.hook.extendSpeed;
+    assert.deepEqual(rules.advanceRun(run, contactTime - .01, config), []);
     assert.ok(run.minerals.every(mineral => mineral.status === "available"));
-    const events = rules.advanceRun(run, .03, config);
-    close(run.remainingTime, 59.77);
+    const events = rules.advanceRun(run, .02, config);
+    close(run.remainingTime, 60 - contactTime - .01);
     assert.equal(run.wallet, 200); assert.equal(run.levelIncome, 0); assert.equal(run.bombs, 2);
     assert.equal(run.effects.protectionCharm, protectionCharm);
     assert.equal(run.timeBonusUsed, 0); assert.equal(run.hook.phase, "returning-empty"); assert.equal(run.hook.carryingId, null);
@@ -202,7 +203,7 @@ check("钩尖碰到火药桶立即爆炸并清除附近物体，空钩回收且�
     assert.deepEqual(events[0].destroyedIds, ["keg", "gold", "bag", "relic", "chest"]);
     assert.equal(run.minerals.at(-1).status, "available");
     assert.deepEqual(rules.advanceRun(run, .4, config), [{ type: "empty-returned" }]); assert.equal(run.hook.phase, "swinging");
-    assert.equal(run.wallet, 200); assert.equal(run.levelIncome, 0); close(run.remainingTime, 59.37);
+    assert.equal(run.wallet, 200); assert.equal(run.levelIncome, 0); close(run.remainingTime, 60 - contactTime - .41);
   }
 });
 check("爆炸半径按圆形和矩形轮廓判断，边界外保留且已回收物不受影响", () => {
@@ -233,7 +234,7 @@ check("附近火药桶直接销毁不连锁引爆，先撞到普通物体不会�
 });
 check("截止时才碰到火药桶或关卡已结束，不触发爆炸", () => {
   const run = fresh({ level: { ...fixture, layout: [{ id: "keg", type: "powderKeg", x: 480, y: 300 }] } });
-  run.remainingTime = (300 - config.miner.anchor.y - config.minerals.powderKeg.height / 2 - config.hook.restLength) / config.hook.extendSpeed;
+  run.remainingTime = (300 - config.miner.anchor.y - config.minerals.powderKeg.height / 2 - (config.hook.captureRadius ?? 0) - config.hook.restLength) / config.hook.extendSpeed;
   rules.launchHook(run); const events = rules.advanceRun(run, 1, config);
   assert.equal(run.settled, true); assert.equal(events.some(event => event.type === "exploded"), false);
   assert.equal(run.minerals[0].status, "available"); assert.deepEqual(rules.advanceRun(run, 1, config), []);

@@ -33,24 +33,24 @@ if (require.main === module) {
       }
     }
   });
-  check("v151 备份写入失败单独阻止权威升级，重试成功；已有不同备份保持原文", () => {
-    const base = loadBaseline("v1.5.1"), old = fixture(base,"daily","shop"), raw=JSON.stringify(old), data=new Map([[storage.progressKey,raw]]);
-    let denied=true;const db={getItem:k=>data.get(k)??null,setItem:(k,v)=>{if(denied&&k===storage.v151BackupKey)throw Error("backup denied");data.set(k,v);}};
+  check("v152 备份写入失败单独阻止权威升级，重试成功；已有不同备份保持原文", () => {
+    const base = loadBaseline("v1.5.2"), old = fixture(base,"daily","shop"), raw=JSON.stringify(old), data=new Map([[storage.progressKey,raw]]);
+    let denied=true;const db={getItem:k=>data.get(k)??null,setItem:(k,v)=>{if(denied&&k===storage.v152BackupKey)throw Error("backup denied");data.set(k,v);}};
     const loaded=storage.loadProgress(db,config,now);assert.equal(loaded.blocked,false);assert.match(loaded.message,/未能保存/);assert.equal(data.get(storage.progressKey),raw);
-    denied=false;assert.ok(storage.saveProgress(db,loaded.document,config,loaded.revision).saved);assert.equal(data.get(storage.v151BackupKey),raw);
-    data.set(storage.progressKey,raw);data.set(storage.v151BackupKey,"previous backup retained");const restored=storage.loadProgress(db,config,now);assert.equal(restored.blocked,false);assert.equal(data.get(storage.v151BackupKey),"previous backup retained");assert.deepEqual(restored.document.profile,old.profile);
+    denied=false;assert.ok(storage.saveProgress(db,loaded.document,config,loaded.revision).saved);assert.equal(data.get(storage.v152BackupKey),raw);
+    data.set(storage.progressKey,raw);data.set(storage.v152BackupKey,"previous backup retained");const restored=storage.loadProgress(db,config,now);assert.equal(restored.blocked,false);assert.equal(data.get(storage.v152BackupKey),"previous backup retained");assert.deepEqual(restored.document.profile,old.profile);
   });
-  check("同输入 v151/v152 生成耗时和四种策略收益/耗时对比；原目标及收益倍率保持", () => {
-    const old=rules.configForVersion(config,"1.5.1");
+  check("同输入 v152/v153 生成耗时和四种策略收益/耗时对比；原目标及收益倍率保持", () => {
+    const old=rules.configForVersion(config,"1.5.2");
     for(const n of [1,4,10,30,1000])for(let seed=0;seed<20;seed++){
       const sample={level:n,seed};
       for(const [name,cfg] of [["previous",old],["current",config]]){
         const started=performance.now(),level=rules.createLevel(cfg,n,seed,"none");
         sample[name]={generationMs:performance.now()-started,count:level.count,target:level.target,rewardScale:level.rewardScale,fallback:level.fallback,routes:["steady","value","efficiency","safe"].map(s=>rules.verifyRoute(cfg,level,s))};
       }
-      assert.equal(sample.current.count-sample.previous.count,8);assert.equal(sample.current.target,sample.previous.target);assert.equal(sample.current.rewardScale,sample.previous.rewardScale);samples.push(sample);
+      assert.equal(sample.current.count-sample.previous.count,0);assert.equal(sample.current.target,sample.previous.target);assert.equal(sample.current.rewardScale,sample.previous.rewardScale);samples.push(sample);
     }
   });
-  fs.writeFileSync("output/playwright/survival-v152-density-report.json",JSON.stringify({version:config.version,result:"passed",method:"formal geometry, controlled isolated-target recovery/save cases and Node timing; not browser or natural gameplay",checks,samples},null,2)+"\n");
+  fs.writeFileSync("output/playwright/survival-v153-density-report.json",JSON.stringify({version:config.version,result:"passed",method:"formal geometry, controlled isolated-target recovery/save cases and Node timing; not browser or natural gameplay",checks,samples},null,2)+"\n");
 }
 module.exports={assertDensity};

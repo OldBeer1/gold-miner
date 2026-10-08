@@ -1,0 +1,12 @@
+{
+  "version": "1.5.3",
+  "result": "passed",
+  "method": "analytical collision boundaries, controlled formal engine cases and 400 old-rule rays; not browser or natural play",
+  "checks": [
+    "九类物体侧边 8 像素内命中、8 像素外不命中，零半径恢复原轮廓",
+    "矩形外扩四角为圆角，斜角不出现方形额外吸附；正面/切线/零长度正确",
+    "扩大范围仍选最早接触：前方石头/桶优先，等时沿稳定地图顺序；非可用物忽略",
+    "正式引擎擦边回收、前方障碍和火药桶爆炸；截止在途无入账",
+    "四套旧规则全部碰撞返回值逐项匹配已发布源码，包含边缘和斜线"
+  ]
+}

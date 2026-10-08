@@ -2,12 +2,13 @@
   "use strict";
 
   const config = {
-    version: "1.5.2",
-    rulesVersion: "1.5.2",
+    version: "1.5.3",
+    rulesVersion: "1.5.3",
     canvas: { width: 960, height: 640 },
     mine: { x: 24, y: 160, width: 912, height: 456 },
     miner: { anchor: { x: 480, y: 112 } },
     hook: {
+      captureRadius: 8,
       restLength: 60,
       minAngle: -75,
       maxAngle: 75,
