@@ -12,7 +12,7 @@
 | 47 | v1.5.3 | [半径八连续接触](GAMEPLAY_IMPROVEMENT_PLAN.md#step-47) | 46 | 已完成（规则通过） |
 | 48 | v1.5.3 | [五套规则与原文备份](GAMEPLAY_IMPROVEMENT_PLAN.md#step-48) | 47 | 已完成（精确兼容通过） |
 | 49 | v1.5.3 | [碰撞／浏览器／真实试玩](GAMEPLAY_IMPROVEMENT_PLAN.md#step-49) | 48 | 已完成 |
-| 50 | v1.5.3 | [文档／玩家包／完整发布](GAMEPLAY_IMPROVEMENT_PLAN.md#step-50) | 49 | 玩家包通过，待完整发布 |
+| 50 | v1.5.3 | [文档／玩家包／完整发布](GAMEPLAY_IMPROVEMENT_PLAN.md#step-50) | 49 | 已完成（正式发布、公开下载复验） |
 | 41 | v1.5.2 | [即时备份](GAMEPLAY_IMPROVEMENT_PLAN.md#step-41) | v1.5.1 | 已完成 |
 | 42 | v1.5.2 | [八物配比与分散生成](GAMEPLAY_IMPROVEMENT_PLAN.md#step-42) | 41 | 已完成（规则通过） |
 | 43 | v1.5.2 | [四套规则与原文备份](GAMEPLAY_IMPROVEMENT_PLAN.md#step-43) | 42 | 已完成（精确兼容通过） |
@@ -100,3 +100,11 @@ configForVersion 缓存 1.4.0／1.5.0 配置，旧布局生成原样保留；旧
 1700 普通、660 普通事件、60 备用、360 旧地图／360 商店、1200 旧预算地图、400 旧射线和碰撞专项通过。21 受控擦边及 21 布局场景、所有既有浏览器流程、原生暂停、12 次真实帧测量与四关四店原始计时通过；成绩 7000、31 次回收、9 成就。模拟／受控／真实证据及性能边界见 VALIDATION。引用检查将两份缺失的旧本地备份单列，不修改历史原文；本轮新备份完整。
 
 玩家 ZIP 59254 字节／11 文件，SHA-256 ad465fedeb3bff670d5e2f4cc0bf8a7cda25ea2785fff292e77913115d1be27f，独立解压／10 运行文件／7 浏览器检查通过。50 待源码与证据推送、正式标签／Release 和匿名下载复验；备份／个人数据仍留本地。
+
+### 2026-10-08：v1.5.3 完整交付
+
+验收源码 9a87e5bac9150c3cbd9d060725aac9b22645d4e5 已推送 main，正式 v1.5.3 标签固定该提交；最新稳定 [Release](https://github.com/OldBeer1/gold-miner/releases/tag/v1.5.3) 与 [玩家 ZIP](https://github.com/OldBeer1/gold-miner/releases/download/v1.5.3/Gold-survival-v1.5.3.zip) 已发布。59254 字节／11 文件，SHA-256 ad465fedeb3bff670d5e2f4cc0bf8a7cda25ea2785fff292e77913115d1be27f。
+
+[匿名下载](output/playwright/survival-v153-published-release-report.json)和[最终一致性](output/playwright/survival-v153-final-check-report.json)通过：10 运行文件匹配当前源码、本地／公开解压及标签原始 Git blob；24 份原始验收报告哈希保持。发布证据和本交接另提交推送 main，核对远程与本地一致，源码标签和玩家包保持不变。
+
+46～50 无剩余功能工作。旧挑战保留原半径 0，新开挑战才使用半径 8；旧四套地图／数量／报价保留。新备份位置与恢复方式见 VALIDATION，未访问个人档案，没有清理、旧资产删除或历史改写。两份旧本地备份文件缺失已单列；既有浏览器／地址隔离、设备日期、单活动页面和本机性能观察边界保持。

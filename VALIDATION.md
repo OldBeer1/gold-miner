@@ -35,7 +35,7 @@
 
 ## v1.5.3 玩家包与发布状态
 
-玩家 ZIP **59254 字节／11 文件**，SHA-256 **ad465fedeb3bff670d5e2f4cc0bf8a7cda25ea2785fff292e77913115d1be27f**。独立解压的 10 个运行文件与源码一致，并通过 **7 项浏览器检查**。[package](output/playwright/survival-v153-package-report.json)、[preflight](output/playwright/survival-v153-release-preflight-report.json)。游戏和玩家包验收通过，正式发布与匿名下载复验待执行。
+玩家 ZIP **59254 字节／11 文件**，SHA-256 **ad465fedeb3bff670d5e2f4cc0bf8a7cda25ea2785fff292e77913115d1be27f**。独立解压的 10 个运行文件与源码一致，并通过 **7 项浏览器检查**。[package](output/playwright/survival-v153-package-report.json)、[preflight](output/playwright/survival-v153-release-preflight-report.json)。正式最新稳定 [v1.5.3 Release](https://github.com/OldBeer1/gold-miner/releases/tag/v1.5.3) 与 [玩家 ZIP](https://github.com/OldBeer1/gold-miner/releases/download/v1.5.3/Gold-survival-v1.5.3.zip) 已发布，验收源码标签固定 9a87e5bac9150c3cbd9d060725aac9b22645d4e5，Release ID 406283100／资产 ID 620239106。[匿名公开下载](output/playwright/survival-v153-published-release-report.json)与[最终一致性](output/playwright/survival-v153-final-check-report.json)通过：大小、SHA-256、11 文件一致，10 运行文件同时匹配源码、标签原始 Git blob、本地与公开解压包；[24 份实际验收报告](output/playwright/survival-v153-validation-report.json)哈希保持。发布证据与最终交接另提交推送 main，源码标签和玩家包保持不变。
 
 ---
 

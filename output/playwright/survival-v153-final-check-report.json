@@ -1,0 +1,62 @@
+{
+  "version": "1.5.3",
+  "result": "passed",
+  "checkedAt": "2026-10-08T00:39:52.706Z",
+  "sourceCommit": "9a87e5bac9150c3cbd9d060725aac9b22645d4e5",
+  "releaseUrl": "https://github.com/OldBeer1/gold-miner/releases/tag/v1.5.3",
+  "downloadUrl": "https://github.com/OldBeer1/gold-miner/releases/download/v1.5.3/Gold-survival-v1.5.3.zip",
+  "releaseId": 406283100,
+  "assetId": 620239106,
+  "size": 59254,
+  "sha256": "ad465fedeb3bff670d5e2f4cc0bf8a7cda25ea2785fff292e77913115d1be27f",
+  "reportsVerified": 24,
+  "runtime": [
+    {
+      "path": "index.html",
+      "sha256": "3d18b0c185fa4f14aba63754faf9cce124a69b61c8db494603b29c7b8adf459b"
+    },
+    {
+      "path": "styles.css",
+      "sha256": "69d1f5453941b10bad8a370ff59431b08dea3dd27c859904f9db3fc5481cf977"
+    },
+    {
+      "path": "js/config.js",
+      "sha256": "c59d3970f90d3710043be0f138ec3942f6f3727a9236364da804c768e5749212"
+    },
+    {
+      "path": "js/challenges.js",
+      "sha256": "42bf3d60e595a6e240b338a273567ccf9d9a66b495d0518986193f731726385e"
+    },
+    {
+      "path": "js/growth.js",
+      "sha256": "a7b038fdaee874fa98a9f57de5caf6aa62ae8baafe5347e58d67fcd1385eb056"
+    },
+    {
+      "path": "js/rules.js",
+      "sha256": "4360ef3af2d9ef680d1341300ab1f228af78092f40cd8222b59f375b6b94757e"
+    },
+    {
+      "path": "js/game.js",
+      "sha256": "56736b1a5bfeb2815421d58422c96efc55dd15c9a503170e634aa93a337cd621"
+    },
+    {
+      "path": "js/storage.js",
+      "sha256": "5655b6618bab4a878467dd380341efa68a8d936a279928ded5a0782cafb38252"
+    },
+    {
+      "path": "js/effects.js",
+      "sha256": "4993c3134ba7865971728d7d8e1df6480d0151c80f0538b835b0685ab5d7aed8"
+    },
+    {
+      "path": "js/audio.js",
+      "sha256": "b79f5086bf79f6bed41be1354702f9e5299ac488c8fc77b5d56888ab215b2930"
+    }
+  ],
+  "checks": [
+    "all 24 original validation report hashes unchanged",
+    "ten runtime files match raw tag Git blobs, working source, local extraction and anonymous public extraction",
+    "published stable latest player ZIP size, SHA-256 and exact list verified",
+    "old evidence retained; absent local-only historical backup references documented"
+  ],
+  "method": "Exact byte/hash consistency and completed publication verification; final handoff commit is pushed separately"
+}

@@ -1,6 +1,6 @@
 # 黄金矿工：产品路线
 
-更新：2026-10-08。v1.5.2 已正式交付，v1.5.3 抓钩范围优化验收通过、正在交付；旧版本历史与当前状态见实施计划。此文件维护产品目标与后续范围；已经实现的数值、成就和兼容边界统一在 [GAME_SPEC](GAME_SPEC.md)，任务状态在 [IMPLEMENTATION_PLAN](IMPLEMENTATION_PLAN.md)，实际结果在 [VALIDATION](VALIDATION.md)。
+更新：2026-10-08。v1.5.3 已正式发布并通过匿名公开下载复验；旧版本历史与当前状态见实施计划。此文件维护产品目标与后续范围；已经实现的数值、成就和兼容边界统一在 [GAME_SPEC](GAME_SPEC.md)，任务状态在 [IMPLEMENTATION_PLAN](IMPLEMENTATION_PLAN.md)，实际结果在 [VALIDATION](VALIDATION.md)。
 
 ## 已完成路线
 
