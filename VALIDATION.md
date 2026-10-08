@@ -31,10 +31,11 @@ Node 100 个固定场景预热后五轮交替执行发布引擎与优化版：�
 
 游戏验收通过后才整理。[清单](docs/OPTIMIZATION_V154.md#整理清单)与 [manifest](output/playwright/survival-v154-cleanup-manifest.json)记录两份旧入口归档、当前说明整合及引用更新。没有删除运行代码、迁移、历史证据、旧 ZIP、用户数据或 GitHub 资产。历史文件 SHA-256 由项目检查核对。
 
-
 整理后 [引用检查](output/playwright/survival-v154-regression-project-report.json)通过：28 份 Markdown、当前本地链接／章节锚点、HTML 十个运行文件、模块与打包白名单；83 份 v152、108 份 v153 及更早受保护历史材料 SHA-256 保持。两份缺失本地旧备份仍单列。整理前项目报告是阶段快照，最终引用和历史保护以整理后报告为准。[回归哈希核验](output/playwright/survival-v154-regression-report.json)确认十个运行文件、26 份封存报告不变，两份归档来源与 Git 基线一致；没有因纯文档整合重复完整真实试玩。JavaScript 32 个、PowerShell 4 个解析及差异格式通过，备份脚本只解析未执行。
 
-v1.5.4 玩家 ZIP **59741 字节／11 文件**，SHA-256 `5869672865e4c344c12b12bf19e06a05227db64c31655b7c2cc426929924a53a`。[独立解压](output/playwright/survival-v154-package-report.json)确认十个运行文件与源码一致；[玩家包浏览器](output/playwright/survival-v154-release-preflight-report.json)通过 7 组，包含真实输入、爆炸、暂停、保存、成就／图鉴／报告、Seed／每日和本地资源加载。正式 GitHub Release 和匿名下载复验尚待执行，完成后追加事实。
+v1.5.4 玩家 ZIP **59741 字节／11 文件**，SHA-256 `5869672865e4c344c12b12bf19e06a05227db64c31655b7c2cc426929924a53a`。[独立解压](output/playwright/survival-v154-package-report.json)确认十个运行文件与源码一致；[玩家包浏览器](output/playwright/survival-v154-release-preflight-report.json)通过 7 组，包含真实输入、爆炸、暂停、保存、成就／图鉴／报告、Seed／每日和本地资源加载。正式 [v1.5.4 Release](https://github.com/OldBeer1/gold-miner/releases/tag/v1.5.4) 和 [玩家 ZIP](https://github.com/OldBeer1/gold-miner/releases/download/v1.5.4/Gold-survival-v1.5.4.zip) 已发布；标签固定验收源码 `6c2ce4876d7b187c3f832db5bc7d8aa98e3a25a2`。
+
+[匿名公开下载](output/playwright/survival-v154-published-release-report.json)通过：59741 字节、11 文件、SHA-256 与本地已验收包一致，正式稳定最新版本、资产摘要与标签均核对。[最终核验](output/playwright/survival-v154-final-check-report.json)确认十个运行文件匹配当前源码、标签原始 Git blob 和两份独立解压包，32 份封存报告哈希不变。发布阶段额外验证的是公开下载、元数据、文件清单和 Git blob，没有把它写成第二次完整真实试玩。发布证据与最终交接另提交推送，最后核对 main、标签及本地一致。[最终引用检查](output/playwright/survival-v154-final-project-report.json)保持所有当前链接、锚点、入口和历史哈希有效。
 
 ## 条件与限制
 

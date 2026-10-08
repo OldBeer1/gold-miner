@@ -1,0 +1,63 @@
+{
+  "version": "1.5.4",
+  "rulesVersion": "1.5.3",
+  "result": "passed",
+  "checkedAt": "2026-10-08T01:08:20.414Z",
+  "sourceCommit": "6c2ce4876d7b187c3f832db5bc7d8aa98e3a25a2",
+  "releaseUrl": "https://github.com/OldBeer1/gold-miner/releases/tag/v1.5.4",
+  "downloadUrl": "https://github.com/OldBeer1/gold-miner/releases/download/v1.5.4/Gold-survival-v1.5.4.zip",
+  "releaseId": 406299958,
+  "assetId": 620293397,
+  "size": 59741,
+  "sha256": "5869672865e4c344c12b12bf19e06a05227db64c31655b7c2cc426929924a53a",
+  "reportsVerified": 32,
+  "runtime": [
+    {
+      "path": "index.html",
+      "sha256": "4fbf4c052a141a59c151c50f7d9d8f4cbc923204cc63c1227360929c71e31e31"
+    },
+    {
+      "path": "styles.css",
+      "sha256": "69d1f5453941b10bad8a370ff59431b08dea3dd27c859904f9db3fc5481cf977"
+    },
+    {
+      "path": "js/audio.js",
+      "sha256": "b79f5086bf79f6bed41be1354702f9e5299ac488c8fc77b5d56888ab215b2930"
+    },
+    {
+      "path": "js/challenges.js",
+      "sha256": "42bf3d60e595a6e240b338a273567ccf9d9a66b495d0518986193f731726385e"
+    },
+    {
+      "path": "js/config.js",
+      "sha256": "987246f886b5ce1a7b02d5164b4ff9ea105f61e5f30103737bc69e05019eefd8"
+    },
+    {
+      "path": "js/effects.js",
+      "sha256": "4993c3134ba7865971728d7d8e1df6480d0151c80f0538b835b0685ab5d7aed8"
+    },
+    {
+      "path": "js/game.js",
+      "sha256": "1e0c4aaa6268f015873cbd536252fcb0eaa32d21a57066ab9b25cb63b698584c"
+    },
+    {
+      "path": "js/growth.js",
+      "sha256": "a7b038fdaee874fa98a9f57de5caf6aa62ae8baafe5347e58d67fcd1385eb056"
+    },
+    {
+      "path": "js/rules.js",
+      "sha256": "307d04183eae986fdf633a1fa30609cb585936b73dcb19c6ed46850da07b2885"
+    },
+    {
+      "path": "js/storage.js",
+      "sha256": "5655b6618bab4a878467dd380341efa68a8d936a279928ded5a0782cafb38252"
+    }
+  ],
+  "checks": [
+    "anonymous public release and asset verified",
+    "local and publicly downloaded ZIP size/SHA-256/list identical",
+    "ten runtime files match source, release tag raw Git blobs and both independent extractions",
+    "32 sealed actual acceptance reports unchanged"
+  ],
+  "method": "final filesystem/raw Git blob and previously executed anonymous public-download verification; no new gameplay or backup claim"
+}
